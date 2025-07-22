@@ -6,7 +6,7 @@ use Exception;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
-//use Finnern\apiByCurlHtml\src\tasksLib\option;
+use Finnern\apiByCurlHtml\src\tasksLib\option;
 
 /**
  * get curl class
@@ -37,63 +37,142 @@ class getCurlTask extends baseCurlTask
 //            $this->srcRoot       = $srcRoot;
 //            $this->isNoRecursion = $isNoRecursion;
 
+            parent::__construct();
+
         } catch (Exception $e) {
             echo 'Message: ' . $e->getMessage() . "\r\n";
         }
         // print('exit __construct: ' . $hasError . "\r\n");
     }
 
-    // Task name with options
-    public function assignBaseOption(option $option): bool
-    {
-        $isBaseOption = false;
-
-        switch (strtolower($option->name)) {
-            case strtolower('srcroot'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
-//                $this->srcRoot = $option->value;
-                $isBaseOption  = true;
-                break;
-
-//            case strtolower('isnorecursion'):
-//                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
-//                $this->isNoRecursion = boolval($option->value);
-//                $isBaseOption        = true;
-//                break;
-//
-
-        } // switch
-
-        return $isBaseOption;
-    }
-
 
     public function assignTask(\Finnern\apiByCurlHtml\src\tasksLib\task $task): int
     {
-        // TODO: Implement assignTask() method.
+        $this->taskName = $task->name;
+
+        $options = $task->options;
+
+        foreach ($options->options as $option) {
+
+            $isBaseOption = $this->assignBaseOption($option);
+
+            // base options are already handled
+            if (!$isBaseOption) {
+                $isOption = $this->assignLocalOption ($option);
+            }
+        }
+
         return 0;
+    }
+
+    /**
+     *
+     * @param option $option
+     *
+     * @return void
+     */
+    private function assignLocalOption(option $option): bool
+    {
+        $isBuildExtensionOption = false;
+
+        switch (strtolower($option->name)) {
+//            case strtolower('builddir'):
+//                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+//                $this->buildDir = $option->value;
+//                $isBuildExtensionOption = true;
+//                break;
+
+            default:
+                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . "\r\n");
+        } // switch
+
+        return $isBuildExtensionOption;
     }
 
     public function execute(): int
     {
-        // TODO: Implement execute() method.
-        return 0;
+        // ToDo: has error ....
+        $hasError = 0;
+
+        print('*********************************************************' . "\r\n");
+        print("Execute getCurlTask: " . "\r\n");
+        print('---------------------------------------------------------' . "\r\n");
+
+        // ToDo: Error on missing token
+
+
+        if ($this->oCurl) {
+
+            $this->setRequest('GET');
+
+            $this->setUrl();
+            $this->setHeaders();
+            $this->setStandardOptions();
+
+            $response = curl_exec($this->oCurl);
+
+            // curl_errno — Return the last error number
+            $errorCode = curl_errno($this->oCurl);
+
+            if ($errorCode == 0) {
+                print('---------------------------------------------------------' . "\r\n");
+                print(">>> curl_exec with response: " . "\r\n");
+                // Attention response can be
+                // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
+                // "{"errors":[{"title":"Resource not found","code":404}]}
+
+                // ToDo: Format response
+                $responseArray =  json_decode ($response);
+                // $responseArray =  json_decode ($response->body);
+                // $responseArray =  json_decode ($response->data);
+
+                $responseJsonBeautified = json_encode($responseArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
+                print( $responseJsonBeautified);
+                print('---------------------------------------------------------' . "\r\n");
+                print("\r\n");
+
+                // ToDo: Response to file if requested
+                file_put_contents("results/projects.json", $responseJsonBeautified);
+
+            } else {
+                print('---------------------------------------------------------' . "\r\n");
+                // curl_error — Return a string containing the last error for the current session
+                $errorMessage = curl_error($this->oCurl);
+
+                print("\r\n");
+                print("!!! curl_exec: has failed with error: '" . $errorCode ."' !!!" . "\r\n");
+                print("Message: '" . $errorMessage ."'" . "\r\n");
+                print('---------------------------------------------------------' . "\r\n");
+                print("\r\n");
+            }
+
+            curl_close($this->oCurl);
+
+        } else {
+
+            print('---------------------------------------------------------' . "\r\n");
+            print("getCurlTask:execute: oCurl is not defined" . "\r\n");
+            print('---------------------------------------------------------' . "\r\n");
+
+        }
+
+        return $hasError;
     }
 
     public function executeFile(string $filePathName): int
     {
-        // TODO: Implement executeFile() method.
+        // TODO: Implement execute() method.
         return 0;
     }
 
     public function text(): string
     {
         $OutTxt = "------------------------------------------" . "\r\n";
-        $OutTxt .= "--- CurlApi_HttpCall --------" . "\r\n";
+        $OutTxt .= "--- getCurlTask --------" . "\r\n";
 
 //        $OutTxt .= "Not defined yet " . "\r\n";
 
-        $this->curlTask->text();
+        $OutTxt .= parent::text();
 
         /**
          * $OutTxt .= "fileName: " . $this->fileName . "\r\n";
@@ -105,4 +184,5 @@ class getCurlTask extends baseCurlTask
 
         return $OutTxt;
     }
+
 }

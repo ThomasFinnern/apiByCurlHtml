@@ -5,7 +5,6 @@ namespace Finnern\apiByCurlHtml\src;
 use Exception;
 use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
-use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
@@ -23,7 +22,7 @@ $HELP_MSG = <<<EOT
 Class CurlApi_HttpCall
 ================================================================================*/
 
-class CurlApi_HttpCall extends baseExecuteTasks
+class CurlApi_HttpCall
     implements executeTasksInterface
 {
     protected task $task;
@@ -40,7 +39,6 @@ class CurlApi_HttpCall extends baseExecuteTasks
 
             // fallback
             $this->curlTask = new baseCurlTask();
-            parent::__construct($srcRoot, false);
 
         } catch (Exception $e) {
             echo 'Message: ' . $e->getMessage() . "\r\n";
@@ -51,9 +49,35 @@ class CurlApi_HttpCall extends baseExecuteTasks
 
     public function assignTask(task $task): int
     {
+        $this->task = $task;
+
+//        //--- http file variables options ----------------------------------
+//
+//        foreach ($task->options->options as $option) {
+//
+//            if (strtolower($option->name) == strtolower('httpFile')) {
+//
+//                // $this->extractHttpFileData ($this->httpFile);
+//                $this->extractHttpFileData ($option->value);
+//
+//                // or
+//
+//                // create class
+//
+//                // assign task
+//
+//
+//                // assign options
+//
+//
+//            } // switch
+//
+//        }
+//
 
         //put get ...
         switch (strtolower($task->name)) {
+
             case strtolower('get'):
                 $this->curlTask = new getCurlTask();
 
@@ -83,95 +107,11 @@ class CurlApi_HttpCall extends baseExecuteTasks
         $this->curlTask->assignTask($task);
 
 
-//        //--- http file variables options ----------------------------------
-//
-//        foreach ($task->options->options as $option) {
-//
-//            switch (strtolower($option->name)) {
-//
-//                case strtolower('builddir'):
-//                    // add options from httpfile given in options
-//                    $httpFilOptions = $this->httpFilOptions($option->value);
-//
-//                    break;
-//
-//
-//            } // switch
-//
-//        }
-//
-//        //--- name and options ----------------------------------
-//
-//        $this->taskName = $task->name;
-//
-//        $options = $task->options;
-//
-//        foreach ($options->options as $option) {
-//
-//            $isBaseOption = $this->assignBaseOption($option);
-//
-//            // base options are already handled
-//            if (!$isBaseOption) {
-//
-////                // $isVersionOption = $this->versionId->assignVersionOption($option);
-////                // ToDo: include version better into manifest
-////                // -> same increase flags should be ...
-////                // if (!$isVersionOption) {
-////                $isManifestOption = $this->manifestFile->assignManifestOption($option);
-////                // }
-////            }
-////
-//////            if (!$isBaseOption && !$isVersionOption && !$isManifestOption) {
-//////            if (!$isBaseOption && !$isVersionOption) {
-////            if (!$isBaseOption && !$isManifestOption) {
-//
-//                $this->assignOptions($option);
-//                // $OutTxt .= $task->text() . "\r\n";
-//            }
-//        }
-
         $this->task = $task;
 
         return 0;
     }
 
-    /**
-     *
-     * @param mixed $option
-     * @param task $task
-     *
-     * @return void
-     */
-    public function assignOptions(mixed $option): bool
-    {
-        $isOption = false;
-
-        switch (strtolower($option->name)) {
-            case strtolower('testval'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
-//                $this->testval = $option->value;
-                $isOption = true;
-                break;
-
-            case strtolower('builddir'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
-//                $this->buildDir = $option->value;
-                $isOption = true;
-                break;
-
-            case strtolower('isDoNotUpdateCreationDate'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
-//                $this->isDoNotUpdateCreationDate = boolval($option->value);
-                $isOption = true;
-                break;
-
-
-            default:
-                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . "\r\n");
-        } // switch
-
-        return $isOption;
-    }
 
     public function execute(): int
     {
@@ -242,18 +182,65 @@ class CurlApi_HttpCall extends baseExecuteTasks
 
 //        $OutTxt .= "Not defined yet " . "\r\n";
 
-        $this->curlTask->text();
-
-        /**
-         * $OutTxt .= "fileName: " . $this->fileName . "\r\n";
-         * $OutTxt .= "fileExtension: " . $this->fileExtension . "\r\n";
-         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . "\r\n";
-         * $OutTxt .= "filePath: " . $this->filePath . "\r\n";
-         * $OutTxt .= "srcRootFileName: " . $this->srcRootFileName . "\r\n";
-         * /**/
+        if (! empty ($this->curlTask)) {
+            $OutTxt .= $this->curlTask->text();
+        } else {
+             $OutTxt .= "!!! no curltask class defined" . "\r\n";
+             $OutTxt .= "task: '" . $this->task ."'" . "\r\n";
+        }
 
         return $OutTxt;
     }
 
-}
+    // ToDo: check for file command in calling code, append to options
+    // Content http file:
+    // ###
+    //GET  http://127.0.0.1/joomla5x/api/index.php/v1/lang4dev/projects
+    //Accept: application/vnd.api+json
+    //Content-Type: application/json
+    //X-Joomla-Token: "c2hhMjU2Ojc3OTo3MDIxODdiNTE0N2NjMDY0ZjVlNGY3OTk5NmNiOWZhZTcxYWRkNWVmOWJjZDA0YjYxZTVjNWEwMmEwZTVkZmY5"
+
+    private function extractHttpFileData(string $fileName) : void
+    {
+//        // ToDo: Extract file variables (? as class ? )
+//
+//        $httpData = new httpFileData($fileName);
+//
+//        $task        =  $httpData.command;
+//        $accept      = $httpData.accept;
+//        $contentType = $httpData.contentType;
+//
+//        $baseUrl = $httpData.baseUrl;
+//        $apiPath = $httpData.apiPath;
+//
+//
+//        $this->httpFile = $fileName;
+//
+//        // ToDo: Finish as contains command ...Get
+//        $lines = file($fileName);
+//
+//        foreach ($lines as $line) {
+//
+//            //--- comments and trim -------------------------------------------
+//
+//            $line = trim($line);
+//            if (empty($line)) {
+//                continue;
+//            }
+//
+//            // ignore comments
+//            if (str_starts_with($line, '#')) {
+//                continue;
+//            }
+//
+//            // switch ($line)
+//
+//
+//
+//        }
+
+        return;
+    }
+
+} // class
 

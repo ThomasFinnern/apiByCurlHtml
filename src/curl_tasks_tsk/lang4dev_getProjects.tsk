@@ -1,11 +1,11 @@
 task:get
 /baseUrl="http://127.0.0.1/joomla5x/api/index.php"
-/apiPath="v1/rsgallery2/galleries"
+/apiPath="v1 /lang4dev/projects"
 // /httpFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\curl_tasks_tsk\galleriesGet.http"
 // joomla token should not be in *.tsk file when using git published
 // /joomlaToken="..."
-// /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
-/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+// /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
 // standard: /accept="application/vnd.api+json"
 // standard: /contentType="application/json"
 

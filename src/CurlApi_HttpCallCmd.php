@@ -43,7 +43,8 @@ $tasksLine = ' task:CurlApi_HttpCall'
 //    . ' /adminPath='
 ;
 
-$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/lang4dev_getProjects.tsk';
 
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . "\r\n");
