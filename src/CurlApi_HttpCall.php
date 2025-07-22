@@ -3,6 +3,8 @@
 namespace Finnern\apiByCurlHtml\src;
 
 use Exception;
+use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
+use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
 use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
@@ -24,6 +26,10 @@ Class CurlApi_HttpCall
 class CurlApi_HttpCall extends baseExecuteTasks
     implements executeTasksInterface
 {
+    protected task $task;
+
+    protected baseCurlTask $curlTask;
+
     public function __construct($srcRoot = "")
     {
         $hasError = 0;
@@ -32,6 +38,8 @@ class CurlApi_HttpCall extends baseExecuteTasks
             print ("Construct CurlApi_HttpCall: " . "\r\n");
             print('---------------------------------------------------------' . "\r\n");
 
+            // fallback
+            $this->curlTask = new baseCurlTask();
             parent::__construct($srcRoot, false);
 
         } catch (Exception $e) {
@@ -41,54 +49,88 @@ class CurlApi_HttpCall extends baseExecuteTasks
         // print('exit __construct: ' . $hasError . "\r\n");
     }
 
-    public function assignTask(\Finnern\apiByCurlHtml\src\tasksLib\task $task): int
+    public function assignTask(task $task): int
     {
-        //--- http file variables options ----------------------------------
 
-        foreach ($task->options->options as $option) {
+        //put get ...
+        switch (strtolower($task->name)) {
+            case strtolower('get'):
+                $this->curlTask = new getCurlTask();
 
-            switch (strtolower($option->name)) {
+                break;
 
-                case strtolower('builddir'):
-                    // add options from httpfile given in options
-                    $httpFilOptions = $this->httpFilOptions($option->value);
+            case strtolower('put'):
+                //$this->buildModule();
+                break;
 
-                    break;
+            case strtolower('post'):
+                //$this->buildPlugin();
+                break;
+
+            case strtolower('patch'):
+                //$this->buildPlugin();
+                break;
+
+            case strtolower('delete'):
+                //$this->buildPackage();
+                break;
+
+            default:
+//                    print ('!!! Default componentType: ' . $componentType . ', No build done !!!');
+                break;
+        } // switch
+
+        $this->curlTask->assignTask($task);
 
 
-            } // switch
-
-        }
-
-        //--- name and otpions ----------------------------------
-
-        $this->taskName = $task->name;
-
-        $options = $task->options;
-
-        foreach ($options->options as $option) {
-
-            $isBaseOption = $this->assignBaseOption($option);
-
-            // base options are already handled
-            if (!$isBaseOption) {
-
-//                // $isVersionOption = $this->versionId->assignVersionOption($option);
-//                // ToDo: include version better into manifest
-//                // -> same increase flags should be ...
-//                // if (!$isVersionOption) {
-//                $isManifestOption = $this->manifestFile->assignManifestOption($option);
-//                // }
-//            }
+//        //--- http file variables options ----------------------------------
 //
-////            if (!$isBaseOption && !$isVersionOption && !$isManifestOption) {
-////            if (!$isBaseOption && !$isVersionOption) {
-//            if (!$isBaseOption && !$isManifestOption) {
+//        foreach ($task->options->options as $option) {
+//
+//            switch (strtolower($option->name)) {
+//
+//                case strtolower('builddir'):
+//                    // add options from httpfile given in options
+//                    $httpFilOptions = $this->httpFilOptions($option->value);
+//
+//                    break;
+//
+//
+//            } // switch
+//
+//        }
+//
+//        //--- name and options ----------------------------------
+//
+//        $this->taskName = $task->name;
+//
+//        $options = $task->options;
+//
+//        foreach ($options->options as $option) {
+//
+//            $isBaseOption = $this->assignBaseOption($option);
+//
+//            // base options are already handled
+//            if (!$isBaseOption) {
+//
+////                // $isVersionOption = $this->versionId->assignVersionOption($option);
+////                // ToDo: include version better into manifest
+////                // -> same increase flags should be ...
+////                // if (!$isVersionOption) {
+////                $isManifestOption = $this->manifestFile->assignManifestOption($option);
+////                // }
+////            }
+////
+//////            if (!$isBaseOption && !$isVersionOption && !$isManifestOption) {
+//////            if (!$isBaseOption && !$isVersionOption) {
+////            if (!$isBaseOption && !$isManifestOption) {
+//
+//                $this->assignOptions($option);
+//                // $OutTxt .= $task->text() . "\r\n";
+//            }
+//        }
 
-                $this->assignOptions($option);
-                // $OutTxt .= $task->text() . "\r\n";
-            }
-        }
+        $this->task = $task;
 
         return 0;
     }
@@ -137,41 +179,7 @@ class CurlApi_HttpCall extends baseExecuteTasks
         print ("Execute CurlApi_HttpCall: " . "\r\n");
         print('---------------------------------------------------------' . "\r\n");
 
-        //--- validation checks --------------------------------------
-
-//        $isValid = $this->check4validInput();
-//
-//        if ($isValid) {
-//            $componentType = $this->componentType();
-
-            //put get ...
-            switch (strtolower($this->taskName)) {
-                case strtolower('get'):
-                    //$this->buildComponent();
-
-                    break;
-
-                case strtolower('put'):
-                    //$this->buildModule();
-                    break;
-
-                case strtolower('post'):
-                    //$this->buildPlugin();
-                    break;
-
-                case strtolower('patch'):
-                    //$this->buildPlugin();
-                    break;
-
-                case strtolower('delete'):
-                    //$this->buildPackage();
-                    break;
-
-                default:
-//                    print ('!!! Default componentType: ' . $componentType . ', No build done !!!');
-                    break;
-            } // switch
-        // }
+        $this->curlTask->execute();
 
         return 0;
     }
@@ -226,5 +234,26 @@ class CurlApi_HttpCall extends baseExecuteTasks
 
         return $options;
     }
+
+    public function text(): string
+    {
+        $OutTxt = "------------------------------------------" . "\r\n";
+        $OutTxt .= "--- CurlApi_HttpCall --------" . "\r\n";
+
+//        $OutTxt .= "Not defined yet " . "\r\n";
+
+        $this->curlTask->text();
+
+        /**
+         * $OutTxt .= "fileName: " . $this->fileName . "\r\n";
+         * $OutTxt .= "fileExtension: " . $this->fileExtension . "\r\n";
+         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . "\r\n";
+         * $OutTxt .= "filePath: " . $this->filePath . "\r\n";
+         * $OutTxt .= "srcRootFileName: " . $this->srcRootFileName . "\r\n";
+         * /**/
+
+        return $OutTxt;
+    }
+
 }
 
