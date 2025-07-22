@@ -2,6 +2,8 @@
 
 namespace Finnern\apiByCurlHtml\src;
 
+require_once 'autoload/autoload.php';
+
 use Exception;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 use Finnern\apiByCurlHtml\src\tasksLib\commandLineLib;
@@ -41,7 +43,7 @@ $tasksLine = ' task:CurlApi_HttpCall'
 //    . ' /adminPath='
 ;
 
-$taskFile = '../../RSGallery2_J4_Dev/.buildPHP_extern/build_plugin_rsg2_console.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
 
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . "\r\n");
@@ -147,8 +149,7 @@ if (empty ($hasError)) {
 	
 //	print ($oCurlApi_HttpCall->text() . "\r\n");
     print ("\r\n" . '----------------------------' . "\r\n");
-    print ('... Zipping finished .......' . "\r\n");
-
+    print ('... CurlApi_HttpCall finished .......' . "\r\n");
 }
 
 commandLineLib::print_end($start);

@@ -1,7 +1,7 @@
 task:get
 /baseUrl="http://127.0.0.1/joomla5x/api/index.php"
 /apiPath="v1/rsgallery2/galleries"
-/httpFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\curl_tasks\galleriesGet.http"
+/httpFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\ccurl_tasks_tsk\galleriesGet.http"
 /joomlaToken="c2hhMjU2OjI5MzphYTZhMTcwZTY2ODM1MTZhMmNiYzlkZDg0NjE5NzkxYTZkYThhNTJjODFhZTVkNWViYmZmMjljMmY2ZTQ4NGYz"
 /accept="application/vnd.api+json"
 /contentType="application/json"

@@ -24,8 +24,8 @@ ECHO.
 
 @REM echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f ../../../LangMan4DevProject/.buildPHP/build_fix.tsk %1
 @REM "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f ../../../LangMan4DevProject/.buildPHP/build_fix.tsk %1
-echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f ./curl_tasks\rsg2_getGalleries.tsk %1
-"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .curl_tasks\rsg2_getGalleries.tsk %1
+echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f ./curl_tasks_tsk\rsg2_getGalleries.tsk %1
+"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .curl_tasks_tsk\rsg2_getGalleries.tsk %1
 
 GOTO :EOF
 

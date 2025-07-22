@@ -21,5 +21,5 @@ interface executeTasksInterface
 
     public function executeFile(string $filePathName): int;
 
-
+    public function text(): string;
 }
