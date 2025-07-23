@@ -5,7 +5,7 @@
 // https://manual.joomla.org/docs/general-concepts/webservices/#using-the-php-curl-functions
 // it is below -> Using the PHP cURL Functions
 
-class GetPutPostPatchDelete
+class GetPostPatchDelete
 {
 
 

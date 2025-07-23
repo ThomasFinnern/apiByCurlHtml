@@ -22,8 +22,8 @@ REM "C:\Program Files\php82\php.exe" --version
 ECHO ----------------------------------------------
 ECHO.
 
-echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\rsg2_getGalleries.tsk %1
-"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\rsg2_getGalleries.tsk %1
+echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\rsg2_getImage.tsk %1
+"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\rsg2_getImage.tsk %1
 
 GOTO :EOF
 

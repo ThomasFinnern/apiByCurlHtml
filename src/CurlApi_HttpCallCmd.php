@@ -44,10 +44,18 @@ $tasksLine = ' task:CurlApi_HttpCall'
 ;
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getImages.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getImage.tsk';
+
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/lang4dev_getProjects.tsk';
-$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getCategories.tsk';
+
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getCategories.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getCategory.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getImages.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getImage.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getConfigs.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getConfig.tsk';
 
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . "\r\n");

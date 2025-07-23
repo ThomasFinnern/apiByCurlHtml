@@ -22,10 +22,8 @@ REM "C:\Program Files\php82\php.exe" --version
 ECHO ----------------------------------------------
 ECHO.
 
-echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f ../../../LangMan4DevProject/.buildPHP/build_fix.tsk %1
-"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f ../../../LangMan4DevProject/.buildPHP/build_fix.tsk %1
-echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f ./curl_tasks_tsk\lang4dev_getProjects.tsk %1
-"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .curl_tasks_tsk\lang4dev_getProjects.tsk %1
+echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\lang4dev_getProjects.tsk %1
+"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\lang4dev_getProjects.tsk %1
 
 GOTO :EOF
 
