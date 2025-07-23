@@ -9,9 +9,9 @@ use Finnern\apiByCurlHtml\src\tasksLib\task;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 
 /**
- * get curl class
+ * put curl class
  */
-class getCurlTask extends baseCurlTask
+class putCurlTask extends baseCurlTask
     implements executeTasksInterface
 {
     // task name
@@ -95,19 +95,32 @@ class getCurlTask extends baseCurlTask
         $hasError = 0;
 
         print('*********************************************************' . "\r\n");
-        print("Execute getCurlTask: " . "\r\n");
+        print("Execute putCurlTask: " . "\r\n");
         print('---------------------------------------------------------' . "\r\n");
 
         // ToDo: Error on missing token
 
+        // data for gallery
+//        $data = [
+//            'parent_id' => '0',
+//            'access' => '1',
+//            'name' => 'By API',
+//            'note'=> "",
+//            'published' => '1',
+//        ];
+//
+//        $dataString = json_encode($data);
+
+        $dataString = $this->readDataFile();
 
         if ($this->oCurl) {
 
-            $this->setRequest('GET');
+            $this->setRequest('POST');
 
             $this->setUrl();
-            $this->setHeaders();
+            $this->setHeaders('Content-Length: ' . mb_strlen($dataString));
             $this->setStandardOptions();
+            $this->setDataString($dataString);
 
             $response = curl_exec($this->oCurl);
 
@@ -153,7 +166,7 @@ class getCurlTask extends baseCurlTask
         } else {
 
             print('---------------------------------------------------------' . "\r\n");
-            print("getCurlTask:execute: oCurl is not defined" . "\r\n");
+            print("putCurlTask:execute: oCurl is not defined" . "\r\n");
             print('---------------------------------------------------------' . "\r\n");
 
         }
@@ -169,12 +182,16 @@ class getCurlTask extends baseCurlTask
 
     public function text(): string
     {
+        $ident = "   ";
+
         $OutTxt = "------------------------------------------" . "\r\n";
-        $OutTxt .= "--- getCurlTask --------" . "\r\n";
+        $OutTxt .= "--- putCurlTask --------" . "\r\n";
 
 //        $OutTxt .= "Not defined yet " . "\r\n";
 
         $OutTxt .= parent::text();
+
+        $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl ."'" . "\r\n";
 
         return $OutTxt;
     }

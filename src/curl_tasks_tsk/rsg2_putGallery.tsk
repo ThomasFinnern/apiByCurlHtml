@@ -1,0 +1,24 @@
+task:put
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+// /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
+/apiPath="v1/rsgallery2/galleries"
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+// /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
+// standard: /accept="application/vnd.api+json"
+// standard: /contentType="application/json"
+/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_putGallery_result.json"
+/dataFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tasks_tsk\rsg2_putGallery_DataBare.json"
+//// Ideas
+///isSaveResponse
+///isDoGetAgain
+///isRandomID
+
+// changeAttribute: name
+// Change type:append/replace/
+// Change action increment/datetime
+
+// random type:append/replace/increment
+// randomRange: 100-2000 / random
+// isRandomDatetime
+// ? get last
+

@@ -1,0 +1,33 @@
+{
+    "parent_id": 0,
+    "alias": "API-Full",
+    "access": 1,
+    "id": 5,
+    "name": "Die Langsamen",
+    "description": "",
+    "thumb_id": 0,
+    "base_path": "",
+    "note": "",
+    "params": {
+        "gallery_layout": "",
+        "image": "",
+        "image_alt": "",
+        "images_column_arrangement": "1",
+        "max_columns_in_images_view": "4",
+        "images_row_arrangement": "2",
+        "max_rows_in_images_view": "5",
+        "max_thumbs_in_images_view": "20",
+        "Layout of images (thumbs)": "layout02",
+        "gallery_sort_order": "global",
+        "voting_view": "global",
+        "voting_vote": "global"
+    },
+    "published": 1,
+    "publish_up": "2025-07-07 16:41:29",
+    "publish_down": null,
+    "hits": 0,
+    "approved": 1,
+    "asset_id": 271,
+    "version": 1,
+    "sizes": ""
+}

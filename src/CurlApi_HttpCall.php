@@ -5,6 +5,7 @@ namespace Finnern\apiByCurlHtml\src;
 use Exception;
 use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
+use Finnern\apiByCurlHtml\src\curl_tasks\putCurlTask;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
@@ -84,7 +85,7 @@ class CurlApi_HttpCall
                 break;
 
             case strtolower('put'):
-                //$this->buildModule();
+                $this->curlTask = new putCurlTask();
                 break;
 
             case strtolower('post'):
