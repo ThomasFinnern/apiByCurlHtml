@@ -6,6 +6,7 @@ use Exception;
 use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\putCurlTask;
+use Finnern\apiByCurlHtml\src\curl_tasks\patchCurlTask;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
@@ -88,12 +89,13 @@ class CurlApi_HttpCall
                 $this->curlTask = new putCurlTask();
                 break;
 
-            case strtolower('post'):
-                //$this->buildPlugin();
-                break;
+//            case strtolower('post'):
+//                $this->curlTask = new putCurlTask();
+//                //$this->buildPlugin();
+//                break;
 
             case strtolower('patch'):
-                //$this->buildPlugin();
+                $this->curlTask = new patchCurlTask();
                 break;
 
             case strtolower('delete'):

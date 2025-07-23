@@ -168,7 +168,7 @@ class GetPostPatchDelete
         $data = [
             'id' => $articleId,
             'title' => 'How to add an article via the Joomla 4 API?',
-            'introtext' => 'When using PATCH, articletext MUST be split into two parts or use at least just introtext in order to work properly',
+            'introtext' => 'When using PATCH, article text MUST be split into two parts or use at least just introtext in order to work properly',
             'fulltext' => 'MORE CONTENT if you wish',
         ];
 
