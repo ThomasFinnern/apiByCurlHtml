@@ -131,9 +131,11 @@ class getCurlTask extends baseCurlTask
                 print('---------------------------------------------------------' . "\r\n");
                 print("\r\n");
 
-                // ToDo: Response to file if requested
-                file_put_contents("results/projects.json", $responseJsonBeautified);
-
+                if ( ! empty($this->responseFile)) {
+                    // ToDo: Response to file if requested
+                    //file_put_contents("results\\projects.json", $responseJsonBeautified);
+                    file_put_contents($this->responseFile, $responseJsonBeautified);
+                }
             } else {
                 print('---------------------------------------------------------' . "\r\n");
                 // curl_error — Return a string containing the last error for the current session

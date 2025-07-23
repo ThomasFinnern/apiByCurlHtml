@@ -44,7 +44,10 @@ $tasksLine = ' task:CurlApi_HttpCall'
 ;
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
-$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/lang4dev_getProjects.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getImages.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/lang4dev_getProjects.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getCategories.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getImages.tsk';
 
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . "\r\n");

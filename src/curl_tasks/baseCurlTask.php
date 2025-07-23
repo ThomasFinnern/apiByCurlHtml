@@ -22,7 +22,7 @@ class baseCurlTask
     protected string $joomlaToken = "";
     protected string $accept = "application/vnd.api+json";
     protected string $contentType = "application/json";
-//    protected string $yyy = "";
+    protected string $responseFile = "";
 //    protected string $yyy = "";
 //    protected string $yyy = "";
 //    protected string $yyy = "";
@@ -94,6 +94,12 @@ class baseCurlTask
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
                 $this->contentType = $option->value;
                 $isBaseOption = true;
+                break;
+
+            case strtolower('responseFile'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                $this->responseFile = $option->value;
+                $isBaseOption  = true;
                 break;
 
 //            case strtolower(''):
