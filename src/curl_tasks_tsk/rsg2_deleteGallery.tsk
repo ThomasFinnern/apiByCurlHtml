@@ -1,0 +1,21 @@
+task:delete
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+// /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
+// /apiPath="v1/rsgallery2/galleries/0"
+// /apiPath="v1/rsgallery2/galleries/1"
+// /apiPath="v1/rsgallery2/galleries/2"
+// /apiPath="v1/rsgallery2/galleries/3"
+/apiPath="v1/rsgallery2/galleries/14"
+// /httpFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\curl_tasks_tsk\galleriesGet.http"
+// joomla token should not be in *.tsk file when using git published
+// /joomlaToken="..."
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+// /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
+// standard: /accept="application/vnd.api+json"
+// standard: /contentType="application/json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_deleteGallery_0.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_deleteGallery_1.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_deleteGallery_2.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_deleteGallery_3.json"
+/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_deleteGallery_10.json"
+

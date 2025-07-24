@@ -7,6 +7,7 @@ use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\putCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\patchCurlTask;
+use Finnern\apiByCurlHtml\src\curl_tasks\deleteCurlTask;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
@@ -99,16 +100,20 @@ class CurlApi_HttpCall
                 break;
 
             case strtolower('delete'):
-                //$this->buildPackage();
+                $this->curlTask = new deleteCurlTask();
                 break;
 
             default:
 //                    print ('!!! Default componentType: ' . $componentType . ', No build done !!!');
+                $OutTxt = "!!! curltask class not defined: '" . $task->name . "'" . "\r\n";
+                $OutTxt .= $this->task->text() . "\r\n";
+                print ($OutTxt);
+                return 1;
+
                 break;
         } // switch
 
         $this->curlTask->assignTask($task);
-
 
         $this->task = $task;
 

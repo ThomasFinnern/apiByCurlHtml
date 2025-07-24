@@ -1,0 +1,21 @@
+task:delete
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+// /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
+// /apiPath="v1/joomgallery/categories/0"
+// /apiPath="v1/joomgallery/categories/1"
+// /apiPath="v1/joomgallery/categories/2"
+// /apiPath="v1/joomgallery/categories/3"
+/apiPath="v1/joomgallery/categories/10"
+// /httpFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\curl_tasks_tsk\galleriesGet.http"
+// joomla token should not be in *.tsk file when using git published
+// /joomlaToken="..."
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+// /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
+// standard: /accept="application/vnd.api+json"
+// standard: /contentType="application/json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_0.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_1.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_2.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_3.json"
+/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_10.json"
+

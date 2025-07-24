@@ -122,11 +122,11 @@ class getCurlTask extends baseCurlTask
                 // "{"errors":[{"title":"Resource not found","code":404}]}
 
                 // ToDo: Format response
-                $responseArray =  json_decode ($response);
-                // $responseArray =  json_decode ($response->body);
-                // $responseArray =  json_decode ($response->data);
+                $oResponse =  json_decode ($response);
+                // $oResponse =  json_decode ($response->body);
+                // $oResponse =  json_decode ($response->data);
 
-                $responseJsonBeautified = json_encode($responseArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
+                $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
                 print( $responseJsonBeautified);
                 print('---------------------------------------------------------' . "\r\n");
                 print("\r\n");

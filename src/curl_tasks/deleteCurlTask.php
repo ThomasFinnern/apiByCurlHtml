@@ -3,9 +3,9 @@
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
 use Exception;
+use Finnern\apiByCurlHtml\src\curl_call\curl_call;
+use Finnern\apiByCurlHtml\src\curl_call\curl_task_texts;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
-use Finnern\apiByCurlHtml\src\tasksLib\task;
-
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 
 /**
@@ -58,7 +58,7 @@ class deleteCurlTask extends baseCurlTask
 
             // base options are already handled
             if (!$isBaseOption) {
-                $isOption = $this->assignLocalOption ($option);
+                $isOption = $this->assignLocalOption($option);
             }
         }
 
@@ -109,46 +109,55 @@ class deleteCurlTask extends baseCurlTask
             $this->setHeaders();
             $this->setStandardOptions();
 
-            $response = curl_exec($this->oCurl);
+            $curl_call = new curl_call();
 
-            // curl_errno — Return the last error number
-            $errorCode = curl_errno($this->oCurl);
+            // prepare prints
+            $curl_task_texts = new curl_task_texts($curl_call);
 
-            if ($errorCode == 0) {
-                print('---------------------------------------------------------' . "\r\n");
-                print(">>> curl_exec with response: " . "\r\n");
-                // Attention response can be
-                // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
-                // "{"errors":[{"title":"Resource not found","code":404}]}
+            // print start
+            print ($curl_task_texts->headerText());
 
-                // ToDo: Format response
-                $responseArray =  json_decode ($response);
-                // $responseArray =  json_decode ($response->body);
-                // $responseArray =  json_decode ($response->data);
+            //=============================================
+            // call curl
+            //============================================
 
-                $responseJsonBeautified = json_encode($responseArray, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
-                print( $responseJsonBeautified);
-                print('---------------------------------------------------------' . "\r\n");
-                print("\r\n");
+            $isHasErrors = $curl_call->curl_exec($this->oCurl);
 
-                if ( ! empty($this->responseFile)) {
-                    // ToDo: Response to file if requested
-                    //file_put_contents("results\\projects.json", $responseJsonBeautified);
-                    file_put_contents($this->responseFile, $responseJsonBeautified);
+            // valid response
+            //if ($curl_call->errorCode == 0 && ! $curl_call->isJsonHasErrors) {
+            if (!$isHasErrors) {
+
+                if (!empty($this->responseFile)) {
+                    file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
                 }
-            } else {
-                print('---------------------------------------------------------' . "\r\n");
-                // curl_error — Return a string containing the last error for the current session
-                $errorMessage = curl_error($this->oCurl);
 
-                print("\r\n");
-                print("!!! curl_exec: has failed with error: '" . $errorCode ."' !!!" . "\r\n");
-                print("Message: '" . $errorMessage ."'" . "\r\n");
-                print('---------------------------------------------------------' . "\r\n");
-                print("\r\n");
+                print ($curl_task_texts->responseBeautifiedText());
+
+            } else {
+
+                //--- invalid response --------------------------------
+
+                if (!empty($this->responseFile)) {
+                    if ($curl_call->isJsonHasErrors) {
+                        file_put_contents($this->responseFile, $curl_task_texts->responseCrLfText());
+                    } else {
+                        file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
+                    }
+                }
+
+                // print error stack in newlines
+                print ($curl_task_texts->responseCrLfText());
+
+                if ($curl_call->isJsonHasErrors) {
+                    print ($curl_task_texts->jsonErrorsCrLfText());
+                } else {
+                    print ($curl_task_texts->jsonErrorsCrLfText());
+                }
+
             }
 
-            curl_close($this->oCurl);
+            // print end
+            print ($curl_task_texts->footerText());
 
         } else {
 

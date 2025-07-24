@@ -46,6 +46,7 @@ $tasksLine = ' task:CurlApi_HttpCall'
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_putGallery.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_deleteGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getImages.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getImage.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_putImage.tsk';
@@ -54,7 +55,8 @@ $tasksLine = ' task:CurlApi_HttpCall'
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getCategories.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getCategory.tsk';
-$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_putCategory.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_putCategory.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_deleteCategory.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getImages.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getImage.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_putImage.tsk';
