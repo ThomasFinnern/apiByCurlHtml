@@ -139,8 +139,8 @@ class putCurlTask extends baseCurlTask
                 // $oResponse =  json_decode ($response->body);
                 // $oResponse =  json_decode ($response->data);
 
-                $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
-                print( $responseJsonBeautified);
+                $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+                print( $responseJsonBeautified . "\n");
                 print('---------------------------------------------------------' . "\r\n");
                 print("\r\n");
 

@@ -1,0 +1,17 @@
+task:get
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+// /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
+// /apiPath="v1/config/com_content"
+// /apiPath="v1/config/application"
+// /apiPath="v1/config/application?list_limit=50"
+// /apiPath="v1/config/application?list_limit=10"
+/apiPath="v1/config/application"
+// /apiPath="v1/config/com_rsgallery2"
+// /apiPath="v1/config/com_joomgallery"
+// /apiPath="v1/config/com_content"
+// /apiPath="v1/config/com_lang4dev"
+// /apiPath="v1/config/com_rsgallery2"
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getTestS.json"
+/page_limit=10
+/page_offset=10

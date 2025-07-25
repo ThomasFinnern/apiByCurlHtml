@@ -63,6 +63,9 @@ $taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_deleteGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getConfigs.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/jg_getConfig.tsk';
 
+//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getConfigAll.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getTest.tsk';
+
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . "\r\n");
     print ("option: " . $option . "\r\n");

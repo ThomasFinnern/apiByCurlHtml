@@ -21,7 +21,6 @@ class getCurlTask extends baseCurlTask
 
     public bool $isNoRecursion = false;
 
-
     /*--------------------------------------------------------------------
     construction
     --------------------------------------------------------------------*/
@@ -126,8 +125,14 @@ class getCurlTask extends baseCurlTask
                 // $oResponse =  json_decode ($response->body);
                 // $oResponse =  json_decode ($response->data);
 
-                $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
-                print( $responseJsonBeautified);
+                $response01 = json_encode($oResponse, );
+                $response02 = json_encode($oResponse, JSON_PRETTY_PRINT);
+                $response03 = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                $response04 = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+                $response05 = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+                $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+                print( $responseJsonBeautified . "\n");
                 print('---------------------------------------------------------' . "\r\n");
                 print("\r\n");
 

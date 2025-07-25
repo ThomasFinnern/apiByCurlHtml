@@ -1,0 +1,21 @@
+Problem identified
+When i want to see the configuration parameters of my rsgallery2 extension (just alive but barely working) then i get a resource not not found
+
+When i call curl apiPath: 'v1/config/com_rsgallery2' then it responds with
+
+{
+    "errors": [
+        {
+            "title": "Resource not found",
+            "code": 404
+        }
+    ]
+}
+I found the error in file plugins/webservices/config/src/Extension/Config.php at the end
+
+new Route(['GET'], 'v1/config/:component_name', 'component.displayList', ['component_name' => '([A-Za-z_]+)'], $getDefaults),
+new Route(['PATCH'], 'v1/config/:component_name', 'component.edit', ['component_name' => '([A-Za-z_]+)'], $defaults),
+Proposed solution
+The regex [A-Za-z_] should be [A-Za-z0-9_] on both lines
+It has worked on my tests
+
