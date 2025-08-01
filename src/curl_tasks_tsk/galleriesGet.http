@@ -1,6 +1,0 @@
-###
-GET  http://127.0.0.1/joomla5x/api/index.php/v1/rsgallery2/galleries
-Accept: application/vnd.api+json
-Content-Type: application/json
-X-Joomla-Token: "c2hhMjU2OjI5MzphYTZhMTcwZTY2ODM1MTZhMmNiYzlkZDg0NjE5NzkxYTZkYThhNTJjODFhZTVkNWViYmZmMjljMmY2ZTQ4NGYz"
-
