@@ -13,15 +13,15 @@ use Finnern\apiByCurlHtml\src\tasksLib\option;
 class baseCurlTask
 {
     // task name
-    protected string $baseUrl = '';
+    public string $baseUrl = '';
 
-    protected string $apiPath = "";
+    public string $apiPath = "";
 
     protected string $httpFile = "";
 
-    protected string $joomlaToken = "";
-    protected string $accept = "application/vnd.api+json";
-    protected string $contentType = "application/json";
+    public string $joomlaToken = "";
+    public string $accept = "application/vnd.api+json";
+    public string $contentType = "application/json";
     protected string $responseFile = "";
     protected string $dataFile = "";
 

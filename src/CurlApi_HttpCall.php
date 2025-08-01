@@ -30,9 +30,9 @@ class CurlApi_HttpCall
 {
     protected task $task;
 
-    protected baseCurlTask $curlTask;
+    public baseCurlTask $oCurlTask;
 
-    public function __construct($srcRoot = "")
+    public function __construct()
     {
         $hasError = 0;
         try {
@@ -41,7 +41,7 @@ class CurlApi_HttpCall
             print('---------------------------------------------------------' . "\r\n");
 
             // fallback
-            $this->curlTask = new baseCurlTask();
+            $this->oCurlTask = new baseCurlTask();
 
         } catch (Exception $e) {
             echo 'Message: ' . $e->getMessage() . "\r\n";
@@ -82,12 +82,12 @@ class CurlApi_HttpCall
         switch (strtolower($task->name)) {
 
             case strtolower('get'):
-                $this->curlTask = new getCurlTask();
+                $this->oCurlTask = new getCurlTask();
 
                 break;
 
             case strtolower('put'):
-                $this->curlTask = new putCurlTask();
+                $this->oCurlTask = new putCurlTask();
                 break;
 
 //            case strtolower('post'):
@@ -96,11 +96,11 @@ class CurlApi_HttpCall
 //                break;
 
             case strtolower('patch'):
-                $this->curlTask = new patchCurlTask();
+                $this->oCurlTask = new patchCurlTask();
                 break;
 
             case strtolower('delete'):
-                $this->curlTask = new deleteCurlTask();
+                $this->oCurlTask = new deleteCurlTask();
                 break;
 
             default:
@@ -113,7 +113,7 @@ class CurlApi_HttpCall
                 break;
         } // switch
 
-        $this->curlTask->assignTask($task);
+        $this->oCurlTask->assignTask($task);
 
         $this->task = $task;
 
@@ -127,7 +127,7 @@ class CurlApi_HttpCall
         print ("Execute CurlApi_HttpCall: " . "\r\n");
         print('---------------------------------------------------------' . "\r\n");
 
-        $this->curlTask->execute();
+        $this->oCurlTask->execute();
 
         return 0;
     }
@@ -135,7 +135,7 @@ class CurlApi_HttpCall
     public function executeFile(string $filePathName): int
     {
         // not supported
-        return (0);
+        return 0;
     }
 
     // ToDo: use own class with task /  options as result
@@ -190,8 +190,8 @@ class CurlApi_HttpCall
 
 //        $OutTxt .= "Not defined yet " . "\r\n";
 
-        if (! empty ($this->curlTask)) {
-            $OutTxt .= $this->curlTask->text();
+        if (! empty ($this->oCurlTask)) {
+            $OutTxt .= $this->oCurlTask->text();
         } else {
              $OutTxt .= "!!! no curltask class defined" . "\r\n";
              $OutTxt .= "task: '" . $this->task ."'" . "\r\n";
