@@ -103,8 +103,10 @@ ECHO ----------------------------------------------
 @echo Transform of %srcFile% done
 @echo.
 
-pause
-
+REM ECHO \%NO_PAUSE\%: "%NO_PAUSE%"
+if "%NO_PAUSE%" EQU "" (
+	pause
+)
 
 GOTO :EOF
 

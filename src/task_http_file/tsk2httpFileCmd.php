@@ -199,7 +199,7 @@ if (!empty($dstFile)) {
     $task->options->addOption(new option("dstFile", $dstFile));
 }
 
-if (!empty($responseFile)) {
+if (!empty($dstPath)) {
     $task->options->addOption(new option("dstPath", $dstPath));
 }
 

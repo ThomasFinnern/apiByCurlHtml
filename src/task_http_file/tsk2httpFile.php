@@ -189,7 +189,7 @@ class tsk2httpFile extends baseExecuteTasks
             //--- transform data ----------------------------------------
 
             print ("------------------------------------------" . PHP_EOL);
-            print ("--- transform data -----------------------" . PHP_EOL);
+            print ("--- transform data tsk 2 http-------------" . PHP_EOL);
             print ("------------------------------------------" . PHP_EOL);
 
             //--- read files data -----------------------
@@ -250,7 +250,7 @@ class tsk2httpFile extends baseExecuteTasks
             //--- transform data ----------------------------------------
 
             print ("------------------------------------------" . PHP_EOL);
-            print ("--- transform data -----------------------" . PHP_EOL);
+            print ("--- transform data http 2 tsk ------------" . PHP_EOL);
             print ("------------------------------------------" . PHP_EOL);
 
             //--- read files data -----------------------

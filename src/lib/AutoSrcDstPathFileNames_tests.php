@@ -101,8 +101,8 @@ printResult($hasError, 1);
 $hasError = test_02();
 printResult($hasError, 2);
 
-//$hasError = test_03();
-//printResult($hasError, 3);
+$hasError = test_03();
+printResult($hasError, 3);
 
 //$hasError = test_04();
 //printResult($hasError, 4);
@@ -129,13 +129,14 @@ function printResult(bool $hasError, int $testNbr=999)
 {
 
     if (!$hasError) {
-        print (" - test ' . $testNbr . ' successful" . PHP_EOL);
+        print (' - test ' . $testNbr . ' successful' . PHP_EOL);
     } else {
-        print (" - test ' . $testNbr . ' unsuccessful" . PHP_EOL);
+        print (' - test ' . $testNbr . ' unsuccessful' . PHP_EOL);
     }
 }
 
 
+// just source file path and destination extension
 function test_01():bool
 {
     $test = new test();
@@ -145,8 +146,8 @@ function test_01():bool
     $test->srcFileName = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getImages.tsk.http';
     $test->dstFileName = '';
 
-    $test->dstPathName = '';
     $test->dstFileName = '';
+    $test->dstPathName = '';
 
     $test->dstExtension = 'tsk';
 
@@ -165,17 +166,18 @@ function test_01():bool
     return $hasError;
 }
 
+// No destination filename
 function test_02():bool
 {
     $test = new test();
 
     //--- prepare test -------------------------------------
 
-    $test->srcPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files';
     $test->srcFileName = 'rsg2_getGallery.tsk';
+    $test->srcPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files';
 
-    $test->dstPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files';
     $test->dstFileName = '';
+    $test->dstPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files';
 
     $test->dstExtension = 'http';
 
@@ -194,7 +196,39 @@ function test_02():bool
     return $hasError;
 }
 
-//function test_03()
+// all filenames and paths but no extension
+function test_03()
+{
+    $test = new test();
+
+    //--- prepare test -------------------------------------
+
+    $test->srcFileName = 'rsg2_getGallery.tsk';
+    $test->srcPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files';
+
+    $test->dstFileName = 'rsg2_getGallery_b.http_b';
+    $test->dstPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files';
+
+    $test->dstExtension = '';
+
+    $test->srcExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getGallery.tsk';
+    $test->dstExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_http_files\rsg2_getGallery_b.http_b';
+
+
+    //--- do test -------------------------------------
+
+    // $hasError = $test->doTest(path_and_file::FULL_PATH);
+    $hasError = $test->doTest(path_and_file::PATH_FILENAME_SEPARATE);
+    if ($hasError) {
+        // debug stop
+        $hasError = $hasError;
+    }
+
+return $hasError;
+
+}
+
+//function test_04()
 //{
 //    $test = new test();
 //

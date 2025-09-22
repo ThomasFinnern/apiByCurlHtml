@@ -23,7 +23,7 @@ if "%1" NEQ "" (
 REM Call transformation on each matching file
 REM for /f %%f in ('dir /b *.tsk	') do ( 
 
-for %%i in (*.tsk) do CALL :tsk2httpFile %%i %dstPath%
+for %%i in (*.tsk) do CALL :tsk2httpFile %%i
 
 @ECHO -----------------------------------------------
 @Echo all *.tsk files are transferred
@@ -43,6 +43,8 @@ ECHO tsk2httpFile: "%1"
 
 REM if not exist %1\nul goto :EOF
 
+SET NO_PAUSE=true
 CALL _task2http_file.bat %1 %dstPath%
+SET NO_PAUSE=
 
 goto :EOF
