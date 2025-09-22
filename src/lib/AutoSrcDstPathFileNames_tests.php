@@ -142,7 +142,7 @@ function test_01():bool
 
     //--- prepare test -------------------------------------
 
-    $test->srcFileName = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tasks_tsk\rsg2_getImages.tsk.http';
+    $test->srcFileName = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getImages.tsk.http';
     $test->dstFileName = '';
 
     $test->dstPathName = '';
@@ -150,8 +150,8 @@ function test_01():bool
 
     $test->dstExtension = 'tsk';
 
-    $test->srcExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tasks_tsk\rsg2_getImages.tsk.http';
-    $test->dstExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tasks_tsk\rsg2_getImages.tsk.tsk';
+    $test->srcExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getImages.tsk.http';
+    $test->dstExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getImages.tsk.tsk';
 
     //--- do test -------------------------------------
 
@@ -171,7 +171,7 @@ function test_02():bool
 
     //--- prepare test -------------------------------------
 
-    $test->srcPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tasks_tsk';
+    $test->srcPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files';
     $test->srcFileName = 'rsg2_getGallery.tsk';
 
     $test->dstPathName = 'd:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files';
@@ -179,7 +179,7 @@ function test_02():bool
 
     $test->dstExtension = 'http';
 
-    $test->srcExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tasks_tsk\rsg2_getGallery.tsk';
+    $test->srcExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getGallery.tsk';
     $test->dstExpected = 'd:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_http_files\rsg2_getGallery.http';
 
     //--- do test -------------------------------------

@@ -5,7 +5,7 @@ task:get
 /apiPath="v1/joomgallery/configs/1"
 // /apiPath="v1/joomgallery/configs/2"
 // /apiPath="v1/joomgallery/configs/3"
-// /httpFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\curl_tasks_tsk\galleriesGet.http"
+// /httpFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\curl_tsk_files\galleriesGet.http"
 // joomla token should not be in *.tsk file when using git published
 // /joomlaToken="..."
 /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"

@@ -65,7 +65,7 @@ variables
 // $tasksLine = ' task:tsk2httpFile';
 
 //$tasksLine = ' task:tsk2httpFile'
-//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tasks_tsk'
+//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
 //    . ' /srcFile="rsg2_getGallery.tsk"'
 //    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
 //    . ' /dstFile="rsg2_getGallery.http"';
@@ -75,15 +75,15 @@ variables
 $tasksLine = ' task:http2tskFile'
     . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
     . ' /srcFile="./../../rsg2_getGallery2.http"'
-    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tasks_tsk'
+    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
     . ' /dstFile="./../../rsg2_getGallery2.tsk"';
 
 
 
-//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
-//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGallery.tsk';
-//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getConfigAll.tsk';
-//$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getTest.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGallery.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getConfigAll.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
 
 $srcFile = "";
 $dstFile = "";
