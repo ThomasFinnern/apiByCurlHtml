@@ -4,14 +4,17 @@ REM Transform all *.tsk files to *.http file format
 REM %1 : path to target file 
 REM ----------------------------------------
 
+CLS 
+
+
 REM --- destination file and folder ---------------------------------
 
 if "%1" NEQ "" (
-	SET dstPath=%2
+	SET dstPath=%1
 ) else (
-    set dstPath=""
+    REM set dstPath=""
+    set dstPath=d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_http_files
 )
-
 
 
 @echo Transform all *.tsk files to *.http file format 
@@ -20,7 +23,7 @@ if "%1" NEQ "" (
 REM Call transformation on each matching file
 REM for /f %%f in ('dir /b *.tsk	') do ( 
 
-for %%i in (*.tsk) do CALL :tsk2httpFile %%i
+for %%i in (*.tsk) do CALL :tsk2httpFile %%i %dstPath%
 
 @ECHO -----------------------------------------------
 @Echo all *.tsk files are transferred

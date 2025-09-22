@@ -200,11 +200,15 @@ if (!empty($dstFile)) {
 }
 
 if (!empty($responseFile)) {
-    $task->options->addOption(new option("responseFile", $dstFile));
+    $task->options->addOption(new option("dstPath", $dstPath));
+}
+
+if (!empty($responseFile)) {
+    $task->options->addOption(new option("responseFile", $responseFile));
 }
 
 if (!empty($joomlaTokenFile)) {
-    $task->options->addOption(new option("joomlaTokenFile", $dstFile));
+    $task->options->addOption(new option("joomlaTokenFile", $joomlaTokenFile));
 }
 
 if (!empty($dstExtension)) {
