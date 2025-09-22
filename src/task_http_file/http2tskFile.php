@@ -25,7 +25,7 @@ $HELP_MSG = <<<EOT
 Class apiByCurlHtml
 ================================================================================*/
 
-class tsk2httpFile extends baseExecuteTasks
+class http2tskFile extends baseExecuteTasks
     implements executeTasksInterface
 {
     private string $buildDir = '';
@@ -51,9 +51,9 @@ class tsk2httpFile extends baseExecuteTasks
     {
         $hasError = 0;
         try {
-//            print('*********************************************************' . "\r\n");
-            print ("Construct apiByCurlHtml: " . "\r\n");
-//            print('---------------------------------------------------------' . "\r\n");
+//            print('*********************************************************' . PHP_EOL);
+            print ("Construct apiByCurlHtml: " . PHP_EOL);
+//            print('---------------------------------------------------------' . PHP_EOL);
 
             parent::__construct($srcRoot, false);
 
@@ -61,10 +61,10 @@ class tsk2httpFile extends baseExecuteTasks
 //            $this->dstFile = $dstFile;
 
         } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
+            echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
-        // print('exit __construct: ' . $hasError . "\r\n");
+        // print('exit __construct: ' . $hasError . PHP_EOL);
     }
 
     // Task name with options
@@ -85,7 +85,7 @@ class tsk2httpFile extends baseExecuteTasks
 //            if (!$isBaseOption) {
 
                 $this->assignLocalOption($option);
-                // $OutTxt .= $task->text() . "\r\n";
+                // $OutTxt .= $task->text() . PHP_EOL;
 //            }
         }
 
@@ -105,34 +105,41 @@ class tsk2httpFile extends baseExecuteTasks
 
         switch (strtolower($option->name)) {
             case strtolower('srcPath'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->srcPath = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
             // com_rsgallery2'
             case strtolower('srcFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->srcFile = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
 
             case strtolower('dstPath'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dstPath = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
             // com_rsgallery2'
             case strtolower('dstFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dstFile = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
+            // com_rsgallery2'
+            case strtolower('dstExtension'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->dstExtension = $option->value;
+                $isLocalExtensionOption = true;
+                break;
+
             default:
-                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . "\r\n");
+                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . PHP_EOL);
         } // switch
 
         return $isLocalExtensionOption;
@@ -140,9 +147,9 @@ class tsk2httpFile extends baseExecuteTasks
 
     public function execute(): int // $hasError
     {
-        print('*********************************************************' . "\r\n");
-        print("Execute apiByCurlHtml: " . "\r\n");
-        print('---------------------------------------------------------' . "\r\n");
+        print('*********************************************************' . PHP_EOL);
+        print("Execute apiByCurlHtml: " . PHP_EOL);
+        print('---------------------------------------------------------' . PHP_EOL);
 
         //--- validation checks --------------------------------------
 
@@ -189,406 +196,367 @@ class tsk2httpFile extends baseExecuteTasks
         return $this->componentType;
     }
 
-    private function buildComponent(): string
-    {
-        //--------------------------------------------------------------------
-        // data in manifest file
-        //--------------------------------------------------------------------
-
-        //--- manifest file name --------------------------------------
-
-        $bareName = $this->shortExtensionName();
-        $manifestPathFileName = $this->manifestPathFileName();
-        print ('manifestPathFileName: "' . $manifestPathFileName . '"' . "\r\n");
-
-        //--- update date and version --------------------------------------
-
-        // does read manifest file
-        $isChanged = $this->exchangeDataInManifestFile($manifestPathFileName);
-
-        if (!$this->manifestFile->manifestXml->isXmlLoaded) {
-
-            print('exit buildComponent: error manifestPathFileName could not be read: ' . $manifestPathFileName . "\r\n");
-            return '';
-        }
-
-        //--- update admin manifest xml file --------------------------------------
-
-        // manifest file like 'rsgallery2.xml' needs to be in base folder and
-        // component folder. Actually the root file is copied to the component
-        // folder
-        $manifestAdminPathFileName = $this->manifestAdminPathFileName();
-        print('manifestAdminPathFileName: "' . $manifestAdminPathFileName . '"' . "\r\n");
-        // is folder structure similar to joomla folders (RSG2)
-        //    -> sometimes folder 'components' is left out
-        if (is_dir(dirname($manifestAdminPathFileName))) {
-
-            copy($manifestPathFileName, $manifestAdminPathFileName);
-        }
-
-        //--------------------------------------------------------------------
-        // destination temp folder
-        //--------------------------------------------------------------------
-
-        print ('build dir: "' . $this->buildDir . '"' . "\r\n");
-
-        $parentPath = dirname($this->buildDir);
-        if (!is_dir($parentPath)) {
-            print ('main path does not exist : "' . $parentPath . '"' . "\r\n");
-            exit(557);
-        }
-
-        if (!is_dir($this->buildDir)) {
-            mkdir($this->buildDir, 0777, true);
-        }
-
-        $dstRoot = realpath($this->buildDir);
-        print ('dstRoot: "' . $dstRoot . '"' . "\r\n");
-        $tmpFolder = $this->buildDir . '/tmp';
-        print ('temp folder(1): "' . $tmpFolder . '"' . "\r\n");
-
-        //--------------------------------------------------------------------
-        // handle temp folder
-        //--------------------------------------------------------------------
-
-        // remove tmp folder
-        if (is_dir($tmpFolder)) {
-            // length big enough to do no damage
-            if (strLen($tmpFolder) < 10) {
-                exit (555);
-            }
-            print ('Delete dir: "' . $tmpFolder . '"' . "\r\n");
-            delDir($tmpFolder);
-        }
-
-        // create tmp folder
-        print ('Create dir: "' . $tmpFolder . '"' . "\r\n");
-        mkdir($tmpFolder, 0777, true);
-
-        //--------------------------------------------------------------------
-        // extract files and folders from manifest
-        //--------------------------------------------------------------------
-
-        $filesByManifest = new filesByManifest();
-
-        //--- insert manifestXml ---------------------------------
-
-        $filesByManifest->manifestXml = $this->manifestFile->manifestXml->manifestXml;
-
-        $filesByManifest->collectFilesAndFolders($this->isCollectPluginsModule);
-
-        //--------------------------------------------------------------------
-        // copy to temp
-        //--------------------------------------------------------------------
-
-        $srcRoot = $this->copy2tmpFolder($filesByManifest, $tmpFolder);
-
-        //--------------------------------------------------------------------
-        // manual assignments
-        //--------------------------------------------------------------------
-
-        //--- root files -------------------------------------------------
-
-        //  manifest file (not included as 'fileName' in manifest file)
-        $this->xcopyElement($bareName . '.xml', $srcRoot, $tmpFolder);
-        print ("\r\n");
-
-//        // install script like 'install_rsg2.php'
-//        $installScript = (string)$this->manifestFile->manifestXml->manifestXml->scriptfile;
-//        $adminPath = $this->srcRoot . '/administrator/components/' . $this->extName;
-//        if (file_exists($adminPath . '/' . $installScript)) {
-//            $this->xcopyElement($installScript, $adminPath, $tmpFolder);
-//        }
-
-
-        // Not needed, the license is defined in manifest or may be inside component base path
-        //$this->xcopyElement('LICENSE.txt', $srcRoot, $tmpFolder);
-
-        //--- remove package for rsgallery2 ---------------------------------------------
-
-        // remove prepared pkg_rsgallery2.xml.tmp
-        $packagesTmpFile = $tmpFolder . '/administrator/manifests/packages/pkg_rsgallery2.xml.tmp';
-        if (file_exists($packagesTmpFile)) {
-            unlink($packagesTmpFile);
-        }
-
-//            //--------------------------------------------------------------------
-//            // Not changelog to root
-//            //--------------------------------------------------------------------
+//    private function buildComponent(): string
+//    {
+//        //--------------------------------------------------------------------
+//        // data in manifest file
+//        //--------------------------------------------------------------------
 //
-//            $changelogPathFileName = $this->srcRoot . '/administrator/components/com_rsgallery2/';
-//            if (file_exists($changelogPathFileName)) {
-//                $this->xcopyElement('changelog.xml', $changelogPathFileName, $tmpFolder);
+//        //--- manifest file name --------------------------------------
+//
+//        $bareName = $this->shortExtensionName();
+//        $manifestPathFileName = $this->manifestPathFileName();
+//        print ('manifestPathFileName: "' . $manifestPathFileName . '"' . PHP_EOL);
+//
+//        //--- update date and version --------------------------------------
+//
+//        // does read manifest file
+//        $isChanged = $this->exchangeDataInManifestFile($manifestPathFileName);
+//
+//        if (!$this->manifestFile->manifestXml->isXmlLoaded) {
+//
+//            print('exit buildComponent: error manifestPathFileName could not be read: ' . $manifestPathFileName . PHP_EOL);
+//            return '';
+//        }
+//
+//        //--- update admin manifest xml file --------------------------------------
+//
+//        // manifest file like 'rsgallery2.xml' needs to be in base folder and
+//        // component folder. Actually the root file is copied to the component
+//        // folder
+//        $manifestAdminPathFileName = $this->manifestAdminPathFileName();
+//        print('manifestAdminPathFileName: "' . $manifestAdminPathFileName . '"' . PHP_EOL);
+//        // is folder structure similar to joomla folders (RSG2)
+//        //    -> sometimes folder 'components' is left out
+//        if (is_dir(dirname($manifestAdminPathFileName))) {
+//
+//            copy($manifestPathFileName, $manifestAdminPathFileName);
+//        }
+//
+//        //--------------------------------------------------------------------
+//        // destination temp folder
+//        //--------------------------------------------------------------------
+//
+//        print ('build dir: "' . $this->buildDir . '"' . PHP_EOL);
+//
+//        $parentPath = dirname($this->buildDir);
+//        if (!is_dir($parentPath)) {
+//            print ('main path does not exist : "' . $parentPath . '"' . PHP_EOL);
+//            exit(557);
+//        }
+//
+//        if (!is_dir($this->buildDir)) {
+//            mkdir($this->buildDir, 0777, true);
+//        }
+//
+//        $dstRoot = realpath($this->buildDir);
+//        print ('dstRoot: "' . $dstRoot . '"' . PHP_EOL);
+//        $tmpFolder = $this->buildDir . '/tmp';
+//        print ('temp folder(1): "' . $tmpFolder . '"' . PHP_EOL);
+//
+//        //--------------------------------------------------------------------
+//        // handle temp folder
+//        //--------------------------------------------------------------------
+//
+//        // remove tmp folder
+//        if (is_dir($tmpFolder)) {
+//            // length big enough to do no damage
+//            if (strLen($tmpFolder) < 10) {
+//                exit (555);
 //            }
+//            print ('Delete dir: "' . $tmpFolder . '"' . PHP_EOL);
+//            delDir($tmpFolder);
+//        }
+//
+//        // create tmp folder
+//        print ('Create dir: "' . $tmpFolder . '"' . PHP_EOL);
+//        mkdir($tmpFolder, 0777, true);
+//
+//        //--------------------------------------------------------------------
+//        // extract files and folders from manifest
+//        //--------------------------------------------------------------------
+//
+//        $filesByManifest = new filesByManifest();
+//
+//        //--- insert manifestXml ---------------------------------
+//
+//        $filesByManifest->manifestXml = $this->manifestFile->manifestXml->manifestXml;
+//
+//        $filesByManifest->collectFilesAndFolders($this->isCollectPluginsModule);
+//
+//        //--------------------------------------------------------------------
+//        // copy to temp
+//        //--------------------------------------------------------------------
+//
+//        $srcRoot = $this->copy2tmpFolder($filesByManifest, $tmpFolder);
+//
+//        //--------------------------------------------------------------------
+//        // manual assignments
+//        //--------------------------------------------------------------------
+//
+//        //--- root files -------------------------------------------------
+//
+//        //  manifest file (not included as 'fileName' in manifest file)
+//        $this->xcopyElement($bareName . '.xml', $srcRoot, $tmpFolder);
+//        print (PHP_EOL);
+//
+////        // install script like 'install_rsg2.php'
+////        $installScript = (string)$this->manifestFile->manifestXml->manifestXml->scriptfile;
+////        $adminPath = $this->srcRoot . '/administrator/components/' . $this->extName;
+////        if (file_exists($adminPath . '/' . $installScript)) {
+////            $this->xcopyElement($installScript, $adminPath, $tmpFolder);
+////        }
+//
+//
+//        // Not needed, the license is defined in manifest or may be inside component base path
+//        //$this->xcopyElement('LICENSE.txt', $srcRoot, $tmpFolder);
+//
+//        //--- remove package for rsgallery2 ---------------------------------------------
+//
+//        // remove prepared pkg_rsgallery2.xml.tmp
+//        $packagesTmpFile = $tmpFolder . '/administrator/manifests/packages/pkg_rsgallery2.xml.tmp';
+//        if (file_exists($packagesTmpFile)) {
+//            unlink($packagesTmpFile);
+//        }
+//
+////            //--------------------------------------------------------------------
+////            // Not changelog to root
+////            //--------------------------------------------------------------------
+////
+////            $changelogPathFileName = $this->srcRoot . '/administrator/components/com_rsgallery2/';
+////            if (file_exists($changelogPathFileName)) {
+////                $this->xcopyElement('changelog.xml', $changelogPathFileName, $tmpFolder);
+////            }
+//
+//        //--------------------------------------------------------------------
+//        // zip to destination
+//        //--------------------------------------------------------------------
+//
+//        $zipFileName = $dstRoot . '/' . $this->createExtensionZipName();
+//        zipItRelative(realpath($tmpFolder), $zipFileName);
+//
+//        //--------------------------------------------------------------------
+//        // remove temp
+//        //--------------------------------------------------------------------
+//
+//        // remove tmp folder
+//        if (is_dir($tmpFolder)) {
+//            delDir($tmpFolder);
+//        }
+//
+//        return $zipFileName;
+//    }
 
-        //--------------------------------------------------------------------
-        // zip to destination
-        //--------------------------------------------------------------------
 
-        $zipFileName = $dstRoot . '/' . $this->createExtensionZipName();
-        zipItRelative(realpath($tmpFolder), $zipFileName);
+//    private function manifestPathFileName(): string
+//    {
+//        if ($this->manifestPathFileName == '') {
+//
+//            // *.xml
+//            $extName = $this->shortExtensionName();
+//
+//            $this->manifestPathFileName = $this->srcRoot . '/' . $extName . '.xml';
+//        }
+//
+//        return $this->manifestPathFileName;
+//    }
 
-        //--------------------------------------------------------------------
-        // remove temp
-        //--------------------------------------------------------------------
-
-        // remove tmp folder
-        if (is_dir($tmpFolder)) {
-            delDir($tmpFolder);
-        }
-
-        return $zipFileName;
-    }
-
-
-    private function manifestPathFileName(): string
-    {
-        if ($this->manifestPathFileName == '') {
-
-            // *.xml
-            $extName = $this->shortExtensionName();
-
-            $this->manifestPathFileName = $this->srcRoot . '/' . $extName . '.xml';
-        }
-
-        return $this->manifestPathFileName;
-    }
-
-    private function manifestAdminPathFileName(): string
-    {
-        if ($this->manifestAdminPathFileName == '') {
-
-            $name = $this->shortExtensionName();
-
-            $this->manifestAdminPathFileName = $this->srcRoot
-                . '/administrator/components/'
-                . $this->extName . '/' . $name . '.xml';
-        }
-
-        return $this->manifestAdminPathFileName;
-    }
+//    private function manifestAdminPathFileName(): string
+//    {
+//        if ($this->manifestAdminPathFileName == '') {
+//
+//            $name = $this->shortExtensionName();
+//
+//            $this->manifestAdminPathFileName = $this->srcRoot
+//                . '/administrator/components/'
+//                . $this->extName . '/' . $name . '.xml';
+//        }
+//
+//        return $this->manifestAdminPathFileName;
+//    }
 
     // ToDo: move/create also in manifest.php file ?
-    private function shortExtensionName(): string
-    {
-        $extName = $this->extName;
-
-        print ('extension extName: "' . $extName . '"' . "\r\n");
-
-        // com / mod / plg extension
-        if (str_starts_with($extName, 'com_')) {
-            // Standard
-            $extName = substr($extName, 4);
-            // $extName = 'com_' . substr($extName, 4);
-
-        } else {
-
-            if (str_starts_with($extName, 'mod_')) {
-                // $extName = substr($extName, 4);
-                $extName = $this->extName;
-            } else {
-
-                if (str_starts_with($extName, 'plg_')) {
-                    $idx = strpos($extName, '_', strlen('plg_')) + 1;
-                    $extName = substr($extName, $idx);
-                }
-            }
-        }
-
-        print ('short extName: "' . $extName . '"' . "\r\n");
-        return $extName;
-    }
+//    private function shortExtensionName(): string
+//    {
+//        $extName = $this->extName;
+//
+//        print ('extension extName: "' . $extName . '"' . PHP_EOL);
+//
+//        // com / mod / plg extension
+//        if (str_starts_with($extName, 'com_')) {
+//            // Standard
+//            $extName = substr($extName, 4);
+//            // $extName = 'com_' . substr($extName, 4);
+//
+//        } else {
+//
+//            if (str_starts_with($extName, 'mod_')) {
+//                // $extName = substr($extName, 4);
+//                $extName = $this->extName;
+//            } else {
+//
+//                if (str_starts_with($extName, 'plg_')) {
+//                    $idx = strpos($extName, '_', strlen('plg_')) + 1;
+//                    $extName = substr($extName, $idx);
+//                }
+//            }
+//        }
+//
+//        print ('short extName: "' . $extName . '"' . PHP_EOL);
+//        return $extName;
+//    }
 
     // ToDo: move/create also in to manifest.php file ?
-    private function destinationExtensionName(): string
-    {
-        $name = $this->extName;
-
-        // com / mod extension
-        if (str_starts_with($name, 'com_')) {
-            // Standard
-            $name = substr($name, 4);
-            // $extName = 'com_' . substr($extName, 4);
-
-        } else {
-
-            if (str_starts_with($name, 'mod_')) {
-                // $idx = strpos($extName, '_', strlen('mod_')) + 1;
-                // $extName = 'mod_' . substr($extName, $idx);
-                $name = $this->extName;
-            } else {
-
-                if (str_starts_with($name, 'plg_')) {
-                    // $idx = strpos($extName, '_', strlen('plg_')) + 1;
-                    // $extName = 'plg_' . substr($extName, $idx);
-                    $name = $this->extName;
-                }
-            }
-        }
-
-        return $name;
-    }
-
-    /**
-     * @param string $manifestPathFileName
-     *
-     * @return false
-     */
-    private function exchangeDataInManifestFile(string $manifestPathFileName)
-    {
-
-        $isSaved = false;
-
-        // Done in constructor
-        // $manifestFile = new manifestFile();
-        // keep flags
-        $manifestFile = $this->manifestFile;
-
-        try {
-            print ("exchangeDataInManifestFile manifestPathFileName: " . $manifestPathFileName . "\r\n");
-//            // read
-//            // keep flags
-//            $manifestFile->versionId = $this->versionId;
-
-            //--- read file -----------------------------------------------
-
-            $isRead = $manifestFile->readFile($manifestPathFileName);
-
-            if ($isRead) {
-                //--- set flags -----------------------------------------------
-
-                // $manifestFile->isUpdateCreationDate = false;
-                if (!$this->isDoNotUpdateCreationDate) {
-                    $manifestFile->isUpdateCreationDate = true;
-                }
-
-//                if ($this->isIncrementVersion_build) {
-//                    // $manifestFile->versionId->isBuildRelease = false;
-//                    $manifestFile->versionId->isBuildRelease = true;
-////                    print ("apiByCurlHtml: isBuildRelease: " .  $this->versionId->isBuildRelease  . "\r\n");
-//                }
-
-                if ($this->element != '') {
-                    $manifestFile->element = $this->element;
-                }
-
-                // No tasks actual
-                // $manifestFile->copyright->isUpdateCopyright = false;
-                // $manifestFile->copyright->isUpdateCopyright = true;
-
-
-                //--- update data -----------------------------------------------
-
-                $manifestFile->execute();
-
-                //--- write to file -----------------------------------------------
-
-                $isSaved = $manifestFile->writeFile();
-
-                //$isSaved = File::write($manifestFileName, $fileLines);;
-                //     $isSaved = file_put_contents($manifestFileName, $outLines);
-            }
-
-            $this->manifestFile = $manifestFile;
-
-        } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
-            $hasError = -101;
-        }
-
-        return $isSaved;
-    }
-
-
-
-//    private function exchangeDateInManifestFile(string $manifestFileName, array $lines)
+//    private function destinationExtensionName(): string
 //    {
-//        $isExchanged = false;
-//        $outLines = [];
+//        $name = $this->extName;
+//
+//        // com / mod extension
+//        if (str_starts_with($name, 'com_')) {
+//            // Standard
+//            $name = substr($name, 4);
+//            // $extName = 'com_' . substr($extName, 4);
+//
+//        } else {
+//
+//            if (str_starts_with($name, 'mod_')) {
+//                // $idx = strpos($extName, '_', strlen('mod_')) + 1;
+//                // $extName = 'mod_' . substr($extName, $idx);
+//                $name = $this->extName;
+//            } else {
+//
+//                if (str_starts_with($name, 'plg_')) {
+//                    // $idx = strpos($extName, '_', strlen('plg_')) + 1;
+//                    // $extName = 'plg_' . substr($extName, $idx);
+//                    $name = $this->extName;
+//                }
+//            }
+//        }
+//
+//        return $name;
+//    }
+
+//    /**
+//     * @param string $manifestPathFileName
+//     *
+//     * @return false
+//     */
+//    private function exchangeDataInManifestFile(string $manifestPathFileName)
+//    {
+//
+//        $isSaved = false;
+//
+//        // Done in constructor
+//        // $manifestFile = new manifestFile();
+//        // keep flags
+//        $manifestFile = $this->manifestFile;
 //
 //        try {
+//            print ("exchangeDataInManifestFile manifestPathFileName: " . $manifestPathFileName . PHP_EOL);
+////            // read
+////            // keep flags
+////            $manifestFile->versionId = $this->versionId;
 //
-//            // ToDo: external parameter;
-//            $date_format = 'Y.m.d';
-//            $dateText = date($date_format);
+//            //--- read file -----------------------------------------------
 //
-//            foreach ($lines as $line) {
-//                if ($isExchanged) {
-//                    $outLines [] = $line;
+//            $isRead = $manifestFile->readFile($manifestPathFileName);
+//
+//            if ($isRead) {
+//                //--- set flags -----------------------------------------------
+//
+//                // $manifestFile->isUpdateCreationDate = false;
+//                if (!$this->isDoNotUpdateCreationDate) {
+//                    $manifestFile->isUpdateCreationDate = true;
+//                }
+//
+////                if ($this->isIncrementVersion_build) {
+////                    // $manifestFile->versionId->isBuildRelease = false;
+////                    $manifestFile->versionId->isBuildRelease = true;
+//////                    print ("apiByCurlHtml: isBuildRelease: " .  $this->versionId->isBuildRelease  . PHP_EOL);
+////                }
+//
+//                if ($this->element != '') {
+//                    $manifestFile->element = $this->element;
+//                }
+//
+//                // No tasks actual
+//                // $manifestFile->copyright->isUpdateCopyright = false;
+//                // $manifestFile->copyright->isUpdateCopyright = true;
+//
+//
+//                //--- update data -----------------------------------------------
+//
+//                $manifestFile->execute();
+//
+//                //--- write to file -----------------------------------------------
+//
+//                $isSaved = $manifestFile->writeFile();
+//
+//                //$isSaved = File::write($manifestFileName, $fileLines);;
+//                //     $isSaved = file_put_contents($manifestFileName, $outLines);
+//            }
+//
+//            $this->manifestFile = $manifestFile;
+//
+//        } catch (Exception $e) {
+//            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+//            $hasError = -101;
+//        }
+//
+//        return $isSaved;
+//    }
+
+
+
+//    private function xcopyElement(string $name, string $srcRoot, string $dstRoot)
+//    {
+//        $hasError = 0;
+//        try {
+//            $srcPath = $srcRoot . '/' . $name;
+//            $dstPath = $dstRoot . '/' . $name;
+//
+//            //--- check path ------------------------------------------
+//
+//            $srcPathTest = realpath($srcPath);
+//            if (empty ($srcPathTest)) {
+//                print ("%%% Warning: Path/file to copy could not be found: " . $srcPath . PHP_EOL);
+//            } else {
+//
+//                //--- create path ------------------------------------------
+//
+//                $baseDir = dirname($dstPath);
+//                if (!is_dir($baseDir)) {
+//                    mkdir($baseDir, 0777, true);
+//                }
+//
+////                $srcPath = str_replace('/', DIRECTORY_SEPARATOR, $srcR    oot . '/' . $extName);
+////
+////                // str_replace('/', '\\', __FILE__);
+////                // str_replace('\\', '/', __FILE__);
+////                //$dstPath = realpath ($dstRoot . '/' . $extName);
+////                $dstPath = str_replace('/', DIRECTORY_SEPARATOR, $dstRoot . '/' . $extName);
+//
+//                if (is_dir($srcPath)) {
+//                    if (!is_dir($dstPath)) {
+//                        mkdir($dstPath);
+//                    }
+//                    print ('/');
+//                    xcopyDir($srcPath, $dstPath);
 //                } else {
-//                    // <creationDate>31. May. 2024</creationDate>
-//                    if (str_contains($line, '<creationDate>')) {
-//                        $outLine = preg_replace(
-//                            '/(.*<creationDate>)(.+)(<\/creationDate.*)/i',
-//                            '${1}' . $dateText . '${3}',
-//                            $line,
-//                        );
-//                        $outLines [] = $outLine;
-//
-//                        $isExchanged = true;
+//                    if (is_file($srcPath)) {
+//                        print ('.');
+//                        copy($srcPath, $dstPath);
 //                    } else {
-//                        $outLines [] = $line;
+//                        print ("%%% Warning: Path/file could not be copied: " . $srcPath . PHP_EOL);
 //                    }
 //                }
 //            }
 //
 //        } catch (Exception $e) {
-//            echo 'Message: ' . $e->getMessage() . "\r\n";
+//            echo 'Message: ' . $e->getMessage() . PHP_EOL;
 //            $hasError = -101;
 //        }
-//
-//        return [$isExchanged, $outLines];
 //    }
-
-    private function xcopyElement(string $name, string $srcRoot, string $dstRoot)
-    {
-        $hasError = 0;
-        try {
-            $srcPath = $srcRoot . '/' . $name;
-            $dstPath = $dstRoot . '/' . $name;
-
-            //--- check path ------------------------------------------
-
-            $srcPathTest = realpath($srcPath);
-            if (empty ($srcPathTest)) {
-                print ("%%% Warning: Path/file to copy could not be found: " . $srcPath . "\r\n");
-            } else {
-
-                //--- create path ------------------------------------------
-
-                $baseDir = dirname($dstPath);
-                if (!is_dir($baseDir)) {
-                    mkdir($baseDir, 0777, true);
-                }
-
-//                $srcPath = str_replace('/', DIRECTORY_SEPARATOR, $srcR    oot . '/' . $extName);
-//
-//                // str_replace('/', '\\', __FILE__);
-//                // str_replace('\\', '/', __FILE__);
-//                //$dstPath = realpath ($dstRoot . '/' . $extName);
-//                $dstPath = str_replace('/', DIRECTORY_SEPARATOR, $dstRoot . '/' . $extName);
-
-                if (is_dir($srcPath)) {
-                    if (!is_dir($dstPath)) {
-                        mkdir($dstPath);
-                    }
-                    print ('/');
-                    xcopyDir($srcPath, $dstPath);
-                } else {
-                    if (is_file($srcPath)) {
-                        print ('.');
-                        copy($srcPath, $dstPath);
-                    } else {
-                        print ("%%% Warning: Path/file could not be copied: " . $srcPath . "\r\n");
-                    }
-                }
-            }
-
-        } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
-            $hasError = -101;
-        }
-    }
 
     private function createExtensionZipName()
     {
@@ -623,13 +591,13 @@ class tsk2httpFile extends baseExecuteTasks
 
         $bareName = $this->shortExtensionName();
         $manifestPathFileName = $this->manifestPathFileName();
-        print ("manifestPathFileName: " . $manifestPathFileName . "\r\n");
+        print ("manifestPathFileName: " . $manifestPathFileName . PHP_EOL);
 
         $isChanged = $this->exchangeDataInManifestFile($manifestPathFileName);
 
         if (!$this->manifestFile->manifestXml->isXmlLoaded) {
 
-            print('exit buildModule: error manifestPathFileName could not be read: ' . $manifestPathFileName . "\r\n");
+            print('exit buildModule: error manifestPathFileName could not be read: ' . $manifestPathFileName . PHP_EOL);
             return '';
         }
 
@@ -637,11 +605,11 @@ class tsk2httpFile extends baseExecuteTasks
         // destination temp folder
         //--------------------------------------------------------------------
 
-        print ('build dir: "' . $this->buildDir . '"' . "\r\n");
+        print ('build dir: "' . $this->buildDir . '"' . PHP_EOL);
 
         $parentPath = dirname($this->buildDir);
         if (!is_dir($parentPath)) {
-            print ('main path does not exist : "' . $parentPath . '"' . "\r\n");
+            print ('main path does not exist : "' . $parentPath . '"' . PHP_EOL);
             exit(557);
         }
 
@@ -650,9 +618,9 @@ class tsk2httpFile extends baseExecuteTasks
         }
 
         $dstRoot = realpath($this->buildDir);
-        print ('dstRoot: "' . $dstRoot . '"' . "\r\n");
+        print ('dstRoot: "' . $dstRoot . '"' . PHP_EOL);
         $tmpFolder = $this->buildDir . '/tmp';
-        print ('temp folder(1): "' . $tmpFolder . '"' . "\r\n");
+        print ('temp folder(1): "' . $tmpFolder . '"' . PHP_EOL);
 
         //--------------------------------------------------------------------
         // handle temp folder
@@ -664,12 +632,12 @@ class tsk2httpFile extends baseExecuteTasks
             if (strLen($tmpFolder) < 10) {
                 exit (555);
             }
-            print ('Delete dir: "' . $tmpFolder . '"' . "\r\n");
+            print ('Delete dir: "' . $tmpFolder . '"' . PHP_EOL);
             delDir($tmpFolder);
         }
 
         // create tmp folder
-        print ('Create dir: "' . $tmpFolder . '"' . "\r\n");
+        print ('Create dir: "' . $tmpFolder . '"' . PHP_EOL);
         mkdir($tmpFolder, 0777, true);
 
         //--------------------------------------------------------------------
@@ -699,7 +667,7 @@ class tsk2httpFile extends baseExecuteTasks
 
         //  manifest file (not included as 'fileName' in manifest file)
         $this->xcopyElement($bareName . '.xml', $srcRoot, $tmpFolder);
-        print ("\r\n");
+        print (PHP_EOL);
 
 //        // install script like 'install_rsg2.php'
 //        $installScript = (string)$this->manifestFile->manifestXml->manifestXml->scriptfile;
@@ -757,7 +725,7 @@ class tsk2httpFile extends baseExecuteTasks
 
         $bareName = $this->shortExtensionName();
         $manifestPathFileName = $this->manifestPathFileName();
-        print ("manifestPathFileName: " . $manifestPathFileName . "\r\n");
+        print ("manifestPathFileName: " . $manifestPathFileName . PHP_EOL);
 
         //--- update date and version --------------------------------------
 
@@ -766,7 +734,7 @@ class tsk2httpFile extends baseExecuteTasks
 
         if (!$this->manifestFile->manifestXml->isXmlLoaded) {
 
-            print('exit buildPlugin: error manifestPathFileName could not be read: ' . $manifestPathFileName . "\r\n");
+            print('exit buildPlugin: error manifestPathFileName could not be read: ' . $manifestPathFileName . PHP_EOL);
             return '';
         }
 
@@ -774,11 +742,11 @@ class tsk2httpFile extends baseExecuteTasks
         // destination temp folder
         //--------------------------------------------------------------------
 
-        print ('build dir: "' . $this->buildDir . '"' . "\r\n");
+        print ('build dir: "' . $this->buildDir . '"' . PHP_EOL);
 
         $parentPath = dirname($this->buildDir);
         if (!is_dir($parentPath)) {
-            print ('main path does not exist : "' . $parentPath . '"' . "\r\n");
+            print ('main path does not exist : "' . $parentPath . '"' . PHP_EOL);
             exit(557);
         }
 
@@ -787,9 +755,9 @@ class tsk2httpFile extends baseExecuteTasks
         }
 
         $dstRoot = realpath($this->buildDir);
-        print ('dstRoot: "' . $dstRoot . '"' . "\r\n");
+        print ('dstRoot: "' . $dstRoot . '"' . PHP_EOL);
         $tmpFolder = $this->buildDir . '/tmp';
-        print ('temp folder(1): "' . $tmpFolder . '"' . "\r\n");
+        print ('temp folder(1): "' . $tmpFolder . '"' . PHP_EOL);
 
         //--------------------------------------------------------------------
         // handle temp folder
@@ -801,12 +769,12 @@ class tsk2httpFile extends baseExecuteTasks
             if (strLen($tmpFolder) < 10) {
                 exit (555);
             }
-            print ('Delete dir: "' . $tmpFolder . '"' . "\r\n");
+            print ('Delete dir: "' . $tmpFolder . '"' . PHP_EOL);
             delDir($tmpFolder);
         }
 
         // create tmp folder
-        print ('Create dir: "' . $tmpFolder . '"' . "\r\n");
+        print ('Create dir: "' . $tmpFolder . '"' . PHP_EOL);
         mkdir($tmpFolder, 0777, true);
 
         //--------------------------------------------------------------------
@@ -835,7 +803,7 @@ class tsk2httpFile extends baseExecuteTasks
 
         //  manifest file (not included as 'fileName' in manifest file)
         $this->xcopyElement($bareName . '.xml', $srcRoot, $tmpFolder);
-        print ("\r\n");
+        print (PHP_EOL);
 
 //        // install script like 'install_rsg2.php'
 //        $installScript = (string)$this->manifestFile->manifestXml->manifestXml->scriptfile;
@@ -907,17 +875,17 @@ class tsk2httpFile extends baseExecuteTasks
 
     public function text(): string
     {
-        $OutTxt = "------------------------------------------" . "\r\n";
-        $OutTxt .= "--- apiByCurlHtml --------" . "\r\n";
+        $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt .= "--- apiByCurlHtml --------" . PHP_EOL;
 
-        $OutTxt .= "Not defined yet " . "\r\n";
+        $OutTxt .= "Not defined yet " . PHP_EOL;
 
         /**
-         * $OutTxt .= "fileName: " . $this->fileName . "\r\n";
-         * $OutTxt .= "fileExtension: " . $this->fileExtension . "\r\n";
-         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . "\r\n";
-         * $OutTxt .= "filePath: " . $this->filePath . "\r\n";
-         * $OutTxt .= "srcRootFileName: " . $this->srcRootFileName . "\r\n";
+         * $OutTxt .= "fileName: " . $this->fileName . PHP_EOL;
+         * $OutTxt .= "fileExtension: " . $this->fileExtension . PHP_EOL;
+         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . PHP_EOL;
+         * $OutTxt .= "filePath: " . $this->filePath . PHP_EOL;
+         * $OutTxt .= "srcRootFileName: " . $this->srcRootFileName . PHP_EOL;
          * /**/
 
         return $OutTxt;
@@ -945,8 +913,8 @@ class tsk2httpFile extends baseExecuteTasks
      */
     public function copy2tmpFolder(filesByManifest $filesByManifest, string $tmpFolder): string|false
     {
-        print ("\r\n");
-        print ('--- copy to temp ------------------------------' . "\r\n");
+        print (PHP_EOL);
+        print ('--- copy to temp ------------------------------' . PHP_EOL);
 
         $srcRoot = realpath($this->srcRoot);
 
@@ -958,7 +926,7 @@ class tsk2httpFile extends baseExecuteTasks
             $this->xcopyElement($folder, $srcRoot, $tmpFolder);
         }
 
-        print ("\r\n");
+        print (PHP_EOL);
 
         return $srcRoot;
     }
@@ -1010,27 +978,27 @@ class tsk2httpFile extends baseExecuteTasks
 
         //option type: "component"
         if (empty ($this->componentType)) {
-            print ("option type: not set" . "\r\n");
+            print ("option type: not set" . PHP_EOL);
             $isValid = false;
         }
         //option buildDir: "../../LangMan4Dev"
         if (empty ($this->srcRoot)) {
-            print ("option buildDir: not set" . "\r\n");
+            print ("option buildDir: not set" . PHP_EOL);
             $isValid = false;
         }
         //option buildDir: "../../LangMan4DevProject/.packages"
         if (empty ($this->buildDir)) {
-            print ("option buildDir: not set" . "\r\n");
+            print ("option buildDir: not set" . PHP_EOL);
             $isValid = false;
         }
         //option extName: "com_lang4dev"
         if (empty ($this->extName)) {
-            print ("option extName: not set" . "\r\n");
+            print ("option extName: not set" . PHP_EOL);
             $isValid = false;
         }
         //option extension: "Lang4Dev"
         if (empty ($this->element)) {
-            print ("option extension: not set" . "\r\n");
+            print ("option extension: not set" . PHP_EOL);
             $isValid = false;
         }
 
@@ -1096,12 +1064,12 @@ function delDir($dir)
 
 function zipItRelative($sourcePath, $zipFilename)
 {
-    print ('sourcePath: "' . $sourcePath . '"' . "\r\n");
-    print ('zipFilename: "' . $zipFilename . '"' . "\r\n");
+    print ('sourcePath: "' . $sourcePath . '"' . PHP_EOL);
+    print ('zipFilename: "' . $zipFilename . '"' . PHP_EOL);
 
-    print ("\r\n");
-    print ('--- zip it ------------------------------' . "\r\n");
-    print ("\r\n");
+    print (PHP_EOL);
+    print ('--- zip it ------------------------------' . PHP_EOL);
+    print (PHP_EOL);
 
     //--- files within folders ------------------------------
 
@@ -1111,8 +1079,8 @@ function zipItRelative($sourcePath, $zipFilename)
     if ($zip->open($zipFilename, ZipArchive::CREATE) === true | ZipArchive::OVERWRITE) {
 
         $sourcePathSlash = str_replace('\\', '/', $sourcePath);
-        // print ('glob: "' . $sourcePathSlash . '/' . '"' . "\r\n");
-        // print ('sourcePathSlash: "' . $sourcePathSlash . '"' . "\r\n");
+        // print ('glob: "' . $sourcePathSlash . '/' . '"' . PHP_EOL);
+        // print ('sourcePathSlash: "' . $sourcePathSlash . '"' . PHP_EOL);
 
         $files = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($sourcePathSlash),
@@ -1147,21 +1115,8 @@ function zipItRelative($sourcePath, $zipFilename)
         $zip->close();
     } else {
 
-        print ("\r\n" . 'Can not create zip file: "' . $zipFilename . '"' . "\r\n");
+        print (PHP_EOL . 'Can not create zip file: "' . $zipFilename . '"' . PHP_EOL);
     }
 
 }
-
-//function join_paths()
-//{
-//    $paths = [];
-//
-//    foreach (func_get_args() as $arg) {
-//        if ($arg !== '') {
-//            $paths[] = $arg;
-//        }
-//    }
-//
-//    return preg_replace('#/+#', '/', join('/', $paths));
-//}
 

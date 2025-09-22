@@ -1,22 +1,24 @@
 @echo Off
 REM ----------------------------------------
-REM Transform *.tsk files to *.http file format
+REM Transform *.http file to *.tsk file format
 REM %1 : path and name to source file
 REM %2 : path to target file or path and name to target file
+REM %3 : joomla token file or path
+REM %4 : response file path
 REM ----------------------------------------
 
 Set CmdArgs=
 
 ECHO ----------------------------------------------
-@echo Transform *.tsk file to *.http file format
+@echo Transform *.http file to *.tsk file format
 ECHO ----------------------------------------------
 @echo.
 
 REM task command http to tsk conversion
-Call :AddNextArg -t "task:tsk2httpFile"
+Call :AddNextArg -t "task:http2tskFile"
 
 REM task command http to tsk conversion
-Call :AddNextArg -e "http"
+Call :AddNextArg -e "tsk"
 
 
 REM --- source file and folder ---------------------------------
@@ -40,6 +42,34 @@ if "%2" NEQ "" (
 
 REM source path
 Call :AddNextArg -d %dstFileOrPath%
+
+REM --- joomla token file or path ---------------------------------
+
+if "%2" NEQ "" (
+	SET jt_FileOrPath=%2
+) else (
+    set jt_FileOrPath=""
+)
+
+REM 
+Call :AddNextArg -j %srcFile%
+
+
+REM %4 : response file path
+
+REM --- destination file and folder ---------------------------------
+
+if "%2" NEQ "" (
+	SET resFileOrPath=%2
+) else (
+    set resFileOrPath=""
+)
+
+REM 
+Call :AddNextArg -r %resFileOrPath%
+
+
+REM --- tell found options bat ------------------------
 
 ECHO srcFile: %srcFile%
 ECHO dstFileOrPath: %dstFileOrPath%
@@ -74,6 +104,7 @@ ECHO ----------------------------------------------
 @echo.
 
 pause
+
 
 GOTO :EOF
 

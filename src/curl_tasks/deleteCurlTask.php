@@ -29,10 +29,10 @@ class deleteCurlTask extends baseCurlTask
     public function __construct(string $srcRoot = "", bool $isNoRecursion = false)
     {
         try {
-//            print('*********************************************************' . "\r\n");
-//            print ("srcRoot: " . $srcRoot . "\r\n");
-//            print ("yearText: " . $yearText . "\r\n");
-//            print('---------------------------------------------------------' . "\r\n");
+//            print('*********************************************************' . PHP_EOL);
+//            print ("srcRoot: " . $srcRoot . PHP_EOL);
+//            print ("yearText: " . $yearText . PHP_EOL);
+//            print('---------------------------------------------------------' . PHP_EOL);
 
 //            $this->srcRoot       = $srcRoot;
 //            $this->isNoRecursion = $isNoRecursion;
@@ -40,9 +40,9 @@ class deleteCurlTask extends baseCurlTask
             parent::__construct();
 
         } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
+            echo 'Message: ' . $e->getMessage() . PHP_EOL;
         }
-        // print('exit __construct: ' . $hasError . "\r\n");
+        // print('exit __construct: ' . $hasError . PHP_EOL);
     }
 
 
@@ -77,13 +77,13 @@ class deleteCurlTask extends baseCurlTask
 
         switch (strtolower($option->name)) {
 //            case strtolower('builddir'):
-//                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+//                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 //                $this->buildDir = $option->value;
 //                $isBuildExtensionOption = true;
 //                break;
 
             default:
-                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . "\r\n");
+                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . PHP_EOL);
         } // switch
 
         return $isBuildExtensionOption;
@@ -94,9 +94,9 @@ class deleteCurlTask extends baseCurlTask
         // ToDo: has error ....
         $hasError = 0;
 
-        print('*********************************************************' . "\r\n");
-        print("Execute deleteCurlTask: " . "\r\n");
-        print('---------------------------------------------------------' . "\r\n");
+        print('*********************************************************' . PHP_EOL);
+        print("Execute deleteCurlTask: " . PHP_EOL);
+        print('---------------------------------------------------------' . PHP_EOL);
 
         // ToDo: Error on missing token
 
@@ -161,9 +161,9 @@ class deleteCurlTask extends baseCurlTask
 
         } else {
 
-            print('---------------------------------------------------------' . "\r\n");
-            print("deleteCurlTask:execute: oCurl is not defined" . "\r\n");
-            print('---------------------------------------------------------' . "\r\n");
+            print('---------------------------------------------------------' . PHP_EOL);
+            print("deleteCurlTask:execute: oCurl is not defined" . PHP_EOL);
+            print('---------------------------------------------------------' . PHP_EOL);
 
         }
 
@@ -178,10 +178,10 @@ class deleteCurlTask extends baseCurlTask
 
     public function text(): string
     {
-        $OutTxt = "------------------------------------------" . "\r\n";
-        $OutTxt .= "--- deleteCurlTask --------" . "\r\n";
+        $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt .= "--- deleteCurlTask --------" . PHP_EOL;
 
-//        $OutTxt .= "Not defined yet " . "\r\n";
+//        $OutTxt .= "Not defined yet " . PHP_EOL;
 
         $OutTxt .= parent::text();
 

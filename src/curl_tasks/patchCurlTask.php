@@ -29,10 +29,10 @@ class patchCurlTask extends baseCurlTask
     public function __construct(string $srcRoot = "", bool $isNoRecursion = false)
     {
         try {
-//            print('*********************************************************' . "\r\n");
-//            print ("srcRoot: " . $srcRoot . "\r\n");
-//            print ("yearText: " . $yearText . "\r\n");
-//            print('---------------------------------------------------------' . "\r\n");
+//            print('*********************************************************' . PHP_EOL);
+//            print ("srcRoot: " . $srcRoot . PHP_EOL);
+//            print ("yearText: " . $yearText . PHP_EOL);
+//            print('---------------------------------------------------------' . PHP_EOL);
 
 //            $this->srcRoot       = $srcRoot;
 //            $this->isNoRecursion = $isNoRecursion;
@@ -40,9 +40,9 @@ class patchCurlTask extends baseCurlTask
             parent::__construct();
 
         } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
+            echo 'Message: ' . $e->getMessage() . PHP_EOL;
         }
-        // print('exit __construct: ' . $hasError . "\r\n");
+        // print('exit __construct: ' . $hasError . PHP_EOL);
     }
 
 
@@ -77,13 +77,13 @@ class patchCurlTask extends baseCurlTask
 
         switch (strtolower($option->name)) {
 //            case strtolower('builddir'):
-//                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+//                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 //                $this->buildDir = $option->value;
 //                $isBuildExtensionOption = true;
 //                break;
 
             default:
-                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . "\r\n");
+                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . PHP_EOL);
         } // switch
 
         return $isBuildExtensionOption;
@@ -94,9 +94,9 @@ class patchCurlTask extends baseCurlTask
         // ToDo: has error ....
         $hasError = 0;
 
-        print('*********************************************************' . "\r\n");
-        print("Execute patchCurlTask: " . "\r\n");
-        print('---------------------------------------------------------' . "\r\n");
+        print('*********************************************************' . PHP_EOL);
+        print("Execute patchCurlTask: " . PHP_EOL);
+        print('---------------------------------------------------------' . PHP_EOL);
 
         // ToDo: Error on missing token
 
@@ -128,8 +128,8 @@ class patchCurlTask extends baseCurlTask
             $errorCode = curl_errno($this->oCurl);
 
             if ($errorCode == 0) {
-                print('---------------------------------------------------------' . "\r\n");
-                print(">>> curl_exec with response: " . "\r\n");
+                print('---------------------------------------------------------' . PHP_EOL);
+                print(">>> curl_exec with response: " . PHP_EOL);
                 // Attention response can be
                 // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
                 // "{"errors":[{"title":"Resource not found","code":404}]}
@@ -141,8 +141,8 @@ class patchCurlTask extends baseCurlTask
 
                 $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                 print( $responseJsonBeautified . "\n");
-                print('---------------------------------------------------------' . "\r\n");
-                print("\r\n");
+                print('---------------------------------------------------------' . PHP_EOL);
+                print(PHP_EOL);
 
                 if ( ! empty($this->responseFile)) {
                     // ToDo: Response to file if requested
@@ -150,24 +150,24 @@ class patchCurlTask extends baseCurlTask
                     file_put_contents($this->responseFile, $responseJsonBeautified);
                 }
             } else {
-                print('---------------------------------------------------------' . "\r\n");
+                print('---------------------------------------------------------' . PHP_EOL);
                 // curl_error — Return a string containing the last error for the current session
                 $errorMessage = curl_error($this->oCurl);
 
-                print("\r\n");
-                print("!!! curl_exec: has failed with error: '" . $errorCode ."' !!!" . "\r\n");
-                print("Message: '" . $errorMessage ."'" . "\r\n");
-                print('---------------------------------------------------------' . "\r\n");
-                print("\r\n");
+                print(PHP_EOL);
+                print("!!! curl_exec: has failed with error: '" . $errorCode ."' !!!" . PHP_EOL);
+                print("Message: '" . $errorMessage ."'" . PHP_EOL);
+                print('---------------------------------------------------------' . PHP_EOL);
+                print(PHP_EOL);
             }
 
             curl_close($this->oCurl);
 
         } else {
 
-            print('---------------------------------------------------------' . "\r\n");
-            print("patchCurlTask:execute: oCurl is not defined" . "\r\n");
-            print('---------------------------------------------------------' . "\r\n");
+            print('---------------------------------------------------------' . PHP_EOL);
+            print("patchCurlTask:execute: oCurl is not defined" . PHP_EOL);
+            print('---------------------------------------------------------' . PHP_EOL);
 
         }
 
@@ -184,14 +184,14 @@ class patchCurlTask extends baseCurlTask
     {
         $ident = "   ";
 
-        $OutTxt = "------------------------------------------" . "\r\n";
-        $OutTxt .= "--- patchCurlTask --------" . "\r\n";
+        $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt .= "--- patchCurlTask --------" . PHP_EOL;
 
-//        $OutTxt .= "Not defined yet " . "\r\n";
+//        $OutTxt .= "Not defined yet " . PHP_EOL;
 
         $OutTxt .= parent::text();
 
-        $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl ."'" . "\r\n";
+        $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl ."'" . PHP_EOL;
 
         return $OutTxt;
     }

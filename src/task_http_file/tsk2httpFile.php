@@ -3,13 +3,10 @@
 namespace Finnern\apiByCurlHtml\src\task_http_file;
 
 use Exception;
+use Finnern\apiByCurlHtml\src\lib\AutoSrcDstPathFileNames;
 use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use SplFileInfo;
-use ZipArchive;
 
 $HELP_MSG = <<<EOT
     >>>
@@ -35,7 +32,11 @@ class tsk2httpFile extends baseExecuteTasks
     private string $dstPath = '';
     private string $dstFile = '';
 
+    private string $dstExtension = '';
+
     public task $task;
+
+    public bool $hasError;
 
 //    private tskFileData $tskFileData;
 //    private tskFileData $httpFileData;
@@ -51,9 +52,9 @@ class tsk2httpFile extends baseExecuteTasks
     {
         $hasError = 0;
         try {
-//            print('*********************************************************' . "\r\n");
-            print ("Construct apiByCurlHtml: " . "\r\n");
-//            print('---------------------------------------------------------' . "\r\n");
+//            print('*********************************************************' . PHP_EOL);
+            print ("Construct apiByCurlHtml: " . PHP_EOL);
+//            print('---------------------------------------------------------' . PHP_EOL);
 
 //            parent::__construct($srcRoot, false);
 
@@ -61,13 +62,14 @@ class tsk2httpFile extends baseExecuteTasks
 //            $this->dstFile = $dstFile;
 
             $this->task = new task();
+            $this->hasError = false;
 
 
         } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
+            echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
-        // print('exit __construct: ' . $hasError . "\r\n");
+        // print('exit __construct: ' . $hasError . PHP_EOL);
     }
 
     // Task name with options
@@ -85,8 +87,8 @@ class tsk2httpFile extends baseExecuteTasks
 //            if (!$isBaseOption && !$isManifestOption) {
 //            if (!$isBaseOption) {
 
-                $this->assignLocalOption($option);
-                // $OutTxt .= $task->text() . "\r\n";
+            $this->assignLocalOption($option);
+            // $OutTxt .= $task->text() . PHP_EOL;
 //            }
         }
 
@@ -105,35 +107,44 @@ class tsk2httpFile extends baseExecuteTasks
         $isLocalExtensionOption = false;
 
         switch (strtolower($option->name)) {
+            // may contain complete path
             case strtolower('srcPath'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->srcPath = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
             // com_rsgallery2'
             case strtolower('srcFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->srcFile = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
 
+            // may contain complete path
             case strtolower('dstPath'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dstPath = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
             // com_rsgallery2'
             case strtolower('dstFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . "\r\n");
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dstFile = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
+            // com_rsgallery2'
+            case strtolower('dstExtension'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->dstExtension = $option->value;
+                $isLocalExtensionOption = true;
+                break;
+
             default:
-                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . "\r\n");
+                print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . PHP_EOL);
         } // switch
 
         return $isLocalExtensionOption;
@@ -141,182 +152,199 @@ class tsk2httpFile extends baseExecuteTasks
 
     public function execute(): int // $hasError
     {
-        print('*********************************************************' . "\r\n");
-        print("Execute apiByCurlHtml: " . "\r\n");
-        print('---------------------------------------------------------' . "\r\n");
+        $hasError = false;
+
+        print('*********************************************************' . PHP_EOL);
+        print("Execute apiByCurlHtml: " . PHP_EOL);
+        print('---------------------------------------------------------' . PHP_EOL);
 
 
         switch (strtolower($this->task->name)) {
             case strtolower('tsk2httpFile'):
-                $this->tsk2httpFile();
+                $hasError = $this->tsk2httpFile();
 
                 break;
 
             case strtolower('http2tskFile'):
-                $this->http2tskFile();
+                $hasError = $this->http2tskFile();
 
                 break;
 
             default:
-                print ('!!! Task name: "' . $this->task->name . '" not supported !!!');
+                print ('!!! Task name: "' . $this->task->name . '" not supported !!!' . PHP_EOL);
+                $hasError = true;
         } // switch
 
 
-        return 0;
+        return $hasError ? 1 : 0;
     }
 
-    public function tsk2httpFile(): int  // ToDo: string $tskFilePathName='', string $httpFilePathName=''
+    public function tsk2httpFile(): bool  // ToDo: string $tskFilePathName='', string $httpFilePathName=''
     {
         // file, path
-        [$srcPath, $dstPath] = $this->createFilePaths ();
+        [$srcPath, $dstPath] = $this->createFilePaths();
 
-        //--- transform data ----------------------------------------
+        if ($this->hasError == false) {
 
-        print ("------------------------------------------" . "\r\n");
-        print ("--- transform data -----------------------" . "\r\n");
-        print ("------------------------------------------" . "\r\n");
+            //--- transform data ----------------------------------------
 
-        //--- read files data -----------------------
+            print ("------------------------------------------" . PHP_EOL);
+            print ("--- transform data -----------------------" . PHP_EOL);
+            print ("------------------------------------------" . PHP_EOL);
 
-        print (">>read file data: " . "\r\n");
+            //--- read files data -----------------------
 
-        $tskFileData = new tskFileData($srcPath); // calls extract data
-        $httpFileData = new httpFileData($dstPath, true);
+            print (">>read file data: " . PHP_EOL);
 
-        //--- retrieve ---------------------------------
+            $tskFileData = new tskFileData($srcPath); // calls extract data
+            $httpFileData = new httpFileData($dstPath, true);
 
-        print (">>get tskFileData: " . "\r\n");
+            //--- retrieve ---------------------------------
 
-        $command = strtoupper($tskFileData->taskName);
-        $accept = $tskFileData->oBaseCurlTask->accept;
-        $contentType = $tskFileData->oBaseCurlTask->contentType;
-        $joomlaToken = $tskFileData->oBaseCurlTask->joomlaToken;
+            print (">>get tskFileData: " . PHP_EOL);
 
-        $baseUrl = $tskFileData->oBaseCurlTask->baseUrl;
-        $apiPath = $tskFileData->oBaseCurlTask->apiPath;
+            $command = strtoupper($tskFileData->taskName);
+            $accept = $tskFileData->oBaseCurlTask->accept;
+            $contentType = $tskFileData->oBaseCurlTask->contentType;
+            $joomlaToken = $tskFileData->oBaseCurlTask->joomlaToken;
 
-        //--- store ---------------------------------
+            $baseUrl = $tskFileData->oBaseCurlTask->baseUrl;
+            $apiPath = $tskFileData->oBaseCurlTask->apiPath;
 
-        print (">>put httpFileData: " . "\r\n");
+            //--- store ---------------------------------
 
-        $httpFileData->command = $command;
-        $httpFileData->accept = $accept;
-        $httpFileData->contentType = $contentType;
-        $httpFileData->joomlaToken = $joomlaToken;
+            print (">>put httpFileData: " . PHP_EOL);
 
-        $httpFileData->baseUrl = $baseUrl;
-        $httpFileData->apiPath = $apiPath;
+            $httpFileData->command = $command;
+            $httpFileData->accept = $accept;
+            $httpFileData->contentType = $contentType;
+            $httpFileData->joomlaToken = $joomlaToken;
 
-        //--- save data -----------------------
+            $httpFileData->baseUrl = $baseUrl;
+            $httpFileData->apiPath = $apiPath;
 
-        print (">>save httpFileData: " . "\r\n");
+            //--- save data -----------------------
 
-        $httpFileData->createFileLines ();
-        $httpFileData->writeFile ();
+            print (">>save httpFileData: " . PHP_EOL);
 
-        print ("------------------------------------------" . "\r\n");
-        print ("--- transform done -----------------------" . "\r\n");
-        print ("------------------------------------------" . "\r\n");
+            $httpFileData->createFileLines();
+            $httpFileData->writeFile();
 
-        return 0;
+            print ("------------------------------------------" . PHP_EOL);
+            print ("--- transform done -----------------------" . PHP_EOL);
+            print ("------------------------------------------" . PHP_EOL);
+
+        }
+
+        return $this->hasError;
     }
 
 
-    public function http2tskFile(string $filePathName=''): int
+    public function http2tskFile(string $filePathName = ''): bool
     {
         //file, path
-        [$srcPath, $dstPath] = $this->createFilePaths ();
+        [$srcPath, $dstPath] = $this->createFilePaths();
 
-        //--- transform data ----------------------------------------
+        if ($this->hasError == false) {
 
-        print ("------------------------------------------" . "\r\n");
-        print ("--- transform data -----------------------" . "\r\n");
-        print ("------------------------------------------" . "\r\n");
+            //--- transform data ----------------------------------------
 
-        //--- read files data -----------------------
+            print ("------------------------------------------" . PHP_EOL);
+            print ("--- transform data -----------------------" . PHP_EOL);
+            print ("------------------------------------------" . PHP_EOL);
 
-        print ("read file data: " . "\r\n");
+            //--- read files data -----------------------
 
-        $httpFileData = new httpFileData($srcPath);
-        $tskFileData = new tskFileData($dstPath, true);
+            print ("read file data: " . PHP_EOL);
 
-        //--- retrieve ---------------------------------
+            $httpFileData = new httpFileData($srcPath);
+            $tskFileData = new tskFileData($dstPath, true);
 
-        print (">>get httpFileData: " . "\r\n");
+            //--- retrieve ---------------------------------
 
-        $command = $httpFileData->command;
-        $accept = $httpFileData->accept;
-        $contentType = $httpFileData->contentType;
-        $joomlaToken= $httpFileData->joomlaToken;
+            print (">>get httpFileData: " . PHP_EOL);
 
-        $baseUrl = $httpFileData->baseUrl;
-        $apiPath = $httpFileData->apiPath;
+            $command = $httpFileData->command;
+            $accept = $httpFileData->accept;
+            $contentType = $httpFileData->contentType;
+            $joomlaToken = $httpFileData->joomlaToken;
 
-        //--- store ---------------------------------
+            $baseUrl = $httpFileData->baseUrl;
+            $apiPath = $httpFileData->apiPath;
 
-        print (">>put tskFileData: " . "\r\n");
+            //--- store ---------------------------------
 
-        $tskFileData->taskName = strtolower($command);
-        $tskFileData->oBaseCurlTask->accept = $accept;
-        $tskFileData->oBaseCurlTask->contentType = $contentType;
-        $tskFileData->oBaseCurlTask->joomlaToken = $joomlaToken;
+            print (">>put tskFileData: " . PHP_EOL);
 
-        $tskFileData->oBaseCurlTask->baseUrl = $baseUrl;
-        $tskFileData->oBaseCurlTask->apiPath = $apiPath;
+            $tskFileData->taskName = strtolower($command);
+            $tskFileData->oBaseCurlTask->accept = $accept;
+            $tskFileData->oBaseCurlTask->contentType = $contentType;
+            $tskFileData->oBaseCurlTask->joomlaToken = $joomlaToken;
 
-        //--- save data -----------------------
+            $tskFileData->oBaseCurlTask->baseUrl = $baseUrl;
+            $tskFileData->oBaseCurlTask->apiPath = $apiPath;
 
-        print (">>save tskFileData: " . "\r\n");
+            //--- save data -----------------------
 
-        $tskFileData->createFileLines ();
-        $tskFileData->writeFile ();
+            print (">>save tskFileData: " . PHP_EOL);
 
-        print ("------------------------------------------" . "\r\n");
-        print ("--- transform done -----------------------" . "\r\n");
-        print ("------------------------------------------" . "\r\n");
+            $tskFileData->createFileLines();
+            $tskFileData->writeFile();
 
-        return 0;
+            print ("------------------------------------------" . PHP_EOL);
+            print ("--- transform done -----------------------" . PHP_EOL);
+            print ("------------------------------------------" . PHP_EOL);
+
+        }
+
+        return $this->hasError;
     }
 
-
-    public function executeFile(string $filePathName): int
+    public
+    function executeFile(string $filePathName): int
     {
         // not supported
         return 0;
     }
 
-    public function createFilePaths() : array
+    public
+    function createFilePaths(): array
     {
         $srcPath = '';
         $dstPath = '';
 
-        // ToDo try catch ...
-        // ToDo: create dst filename by source name if it does not exist
+        $autoNames = new AutoSrcDstPathFileNames();
+        $hasError = $autoNames->assignFilePaths($this->srcFile, $this->srcPath,
+            $this->dstFile, $this->dstPath,
+            $this->dstExtension);
 
-        // ToDo: create dst filename with time data stamp
+        print ($autoNames->text());
 
-        $srcPath = $this->srcPath . '/' . $this->srcFile;
-        $dstPath = $this->dstPath . '/' . $this->dstFile;
+        if (!$hasError) {
+            $srcPath = $autoNames->getSrcPathFileName();
+            $dstPath = $autoNames->getDstPathFileName();
 
-        // not supported
+            // not supported
+        }
+        $this->hasError = $hasError;
+
         return [$srcPath, $dstPath];
     }
 
-
-
-    public function text(): string
+    public
+    function text(): string
     {
-        $OutTxt = "------------------------------------------" . "\r\n";
-        $OutTxt .= "--- apiByCurlHtml --------" . "\r\n";
+        $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt .= "--- apiByCurlHtml --------" . PHP_EOL;
 
-        $OutTxt .= "Not defined yet " . "\r\n";
+        $OutTxt .= "Not defined yet " . PHP_EOL;
 
         /**
-         * $OutTxt .= "fileName: " . $this->fileName . "\r\n";
-         * $OutTxt .= "fileExtension: " . $this->fileExtension . "\r\n";
-         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . "\r\n";
-         * $OutTxt .= "filePath: " . $this->filePath . "\r\n";
-         * $OutTxt .= "srcRootFileName: " . $this->srcRootFileName . "\r\n";
+         * $OutTxt .= "fileName: " . $this->fileName . PHP_EOL;
+         * $OutTxt .= "fileExtension: " . $this->fileExtension . PHP_EOL;
+         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . PHP_EOL;
+         * $OutTxt .= "filePath: " . $this->filePath . PHP_EOL;
+         * $OutTxt .= "srcRootFileName: " . $this->srcRootFileName . PHP_EOL;
          * /**/
 
         return $OutTxt;

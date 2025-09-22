@@ -53,19 +53,19 @@ class curl_call
 
     public function responseJsonBeautified_CRLF_text(): string
     {
-        return str_replace("\n", "\r\n", $this->responseJsonBeautified);
+        return str_replace("\n", PHP_EOL, $this->responseJsonBeautified);
     }
 
     public function text(): string
     {
         $outTxt = "";
 //
-//        //$outTxt .= '§§§ -----------------------------' . "\r\n";
+//        //$outTxt .= '§§§ -----------------------------' . PHP_EOL;
 //        foreach ($this->error as $key => $value) {
 //
 //            $valueText = str_replace("\n","\n\r",$value);
 //
-//            $outTxt .= '"' . $key . '": "' . $valueText . '"' . "\r\n";
+//            $outTxt .= '"' . $key . '": "' . $valueText . '"' . PHP_EOL;
 //        }
 //
         return $outTxt;

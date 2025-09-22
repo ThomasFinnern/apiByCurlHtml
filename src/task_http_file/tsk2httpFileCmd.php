@@ -46,8 +46,9 @@ function assignCmdLineOptions(task $task, string $srcPath='', string $srcFile=''
 main (used from command line)
 ================================================================================*/
 
-$optDefinition = "t:f:o:p:s:x:y:h12345";
+$optDefinition = "t:f:o:s:d:e:y:h12345";
 $isPrintArguments = false;
+//$isPrintArguments = true;
 
 [$inArgs, $options] = commandLineLib::argsAndOptions($argv, $optDefinition, $isPrintArguments);
 
@@ -61,21 +62,22 @@ $LeaveOut_05 = true;
 variables
 --------------------------------------------*/
 
-$tasksLine = ' task:tsk2httpFile';
+// $tasksLine = ' task:tsk2httpFile';
+
 //$tasksLine = ' task:tsk2httpFile'
 //    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tasks_tsk'
 //    . ' /srcFile="rsg2_getGallery.tsk"'
 //    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
 //    . ' /dstFile="rsg2_getGallery.http"';
-//
+
 
 //// ToDo:
-//$tasksLine = ' task:http2tskFile'
-//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
-//    . ' /srcFile="./../../rsg2_getGallery2.http"'
-//    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tasks_tsk'
-//    . ' /dstFile="./../../rsg2_getGallery2.tsk"';
-//
+$tasksLine = ' task:http2tskFile'
+    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
+    . ' /srcFile="./../../rsg2_getGallery2.http"'
+    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tasks_tsk'
+    . ' /dstFile="./../../rsg2_getGallery2.tsk"';
+
 
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_getGalleries.tsk';
@@ -83,14 +85,15 @@ $tasksLine = ' task:tsk2httpFile';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getConfigAll.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getTest.tsk';
 
-$srcPath = "";
 $srcFile = "";
-$dstPath = "";
 $dstFile = "";
+$responseFile = "";
+$joomlaTokenFile = "";
+$dstExtension = '';
 
 foreach ($options as $idx => $option) {
-    print ("idx: " . $idx . "\r\n");
-    print ("option: " . $option . "\r\n");
+    print ("idx: " . $idx . PHP_EOL);
+    print ("option: " . $option . PHP_EOL);
 
     switch ($idx) {
         case 't':
@@ -101,21 +104,28 @@ foreach ($options as $idx => $option) {
             $taskFile = $option;
             break;
 
-        case 'o':
-            $optionFiles[] = $option;
+        case 'r':
+            $responseFile = $option;
             break;
 
+        case 'j':
+            $joomlaTokenFile = $option;
+            break;
 
-        case 'p':
-            $srcPath = $option;
+        case 'o':
+            $optionFiles[] = $option;
             break;
 
         case 's':
             $srcFile = $option;
             break;
 
-        case 'x':
+        case 'd':
             $dstPath = $option;
+            break;
+
+        case 'e':
+            $dstExtension = $option;
             break;
 
         case 'y':
@@ -180,7 +190,27 @@ if (!empty($optionFiles)) {
 }
 
 // add options from command line
-assignCmdLineOptions($task, $srcPath, $srcFile, $dstPath, $dstFile);
+
+if (!empty($srcFile)) {
+    $task->options->addOption(new option("srcFile", $srcFile));
+}
+
+if (!empty($dstFile)) {
+    $task->options->addOption(new option("dstFile", $dstFile));
+}
+
+if (!empty($responseFile)) {
+    $task->options->addOption(new option("responseFile", $dstFile));
+}
+
+if (!empty($joomlaTokenFile)) {
+    $task->options->addOption(new option("joomlaTokenFile", $dstFile));
+}
+
+if (!empty($dstExtension)) {
+    $task->options->addOption(new option("dstExtension", $dstExtension));
+}
+
 
 print ($task->text());
 
@@ -199,7 +229,7 @@ if (empty ($hasError)) {
     if ($hasError) {
         print ("%%% Error on function assignTask:" . $hasError) . "\n";
     } else {
-        print ($oTsk2HttpFile->text() . "\r\n");
+        print ($oTsk2HttpFile->text() . PHP_EOL);
     }
 
     //--- execute tasks ---------------------------------
@@ -211,9 +241,9 @@ if (empty ($hasError)) {
         }
     }
 
-//	print ($oCurlApi_HttpCall->text() . "\r\n");
-    print ("\r\n" . '----------------------------' . "\r\n");
-    print ('... CurlApi_HttpCall finished .......' . "\r\n");
+//    print (PHP_EOL . '-------------------------------------' . PHP_EOL);
+    print (          '... CurlApi_HttpCall finished .......' . PHP_EOL);
+//    print (PHP_EOL . '-------------------------------------' . PHP_EOL);
 }
 
 commandLineLib::print_end($start);

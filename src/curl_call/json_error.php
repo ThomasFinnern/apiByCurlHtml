@@ -48,12 +48,12 @@ class json_error
     {
         $outTxt = "";
 
-        //$outTxt .= '----------------------------------------' . "\r\n";
+        //$outTxt .= '----------------------------------------' . PHP_EOL;
         foreach ($this->error as $key => $value) {
 
-            $valueText = str_replace("\n", "\r\n", $value);
+            $valueText = str_replace("\n", PHP_EOL, $value);
 
-            $outTxt .= '"' . $key . '": "' . $valueText . '"' . "\r\n";
+            $outTxt .= '"' . $key . '": "' . $valueText . '"' . PHP_EOL;
         }
 
         return $outTxt;

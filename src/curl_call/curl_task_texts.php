@@ -20,9 +20,9 @@ class curl_task_texts
     {
         $outTxt = "";
 
-        $outTxt .= '---------------------------------------------------------' . "\r\n";
-        $outTxt .= ">>> curl_exec with response: " . "\r\n";
-        $outTxt .= '---------------------------------------------------------' . "\r\n";
+        $outTxt .= '---------------------------------------------------------' . PHP_EOL;
+        $outTxt .= ">>> curl_exec with response: " . PHP_EOL;
+        $outTxt .= '---------------------------------------------------------' . PHP_EOL;
 
         return $outTxt;
     }
@@ -32,7 +32,7 @@ class curl_task_texts
         $outTxt = "";
 
         // all in one line
-        $outTxt .= $this->oCurlCall->responseJson . "\r\n";
+        $outTxt .= $this->oCurlCall->responseJson . PHP_EOL;
 
         return $outTxt;
     }
@@ -42,7 +42,7 @@ class curl_task_texts
         $outTxt = "";
 
         // objects in more lines
-        $outTxt .= $this->oCurlCall->responseJsonBeautified . "\r\n";
+        $outTxt .= $this->oCurlCall->responseJsonBeautified . PHP_EOL;
 
         return $outTxt;
     }
@@ -58,7 +58,7 @@ class curl_task_texts
         $response = (string) $this->oCurlCall->responseJsonBeautified;
 
         $splitted = explode('\n', $response);
-        $replaced = implode("\r\n", $splitted);
+        $replaced = implode(PHP_EOL, $splitted);
 
         return $replaced;
     }
@@ -67,9 +67,9 @@ class curl_task_texts
     {
         $outTxt = "";
 
-        $outTxt .= '---------------------------------------------------------' . "\r\n";
-        $outTxt .= ">>> End curl_exec with response: " . "\r\n";
-        $outTxt .= '---------------------------------------------------------' . "\r\n";
+        $outTxt .= '---------------------------------------------------------' . PHP_EOL;
+        $outTxt .= ">>> End curl_exec with response: " . PHP_EOL;
+        $outTxt .= '---------------------------------------------------------' . PHP_EOL;
 
         return $outTxt;
     }
@@ -78,9 +78,9 @@ class curl_task_texts
     {
         $outTxt = "";
 
-        $outTxt .= "\r\n";
-        $outTxt .= '---------------------------------------------------------' . "\r\n";
-        $outTxt .= "!!! curl_exec: has failed with error: '" . $this->oCurlCall->errorCode . "' !!!" . "\r\n";
+        $outTxt .= PHP_EOL;
+        $outTxt .= '---------------------------------------------------------' . PHP_EOL;
+        $outTxt .= "!!! curl_exec: has failed with error: '" . $this->oCurlCall->errorCode . "' !!!" . PHP_EOL;
 
         return $outTxt;
     }
@@ -89,19 +89,19 @@ class curl_task_texts
     {
         $outTxt = "";
 
-        $outTxt .= "\r\n";
-        $outTxt .= '---------------------------------------------------------' . "\r\n";
-        $outTxt .= "!!! curl_exec: has failed with json errors: " . " !!!" . "\r\n";
+        $outTxt .= PHP_EOL;
+        $outTxt .= '---------------------------------------------------------' . PHP_EOL;
+        $outTxt .= "!!! curl_exec: has failed with json errors: " . " !!!" . PHP_EOL;
 
         if (!empty($this->oCurlCall->oResponse->errors)) {
 
             // [errors]: exist in json
             $json_errors = new json_errors($this->oCurlCall->oResponse->errors);
-            $outTxt .= $json_errors->text(); // . "\r\n";
+            $outTxt .= $json_errors->text(); // . PHP_EOL;
 
         } else {
 
-            $outTxt = "jsonErrorsCrLfText: oResponse does not contain errors" . "\r\n";
+            $outTxt = "jsonErrorsCrLfText: oResponse does not contain errors" . PHP_EOL;
         }
 
         return $outTxt;

@@ -2,14 +2,13 @@
 
 WIP 2025.07.22
 
-*.php scripts to load *.html file for curl calls like in PHP Storm
+*.php scripts to load *.http files for curl calls like in PHP Storm
 *.tsk files are used to define the task and their options
 
 For example a external call issues a HTTP get on RSGallery2 API URL:  
-In the task file *.tsk the command and parameter for the call is defined.
-For example the Joomla user token, the API path and the base url.
+In the task file *.tsk the command and parameter for the call is defined as Joomla user token, the API path and the base url.
 
-The CurlApi_HttpCallCmd.php can now be called with -f *.tsk the file and it will issue the call.
+The CurlApi_HttpCallCmd.php can now be called with -f *.tsk file and it will issue the call.
 More examples see src/curl_tasks_tsk
 
 ##  curl tasks supported

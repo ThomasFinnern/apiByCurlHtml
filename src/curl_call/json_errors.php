@@ -32,8 +32,8 @@ class json_errors
 
         foreach ($this->errors as $error) {
 
-            $outTxt .= '---------------------------------------------------------' . "\r\n";
-            $outTxt .= $error->text() . "\r\n";
+            $outTxt .= '---------------------------------------------------------' . PHP_EOL;
+            $outTxt .= $error->text() . PHP_EOL;
         }
 
         return $outTxt;

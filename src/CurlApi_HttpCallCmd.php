@@ -67,8 +67,8 @@ $taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/rsg2_deleteGallery.tsk';
 $taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getTest.tsk';
 
 foreach ($options as $idx => $option) {
-    print ("idx: " . $idx . "\r\n");
-    print ("option: " . $option . "\r\n");
+    print ("idx: " . $idx . PHP_EOL);
+    print ("option: " . $option . PHP_EOL);
 
     switch ($idx) {
         case 't':
@@ -156,7 +156,7 @@ if (empty ($hasError)) {
     if ($hasError) {
         print ("%%% Error on function assignTask:" . $hasError) . "\n";
     } else {
-        print ($oCurlApi_HttpCall->text() . "\r\n");
+        print ($oCurlApi_HttpCall->text() . PHP_EOL);
     }
 
 	//--- execute tasks ---------------------------------
@@ -168,9 +168,9 @@ if (empty ($hasError)) {
 	    }
 	}
 	
-//	print ($oCurlApi_HttpCall->text() . "\r\n");
-    print ("\r\n" . '----------------------------' . "\r\n");
-    print ('... CurlApi_HttpCall finished .......' . "\r\n");
+//	print ($oCurlApi_HttpCall->text() . PHP_EOL);
+    print (PHP_EOL . '-----------------------------------' . PHP_EOL);
+    print (       '... CurlApi_HttpCall finished .......' . PHP_EOL);
 }
 
 commandLineLib::print_end($start);

@@ -26,12 +26,12 @@ class tskFileData extends baseHttpFileData
         $hasError = 0;
 
         try {
-//            print('*********************************************************' . "\r\n");
-            print ("Construct tskFileData: " . "\r\n");
-            print ("fileName: " . $fileName . "\r\n");
-//            print('---------------------------------------------------------' . "\r\n");
+//            print('*********************************************************' . PHP_EOL);
+            print ("Construct tskFileData: " . PHP_EOL);
+            print ("fileName: " . $fileName . PHP_EOL);
+//            print('---------------------------------------------------------' . PHP_EOL);
 
-            $this->FilePathName = $fileName;
+            $this->filePathName = $fileName;
             $this->oBaseCurlTask = new baseCurlTask();
 
             if (!empty ($fileName)) {
@@ -43,7 +43,7 @@ class tskFileData extends baseHttpFileData
             }
 
         } catch (\Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
+            echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
 
@@ -83,6 +83,34 @@ class tskFileData extends baseHttpFileData
         $lines = [];
 
         // TODO: Implement createFileLines() method.
+
+        // task:get
+        $lines[] = 'task:' . $this->taskName;
+
+        // /baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+        $lines[] = '/baseUrl="' . $this->oBaseCurlTask->baseUrl . '"';
+
+        // /apiPath="v1/rsgallery2/galleries/12"
+        $lines[] = '/apiPath="' . $this->oBaseCurlTask->apiPath . '"';
+
+        // /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+        //$lines[] = '/joomlaTokenFile="' . $this->oBaseCurlTask->contentType . '"';
+        $tokenFile = $this->oBaseCurlTask->getTokenFile(); // $this->oBaseCurlTask->joomlaTokenFile
+        if (!empty($tokenFile)) {
+            $lines[] = '/joomlaTokenFile="' . $tokenFile . '"';
+        } else {
+            $lines[] = '/token="' . $this->oBaseCurlTask->joomlaToken . '"';
+        }
+
+        // ToDo: use add "file function from lib to exchange the extension
+        // $this->responseFile = substr($this->filePathName, 0,-4) . '.res';
+
+        // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_getGallery_12.json"
+        $lines[] = '/responseFile="' . $this->getResponseFile() . '"';
+        $lines[] = PHP_EOL;
+
+
+        $this->lines = $lines;
 
         return $lines;
     }
@@ -167,8 +195,8 @@ class tskFileData extends baseHttpFileData
 //$taskFile = '../../apiByCurlHtml/src/curl_tasks_tsk/j!_getTest.tsk';
 //
 //foreach ($options as $idx => $option) {
-//    print ("idx: " . $idx . "\r\n");
-//    print ("option: " . $option . "\r\n");
+//    print ("idx: " . $idx . PHP_EOL);
+//    print ("option: " . $option . PHP_EOL);
 //
 //    switch ($idx) {
 //        case 't':
@@ -256,7 +284,7 @@ class tskFileData extends baseHttpFileData
 //    if ($hasError) {
 //        print ("%%% Error on function assignTask:" . $hasError) . "\n";
 //    } else {
-//        print ($oCurlApi_HttpCall->text() . "\r\n");
+//        print ($oCurlApi_HttpCall->text() . PHP_EOL);
 //    }
 //
 //    //--- execute tasks ---------------------------------
@@ -268,9 +296,9 @@ class tskFileData extends baseHttpFileData
 //        }
 //    }
 //
-////	print ($oCurlApi_HttpCall->text() . "\r\n");
-//    print ("\r\n" . '----------------------------' . "\r\n");
-//    print ('... CurlApi_HttpCall finished .......' . "\r\n");
+////	print ($oCurlApi_HttpCall->text() . PHP_EOL);
+//    print (PHP_EOL . '----------------------------' . PHP_EOL);
+//    print ('... CurlApi_HttpCall finished .......' . PHP_EOL);
 //}
 //
 //commandLineLib::print_end($start);

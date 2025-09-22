@@ -6,8 +6,10 @@ use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 
 abstract class baseHttpFileData extends baseExecuteTasks
 {
-    protected string $FilePathName;
-    protected array $lines;
+    protected string $filePathName;
+
+    // http file lines
+    protected array $lines = [];
 
 //    abstract protected function createSrcDstPath ();
     abstract protected function extractFileData ($lines = []) : int;
@@ -16,7 +18,7 @@ abstract class baseHttpFileData extends baseExecuteTasks
     protected  function readFile (string $fileName = '') : int
     {
         if (empty($fileName)) {
-            $fileName = $this->FilePathName;
+            $fileName = $this->filePathName;
         }
 
         if (! is_file($fileName)) {
@@ -38,19 +40,32 @@ abstract class baseHttpFileData extends baseExecuteTasks
     public  function writeFile (string $fileName = '', $lines=[]) : int
     {
         if (empty($fileName)) {
-            $fileName = $this->FilePathName;
+            $fileName = $this->filePathName;
         }
 
         if (empty($lines)) {
             $lines = $this->lines;
         }
 
-        $content = implode("\r\n", $lines);
+        $content = implode(PHP_EOL, $lines);
 
         file_put_contents ($fileName, $content);
 
         // ToDo: try catch , return $hasError
         return 0;
+    }
+
+    public function getResponseFile()
+    {
+        $responseFile = "";
+
+        if (empty ($this->responseFile)) {
+            $responseFile = substr($this->filePathName, 0, -4) . '.res';
+        } else {
+            $responseFile = $this->responseFile;
+        }
+
+        return $responseFile;
     }
 
 }

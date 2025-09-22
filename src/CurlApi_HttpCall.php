@@ -36,18 +36,18 @@ class CurlApi_HttpCall
     {
         $hasError = 0;
         try {
-            print('*********************************************************' . "\r\n");
-            print ("Construct CurlApi_HttpCall: " . "\r\n");
-            print('---------------------------------------------------------' . "\r\n");
+            print('*********************************************************' . PHP_EOL);
+            print ("Construct CurlApi_HttpCall: " . PHP_EOL);
+            print('---------------------------------------------------------' . PHP_EOL);
 
             // fallback
             $this->oCurlTask = new baseCurlTask();
 
         } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
+            echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
-        // print('exit __construct: ' . $hasError . "\r\n");
+        // print('exit __construct: ' . $hasError . PHP_EOL);
     }
 
     public function assignTask(task $task): int
@@ -105,12 +105,12 @@ class CurlApi_HttpCall
 
             default:
 //                    print ('!!! Default componentType: ' . $componentType . ', No build done !!!');
-                $OutTxt = "!!! curltask class not defined: '" . $task->name . "'" . "\r\n";
-                $OutTxt .= $this->task->text() . "\r\n";
+                $OutTxt = "!!! curltask class not defined: '" . $task->name . "'" . PHP_EOL;
+                $OutTxt .= $this->task->text() . PHP_EOL;
                 print ($OutTxt);
                 return 1;
 
-                break;
+                // break;
         } // switch
 
         $this->oCurlTask->assignTask($task);
@@ -123,9 +123,9 @@ class CurlApi_HttpCall
 
     public function execute(): int
     {
-        print('*********************************************************' . "\r\n");
-        print ("Execute CurlApi_HttpCall: " . "\r\n");
-        print('---------------------------------------------------------' . "\r\n");
+        print('*********************************************************' . PHP_EOL);
+        print ("Execute CurlApi_HttpCall: " . PHP_EOL);
+        print('---------------------------------------------------------' . PHP_EOL);
 
         $this->oCurlTask->execute();
 
@@ -143,10 +143,10 @@ class CurlApi_HttpCall
     {
         $options = [];
         try {
-            print('*********************************************************' . "\r\n");
-            print('httpFilOptions' . "\r\n");
-            print ("FileName in: " . $fileName . "\r\n");
-            print('---------------------------------------------------------' . "\r\n");
+            print('*********************************************************' . PHP_EOL);
+            print('httpFilOptions' . PHP_EOL);
+            print ("FileName in: " . $fileName . PHP_EOL);
+            print('---------------------------------------------------------' . PHP_EOL);
 
             //--- read XML -----------------------------------------------------------
             // file does  exist
@@ -168,33 +168,33 @@ class CurlApi_HttpCall
                     //
                     // split and assign
 
-                    echo 'Line: ' .  $line. "\r\n";
+                    echo 'Line: ' .  $line. PHP_EOL;
                 }
             } else {
-                echo 'httpFilOptions File does not exist: "' . $fileName . '"' . "\r\n";
+                echo 'httpFilOptions File does not exist: "' . $fileName . '"' . PHP_EOL;
             }
         } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage() . "\r\n";
+            echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
 
-        print('exit httpFilOptions: ' . $hasError . "\r\n");
+        print('exit httpFilOptions: ' . $hasError . PHP_EOL);
 
         return $options;
     }
 
     public function text(): string
     {
-        $OutTxt = "------------------------------------------" . "\r\n";
-        $OutTxt .= "--- CurlApi_HttpCall --------" . "\r\n";
+        $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt .= "--- CurlApi_HttpCall --------" . PHP_EOL;
 
-//        $OutTxt .= "Not defined yet " . "\r\n";
+//        $OutTxt .= "Not defined yet " . PHP_EOL;
 
         if (! empty ($this->oCurlTask)) {
             $OutTxt .= $this->oCurlTask->text();
         } else {
-             $OutTxt .= "!!! no curltask class defined" . "\r\n";
-             $OutTxt .= "task: '" . $this->task ."'" . "\r\n";
+             $OutTxt .= "!!! no curltask class defined" . PHP_EOL;
+             $OutTxt .= "task: '" . $this->task ."'" . PHP_EOL;
         }
 
         return $OutTxt;
