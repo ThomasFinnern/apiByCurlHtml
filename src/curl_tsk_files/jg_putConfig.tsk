@@ -6,7 +6,8 @@ task:put
 // /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
 // standard: /accept="application/vnd.api+json"
 // standard: /contentType="application/json"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_putConfig_result.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_putConfig_result.json"
+/responseFile=""
 /dataFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\jg_putConfig_DataSecond.json"
 //// Ideas
 ///isSaveResponse

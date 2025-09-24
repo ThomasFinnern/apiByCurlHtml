@@ -34,6 +34,9 @@ class tsk2httpFile extends baseExecuteTasks
 
     private string $dstExtension = '';
 
+    private string $responseFile = '';
+    private string $joomlaTokenFile = '';
+
     public task $task;
 
     public bool $hasError;
@@ -140,6 +143,20 @@ class tsk2httpFile extends baseExecuteTasks
             case strtolower('dstExtension'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dstExtension = $option->value;
+                $isLocalExtensionOption = true;
+                break;
+
+            // com_rsgallery2'
+            case strtolower('joomlaTokenFile'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->joomlaTokenFile = $option->value;
+                $isLocalExtensionOption = true;
+                break;
+
+            // com_rsgallery2'
+            case strtolower('responseFile'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->responseFile = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
@@ -280,6 +297,8 @@ class tsk2httpFile extends baseExecuteTasks
             $tskFileData->oBaseCurlTask->accept = $accept;
             $tskFileData->oBaseCurlTask->contentType = $contentType;
             $tskFileData->oBaseCurlTask->joomlaToken = $joomlaToken;
+            $tskFileData->oBaseCurlTask->joomlaTokenFile = $this->joomlaTokenFile;
+            $tskFileData->oBaseCurlTask->responseFile = $this->responseFile;
 
             $tskFileData->oBaseCurlTask->baseUrl = $baseUrl;
             $tskFileData->oBaseCurlTask->apiPath = $apiPath;

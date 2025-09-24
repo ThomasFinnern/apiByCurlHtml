@@ -5,6 +5,7 @@ namespace Finnern\apiByCurlHtml\src;
 require_once 'autoload/autoload.php';
 
 use Exception;
+use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 use Finnern\apiByCurlHtml\src\tasksLib\commandLineLib;
 
@@ -138,6 +139,45 @@ if ( ! empty($optionFiles) ) {
     foreach ($optionFiles as $optionFile) {
         $task->extractOptionsFromFile($optionFile);
     }
+}
+
+function patchResourceOption(task $task, mixed $taskFile)
+{
+//    print ("task(Resource): " . $task->text() . PHP_EOL);
+
+    $options = $task->options;
+
+    print ("  \$taskFile: '" . $taskFile . "'" . PHP_EOL);
+
+    foreach ($options->options as $option) {
+
+//        print ("  \$option->name: '" . $option->name . "'" . PHP_EOL);
+//        print ("  \$strtolower(): '" . strtolower('responseFile') . "'" . PHP_EOL);
+
+        if (strtolower($option->name) == strtolower('responseFile')) {
+
+//            print ("  \$option->value: '" . $option->value . "'" . PHP_EOL);
+            if(empty($option->value)) {
+
+//                print ("  \$option->value inside: '" . $option->value . "'". PHP_EOL);
+                $srcFileInfo = pathinfo($taskFile);
+
+                $option->value = dirs::joinDirPath($srcFileInfo['dirname'],
+                    $srcFileInfo['filename'] . '.json' );
+
+//                print ("  \$option->value inside: '" . $option->value . "'". PHP_EOL);
+
+//                print ("task(Resource): " . $task->text() . PHP_EOL);
+            }
+
+            break;
+        }
+    }
+}
+
+if ( ! empty ($taskFile)) {
+    // patch resource file definition to be parallel to task file
+    patchResourceOption ($task, $taskFile);
 }
 
 print ($task->text());

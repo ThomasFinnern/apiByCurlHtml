@@ -55,17 +55,4 @@ abstract class baseHttpFileData extends baseExecuteTasks
         return 0;
     }
 
-    public function getResponseFile()
-    {
-        $responseFile = "";
-
-        if (empty ($this->responseFile)) {
-            $responseFile = substr($this->filePathName, 0, -4) . '.res';
-        } else {
-            $responseFile = $this->responseFile;
-        }
-
-        return $responseFile;
-    }
-
 }

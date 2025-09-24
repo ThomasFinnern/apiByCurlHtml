@@ -147,40 +147,7 @@ class http2tskFile extends baseExecuteTasks
 
     public function execute(): int // $hasError
     {
-        print('*********************************************************' . PHP_EOL);
-        print("Execute apiByCurlHtml: " . PHP_EOL);
-        print('---------------------------------------------------------' . PHP_EOL);
-
-        //--- validation checks --------------------------------------
-
-        $isValid = $this->check4validInput();
-
-        if ($isValid) {
-            $componentType = $this->componentType();
-
-            switch (strtolower($componentType)) {
-                case strtolower('component'):
-                    $this->buildComponent();
-
-                    break;
-
-                case strtolower('module'):
-                    $this->buildModule();
-                    break;
-
-                case strtolower('plugin'):
-                    $this->buildPlugin();
-                    break;
-
-                case strtolower('package'):
-                    $this->buildPackage();
-                    break;
-
-                default:
-                    print ('!!! Default componentType: ' . $componentType . ', No build done !!!');
-            } // switch
-        }
-
+        throw new Exception("Excuting not defined ");
         return 0;
     }
 

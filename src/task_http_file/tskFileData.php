@@ -94,8 +94,8 @@ class tskFileData extends baseHttpFileData
         $lines[] = '/apiPath="' . $this->oBaseCurlTask->apiPath . '"';
 
         // /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
-        //$lines[] = '/joomlaTokenFile="' . $this->oBaseCurlTask->contentType . '"';
-        $tokenFile = $this->oBaseCurlTask->getTokenFile(); // $this->oBaseCurlTask->joomlaTokenFile
+        // find token file from token or given
+        $tokenFile = $this->oBaseCurlTask->getTokenFile();
         if (!empty($tokenFile)) {
             $lines[] = '/joomlaTokenFile="' . $tokenFile . '"';
         } else {
@@ -103,10 +103,10 @@ class tskFileData extends baseHttpFileData
         }
 
         // ToDo: use add "file function from lib to exchange the extension
-        // $this->responseFile = substr($this->filePathName, 0,-4) . '.res';
+        // $this->responseFile = substr($this->filePathName, 0,-4) . '.json';
 
         // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_getGallery_12.json"
-        $lines[] = '/responseFile="' . $this->getResponseFile() . '"';
+        $lines[] = '/responseFile="' . $this->oBaseCurlTask->getResponseFile($this->filePathName) . '"';
         $lines[] = PHP_EOL;
 
 

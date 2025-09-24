@@ -12,6 +12,13 @@ $HELP_MSG = <<<EOT
     file: tsk2httpFileCmd.php
 
     ToDo: option commands , example
+    ToDo: Test result -> "total-pages": 6 see next below
+        "links": {
+                "self": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application",
+                "next": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application?page%5Boffset%5D=20&page%5Blimit%5D=20",
+                "last": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application?page%5Boffset%5D=100&page%5Blimit%5D=20"
+            },
+                  
 
     <<<
     EOT;
@@ -21,32 +28,11 @@ $HELP_MSG = <<<EOT
 functions
 ---------------------------------------------------------------------------*/
 
-function assignCmdLineOptions(task $task, string $srcPath='', string $srcFile='',
-                              string $dstPath='', string $dstFile='')
-{
-    if (!empty($srcPath)) {
-        $task->options->addOption(new option("srcPath", $srcPath));
-    }
-
-    if (!empty($srcFile)) {
-        $task->options->addOption(new option("srcFile", $srcFile));
-    }
-
-    if (!empty($dstPath)) {
-        $task->options->addOption(new option("dstPath", $dstPath));
-    }
-
-    if (!empty($dstFile)) {
-        $task->options->addOption(new option("dstFile", $dstFile));
-    }
-}
-
-
 /*================================================================================
 main (used from command line)
 ================================================================================*/
 
-$optDefinition = "t:f:o:s:d:e:y:h12345";
+$optDefinition = "t:f:o:s:d:j:r:e:y:h12345";
 $isPrintArguments = false;
 //$isPrintArguments = true;
 

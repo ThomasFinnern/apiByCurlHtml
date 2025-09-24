@@ -8,5 +8,6 @@ task:get
 // /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
 // standard: /accept="application/vnd.api+json"
 // standard: /contentType="application/json"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/lang4dev_getProjects.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/lang4dev_getProjects.json"
+/responseFile=""
 

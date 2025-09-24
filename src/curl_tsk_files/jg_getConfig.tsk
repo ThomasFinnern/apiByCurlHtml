@@ -14,7 +14,8 @@ task:get
 // standard: /contentType="application/json"
 // /responseFile="results/jg_getConfigs_13.json"
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getConfigs_0.json"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getConfigs_1.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getConfigs_1.json"
+/responseFile=""
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getConfigs_2.json"
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getConfigs_3.json"
 

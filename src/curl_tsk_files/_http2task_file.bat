@@ -45,22 +45,22 @@ Call :AddNextArg -d %dstFileOrPath%
 
 REM --- joomla token file or path ---------------------------------
 
-if "%2" NEQ "" (
-	SET jt_FileOrPath=%2
+if "%3" NEQ "" (
+	SET jt_FileOrPath=%3
 ) else (
     set jt_FileOrPath=""
 )
 
 REM 
-Call :AddNextArg -j %srcFile%
+Call :AddNextArg -j %srjt_FileOrPathcFile%
 
 
 REM %4 : response file path
 
 REM --- destination file and folder ---------------------------------
 
-if "%2" NEQ "" (
-	SET resFileOrPath=%2
+if "%4" NEQ "" (
+	SET resFileOrPath=%4
 ) else (
     set resFileOrPath=""
 )

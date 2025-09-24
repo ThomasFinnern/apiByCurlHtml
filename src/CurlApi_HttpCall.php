@@ -1,5 +1,27 @@
 <?php
 
+/**
+ * CurlApi_HttpCall
+ * Uses options from a task (*.tsk) file and calls joomla api by given path
+ *
+ * It supports commands "get, post, put, delete, patch" as separate tasks
+ * each in its code file in .\curl_tasks folder
+ *
+ * https://manual.joomla.org/docs/general-concepts/webservices/
+ * https://joomla.stackexchange.com/questions/32218/joomla-4-api-question/32296#32296
+ *
+ * ---------------------------------
+ * Example task file
+ * ---------------------------------
+ * task:get
+ * /baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+ * /apiPath="v1/config/application"
+ * /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+ * /responseFile="d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests/j!_getConfigAll.json"
+ * ---------------------------------
+ *
+ */
+
 namespace Finnern\apiByCurlHtml\src;
 
 use Exception;

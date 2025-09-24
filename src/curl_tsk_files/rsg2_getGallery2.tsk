@@ -2,5 +2,6 @@ task:get
 /baseUrl="http://127.0.0.1/joomla5x/api/index.php"
 /apiPath="v1/rsgallery2/galleries/2"
 /joomlaTokenFile="d:/Entwickl/2025/_gitHub/xTokenFiles/token_joomla5x.txt"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getGallery2.res"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_tsk_files\rsg2_getGallery2.json"
+/responseFile=""
 

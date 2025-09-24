@@ -3,6 +3,7 @@
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
 use Exception;
+use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 
 //use Finnern\apiByCurlHtml\src\tasksLib\option;
@@ -23,7 +24,7 @@ class baseCurlTask
     public string $joomlaTokenFile = "";
     public string $accept = "application/vnd.api+json";
     public string $contentType = "application/json";
-    protected string $responseFile = "";
+    public string $responseFile = "";
     protected string $dataFile = "";
 
     protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
@@ -109,7 +110,8 @@ class baseCurlTask
 
             case strtolower('responseFile'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->responseFile = $option->value;
+
+                $this->responseFile = $option->value;;
                 $isBaseOption = true;
                 break;
 
@@ -373,6 +375,10 @@ class baseCurlTask
         return $jsonString;
     }
 
+    /**
+     * use given token file or find file from given token
+     * @return string  '' if not fouind
+     */
     public function getTokenFile(): string
     {
         $tokenFile = '';
@@ -420,6 +426,26 @@ class baseCurlTask
         }
 
         return $joomlaTokenFile;
+    }
+
+    public function getResponseFile(string $filePathName)
+    {
+        $responseFile = "";
+
+        if (empty ($this->responseFile)) {
+            $responseFile = substr($filePathName, 0, -4) . '.json';
+        } else {
+            if (is_dir($this->responseFile)) {
+                $srcFileInfo = pathinfo($filePathName);
+                $newName = $srcFileInfo['filename']  . '.json';
+
+                $responseFile = dirs::joinDirPath($this->responseFile, $newName);
+            } else {
+                $responseFile = $this->responseFile;
+            }
+        }
+
+        return $responseFile;
     }
 
 } // class

@@ -18,5 +18,6 @@ task:get
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getCategory_1.json"
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getCategory_2.json"
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getCategory_3.json"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getCategory_4.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getCategory_4.json"
+/responseFile=""
 

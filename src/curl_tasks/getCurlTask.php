@@ -57,7 +57,7 @@ class getCurlTask extends baseCurlTask
 
             // base options are already handled
             if (!$isBaseOption) {
-                $isOption = $this->assignLocalOption ($option);
+                $isOption = $this->assignLocalOption($option);
             }
         }
 
@@ -99,7 +99,6 @@ class getCurlTask extends baseCurlTask
 
         // ToDo: Error on missing token
 
-
         if ($this->oCurl) {
 
             $this->setRequest('GET');
@@ -124,12 +123,6 @@ class getCurlTask extends baseCurlTask
                 $oResponse =  json_decode ($response);
                 // $oResponse =  json_decode ($response->body);
                 // $oResponse =  json_decode ($response->data);
-
-                $response01 = json_encode($oResponse, );
-                $response02 = json_encode($oResponse, JSON_PRETTY_PRINT);
-                $response03 = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-                $response04 = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-                $response05 = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
                 $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                 print( $responseJsonBeautified . "\n");

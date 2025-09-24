@@ -25,6 +25,8 @@ class httpFileData extends baseHttpFileData
 
     public string $joomlaToken = "";
 
+    // ToDo: joomla token file
+
 //    public string $command = '';
 //    public string $command = '';
 //    public string $command = '';

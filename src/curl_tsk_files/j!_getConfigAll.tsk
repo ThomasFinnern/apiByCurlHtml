@@ -3,5 +3,7 @@ task:get
 // /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
 /apiPath="v1/config/application"
 /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getConfigAll.json"
-
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getConfigAll.json"
+/responseFile=""
+/page_offset="0"
+/page_limit="200"

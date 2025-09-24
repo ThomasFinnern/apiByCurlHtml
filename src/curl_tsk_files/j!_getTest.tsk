@@ -12,6 +12,7 @@ task:get
 // /apiPath="v1/config/com_lang4dev"
 // /apiPath="v1/config/com_rsgallery2"
 /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getTestS.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_getTestS.json"
+/responseFile=""
 /page_limit=10
 /page_offset=10

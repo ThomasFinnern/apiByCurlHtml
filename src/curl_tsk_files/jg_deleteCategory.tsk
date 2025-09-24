@@ -17,5 +17,6 @@ task:delete
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_1.json"
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_2.json"
 // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_3.json"
-/responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_10.json"
+// /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/jg_deleteCategory_10.json"
+/responseFile=""
 
