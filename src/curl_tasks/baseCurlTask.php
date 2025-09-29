@@ -25,7 +25,7 @@ class baseCurlTask
     public string $accept = "application/vnd.api+json";
     public string $contentType = "application/json";
     public string $responseFile = "";
-    protected string $dataFile = "";
+    public string $dataFile = "";
 
     protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
     protected string $page_limit = ""; // page[limit] => page%5Blimit%5D

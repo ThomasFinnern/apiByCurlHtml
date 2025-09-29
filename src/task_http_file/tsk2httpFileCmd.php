@@ -58,11 +58,19 @@ variables
 
 
 //// ToDo:
-$tasksLine = ' task:http2tskFile'
-    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
-    . ' /srcFile="./../../rsg2_getGallery2.http"'
-    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
-    . ' /dstFile="./../../rsg2_getGallery2.tsk"';
+//$tasksLine = ' task:http2tskFile'
+//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
+//    . ' /srcFile="./../../rsg2_getGallery2.http"'
+//    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
+//    . ' /dstFile="./../../rsg2_getGallery2.tsk"';
+
+$tasksLine = ' task:tsk2httpFile'
+    . ' /srcPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests'
+    . ' /srcFile="jg_patchImage_title.tsk"'
+    . ' /dstPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests\curl_http_files'
+    . ' /dstFile="jg_patchImage_title.http"'
+;
+
 
 
 

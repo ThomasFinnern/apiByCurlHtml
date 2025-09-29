@@ -224,6 +224,7 @@ class tsk2httpFile extends baseExecuteTasks
             $accept = $tskFileData->oBaseCurlTask->accept;
             $contentType = $tskFileData->oBaseCurlTask->contentType;
             $joomlaToken = $tskFileData->oBaseCurlTask->joomlaToken;
+            $dataFile = $tskFileData->oBaseCurlTask->dataFile;
 
             $baseUrl = $tskFileData->oBaseCurlTask->baseUrl;
             $apiPath = $tskFileData->oBaseCurlTask->apiPath;
@@ -236,6 +237,13 @@ class tsk2httpFile extends baseExecuteTasks
             $httpFileData->accept = $accept;
             $httpFileData->contentType = $contentType;
             $httpFileData->joomlaToken = $joomlaToken;
+
+            if (strtolower($command) == 'put' || strtolower($command) == 'patch') {
+
+                if ($dataFile != '') {
+                    $httpFileData->dataFile = $dataFile;
+                }
+            }
 
             $httpFileData->baseUrl = $baseUrl;
             $httpFileData->apiPath = $apiPath;
@@ -370,7 +378,6 @@ class tsk2httpFile extends baseExecuteTasks
     }
 
 } // apiByCurlHtml
-
 
 
 //function join_paths()

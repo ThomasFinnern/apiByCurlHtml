@@ -19,6 +19,7 @@ class httpFileData extends baseHttpFileData
     public string $apiPath = "";
 
     public string $command = '';
+    public string $dataFile = '';
 
     public string $accept = "application/vnd.api+json";
     public string $contentType = "application/json";
@@ -73,19 +74,23 @@ class httpFileData extends baseHttpFileData
         $accept = 'application/vnd.api+json';
         $contentType = 'application/json';
         $token = '';
+        $dataFile = '';
 
         print ('--- lines:' . PHP_EOL);
 
 // ###
-//GET  http://127.0.0.1/joomla5x/api/index.php/v1/lang4dev/projects
-//Accept: application/vnd.api+json
-//Content-Type: application/json
-//X-Joomla-Token: "c2hhMjU..."
+// GET  http://127.0.0.1/joomla5x/api/index.php/v1/lang4dev/projects
+// Accept: application/vnd.api+json
+// Content-Type: application/json
+// X-Joomla-Token: "c2hhMjU..."
+//  < ./input.txt
 
         $isStartFound = false;
         foreach ($lines as $idx => $line) {
 
             print ($line . PHP_EOL);
+
+            $line = trim($line);
 
             if (str_starts_with($line, '###')) {
                 $isStartFound = true;
@@ -103,6 +108,15 @@ class httpFileData extends baseHttpFileData
             }
 
             if (!$isStartFound) {
+                continue;
+            }
+
+            //--- put/patch datafile ------------------------------
+
+            // comment line
+            if (str_starts_with($line, '<')) {
+                $dataFile = trim(substr($line, strlen('<')));
+                $this->dataFile = $dataFile;
                 continue;
             }
 
@@ -176,6 +190,12 @@ class httpFileData extends baseHttpFileData
         $lines[] = 'Accept: ' . $this->accept;
         $lines[] = 'Content-Type: ' . $this->contentType;
         $lines[] = 'X-Joomla-Token: ' . $this->joomlaToken;
+
+        if(strtolower($this->command) == 'put' || strtolower($this->command) == 'patch') {
+            if ($this->dataFile != '') {
+                $lines[] = "\n" . '> ' . $this->dataFile;
+            }
+        }
 
         $this->lines = $lines;
 

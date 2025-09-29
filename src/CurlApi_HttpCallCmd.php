@@ -66,6 +66,7 @@ $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getConfigAll.tsk';
 $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
 
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . PHP_EOL);
