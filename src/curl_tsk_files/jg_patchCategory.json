@@ -1,0 +1,40 @@
+{
+    "links": {
+        "self": "http://127.0.0.1/joomla5x/api/index.php/v1/joomgallery/categories/5"
+    },
+    "data": {
+        "type": "categories",
+        "id": "5",
+        "attributes": {
+            "parent_id": 1,
+            "level": 1,
+            "lft": 7,
+            "rgt": 8,
+            "alias": "api-05-2",
+            "id": 5,
+            "asset_id": 438,
+            "asset_id_image": 439,
+            "path": "api-05-2",
+            "title": "API 06",
+            "description": "",
+            "hidden": 0,
+            "in_hidden": 0,
+            "password": "",
+            "exclude_toplist": 0,
+            "exclude_search": 0,
+            "thumbnail": 0,
+            "static_path": "",
+            "params": "{\"jg_showrating\":\"-1\",\"jg_showcomments\":\"-1\",\"jg_dynamic_watermark\":\"-1\",\"jg_download\":\"-1\",\"jg_downloadwithwatermark\":\"-1\"}",
+            "language": "*",
+            "created_time": "2025-09-28 14:48:58",
+            "created_by": 779,
+            "modified_time": "2025-07-24 10:53:41",
+            "modified_by": 779,
+            "checked_out": 0,
+            "checked_out_time": "0000-00-00 00:00:00",
+            "metadesc": "",
+            "metakey": "",
+            "robots": 0
+        }
+    }
+}
