@@ -1,5 +1,4 @@
 <?php
-//namespace \Vendor\App\DatabaseAccess;
 namespace Finnern\apiByCurlHtml\src\tasksLib;
 
 use Finnern\apiByCurlHtml\src\fileNamesLib\fileNamesList;
@@ -16,6 +15,10 @@ interface executeTasksInterface
 
     // Task with options
     public function assignTask(task $task): int;
+
+    public function assignOptions(options $options, string $taskName): int;
+    public function assignOption(option $option): bool;
+//    function assignLocalOption(option $option): bool;
 
     public function execute(): int; // $hasError
 

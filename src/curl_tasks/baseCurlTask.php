@@ -4,6 +4,7 @@ namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
 use Exception;
 use Finnern\apiByCurlHtml\src\lib\dirs;
+use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 
 //use Finnern\apiByCurlHtml\src\tasksLib\option;
@@ -11,7 +12,7 @@ use Finnern\apiByCurlHtml\src\tasksLib\option;
 /**
  * Base class prepares for filename list
  */
-class baseCurlTask
+class baseCurlTask extends baseExecuteTasks
 {
     // task name
     public string $baseUrl = '';
@@ -47,6 +48,8 @@ class baseCurlTask
 
     public function __construct()
     {
+        parent::__construct();
+
         try {
 
             $this->oCurl = curl_init();

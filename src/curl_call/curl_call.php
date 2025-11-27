@@ -31,7 +31,8 @@ class curl_call
         // curl_errno — Return the last error number
         $this->errorCode = curl_errno($this->oCurl);
 
-        curl_close($this->oCurl);
+        // PHP 8.5 deprecated, needs PHP 8.0
+        // curl_close($this->oCurl);
 
         //--- Format response -------------------------------------------
 

@@ -161,7 +161,8 @@ class putCurlTask extends baseCurlTask
                 print(PHP_EOL);
             }
 
-            curl_close($this->oCurl);
+            // PHP 8.5 deprecated, needs PHP 8.0
+            // curl_close($this->oCurl);
 
         } else {
 

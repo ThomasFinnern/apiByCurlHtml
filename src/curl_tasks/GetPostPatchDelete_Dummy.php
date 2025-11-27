@@ -47,7 +47,8 @@ class GetPostPatchDelete
         );
 
         $response = curl_exec($curl);
-        curl_close($curl);
+        // PHP 8.5 deprecated, needs PHP 8.0
+        // curl_close($this->oCurl);
         echo $response;
     }
 
@@ -87,7 +88,8 @@ class GetPostPatchDelete
         );
 
         $response = curl_exec($curl);
-        curl_close($curl);
+        // PHP 8.5 deprecated, needs PHP 8.0
+        // curl_close($this->oCurl);
         echo $response;
     }
 
@@ -143,7 +145,8 @@ class GetPostPatchDelete
         );
 
         $response = curl_exec($curl);
-        curl_close($curl);
+        // PHP 8.5 deprecated, needs PHP 8.0
+        // curl_close($this->oCurl);
         echo $response;
     }
 
@@ -197,7 +200,8 @@ class GetPostPatchDelete
         );
 
         $response = curl_exec($curl);
-        curl_close($curl);
+        // PHP 8.5 deprecated, needs PHP 8.0
+        // curl_close($this->oCurl);
         echo $response;
     }
 
@@ -241,7 +245,8 @@ class GetPostPatchDelete
         );
 
         $response = curl_exec($curl);
-        curl_close($curl);
+        // PHP 8.5 deprecated, needs PHP 8.0
+        // curl_close($this->oCurl);
         echo $response;
     }
 }
@@ -257,7 +262,8 @@ class GetPostPatchDelete
 //    curl_setopt($ch, CURLOPT_HTTPGET, true);
 //    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 //    $response_json = curl_exec($ch);
-//    curl_close($ch);
+//        // PHP 8.5 deprecated, needs PHP 8.0
+//        // curl_close($this->oCurl);
 //    $response=json_decode($response_json, true);
 
 
@@ -281,7 +287,8 @@ class GetPostPatchDelete
 //
 //    $json_response = curl_exec($curl);
 //    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-//    curl_close($curl);
+//        // PHP 8.5 deprecated, needs PHP 8.0
+//        // curl_close($this->oCurl);
 //
 //// You can also use file_get_content to get API data.
 //
@@ -293,7 +300,8 @@ class GetPostPatchDelete
 //curl_setopt($ch, CURLOPT_URL, $url);
 //curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 //$api_response_json = curl_exec($ch);
-//curl_close($ch);
+//        // PHP 8.5 deprecated, needs PHP 8.0
+//        // curl_close($this->oCurl);
 ////convert json to PHP array for further process
 //$api_response_arr = json_decode($api_response_json);
 //

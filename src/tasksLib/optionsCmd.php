@@ -90,9 +90,9 @@ $oOptions = new options();
 $oOptionsResult = $oOptions->extractOptionsFromString($optionsLine);
 
 print ($oOptions->text() . PHP_EOL);
-print ("Resulting line: '" . str($oOptionsResult) . "'" . PHP_EOL);
+print ("Resulting line: '" . $oOptionsResult . "'" . PHP_EOL);
 
 commandLineLib::print_end($start);
 
-print ("--- end  ---" . "\n");
+print ("--- end  ---" . PHP_EOL);
 

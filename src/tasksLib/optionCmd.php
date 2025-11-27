@@ -89,9 +89,9 @@ $oOptionResult = $oOption->extractOptionFromString($optionLine);
 
 print ("optionLine: '" . $optionLine . "'" . PHP_EOL);
 print ($oOption->text() . PHP_EOL);
-print ("Resulting line: '" . str($oOptionResult) . "'" . PHP_EOL);
+print ("Resulting line: '" . $oOptionResult . "'" . PHP_EOL);
 
 commandLineLib::print_end($start);
 
-print ("--- end  ---" . "\n");
+print ("--- end  ---" . PHP_EOL);
 

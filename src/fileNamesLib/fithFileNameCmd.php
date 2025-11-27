@@ -1,24 +1,23 @@
 <?php
 
-namespace Finnern\apiByCurlHtml\src\tasksLib;
+namespace Finnern\apiByCurlHtml\src\fileNamesLib;
 
 require_once '../autoload/autoload.php';
 
 use Finnern\apiByCurlHtml\src\tasksLib\commandLineLib;
-use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 $HELP_MSG = <<<EOT
     >>>
-    task class
-
+    fithFileName class ...
     <<<
     EOT;
+
 
 /*================================================================================
 main (used from command line)
 ================================================================================*/
 
-$optDefinition = "t:f:o:h12345";
+$optDefinition = "s:d:o:h12345";
 $isPrintArguments = false;
 
 [$inArgs, $options] = commandLineLib::argsAndOptions($argv, $optDefinition, $isPrintArguments);
@@ -33,26 +32,19 @@ $LeaveOut_05 = true;
 variables
 --------------------------------------------*/
 
-// $taskLine = 'Task::task1';
-// $taskLine = 'Task::task1 /option1 ';
-//$taskLine = 'Task::task1 /option2=Option';
-//$taskLine = 'Task::task1 /option3="01 test space string"';
-$taskLine = 'Task::task1 /option1 /option2=Option /option3="01 test space string"';
+$srcFile = "../original.php";
 
-$optionFile = '';
+//$optionFile = '';
 //$optionFile = 'xTestOptionFile.opt';
-//$optionFiles [] = 'xTestOptionFile.opt';
+$optionFiles [] = 'xTestOptionFile.opt';
 
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . PHP_EOL);
     print ("option: " . $option . PHP_EOL);
 
     switch ($idx) {
-        case 't':
-            $taskLine = $option;
-            break;
-        case 'f':
-            $taskFile = $option;
+        case 's':
+            $srcFile = $option;
             break;
 
         case 'o':
@@ -89,38 +81,23 @@ foreach ($options as $idx => $option) {
     }
 }
 
-// for start / end diff
-$start = commandLineLib::print_header($options, $inArgs);
-
 /*--------------------------------------------------
    collect task
 --------------------------------------------------*/
 
-$oTask = new task();
+// for start / end diff
+$start = commandLineLib::print_header($options, $inArgs);
 
-$oTaskResult = $oTask->extractTaskFromString($taskLine);
+$oFileName = new fithFileName($srcFile);
+// $hasError = $oFileName->extractNameParts();
+print ($oFileName->text() . PHP_EOL);
 
-/*--------------------------------------------------
-   tell task definition
---------------------------------------------------*/
+if ($oFileName->hasExtension('php')) {
+    print("yes hasExtension('php')" . PHP_EOL);
+}
 
-print (">>>result 01" . PHP_EOL);
-print ($oTask->text() . PHP_EOL);
-print ("Line: '" . $oTaskResult . "'" . PHP_EOL);
-
-/*--------------------------------------------------
-   extract options from file(s)
---------------------------------------------------*/
-
-if ( ! empty($optionFiles) ) {
-    foreach ($optionFiles as $optionFile) {
-        // print ("Option file: '" . $optionFile . "'" . PHP_EOL);
-        $oTaskResult->extractOptionsFromFile($optionFile);
-    }
-
-    print (">>>result 02" . PHP_EOL);
-    print ($oTask->text() . PHP_EOL);
-    print ("Line: '" . $oTaskResult . "'" . PHP_EOL);
+if ($oFileName->nameMatchesRegEx("/i.*i/")) {
+    print("yes nameMatchesRegEx('/i.*i/')" . PHP_EOL);
 }
 
 commandLineLib::print_end($start);

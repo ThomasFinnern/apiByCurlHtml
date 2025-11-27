@@ -22,7 +22,7 @@ $HELP_MSG = <<<EOT
 main (used from command line)
 ================================================================================*/
 
-$optDefinition = "t:f:o:h12345";
+$optDefinition = "s:t:f:o:h12345";
 $isPrintArguments = false;
 
 [$inArgs, $options] = commandLineLib::argsAndOptions($argv, $optDefinition, $isPrintArguments);
@@ -36,6 +36,9 @@ $LeaveOut_05 = true;
 /*--------------------------------------------
 variables
 --------------------------------------------*/
+
+$collectedTasks = new tasks;
+
 $tasksLine = ' task:CurlApi_HttpCall'
     . ' /type=component'
     . ' /srcRoot="./../../RSGallery2_J4"'
@@ -67,18 +70,29 @@ $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getConfigAll.tsk';
 $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
 $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
+$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
+
 
 foreach ($options as $idx => $option) {
     print ("idx: " . $idx . PHP_EOL);
     print ("option: " . $option . PHP_EOL);
 
     switch ($idx) {
+        case 's':
+            $tasks = $option;
+            break;
+
         case 't':
             $tasksLine = $option;
             break;
 
         case 'f':
             $taskFile = $option;
+            break;
+
+        // separate list of task files
+        case 'c':
+            $collectedTasks->extractTasksFromFile($option);
             break;
 
         case 'o':
@@ -141,6 +155,12 @@ if ( ! empty($optionFiles) ) {
         $task->extractOptionsFromFile($optionFile);
     }
 }
+
+
+
+
+//===  =========================================================
+
 
 function patchResourceOption(task $task, mixed $taskFile)
 {

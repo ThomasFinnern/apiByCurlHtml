@@ -29,13 +29,7 @@ class commandLineLib
             print ($inArgs[0] . " ");
         }
 
-        // option '/name '
-//        for ($i = 1; $i < count($options); $i++) {
-//            echo ($options[$i] . " ");
-//        }
-//
         if (count($options) > 0) {
-//            print ('Options:' . PHP_EOL);
             foreach ($options as $idx => $option)
             {
                 print ('-' . $idx . " '" . $option . "' ");
@@ -97,13 +91,6 @@ class commandLineLib
         try {
 
             //--- argv ---------------------------------
-
-//            if ($isPrintArguments) {
-//                print ("--- argv ---" . PHP_EOL);
-//                var_dump($argv);
-//            }
-
-            //$inArgs = func_get_args();
 
             $inArgs = [];
 
