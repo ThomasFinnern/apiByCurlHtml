@@ -27,7 +27,8 @@ class baseExecuteTasks
 
     public function __construct(string $srcRoot = "", bool $isNoRecursion = false)
     {
-        try {
+        try
+        {
 //            print('*********************************************************' . PHP_EOL);
 //            print ("srcRoot: " . $srcRoot . PHP_EOL);
 //            print ("yearText: " . $yearText . PHP_EOL);
@@ -36,7 +37,9 @@ class baseExecuteTasks
 
             $this->fileNamesList = new fileNamesList($srcRoot, '', '', $isNoRecursion);
 
-        } catch (Exception $e) {
+        }
+        catch (Exception $e)
+        {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
@@ -45,7 +48,8 @@ class baseExecuteTasks
     // TODO: check all extends to remove double function
     public function assignFilesNames(fileNamesList $fileNamesList): int
     {
-        foreach ($this->fileNamesList as $fileName) {
+        foreach ($this->fileNamesList as $fileName)
+        {
             $this->fileNamesList->fileNames[] = $fileName;
         }
 
@@ -55,7 +59,8 @@ class baseExecuteTasks
     /**
      * Assign task name and  options
      *
-     * @param task $task
+     * @param   task  $task
+     *
      * @return int
      */
     public function assignTask(task $task): int
@@ -70,17 +75,20 @@ class baseExecuteTasks
     }
 
     /**
-     * @param options $options
-     * @param task $task
+     * @param   options  $options
+     * @param   task     $task
+     *
      * @return bool
      */
     public function assignOptions(options $options, $taskName): int
     {
 
-        foreach ($options->options as $option) {
+        foreach ($options->options as $option)
+        {
 
             $isParentOption = $this->assignOption($option);
-            if (! $isParentOption) {
+            if (!$isParentOption)
+            {
                 print ('%%% warning: requested option is not supported: ' . $taskName . '.' . $option->name . ' !!!' . PHP_EOL);
             }
         }
@@ -89,7 +97,8 @@ class baseExecuteTasks
     }
 
     /**
-     * @param option $option
+     * @param   option  $option
+     *
      * @return bool true on option is consumed
      */
     public function assignOption(option $option): bool
@@ -97,9 +106,11 @@ class baseExecuteTasks
         // $isOptionConsumed = $this->fileNamesList->assignOption($option);
         $isOptionConsumed = $this->fileNamesList->assignOption($option);
 
-        if (!$isOptionConsumed) {
+        if (!$isOptionConsumed)
+        {
 
-            switch (strtolower($option->name)) {
+            switch (strtolower($option->name))
+            {
 //                case strtolower('srcroot'):
 //                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 //                    $this->srcRoot = $option->value;
@@ -129,19 +140,19 @@ class baseExecuteTasks
     /**
      * Execute action on one file
      *
-     * @param string $filePathName
+     * @param   string  $filePathName
+     *
      * @return int
      */
     public function executeFile(string $filePathName): int
     {
-        $this->fileNamesList = new fileNamesList();
+        $this->fileNamesList              = new fileNamesList();
         $this->fileNamesList->fileNames[] = $filePathName;
 
         $this->execute();
 
         return 0;
     }
-
 
 
 } // class

@@ -1,4 +1,5 @@
 <?php
+
 namespace Finnern\apiByCurlHtml\src\task_http_file;
 
 require_once '../autoload/autoload.php';
@@ -32,7 +33,7 @@ functions
 main (used from command line)
 ================================================================================*/
 
-$optDefinition = "t:f:o:s:d:j:r:e:y:h12345";
+$optDefinition    = "t:f:o:s:d:j:r:e:y:h12345";
 $isPrintArguments = false;
 //$isPrintArguments = true;
 
@@ -64,14 +65,7 @@ variables
 //    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
 //    . ' /dstFile="./../../rsg2_getGallery2.tsk"';
 
-$tasksLine = ' task:tsk2httpFile'
-    . ' /srcPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests'
-    . ' /srcFile="jg_patchImage_title.tsk"'
-    . ' /dstPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests\curl_http_files'
-    . ' /dstFile="jg_patchImage_title.http"'
-;
-
-
+$tasksLine = ' task:tsk2httpFile' . ' /srcPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests' . ' /srcFile="jg_patchImage_title.tsk"' . ' /dstPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests\curl_http_files' . ' /dstFile="jg_patchImage_title.http"';
 
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
@@ -79,17 +73,19 @@ $tasksLine = ' task:tsk2httpFile'
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getConfigAll.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
 
-$srcFile = "";
-$dstFile = "";
-$responseFile = "";
+$srcFile         = "";
+$dstFile         = "";
+$responseFile    = "";
 $joomlaTokenFile = "";
-$dstExtension = '';
+$dstExtension    = '';
 
-foreach ($options as $idx => $option) {
+foreach ($options as $idx => $option)
+{
     print ("idx: " . $idx . PHP_EOL);
     print ("option: " . $option . PHP_EOL);
 
-    switch ($idx) {
+    switch ($idx)
+    {
         case 't':
             $tasksLine = $option;
             break;
@@ -169,43 +165,54 @@ $task = new task();
 
 //--- extract tasks from string or file ------------------
 
-if (!empty ($taskFile)) {
+if (!empty ($taskFile))
+{
     $task = $task->extractTaskFromFile($taskFile);
-} else {
+}
+else
+{
     $task = $task->extractTaskFromString($tasksLine);
 }
 
 //--- extract options from file(s) ------------------
 
-if (!empty($optionFiles)) {
-    foreach ($optionFiles as $optionFile) {
+if (!empty($optionFiles))
+{
+    foreach ($optionFiles as $optionFile)
+    {
         $task->extractOptionsFromFile($optionFile);
     }
 }
 
 // add options from command line
 
-if (!empty($srcFile)) {
+if (!empty($srcFile))
+{
     $task->options->addOption(new option("srcFile", $srcFile));
 }
 
-if (!empty($dstFile)) {
+if (!empty($dstFile))
+{
     $task->options->addOption(new option("dstFile", $dstFile));
 }
 
-if (!empty($dstPath)) {
+if (!empty($dstPath))
+{
     $task->options->addOption(new option("dstPath", $dstPath));
 }
 
-if (!empty($responseFile)) {
+if (!empty($responseFile))
+{
     $task->options->addOption(new option("responseFile", $responseFile));
 }
 
-if (!empty($joomlaTokenFile)) {
+if (!empty($joomlaTokenFile))
+{
     $task->options->addOption(new option("joomlaTokenFile", $joomlaTokenFile));
 }
 
-if (!empty($dstExtension)) {
+if (!empty($dstExtension))
+{
     $task->options->addOption(new option("dstExtension", $dstExtension));
 }
 
@@ -216,31 +223,37 @@ print ($task->text());
    execute task
 --------------------------------------------------*/
 
-if (empty ($hasError)) {
+if (empty ($hasError))
+{
 
-    $oTsk2HttpFile = new tsk2httpFile();
+    $oTsk2HttpFile       = new tsk2httpFile();
     $oTsk2HttpFile->task = $task;
 
     //--- assign tasks ---------------------------------
 
     $hasError = $oTsk2HttpFile->assignTask($task);
-    if ($hasError) {
+    if ($hasError)
+    {
         print ("%%% Error on function assignTask:" . $hasError) . "\n";
-    } else {
+    }
+    else
+    {
         print ($oTsk2HttpFile->text() . PHP_EOL);
     }
 
     //--- execute tasks ---------------------------------
 
-    if (!$hasError) {
+    if (!$hasError)
+    {
         $hasError = $oTsk2HttpFile->execute();
-        if ($hasError) {
+        if ($hasError)
+        {
             print ("%%% Error on function execute:" . $hasError) . "\n";
         }
     }
 
 //    print (PHP_EOL . '-------------------------------------' . PHP_EOL);
-    print (          '... CurlApi_HttpCall finished .......' . PHP_EOL);
+    print ('... tsk2httpFile finished .......' . PHP_EOL);
 //    print (PHP_EOL . '-------------------------------------' . PHP_EOL);
 }
 

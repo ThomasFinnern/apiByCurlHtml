@@ -36,25 +36,13 @@ class AutoSrcDstPathFileNames
     public function __construct(string $srcPathFileName = "", string $dstPathFileName = "")
     {
 
-        if ($srcPathFileName != "") {
+        if ($srcPathFileName != "")
+        {
             $this->assignFilePaths($srcPathFileName, '', $dstPathFileName, '');
         }
     }
 
-    public function init(): void
-    {
-        $this->srcPathName = '';
-        $this->srcFileName = '';
-        $this->srcExtension = '';
-
-        $this->dstPathName = '';
-        $this->dstFileName = '';
-        $this->dstExtension = '';
-    }
-
-    public function assignFilePaths(string $srcFileName = "", string $srcPathName = "",
-                                    string $dstFileName = "", string $dstPathName = "",
-                                    string $dstExtension = ""): bool
+    public function assignFilePaths(string $srcFileName = "", string $srcPathName = "", string $dstFileName = "", string $dstPathName = "", string $dstExtension = ""): bool
     {
         $hasError = false;
 
@@ -64,26 +52,32 @@ class AutoSrcDstPathFileNames
         //  [dirname], [basename], [extension]
         $srcFileInfo = pathinfo($srcFileName);
 
-        $this->srcFileName = $srcFileInfo['filename'] ?? '';
+        $this->srcFileName  = $srcFileInfo['filename'] ?? '';
         $this->srcExtension = $srcFileInfo['extension'] ?? '';
 
         // src Path not given -> use from file name
-        if (empty($srcPathName)) {
+        if (empty($srcPathName))
+        {
             $this->srcPathName = $srcFileInfo['dirname'] ?? '';
-        } else {
+        }
+        else
+        {
             $this->srcPathName = $srcPathName ?? '';
         }
 
         //  [dirname], [basename], [extension]
         $dstFileInfo = pathinfo($dstFileName);
 
-        $this->dstFileName = $dstFileInfo['filename'] ?? '';
+        $this->dstFileName  = $dstFileInfo['filename'] ?? '';
         $this->dstExtension = $dstFileInfo['extension'] ?? '';
 
         // src Path not given -> use from file name
-        if (empty($dstPathName)) {
+        if (empty($dstPathName))
+        {
             $this->dstPathName = $dstFileInfo['dirname'] ?? '';
-        } else {
+        }
+        else
+        {
             $this->dstPathName = $dstPathName;
         }
 
@@ -92,28 +86,22 @@ class AutoSrcDstPathFileNames
         return $hasError;
     }
 
-
-    public function setDstFileExtension(string $extension): void
+    public function init(): void
     {
-        $this->dstExtension = $extension;
-    }
+        $this->srcPathName  = '';
+        $this->srcFileName  = '';
+        $this->srcExtension = '';
 
-    public function getSrcPathFileName(): string
-    {
-        $pathFileName = dirs::joinDirPath($this->srcPathName, $this->srcFileName . '.' . $this->srcExtension);
-        return $pathFileName;
-    }
-
-    public function getDstPathFileName(): string
-    {
-        $pathFileName = dirs::joinDirPath($this->dstPathName, $this->dstFileName . '.' . $this->dstExtension);
-        return $pathFileName;
+        $this->dstPathName  = '';
+        $this->dstFileName  = '';
+        $this->dstExtension = '';
     }
 
     /**
      * Copy missing parts in the destination from the source
      *
-     * @param string $dstExtension
+     * @param   string  $dstExtension
+     *
      * @return void
      */
     private function updateDestinationName(string $dstExtension): bool
@@ -121,34 +109,41 @@ class AutoSrcDstPathFileNames
         $hasError = false;
 
         // use given extension name
-        if ($dstExtension != '') {
+        if ($dstExtension != '')
+        {
             $this->dstExtension = $dstExtension;
         }
 
         // Use src if not defined
-        if (empty($this->dstExtension)) {
+        if (empty($this->dstExtension))
+        {
             $this->dstExtension = $this->srcExtension;
         }
         // Use src if not defined
-        if (empty($this->dstPathName)) {
+        if (empty($this->dstPathName))
+        {
             $this->dstPathName = $this->srcPathName;
         }
         // Use src if not defined
-        if (empty($this->dstFileName)) {
+        if (empty($this->dstFileName))
+        {
             $this->dstFileName = $this->srcFileName;
         }
 
         // complete empty destination is not allowed
-        if ($this->dstPathName == $this->srcPathName
-            && $this->dstFileName == $this->srcExtension
-            && $this->dstExtension == $this->srcExtension) {
+        if ($this->dstPathName == $this->srcPathName && $this->dstFileName == $this->srcExtension && $this->dstExtension == $this->srcExtension)
+        {
 
-            print (PHP_EOL . "!!! Error: Destination 'file name', 'path' and 'extension' are now same as source definition."
-                . " At least part of the file name must be different to not overwrite the source file" . PHP_EOL . PHP_EOL);
+            print (PHP_EOL . "!!! Error: Destination 'file name', 'path' and 'extension' are now same as source definition." . " At least part of the file name must be different to not overwrite the source file" . PHP_EOL . PHP_EOL);
             $hasError = true;
         }
 
         return $hasError;
+    }
+
+    public function setDstFileExtension(string $extension): void
+    {
+        $this->dstExtension = $extension;
     }
 
     public function text(): string
@@ -172,6 +167,20 @@ class AutoSrcDstPathFileNames
 //        $outTxt .= ": " . $this-> . PHP_EOL;
 
         return $outTxt;
+    }
+
+    public function getSrcPathFileName(): string
+    {
+        $pathFileName = dirs::joinDirPath($this->srcPathName, $this->srcFileName . '.' . $this->srcExtension);
+
+        return $pathFileName;
+    }
+
+    public function getDstPathFileName(): string
+    {
+        $pathFileName = dirs::joinDirPath($this->dstPathName, $this->dstFileName . '.' . $this->dstExtension);
+
+        return $pathFileName;
     }
 
 

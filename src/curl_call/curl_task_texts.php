@@ -93,13 +93,16 @@ class curl_task_texts
         $outTxt .= '---------------------------------------------------------' . PHP_EOL;
         $outTxt .= "!!! curl_exec: has failed with json errors: " . " !!!" . PHP_EOL;
 
-        if (!empty($this->oCurlCall->oResponse->errors)) {
+        if (!empty($this->oCurlCall->oResponse->errors))
+        {
 
             // [errors]: exist in json
             $json_errors = new json_errors($this->oCurlCall->oResponse->errors);
-            $outTxt .= $json_errors->text(); // . PHP_EOL;
+            $outTxt      .= $json_errors->text(); // . PHP_EOL;
 
-        } else {
+        }
+        else
+        {
 
             $outTxt = "jsonErrorsCrLfText: oResponse does not contain errors" . PHP_EOL;
         }

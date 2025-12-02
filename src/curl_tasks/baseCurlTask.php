@@ -18,17 +18,14 @@ class baseCurlTask extends baseExecuteTasks
     public string $baseUrl = '';
 
     public string $apiPath = "";
-
-    protected string $httpFile = "";
-
     public string $joomlaToken = "";
     public string $joomlaTokenFile = "";
     public string $accept = "application/vnd.api+json";
     public string $contentType = "application/json";
     public string $responseFile = "";
     public string $dataFile = "";
-
-    protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
+    protected string $httpFile = "";
+protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
     protected string $page_limit = ""; // page[limit] => page%5Blimit%5D
 
 // ToDo:    protected array $urlParams = [];  // list of additional parameters multiple lines  of test01=1]
@@ -50,11 +47,14 @@ class baseCurlTask extends baseExecuteTasks
     {
         parent::__construct();
 
-        try {
+        try
+        {
 
             $this->oCurl = curl_init();
 
-        } catch (Exception $e) {
+        }
+        catch (Exception $e)
+        {
             echo 'Message: ' . $e->getMessage() . PHP_EOL;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
@@ -65,17 +65,18 @@ class baseCurlTask extends baseExecuteTasks
     {
         $isBaseOption = false;
 
-        switch (strtolower($option->name)) {
+        switch (strtolower($option->name))
+        {
             case strtolower('baseUrl'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->baseUrl = $option->value;
-                $isBaseOption = true;
+                $isBaseOption  = true;
                 break;
 
             case strtolower('apiPath'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->apiPath = $option->value;
-                $isBaseOption = true;
+                $isBaseOption  = true;
                 break;
 
             case strtolower('httpFile'):
@@ -89,14 +90,14 @@ class baseCurlTask extends baseExecuteTasks
             case strtolower('joomlaToken'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->joomlaToken = $option->value;
-                $isBaseOption = true;
+                $isBaseOption      = true;
                 break;
 
             case strtolower('joomlaTokenFile'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->joomlaTokenFile = $option->value;
-                $this->joomlaToken = $this->readTokenFromFile($option->value);
-                $isBaseOption = true;
+                $this->joomlaToken     = $this->readTokenFromFile($option->value);
+                $isBaseOption          = true;
                 break;
 
             case strtolower('accept'):
@@ -108,7 +109,7 @@ class baseCurlTask extends baseExecuteTasks
             case strtolower('contentType'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->contentType = $option->value;
-                $isBaseOption = true;
+                $isBaseOption      = true;
                 break;
 
             case strtolower('responseFile'):
@@ -121,20 +122,20 @@ class baseCurlTask extends baseExecuteTasks
             case strtolower('dataFile'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dataFile = $option->value;
-                $isBaseOption = true;
+                $isBaseOption   = true;
                 break;
 
             case strtolower('page_offset'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->page_offset = $option->value;
-                $isBaseOption = true;
+                $isBaseOption      = true;
                 break;
 
 
             case strtolower('page_limit'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->page_limit = $option->value;
-                $isBaseOption = true;
+                $isBaseOption     = true;
                 break;
 
 
@@ -170,24 +171,49 @@ class baseCurlTask extends baseExecuteTasks
         return $isBaseOption;
     }
 
+    private function readTokenFromFile(string $fileName): string
+    {
+        $token = "";
+
+        $lines = file($fileName);
+
+        foreach ($lines as $line)
+        {
+
+            //--- comments and trim -------------------------------------------
+
+            $line = trim($line);
+            if (empty($line))
+            {
+                continue;
+            }
+
+            // ignore comments
+            if (str_starts_with($line, '//'))
+            {
+                continue;
+            }
+
+            // expected to be 100
+            if (strlen($line) >= 100)
+            {
+                $token = $line;
+            }
+        }
+
+        return $token;
+    }
 
     public function setStandardOptions()
     {
 
-        if ($this->oCurl) {
+        if ($this->oCurl)
+        {
 
-            $options =
-                [
-                    // CURLOPT_URL => sprintf('%s/content/articles/%d', $url, $articleId),
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => 'utf-8',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 30,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2TLS,
-                    // CURLOPT_CUSTOMREQUEST => 'DELETE',
-                    // CURLOPT_HTTPHEADER => $headers,
-                ];
+            $options = [// CURLOPT_URL => sprintf('%s/content/articles/%d', $url, $articleId),
+                CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => 'utf-8', CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 30, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2TLS, // CURLOPT_CUSTOMREQUEST => 'DELETE',
+                // CURLOPT_HTTPHEADER => $headers,
+            ];
 
             $isOk = curl_setopt_array($this->oCurl, $options);
 
@@ -195,7 +221,8 @@ class baseCurlTask extends baseExecuteTasks
 
             $OutTxt = "setStandardOptions finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
 
-            foreach ($options as $name => $value) {
+            foreach ($options as $name => $value)
+            {
                 $OutTxt .= "   " . $name . ": '" . $value . "'" . PHP_EOL;
             }
             print ($OutTxt);
@@ -205,16 +232,14 @@ class baseCurlTask extends baseExecuteTasks
 
     public function setHeaders(string $line = '')
     {
-        if ($this->oCurl) {
+        if ($this->oCurl)
+        {
 
             // HTTP request headers
-            $headers = [
-                'Accept: application/vnd.api+json',
-                'Content-Type: application/json',
-                sprintf('X-Joomla-Token: %s', trim($this->joomlaToken)),
-            ];
+            $headers = ['Accept: application/vnd.api+json', 'Content-Type: application/json', sprintf('X-Joomla-Token: %s', trim($this->joomlaToken)),];
 
-            if (!empty($name)) {
+            if (!empty($name))
+            {
                 $headers [] = $line;
             }
 
@@ -225,7 +250,8 @@ class baseCurlTask extends baseExecuteTasks
             $OutTxt = "setHeaders finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
             // $OutTxt .=  "joomlaToken: '" . $this->joomlaToken . "'" . PHP_EOL;
 
-            foreach ($headers as $name => $value) {
+            foreach ($headers as $name => $value)
+            {
                 $OutTxt .= "   " . $name . ": '" . $value . "'" . PHP_EOL;
             }
             print ($OutTxt);
@@ -234,7 +260,8 @@ class baseCurlTask extends baseExecuteTasks
 
     public function setRequest(string $name = '')
     {
-        if ($this->oCurl) {
+        if ($this->oCurl)
+        {
 
             $isOk = curl_setopt($this->oCurl, CURLOPT_CUSTOMREQUEST, $name);
 
@@ -248,7 +275,8 @@ class baseCurlTask extends baseExecuteTasks
 
     public function setDataString(string $dataString = '')
     {
-        if ($this->oCurl) {
+        if ($this->oCurl)
+        {
 
             $isOk = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
 
@@ -266,9 +294,11 @@ class baseCurlTask extends baseExecuteTasks
 
     public function setUrl(string $urlPath = '')
     {
-        if ($this->oCurl) {
+        if ($this->oCurl)
+        {
 
-            if (empty($urlPath)) {
+            if (empty($urlPath))
+            {
                 $urlPath = sprintf('%s/%s', trim($this->baseUrl), trim($this->apiPath));
             }
 
@@ -277,16 +307,19 @@ class baseCurlTask extends baseExecuteTasks
             $urlParams = '';
 
             // page offset
-            if (strlen($this->page_offset) > 0) {
+            if (strlen($this->page_offset) > 0)
+            {
                 $urlParams .= '&page%5Boffset%5D=' . $this->page_offset;
             }
 
             // page limit
-            if (strlen($this->page_limit) > 0) {
+            if (strlen($this->page_limit) > 0)
+            {
                 $urlParams .= '&page%5Blimit%5D=' . $this->page_limit;
             }
 
-            if (strlen($urlParams)) {
+            if (strlen($urlParams))
+            {
 
                 // append but remove leading &
                 $urlPath .= '?' . substr($urlParams, 1);
@@ -302,35 +335,6 @@ class baseCurlTask extends baseExecuteTasks
         }
     }
 
-    private function readTokenFromFile(string $fileName): string
-    {
-        $token = "";
-
-        $lines = file($fileName);
-
-        foreach ($lines as $line) {
-
-            //--- comments and trim -------------------------------------------
-
-            $line = trim($line);
-            if (empty($line)) {
-                continue;
-            }
-
-            // ignore comments
-            if (str_starts_with($line, '//')) {
-                continue;
-            }
-
-            // expected to be 100
-            if (strlen($line) >= 100) {
-                $token = $line;
-            }
-        }
-
-        return $token;
-    }
-
     public function text(): string
     {
         $ident = "   ";
@@ -344,9 +348,12 @@ class baseCurlTask extends baseExecuteTasks
         $OutTxt .= $ident . "joomlaToken: '" . $this->joomlaToken . "'" . PHP_EOL;
         $OutTxt .= $ident . "accept: '" . $this->accept . "'" . PHP_EOL;
         $OutTxt .= $ident . "contentType: '" . $this->contentType . "'" . PHP_EOL;
-        if (empty($this->oCurl)) {
+        if (empty($this->oCurl))
+        {
             $OutTxt .= $ident . "curlHandle: NO" . PHP_EOL;
-        } else {
+        }
+        else
+        {
             $OutTxt .= $ident . "curlHandle: YES" . PHP_EOL;
         }
 
@@ -361,23 +368,6 @@ class baseCurlTask extends baseExecuteTasks
     //$jsonData = json_decode($jsonString, true);
     //var_dump($jsonData);
 
-    protected function readDataFile()
-    {
-        $jsonString = false;
-
-        if (is_file($this->dataFile)) {
-            $jsonStringIn = file_get_contents($this->dataFile);
-
-            // replace PHP_EOL
-            $jsonData = json_decode($jsonStringIn, true);
-            $jsonString = json_encode($jsonData);
-
-            $jsonStringPretty = json_encode($jsonData, JSON_PRETTY_PRINT);
-        }
-
-        return $jsonString;
-    }
-
     /**
      * use given token file or find file from given token
      * @return string  '' if not fouind
@@ -386,18 +376,25 @@ class baseCurlTask extends baseExecuteTasks
     {
         $tokenFile = '';
 
-        if (is_file($this->joomlaTokenFile)) {
+        if (is_file($this->joomlaTokenFile))
+        {
             $tokenFile = $this->joomlaTokenFile;
-        } else {
+        }
+        else
+        {
             // token exists
-            if (!empty ($this->joomlaToken)) {
+            if (!empty ($this->joomlaToken))
+            {
                 // path given
-                if (is_dir($this->joomlaTokenFile)) {
+                if (is_dir($this->joomlaTokenFile))
+                {
 
                     // search given path
                     $tokenFile = $this->findTokenFile($this->joomlaTokenFile, $this->joomlaToken);
 
-                } else {
+                }
+                else
+                {
                     // search standard path
                     $tokenFile = $this->findTokenFile("d:/Entwickl/2025/_gitHub/xTokenFiles", $this->joomlaToken);
                 }
@@ -415,12 +412,16 @@ class baseCurlTask extends baseExecuteTasks
 
         $files = scandir($tokenPath);
 
-        if (!empty($files)) {
+        if (!empty($files))
+        {
 
-            foreach ($files as $file) {
+            foreach ($files as $file)
+            {
                 $testFile = $tokenPath . "/" . $file;
-                if (is_file($testFile)) {
-                    if (strpos(file_get_contents($testFile), $joomlaToken) !== false) {
+                if (is_file($testFile))
+                {
+                    if (strpos(file_get_contents($testFile), $joomlaToken) !== false)
+                    {
                         $joomlaTokenFile = $testFile;
                         break;
                     }
@@ -435,20 +436,44 @@ class baseCurlTask extends baseExecuteTasks
     {
         $responseFile = "";
 
-        if (empty ($this->responseFile)) {
+        if (empty ($this->responseFile))
+        {
             $responseFile = substr($filePathName, 0, -4) . '.json';
-        } else {
-            if (is_dir($this->responseFile)) {
+        }
+        else
+        {
+            if (is_dir($this->responseFile))
+            {
                 $srcFileInfo = pathinfo($filePathName);
-                $newName = $srcFileInfo['filename']  . '.json';
+                $newName     = $srcFileInfo['filename'] . '.json';
 
                 $responseFile = dirs::joinDirPath($this->responseFile, $newName);
-            } else {
+            }
+            else
+            {
                 $responseFile = $this->responseFile;
             }
         }
 
         return $responseFile;
+    }
+
+    protected function readDataFile()
+    {
+        $jsonString = false;
+
+        if (is_file($this->dataFile))
+        {
+            $jsonStringIn = file_get_contents($this->dataFile);
+
+            // replace PHP_EOL
+            $jsonData   = json_decode($jsonStringIn, true);
+            $jsonString = json_encode($jsonData);
+
+            $jsonStringPretty = json_encode($jsonData, JSON_PRETTY_PRINT);
+        }
+
+        return $jsonString;
     }
 
 } // class

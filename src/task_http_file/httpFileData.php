@@ -36,7 +36,10 @@ class httpFileData extends baseHttpFileData
     {
         $hasError = 0;
 
-        try {
+        parent::__construct();
+
+        try
+        {
 //            print('*********************************************************' . PHP_EOL);
             print ("Construct httpFileData: " . PHP_EOL);
             print ("fileName: " . $fileName . PHP_EOL);
@@ -44,19 +47,47 @@ class httpFileData extends baseHttpFileData
 
             $this->filePathName = $fileName;
 
-            if (!empty ($fileName)) {
-                if (!$isTarget) {
-                    if (file_exists($fileName)) {
+            if (!empty ($fileName))
+            {
+                if (!$isTarget)
+                {
+                    if (file_exists($fileName))
+                    {
                         $this->readFile(); // does extract data
                     } // ToDo: else error
                 }
             }
 
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e)
+        {
             echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
 
+    }
+
+    public function createFileLines(): array
+    {
+        $lines = [];
+
+        $lines[] = '###';
+        $lines[] = $this->command . ' ' . $this->apiPath();
+        $lines[] = 'Accept: ' . $this->accept;
+        $lines[] = 'Content-Type: ' . $this->contentType;
+        $lines[] = 'X-Joomla-Token: ' . $this->joomlaToken;
+
+        if (strtolower($this->command) == 'put' || strtolower($this->command) == 'patch')
+        {
+            if ($this->dataFile != '')
+            {
+                $lines[] = "\n" . '> ' . $this->dataFile;
+            }
+        }
+
+        $this->lines = $lines;
+
+        return $lines;
     }
 
     protected function extractFileData($lines = []): int
@@ -69,12 +100,12 @@ class httpFileData extends baseHttpFileData
 
         //--- prepare standard  ------------------
 
-        $cmd = 'GET';
-        $url = 'http://127.0.0.1/joomla5x/api/index.php/v1/users';
-        $accept = 'application/vnd.api+json';
+        $cmd         = 'GET';
+        $url         = 'http://127.0.0.1/joomla5x/api/index.php/v1/users';
+        $accept      = 'application/vnd.api+json';
         $contentType = 'application/json';
-        $token = '';
-        $dataFile = '';
+        $token       = '';
+        $dataFile    = '';
 
         print ('--- lines:' . PHP_EOL);
 
@@ -86,36 +117,42 @@ class httpFileData extends baseHttpFileData
 //  < ./input.txt
 
         $isStartFound = false;
-        foreach ($lines as $idx => $line) {
+        foreach ($lines as $idx => $line)
+        {
 
             print ($line . PHP_EOL);
 
             $line = trim($line);
 
-            if (str_starts_with($line, '###')) {
+            if (str_starts_with($line, '###'))
+            {
                 $isStartFound = true;
             }
 
             // comment line
-            if (str_starts_with($line, '#')) {
+            if (str_starts_with($line, '#'))
+            {
                 continue;
             }
 
             // empty line
             $line = trim($line);
-            if (empty($line)) {
+            if (empty($line))
+            {
                 continue;
             }
 
-            if (!$isStartFound) {
+            if (!$isStartFound)
+            {
                 continue;
             }
 
             //--- put/patch datafile ------------------------------
 
             // comment line
-            if (str_starts_with($line, '<')) {
-                $dataFile = trim(substr($line, strlen('<')));
+            if (str_starts_with($line, '<'))
+            {
+                $dataFile       = trim(substr($line, strlen('<')));
                 $this->dataFile = $dataFile;
                 continue;
             }
@@ -128,32 +165,32 @@ class httpFileData extends baseHttpFileData
             $parts = explode(' ', $line, 2);
 
             $testCmd = strtolower(trim($parts[0]));
-            if ($testCmd == 'get'
-                || $testCmd == 'post'
-                || $testCmd == 'put'
-                || $testCmd == 'delete'
-                || $testCmd == 'patch'
-            ) {
+            if ($testCmd == 'get' || $testCmd == 'post' || $testCmd == 'put' || $testCmd == 'delete' || $testCmd == 'patch')
+            {
                 $isCommand = true;
 
                 $this->command = trim($parts[0]);
 
                 // url
-                if (count($parts) > 1) {
+                if (count($parts) > 1)
+                {
                     $this->assignBaseAndApiPath(trim($parts[1]));
                 }
                 continue;
             }
 
             // 'name': 'value' definition ?
-            if (str_contains($line, ':')) {
+            if (str_contains($line, ':'))
+            {
 
                 $parts = explode(':', $line, 2);
-                if (count($parts) > 1) {
+                if (count($parts) > 1)
+                {
 
                     $value = trim($parts[1]);
 
-                    switch (strtolower($parts[0])) {
+                    switch (strtolower($parts[0]))
+                    {
                         case strtolower('Accept'):
                             $this->accept = $value;
                             break;
@@ -181,25 +218,22 @@ class httpFileData extends baseHttpFileData
         return 0;
     }
 
-    public function createFileLines(): array
+    private function assignBaseAndApiPath(string $url)
     {
-        $lines = [];
+        $this->baseUrl = '';
+        $this->apiPath = '';
 
-        $lines[] = '###';
-        $lines[] = $this->command . ' ' . $this->apiPath();
-        $lines[] = 'Accept: ' . $this->accept;
-        $lines[] = 'Content-Type: ' . $this->contentType;
-        $lines[] = 'X-Joomla-Token: ' . $this->joomlaToken;
+        $search = 'api/index.php';
+        $len    = strlen($search);
 
-        if(strtolower($this->command) == 'put' || strtolower($this->command) == 'patch') {
-            if ($this->dataFile != '') {
-                $lines[] = "\n" . '> ' . $this->dataFile;
-            }
+        $idx = strpos($url, $search);
+        if ($idx !== false)
+        {
+
+            $this->baseUrl = substr($url, 0, $idx + $len);
+            $this->apiPath = substr($url, $idx + $len + 1);
         }
 
-        $this->lines = $lines;
-
-        return $lines;
     }
 
     private function apiPath()
@@ -207,23 +241,6 @@ class httpFileData extends baseHttpFileData
         $apiPath = $this->baseUrl . '/' . $this->apiPath;
 
         return $apiPath;
-    }
-
-    private function assignBaseAndApiPath(string $url)
-    {
-        $this->baseUrl = '';
-        $this->apiPath = '';
-
-        $search = 'api/index.php';
-        $len = strlen($search);
-
-        $idx = strpos($url, $search);
-        if ($idx !== false) {
-
-            $this->baseUrl = substr($url, 0, $idx + $len);
-            $this->apiPath = substr($url, $idx + $len + 1);
-        }
-
     }
 }
 

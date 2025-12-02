@@ -1,0 +1,18 @@
+{
+  "links": {
+    "self": "http://127.0.0.1/joomla5x/api/index.php/v1/config/com_comp2test"
+  },
+  "data": [
+    {
+      "type": "component",
+      "id": "290",
+      "attributes": {
+        "is_API_ConfigDetectingThis": "1",
+        "id": 290
+      }
+    }
+  ],
+  "meta": {
+    "total-pages": 1
+  }
+}

@@ -7,20 +7,23 @@ class json_errors
     protected array $errors;
 
     /**
-     * @param array $jsonErrors
+     * @param   array  $jsonErrors
      */
-    public function __construct(array $jsonErrors){
+    public function __construct(array $jsonErrors)
+    {
         $this->assignErrors($jsonErrors);
     }
 
     /**
-     * @param array $jsonErrors
+     * @param   array  $jsonErrors
+     *
      * @return void
      */
-    public function assignErrors(array $jsonErrors) : void
+    public function assignErrors(array $jsonErrors): void
     {
         // toDo: try catch ...
-        foreach ($jsonErrors as $jsonError) {
+        foreach ($jsonErrors as $jsonError)
+        {
 
             $this->errors[] = new json_error($jsonError);
         }
@@ -30,7 +33,8 @@ class json_errors
     {
         $outTxt = "";
 
-        foreach ($this->errors as $error) {
+        foreach ($this->errors as $error)
+        {
 
             $outTxt .= '---------------------------------------------------------' . PHP_EOL;
             $outTxt .= $error->text() . PHP_EOL;

@@ -22,15 +22,12 @@
  *
  */
 
-namespace Finnern\apiByCurlHtml\src;
+namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
 use Exception;
-use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
-use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
-use Finnern\apiByCurlHtml\src\curl_tasks\putCurlTask;
-use Finnern\apiByCurlHtml\src\curl_tasks\patchCurlTask;
-use Finnern\apiByCurlHtml\src\curl_tasks\deleteCurlTask;
+use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
+use Finnern\apiByCurlHtml\src\tasksLib\option;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 $HELP_MSG = <<<EOT
@@ -47,17 +44,18 @@ $HELP_MSG = <<<EOT
 Class CurlApi_HttpCall
 ================================================================================*/
 
-class CurlApi_HttpCall
+class CurlApi_HttpCall extends baseExecuteTasks //
     implements executeTasksInterface
 {
-    protected task $task;
-
     public baseCurlTask $oCurlTask;
+    protected task $task;
 
     public function __construct()
     {
-        $hasError = 0;
-        try {
+        parent::__construct();
+
+        try
+        {
             print('*********************************************************' . PHP_EOL);
             print ("Construct CurlApi_HttpCall: " . PHP_EOL);
             print('---------------------------------------------------------' . PHP_EOL);
@@ -65,7 +63,9 @@ class CurlApi_HttpCall
             // fallback
             $this->oCurlTask = new baseCurlTask();
 
-        } catch (Exception $e) {
+        }
+        catch (Exception $e)
+        {
             echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
@@ -101,7 +101,8 @@ class CurlApi_HttpCall
 //
 
         //put get ...
-        switch (strtolower($task->name)) {
+        switch (strtolower($task->name))
+        {
 
             case strtolower('get'):
                 $this->oCurlTask = new getCurlTask();
@@ -130,9 +131,10 @@ class CurlApi_HttpCall
                 $OutTxt = "!!! curltask class not defined: '" . $task->name . "'" . PHP_EOL;
                 $OutTxt .= $this->task->text() . PHP_EOL;
                 print ($OutTxt);
+
                 return 1;
 
-                // break;
+            // break;
         } // switch
 
         $this->oCurlTask->assignTask($task);
@@ -141,6 +143,66 @@ class CurlApi_HttpCall
 
         return 0;
     }
+
+    /**
+     * @param   option  $option
+     *
+     * @return bool true on option is consumed
+     */
+//    public function assignOption(option $option): bool
+//    {
+//        // $isOptionConsumed = $this->fileNamesList->assignOption($option);
+//        $isOptionConsumed = $this->fileNamesList->assignOption($option);
+//
+//        if (!$isOptionConsumed) {
+//
+//            switch (strtolower($option->name)) {
+////                case strtolower('srcroot'):
+////                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+////                    $this->srcRoot = $option->value;
+////                    $this->filenamesList->srcRoot = $this->srcRoot;
+////
+////                    $isOptionConsumed = true;
+////                    break;
+//
+////                case strtolower('callerProjectId'):
+////                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+////                    $this->callerProjectId = $option->value;
+////                    $isOptionConsumed = true;
+////                    break;
+//
+////                case strtolower('isnorecursion'):
+////                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+////                    $this->isNoRecursion = boolval($option->value);
+////                    $isOptionConsumed = true;
+////                    break;
+//
+//            } // switch
+//        }
+//
+//        return $isOptionConsumed;
+//    }
+    public function text(): string
+    {
+        $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt .= "--- CurlApi_HttpCall --------" . PHP_EOL;
+
+//        $OutTxt .= "Not defined yet " . PHP_EOL;
+
+        if (!empty ($this->oCurlTask))
+        {
+            $OutTxt .= $this->oCurlTask->text();
+        }
+        else
+        {
+            $OutTxt .= "!!! no curltask class defined" . PHP_EOL;
+            $OutTxt .= "task: '" . $this->task . "'" . PHP_EOL;
+        }
+
+        return $OutTxt;
+    }
+
+
 
 
     public function execute(): int
@@ -154,28 +216,31 @@ class CurlApi_HttpCall
         return 0;
     }
 
+    // ToDo: use own class with task /  options as result
+
     public function executeFile(string $filePathName): int
     {
         // not supported
         return 0;
     }
 
-    // ToDo: use own class with task /  options as result
-    private function httpFilOptions(string $fileName)
+    private function httpFileOptions(string $fileName)
     {
         $options = [];
-        try {
+        try
+        {
             print('*********************************************************' . PHP_EOL);
-            print('httpFilOptions' . PHP_EOL);
+            print('httpFileOptions' . PHP_EOL);
             print ("FileName in: " . $fileName . PHP_EOL);
             print('---------------------------------------------------------' . PHP_EOL);
 
             //--- read XML -----------------------------------------------------------
             // file does  exist
-            if (is_file($fileName)) {
+            if (is_file($fileName))
+            {
 
-                $lines = file($fileName);
-                $outLines = [];
+                $lines       = file($fileName);
+                $outLines    = [];
                 $isExchanged = false;
 
 // ###
@@ -185,41 +250,29 @@ class CurlApi_HttpCall
 //X-Joomla-Token: "c2hhMjU2OjI5MzphYTZhMTcwZTY2ODM1MTZhMmNiYzlkZDg0NjE5NzkxYTZkYThhNTJjODFhZTVkNWViYmZmMjljMmY2ZTQ4NGYz"
 //
 
-                foreach ($lines as $line) {
+                foreach ($lines as $line)
+                {
 
                     //
                     // split and assign
 
-                    echo 'Line: ' .  $line. PHP_EOL;
+                    echo 'Line: ' . $line . PHP_EOL;
                 }
-            } else {
-                echo 'httpFilOptions File does not exist: "' . $fileName . '"' . PHP_EOL;
             }
-        } catch (Exception $e) {
+            else
+            {
+                echo 'httpFileOptions File does not exist: "' . $fileName . '"' . PHP_EOL;
+            }
+        }
+        catch (Exception $e)
+        {
             echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
 
-        print('exit httpFilOptions: ' . $hasError . PHP_EOL);
+        print('exit httpFileOptions: ' . $hasError . PHP_EOL);
 
         return $options;
-    }
-
-    public function text(): string
-    {
-        $OutTxt = "------------------------------------------" . PHP_EOL;
-        $OutTxt .= "--- CurlApi_HttpCall --------" . PHP_EOL;
-
-//        $OutTxt .= "Not defined yet " . PHP_EOL;
-
-        if (! empty ($this->oCurlTask)) {
-            $OutTxt .= $this->oCurlTask->text();
-        } else {
-             $OutTxt .= "!!! no curltask class defined" . PHP_EOL;
-             $OutTxt .= "task: '" . $this->task ."'" . PHP_EOL;
-        }
-
-        return $OutTxt;
     }
 
     // ToDo: check for file command in calling code, append to options
@@ -230,7 +283,7 @@ class CurlApi_HttpCall
     //Content-Type: application/json
     //X-Joomla-Token: "c2hhMjU2Ojc3OTo3MDIxODdiNTE0N2NjMDY0ZjVlNGY3OTk5NmNiOWZhZTcxYWRkNWVmOWJjZDA0YjYxZTVjNWEwMmEwZTVkZmY5"
 
-    private function extractHttpFileData(string $fileName) : void
+    private function extractHttpFileData(string $fileName): void
     {
 //        // ToDo: Extract file variables (? as class ? )
 //

@@ -9,15 +9,13 @@ class curl_call
 {
     // Keep it simple , keep complete object and go through array on print
 
-    protected \curlHandle|false $oCurl;
     public string $responseJson;
     public string $responseJsonBeautified;
     public int $errorCode;
-    public bool $isJsonHasErrors; // json
-
-
-    public mixed $oResponse;
+public bool $isJsonHasErrors;
+        public mixed $oResponse; // json
     public mixed $responseArray;
+    protected \curlHandle|false $oCurl;
 
     public function curl_exec(\curlHandle|false $curlHandle): int
     {
@@ -36,7 +34,7 @@ class curl_call
 
         //--- Format response -------------------------------------------
 
-        $this->oResponse = json_decode($this->responseJson); // object
+        $this->oResponse     = json_decode($this->responseJson); // object
         $this->responseArray = json_decode($this->responseJson, true); // object
 
         $this->responseJsonBeautified = json_encode($this->oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
@@ -44,7 +42,8 @@ class curl_call
         //--- json error ? -----------------------------------
 
         $this->isJsonHasErrors = false;
-        if (!empty($this->oResponse->errors)) {
+        if (!empty($this->oResponse->errors))
+        {
 
             $this->isJsonHasErrors = true;
         }

@@ -55,35 +55,30 @@ class test
         $autoFileNames = new AutoSrcDstPathFileNames();
         $autoFileNames->init();
 
-        if ($path_type == path_and_file::PATH_FILENAME_SEPARATE) {
+        if ($path_type == path_and_file::PATH_FILENAME_SEPARATE)
+        {
 
-            $autoFileNames->assignFilePaths($this->srcFileName, $this->srcPathName,
-                $this->dstFileName, $this->dstPathName,
-                $this->dstExtension);
+            $autoFileNames->assignFilePaths($this->srcFileName, $this->srcPathName, $this->dstFileName, $this->dstPathName, $this->dstExtension);
 
-        } else {
+        }
+        else
+        {
 
-            $autoFileNames->assignFilePaths($this->srcFileName, "",
-                $this->dstFileName, "",
-                $this->dstExtension);
+            $autoFileNames->assignFilePaths($this->srcFileName, "", $this->dstFileName, "", $this->dstExtension);
         }
 
         $srcFound = $autoFileNames->getSrcPathFileName();
         $dstFound = $autoFileNames->getDstPathFileName();
 
-        if ($srcFound != $this->srcExpected) {
-            print ("!!! Error: Source is different then expected: !!!" . PHP_EOL
-                . "   Expected: '" . $this->srcExpected . "'" . PHP_EOL
-                . "   Found:    '" . $srcFound . "'" . PHP_EOL)
-            ;
+        if ($srcFound != $this->srcExpected)
+        {
+            print ("!!! Error: Source is different then expected: !!!" . PHP_EOL . "   Expected: '" . $this->srcExpected . "'" . PHP_EOL . "   Found:    '" . $srcFound . "'" . PHP_EOL);
             $hasError = true;
         }
 
-        if ($dstFound != $this->dstExpected) {
-            print ("!!! Error: Destin. is different then expected: !!!" . PHP_EOL
-                . "   Expected: '" . $this->dstExpected . "'" . PHP_EOL
-                . "   Found:    '" . $dstFound . "'" . PHP_EOL)
-            ;
+        if ($dstFound != $this->dstExpected)
+        {
+            print ("!!! Error: Destin. is different then expected: !!!" . PHP_EOL . "   Expected: '" . $this->dstExpected . "'" . PHP_EOL . "   Found:    '" . $dstFound . "'" . PHP_EOL);
             $hasError = true;
         }
 
@@ -117,27 +112,30 @@ printResult($hasError, 3);
 //printResult($hasError, 7);
 
 
-
 // Further tests may be added as errors appear ;-)
 
 
 /**
- * @param bool $hasError
+ * @param   bool  $hasError
+ *
  * @return void
  */
-function printResult(bool $hasError, int $testNbr=999)
+function printResult(bool $hasError, int $testNbr = 999)
 {
 
-    if (!$hasError) {
+    if (!$hasError)
+    {
         print (' - test ' . $testNbr . ' successful' . PHP_EOL);
-    } else {
+    }
+    else
+    {
         print (' - test ' . $testNbr . ' unsuccessful' . PHP_EOL);
     }
 }
 
 
 // just source file path and destination extension
-function test_01():bool
+function test_01(): bool
 {
     $test = new test();
 
@@ -158,7 +156,8 @@ function test_01():bool
 
     $hasError = $test->doTest(path_and_file::FULL_PATH);
     // $hasError = $test->doTest(path_and_file::PATH_FILENAME_SEPARATE);
-    if ($hasError) {
+    if ($hasError)
+    {
         // debug stop
         $hasError = $hasError;
     }
@@ -167,7 +166,7 @@ function test_01():bool
 }
 
 // No destination filename
-function test_02():bool
+function test_02(): bool
 {
     $test = new test();
 
@@ -188,7 +187,8 @@ function test_02():bool
 
     $hasError = $test->doTest(path_and_file::PATH_FILENAME_SEPARATE);
     // $hasError = $test->doTest(path_and_file::PATH_FILENAME_SEPARATE);
-    if ($hasError) {
+    if ($hasError)
+    {
         // debug stop
         $hasError = $hasError;
     }
@@ -219,12 +219,13 @@ function test_03()
 
     // $hasError = $test->doTest(path_and_file::FULL_PATH);
     $hasError = $test->doTest(path_and_file::PATH_FILENAME_SEPARATE);
-    if ($hasError) {
+    if ($hasError)
+    {
         // debug stop
         $hasError = $hasError;
     }
 
-return $hasError;
+    return $hasError;
 
 }
 

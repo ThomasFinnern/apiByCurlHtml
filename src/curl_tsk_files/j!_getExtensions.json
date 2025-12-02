@@ -1,0 +1,272 @@
+{
+  "links": {
+    "self": "http://127.0.0.1/joomla5x/api/index.php/v1/extensions",
+    "next": "http://127.0.0.1/joomla5x/api/index.php/v1/extensions?page%5Boffset%5D=20&page%5Blimit%5D=20",
+    "last": "http://127.0.0.1/joomla5x/api/index.php/v1/extensions?page%5Boffset%5D=240&page%5Blimit%5D=20"
+  },
+  "data": [
+    {
+      "type": "manage",
+      "id": "87",
+      "attributes": {
+        "name": "Action Log - Joomla",
+        "type": "plugin",
+        "folder": "actionlog",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.9.0",
+        "id": 87
+      }
+    },
+    {
+      "type": "manage",
+      "id": "82",
+      "attributes": {
+        "name": "Action Logs - Latest",
+        "type": "module",
+        "folder": "",
+        "client_id": 1,
+        "status": 1,
+        "version": "3.9.0",
+        "id": 82
+      }
+    },
+    {
+      "type": "manage",
+      "id": "84",
+      "attributes": {
+        "name": "Administrator Dashboard Menu",
+        "type": "module",
+        "folder": "",
+        "client_id": 1,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 84
+      }
+    },
+    {
+      "type": "manage",
+      "id": "67",
+      "attributes": {
+        "name": "Administrator Menu",
+        "type": "module",
+        "folder": "",
+        "client_id": 1,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 67
+      }
+    },
+    {
+      "type": "manage",
+      "id": "27",
+      "attributes": {
+        "name": "Ajax Interface",
+        "type": "component",
+        "folder": "",
+        "client_id": 1,
+        "status": 2,
+        "version": "4.0.0",
+        "id": 27
+      }
+    },
+    {
+      "type": "manage",
+      "id": "88",
+      "attributes": {
+        "name": "API Authentication - Web Services Basic Auth",
+        "type": "plugin",
+        "folder": "api-authentication",
+        "client_id": 0,
+        "status": 1,
+        "version": "4.0.0",
+        "id": 88
+      }
+    },
+    {
+      "type": "manage",
+      "id": "89",
+      "attributes": {
+        "name": "API Authentication - Web Services Joomla Token",
+        "type": "plugin",
+        "folder": "api-authentication",
+        "client_id": 0,
+        "status": 1,
+        "version": "4.0.0",
+        "id": 89
+      }
+    },
+    {
+      "type": "manage",
+      "id": "19",
+      "attributes": {
+        "name": "Articles",
+        "type": "component",
+        "folder": "",
+        "client_id": 1,
+        "status": 2,
+        "version": "4.0.0",
+        "id": 19
+      }
+    },
+    {
+      "type": "manage",
+      "id": "246",
+      "attributes": {
+        "name": "Articles",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "5.2.0",
+        "id": 246
+      }
+    },
+    {
+      "type": "manage",
+      "id": "39",
+      "attributes": {
+        "name": "Articles - Archived",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 39
+      }
+    },
+    {
+      "type": "manage",
+      "id": "58",
+      "attributes": {
+        "name": "Articles - Categories",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 58
+      }
+    },
+    {
+      "type": "manage",
+      "id": "57",
+      "attributes": {
+        "name": "Articles - Category (Legacy)",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 57
+      }
+    },
+    {
+      "type": "manage",
+      "id": "63",
+      "attributes": {
+        "name": "Articles - Latest",
+        "type": "module",
+        "folder": "",
+        "client_id": 1,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 63
+      }
+    },
+    {
+      "type": "manage",
+      "id": "40",
+      "attributes": {
+        "name": "Articles - Latest (Legacy)",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 40
+      }
+    },
+    {
+      "type": "manage",
+      "id": "41",
+      "attributes": {
+        "name": "Articles - Most Read (Legacy)",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 41
+      }
+    },
+    {
+      "type": "manage",
+      "id": "49",
+      "attributes": {
+        "name": "Articles - Newsflash (Legacy)",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 49
+      }
+    },
+    {
+      "type": "manage",
+      "id": "51",
+      "attributes": {
+        "name": "Articles - Related",
+        "type": "module",
+        "folder": "",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 51
+      }
+    },
+    {
+      "type": "manage",
+      "id": "237",
+      "attributes": {
+        "name": "Atum Administrator template",
+        "type": "template",
+        "folder": "",
+        "client_id": 1,
+        "status": 1,
+        "version": "1.0",
+        "id": 237
+      }
+    },
+    {
+      "type": "manage",
+      "id": "90",
+      "attributes": {
+        "name": "Authentication - Cookie",
+        "type": "plugin",
+        "folder": "authentication",
+        "client_id": 0,
+        "status": 1,
+        "version": "3.0.0",
+        "id": 90
+      }
+    },
+    {
+      "type": "manage",
+      "id": "91",
+      "attributes": {
+        "name": "Authentication - Joomla",
+        "type": "plugin",
+        "folder": "authentication",
+        "client_id": 0,
+        "status": 2,
+        "version": "3.0.0",
+        "id": 91
+      }
+    }
+  ],
+  "meta": {
+    "total-pages": 13
+  }
+}

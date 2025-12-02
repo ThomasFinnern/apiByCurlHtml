@@ -1,13 +1,13 @@
 <?php
 
-namespace Finnern\apiByCurlHtml\src;
+namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
 require_once 'autoload/autoload.php';
 
-use Exception;
 use Finnern\apiByCurlHtml\src\lib\dirs;
-use Finnern\apiByCurlHtml\src\tasksLib\task;
 use Finnern\apiByCurlHtml\src\tasksLib\commandLineLib;
+use Finnern\apiByCurlHtml\src\tasksLib\task;
+use Finnern\apiByCurlHtml\src\tasksLib\tasks;
 
 $HELP_MSG = <<<EOT
     >>>
@@ -22,7 +22,7 @@ $HELP_MSG = <<<EOT
 main (used from command line)
 ================================================================================*/
 
-$optDefinition = "s:t:f:o:h12345";
+$optDefinition    = "s:t:f:o:h12345";
 $isPrintArguments = false;
 
 [$inArgs, $options] = commandLineLib::argsAndOptions($argv, $optDefinition, $isPrintArguments);
@@ -39,12 +39,8 @@ variables
 
 $collectedTasks = new tasks;
 
-$tasksLine = ' task:CurlApi_HttpCall'
-    . ' /type=component'
-    . ' /srcRoot="./../../RSGallery2_J4"'
-//    . ' /isNoRecursion=true'
-    . ' /buildDir="./../.packages"'
-//    . ' /adminPath='
+$tasksLine = ' task:CurlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../../RSGallery2_J4"' //    . ' /isNoRecursion=true'
+    . ' /buildDir="./../.packages"'//    . ' /adminPath='
 ;
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
@@ -73,11 +69,13 @@ $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
 $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
 
 
-foreach ($options as $idx => $option) {
+foreach ($options as $idx => $option)
+{
     print ("idx: " . $idx . PHP_EOL);
     print ("option: " . $option . PHP_EOL);
 
-    switch ($idx) {
+    switch ($idx)
+    {
         case 's':
             $tasks = $option;
             break;
@@ -142,21 +140,24 @@ $task = new task();
 
 //--- extract tasks from string or file ------------------
 
-if ( ! empty ($taskFile)) {
+if (!empty ($taskFile))
+{
     $task = $task->extractTaskFromFile($taskFile);
-} else {
+}
+else
+{
     $task = $task->extractTaskFromString($tasksLine);
 }
 
 //--- extract options from file(s) ------------------
 
-if ( ! empty($optionFiles) ) {
-    foreach ($optionFiles as $optionFile) {
+if (!empty($optionFiles))
+{
+    foreach ($optionFiles as $optionFile)
+    {
         $task->extractOptionsFromFile($optionFile);
     }
 }
-
-
 
 
 //===  =========================================================
@@ -170,21 +171,23 @@ function patchResourceOption(task $task, mixed $taskFile)
 
     print ("  \$taskFile: '" . $taskFile . "'" . PHP_EOL);
 
-    foreach ($options->options as $option) {
+    foreach ($options->options as $option)
+    {
 
 //        print ("  \$option->name: '" . $option->name . "'" . PHP_EOL);
 //        print ("  \$strtolower(): '" . strtolower('responseFile') . "'" . PHP_EOL);
 
-        if (strtolower($option->name) == strtolower('responseFile')) {
+        if (strtolower($option->name) == strtolower('responseFile'))
+        {
 
 //            print ("  \$option->value: '" . $option->value . "'" . PHP_EOL);
-            if(empty($option->value)) {
+            if (empty($option->value))
+            {
 
 //                print ("  \$option->value inside: '" . $option->value . "'". PHP_EOL);
                 $srcFileInfo = pathinfo($taskFile);
 
-                $option->value = dirs::joinDirPath($srcFileInfo['dirname'],
-                    $srcFileInfo['filename'] . '.json' );
+                $option->value = dirs::joinDirPath($srcFileInfo['dirname'], $srcFileInfo['filename'] . '.json');
 
 //                print ("  \$option->value inside: '" . $option->value . "'". PHP_EOL);
 
@@ -196,9 +199,10 @@ function patchResourceOption(task $task, mixed $taskFile)
     }
 }
 
-if ( ! empty ($taskFile)) {
+if (!empty ($taskFile))
+{
     // patch resource file definition to be parallel to task file
-    patchResourceOption ($task, $taskFile);
+    patchResourceOption($task, $taskFile);
 }
 
 print ($task->text());
@@ -207,31 +211,37 @@ print ($task->text());
    execute task
 --------------------------------------------------*/
 
-if (empty ($hasError)) {
+if (empty ($hasError))
+{
 
-	$oCurlApi_HttpCall = new CurlApi_HttpCall();
+    $oCurlApi_HttpCall = new CurlApi_HttpCall();
 
-	//--- assign tasks ---------------------------------
+    //--- assign tasks ---------------------------------
 
-	$hasError = $oCurlApi_HttpCall->assignTask($task);
-    if ($hasError) {
+    $hasError = $oCurlApi_HttpCall->assignTask($task);
+    if ($hasError)
+    {
         print ("%%% Error on function assignTask:" . $hasError) . "\n";
-    } else {
+    }
+    else
+    {
         print ($oCurlApi_HttpCall->text() . PHP_EOL);
     }
 
-	//--- execute tasks ---------------------------------
+    //--- execute tasks ---------------------------------
 
-	if (!$hasError) {
-	    $hasError = $oCurlApi_HttpCall->execute();
-	    if ($hasError) {
-	        print ("%%% Error on function execute:" . $hasError) . "\n";
-	    }
-	}
-	
+    if (!$hasError)
+    {
+        $hasError = $oCurlApi_HttpCall->execute();
+        if ($hasError)
+        {
+            print ("%%% Error on function execute:" . $hasError) . "\n";
+        }
+    }
+
 //	print ($oCurlApi_HttpCall->text() . PHP_EOL);
     print (PHP_EOL . '-----------------------------------' . PHP_EOL);
-    print (       '... CurlApi_HttpCall finished .......' . PHP_EOL);
+    print ('... CurlApi_HttpCall finished .......' . PHP_EOL);
 }
 
 commandLineLib::print_end($start);

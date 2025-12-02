@@ -1,0 +1,9 @@
+task:get
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+	// /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
+/apiPath="v1/config/application"
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+	// /responseFile="d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests/j!_getConfigAll_p1_By30.json"
+/responseFile=""
+/page_offset="90"
+/page_limit="30"

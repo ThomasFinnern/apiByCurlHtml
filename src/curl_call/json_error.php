@@ -49,7 +49,8 @@ class json_error
         $outTxt = "";
 
         //$outTxt .= '----------------------------------------' . PHP_EOL;
-        foreach ($this->error as $key => $value) {
+        foreach ($this->error as $key => $value)
+        {
 
             $valueText = str_replace("\n", PHP_EOL, $value);
 

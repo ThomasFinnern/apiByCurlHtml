@@ -1,0 +1,8 @@
+task:get
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+	// was a test, not successful
+/apiPath="v1/stat/cms_version"
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+// /responseFile="d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests\J!_getApiVersion.json"
+/responseFile=""
+

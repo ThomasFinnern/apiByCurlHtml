@@ -12,24 +12,47 @@ abstract class baseHttpFileData extends baseExecuteTasks
     protected array $lines = [];
 
 //    abstract protected function createSrcDstPath ();
-    abstract protected function extractFileData ($lines = []) : int;
-    abstract public function createFileLines () : array;
 
-    protected  function readFile (string $fileName = '') : int
+    abstract public function createFileLines(): array;
+
+    public function writeFile(string $fileName = '', $lines = []): int
     {
-        if (empty($fileName)) {
+        if (empty($fileName))
+        {
             $fileName = $this->filePathName;
         }
 
-        if (! is_file($fileName)) {
+        if (empty($lines))
+        {
+            $lines = $this->lines;
+        }
+
+        $content = implode(PHP_EOL, $lines);
+
+        file_put_contents($fileName, $content);
+
+        // ToDo: try catch , return $hasError
+        return 0;
+    }
+
+    protected function readFile(string $fileName = ''): int
+    {
+        if (empty($fileName))
+        {
+            $fileName = $this->filePathName;
+        }
+
+        if (!is_file($fileName))
+        {
 
             print ('File not found: ' . $fileName . "\n");
             print ('File not found: ' . realpath($fileName) . "\n");
+
             return -789;
         }
 
         $content = file_get_contents($fileName); //Get the file
-        $lines = explode("\n", $content); //Split the file by each line
+        $lines   = explode("\n", $content); //Split the file by each line
 
         $this->extractFileData($lines);
 
@@ -37,22 +60,6 @@ abstract class baseHttpFileData extends baseExecuteTasks
         return 0;
     }
 
-    public  function writeFile (string $fileName = '', $lines=[]) : int
-    {
-        if (empty($fileName)) {
-            $fileName = $this->filePathName;
-        }
-
-        if (empty($lines)) {
-            $lines = $this->lines;
-        }
-
-        $content = implode(PHP_EOL, $lines);
-
-        file_put_contents ($fileName, $content);
-
-        // ToDo: try catch , return $hasError
-        return 0;
-    }
+    abstract protected function extractFileData($lines = []): int;
 
 }

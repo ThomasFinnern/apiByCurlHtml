@@ -1,0 +1,7 @@
+task:get
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+	// /apiPath="v1/config/com_rsgallery2"
+/apiPath="v1/config/com_comp2test"
+/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
+	// /responseFile="d:\Entwickl\2025\_gitHub\RSGallery2_J4_Dev\.apiTests\rsg2_getConfig.json"
+/responseFile=""

@@ -12,10 +12,12 @@
 /**
  * An example of a project-specific implementation.
  *
- * @param string $class The fully-qualified class name.
+ * @param   string  $class  The fully-qualified class name.
+ *
  * @return void
  */
-function CurlApi_autoloader(string $class) {
+function CurlApi_autoloader(string $class)
+{
 
     $vendorProject = 'Finnern\apiByCurlHtml';
 
@@ -26,13 +28,16 @@ function CurlApi_autoloader(string $class) {
     // replace namespace separators with directory separators in the relative 
     // class name, append with .php
     $class_path = str_replace('\\', '/', $classPath);
-    
-    $file =  __DIR__ . '/../..' . $class_path . '.php';
+
+    $file = __DIR__ . '/../..' . $class_path . '.php';
 
     // if the file exists, require it
-    if (file_exists($file)) {
+    if (file_exists($file))
+    {
         require $file;
-    } else {
+    }
+    else
+    {
 
         print ("Class $class not found\n");
         print ("File $file not found\n");

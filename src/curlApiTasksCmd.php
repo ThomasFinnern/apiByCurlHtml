@@ -21,7 +21,7 @@ $HELP_MSG = <<<EOT
 main (used from command line)
 ================================================================================*/
 
-$optDefinition = "t:c:f:o:h12345";
+$optDefinition    = "t:c:f:o:h12345";
 $isPrintArguments = false;
 
 [$inArgs, $options] = commandLineLib::argsAndOptions($argv, $optDefinition, $isPrintArguments);
@@ -38,12 +38,8 @@ variables
 
 $collectedTasks = new tasks;
 
-$tasksLine = ' task:CurlApi_HttpCall'
-    . ' /type=component'
-    . ' /srcRoot="./../../RSGallery2_J4"'
-//    . ' /isNoRecursion=true'
-    . ' /buildDir="./../.packages"'
-//    . ' /adminPath='
+$tasksLine = ' task:CurlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../../RSGallery2_J4"' //    . ' /isNoRecursion=true'
+    . ' /buildDir="./../.packages"'//    . ' /adminPath='
 ;
 
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
@@ -78,11 +74,13 @@ $tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_putGallerySet_01.tsk';
 $basePath = "..\\..\\RSGallery2_J4_Dev";
 
 
-foreach ($options as $idx => $option) {
+foreach ($options as $idx => $option)
+{
     print ("idx: " . $idx . PHP_EOL);
     print ("option: " . $option . PHP_EOL);
 
-    switch ($idx) {
+    switch ($idx)
+    {
         case 't':
             $tasksLine = $option;
             break;
@@ -139,22 +137,28 @@ $start = commandLineLib::print_header($options, $inArgs);
 //--- create class object ---------------------------------
 
 $oCurlApiTask = new curlApiTasks(); // $basePath, $tasksLine
-$tasks = new tasks();
+$tasks        = new tasks();
 
 //--- extract tasks from string or file ------------------
 
-if ( ! empty ($tasksFile)) {
+if (!empty ($tasksFile))
+{
     print ("taskFile found: " . $tasksFile . PHP_EOL);
     $tasks = $tasks->extractTasksFromFile($tasksFile);
-} else {
-    if ($collectedTasks->count() > 0) {
+}
+else
+{
+    if ($collectedTasks->count() > 0)
+    {
         $tasks->assignTasks($collectedTasks);
-    } else {
+    }
+    else
+    {
         print ("taskFile empty, TaskLine: " . $tasksLine . PHP_EOL);
         $testTasks = $tasks->extractTasksFromString($tasksLine);
-        if (!empty ($hasError)) {
-            print ("!!! Error on function extractTasksFromString:" . $hasError
-                . ' path: ' . $basePath . PHP_EOL);
+        if (!empty ($hasError))
+        {
+            print ("!!! Error on function extractTasksFromString:" . $hasError . ' path: ' . $basePath . PHP_EOL);
         }
     }
 }
@@ -168,22 +172,22 @@ print ($tasks->text());
 // //--- extract tasks from string or file ---------------------------------
 
 // if ($tasksFile != "") {
-    // $hasError = $oCurlApiTask->extractTasksFromFile($tasksFile);
-    // if (!empty ($hasError)) {
-        // print ("!!! Error on function extractTasksFromFile:" . $hasError
-            // . ' path: ' . $basePath . PHP_EOL);
-    // }
+// $hasError = $oCurlApiTask->extractTasksFromFile($tasksFile);
+// if (!empty ($hasError)) {
+// print ("!!! Error on function extractTasksFromFile:" . $hasError
+// . ' path: ' . $basePath . PHP_EOL);
+// }
 
 // } else {
-    // if ($collectedTasks->count() > 0) {
-        // $testTasks = $oCurlApiTask->assignTasks($collectedTasks);
-    // } else {
-        // $testTasks = $oCurlApiTask->extractTasksFromString($tasksLine);
-        // //if (!empty ($hasError)) {
-        // //    print ("!!! Error on function extractTasksFromString:" . $hasError
-        // //        . ' path: ' . $basePath . PHP_EOL);
-        // //}
-    // }
+// if ($collectedTasks->count() > 0) {
+// $testTasks = $oCurlApiTask->assignTasks($collectedTasks);
+// } else {
+// $testTasks = $oCurlApiTask->extractTasksFromString($tasksLine);
+// //if (!empty ($hasError)) {
+// //    print ("!!! Error on function extractTasksFromString:" . $hasError
+// //        . ' path: ' . $basePath . PHP_EOL);
+// //}
+// }
 // }
 
 // print ($oCurlApiTask->tasksText());
@@ -192,22 +196,25 @@ print ($tasks->text());
    execute tasks
 --------------------------------------------------*/
 
-if (empty ($hasError)) {
+if (empty ($hasError))
+{
 
-	//--- assign tasks ---------------------------------
+    //--- assign tasks ---------------------------------
 
     $oCurlApiTask->assignTasks($tasks);
-	
-	//--- execute tasks ---------------------------------
+
+    //--- execute tasks ---------------------------------
 
     // create task classes, when task execute is issued the task does execute
     $hasError = $oCurlApiTask->execute();
 
-    if ($hasError) {
+    if ($hasError)
+    {
         print ("%%% doFileTaskCmd Error: " . $hasError . " on execute task: " . $oCurlApiTask->actTaskName . PHP_EOL);
     }
 
-    if (! $hasError) {
+    if (!$hasError)
+    {
         print ($oCurlApiTask->text() . PHP_EOL);
     }
 

@@ -3,7 +3,7 @@
 namespace Finnern\apiByCurlHtml\src\task_http_file;
 
 use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
-use Finnern\apiByCurlHtml\src\CurlApi_HttpCall;
+use Finnern\apiByCurlHtml\src\curl_tasks\CurlApi_HttpCall;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 class tskFileData extends baseHttpFileData
@@ -25,57 +25,36 @@ class tskFileData extends baseHttpFileData
     {
         $hasError = 0;
 
-        try {
+        parent::__construct();
+
+        try
+        {
 //            print('*********************************************************' . PHP_EOL);
             print ("Construct tskFileData: " . PHP_EOL);
             print ("fileName: " . $fileName . PHP_EOL);
 //            print('---------------------------------------------------------' . PHP_EOL);
 
-            $this->filePathName = $fileName;
+            $this->filePathName  = $fileName;
             $this->oBaseCurlTask = new baseCurlTask();
 
-            if (!empty ($fileName)) {
-                if (!$isTarget) {
-                    if (file_exists($fileName)) {
+            if (!empty ($fileName))
+            {
+                if (!$isTarget)
+                {
+                    if (file_exists($fileName))
+                    {
                         $this->readFile(); // does extract data
                     } // ToDo: else error
                 }
             }
 
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e)
+        {
             echo 'Message: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
 
-    }
-
-    protected function extractFileData($lines = []): int
-    {
-        // handle file as task file and access parameters over it
-
-        //--- create task object ---------------------------------
-
-        $task = new task();
-
-        if (!empty($lines)) {
-            $task->extractTaskFromLines($lines);
-        }
-
-        $this->taskName = $task->name;
-
-        // Assign options to variables
-        $oCurlApi_HttpCall = new CurlApi_HttpCall();
-
-        $hasError = $oCurlApi_HttpCall->assignTask($task);
-        if ($hasError) {
-            print ("%%% Error on function assignTask:" . $hasError) . "\n";
-        }
-
-        //---  ---------------------------------------------
-
-        $this->oBaseCurlTask = $oCurlApi_HttpCall->oCurlTask;
-
-        return 0;
     }
 
     public function createFileLines(): array
@@ -96,9 +75,12 @@ class tskFileData extends baseHttpFileData
         // /joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
         // find token file from token or given
         $tokenFile = $this->oBaseCurlTask->getTokenFile();
-        if (!empty($tokenFile)) {
+        if (!empty($tokenFile))
+        {
             $lines[] = '/joomlaTokenFile="' . $tokenFile . '"';
-        } else {
+        }
+        else
+        {
             $lines[] = '/token="' . $this->oBaseCurlTask->joomlaToken . '"';
         }
 
@@ -113,6 +95,37 @@ class tskFileData extends baseHttpFileData
         $this->lines = $lines;
 
         return $lines;
+    }
+
+    protected function extractFileData($lines = []): int
+    {
+        // handle file as task file and access parameters over it
+
+        //--- create task object ---------------------------------
+
+        $task = new task();
+
+        if (!empty($lines))
+        {
+            $task->extractTaskFromLines($lines);
+        }
+
+        $this->taskName = $task->name;
+
+        // Assign options to variables
+        $oCurlApi_HttpCall = new CurlApi_HttpCall();
+
+        $hasError = $oCurlApi_HttpCall->assignTask($task);
+        if ($hasError)
+        {
+            print ("%%% Error on function assignTask:" . $hasError) . "\n";
+        }
+
+        //---  ---------------------------------------------
+
+        $this->oBaseCurlTask = $oCurlApi_HttpCall->oCurlTask;
+
+        return 0;
     }
 }
 

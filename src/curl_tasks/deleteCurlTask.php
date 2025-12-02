@@ -11,8 +11,7 @@ use Finnern\apiByCurlHtml\src\tasksLib\option;
 /**
  * delete curl class
  */
-class deleteCurlTask extends baseCurlTask
-    implements executeTasksInterface
+class deleteCurlTask extends baseCurlTask implements executeTasksInterface
 {
     // task name
     public string $taskName = '????';
@@ -28,7 +27,8 @@ class deleteCurlTask extends baseCurlTask
 
     public function __construct(string $srcRoot = "", bool $isNoRecursion = false)
     {
-        try {
+        try
+        {
 //            print('*********************************************************' . PHP_EOL);
 //            print ("srcRoot: " . $srcRoot . PHP_EOL);
 //            print ("yearText: " . $yearText . PHP_EOL);
@@ -39,7 +39,9 @@ class deleteCurlTask extends baseCurlTask
 
             parent::__construct();
 
-        } catch (Exception $e) {
+        }
+        catch (Exception $e)
+        {
             echo 'Message: ' . $e->getMessage() . PHP_EOL;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
@@ -52,12 +54,14 @@ class deleteCurlTask extends baseCurlTask
 
         $options = $task->options;
 
-        foreach ($options->options as $option) {
+        foreach ($options->options as $option)
+        {
 
             $isBaseOption = $this->assignBaseOption($option);
 
             // base options are already handled
-            if (!$isBaseOption) {
+            if (!$isBaseOption)
+            {
                 $isOption = $this->assignLocalOption($option);
             }
         }
@@ -67,7 +71,7 @@ class deleteCurlTask extends baseCurlTask
 
     /**
      *
-     * @param option $option
+     * @param   option  $option
      *
      * @return void
      */
@@ -75,7 +79,8 @@ class deleteCurlTask extends baseCurlTask
     {
         $isBuildExtensionOption = false;
 
-        switch (strtolower($option->name)) {
+        switch (strtolower($option->name))
+        {
 //            case strtolower('builddir'):
 //                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 //                $this->buildDir = $option->value;
@@ -101,7 +106,8 @@ class deleteCurlTask extends baseCurlTask
         // ToDo: Error on missing token
 
 
-        if ($this->oCurl) {
+        if ($this->oCurl)
+        {
 
             $this->setRequest('DELETE');
 
@@ -125,22 +131,30 @@ class deleteCurlTask extends baseCurlTask
 
             // valid response
             //if ($curl_call->errorCode == 0 && ! $curl_call->isJsonHasErrors) {
-            if (!$isHasErrors) {
+            if (!$isHasErrors)
+            {
 
-                if (!empty($this->responseFile)) {
+                if (!empty($this->responseFile))
+                {
                     file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
                 }
 
                 print ($curl_task_texts->responseBeautifiedText());
 
-            } else {
+            }
+            else
+            {
 
                 //--- invalid response --------------------------------
 
-                if (!empty($this->responseFile)) {
-                    if ($curl_call->isJsonHasErrors) {
+                if (!empty($this->responseFile))
+                {
+                    if ($curl_call->isJsonHasErrors)
+                    {
                         file_put_contents($this->responseFile, $curl_task_texts->responseCrLfText());
-                    } else {
+                    }
+                    else
+                    {
                         file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
                     }
                 }
@@ -148,9 +162,12 @@ class deleteCurlTask extends baseCurlTask
                 // print error stack in newlines
                 print ($curl_task_texts->responseCrLfText());
 
-                if ($curl_call->isJsonHasErrors) {
+                if ($curl_call->isJsonHasErrors)
+                {
                     print ($curl_task_texts->jsonErrorsCrLfText());
-                } else {
+                }
+                else
+                {
                     print ($curl_task_texts->jsonErrorsCrLfText());
                 }
 
@@ -159,7 +176,9 @@ class deleteCurlTask extends baseCurlTask
             // print end
             print ($curl_task_texts->footerText());
 
-        } else {
+        }
+        else
+        {
 
             print('---------------------------------------------------------' . PHP_EOL);
             print("deleteCurlTask:execute: oCurl is not defined" . PHP_EOL);

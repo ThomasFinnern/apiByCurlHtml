@@ -21,8 +21,8 @@ if exist "%ExePath%php.exe" (
 ECHO ----------------------------------------------
 ECHO.
 
-echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\lang4dev_getProjects.tsk %1
-"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\lang4dev_getProjects.tsk %1
+echo --- "%ExePath%php.exe" ..\curlApiTasksCmd.php -f .\lang4dev_getProjects.tsk %1
+"%ExePath%php.exe" ..\curlApiTasksCmd.php -f .\lang4dev_getProjects.tsk %1
 
 GOTO :EOF
 

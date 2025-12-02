@@ -21,8 +21,8 @@ if exist "%ExePath%php.exe" (
 ECHO ----------------------------------------------
 ECHO.
 
-echo --- "%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\jg_patchConfig.tsk %1
-"%ExePath%php.exe" ..\CurlApi_HttpCallCmd.php -f .\jg_patchConfig.tsk %1
+echo --- "%ExePath%php.exe" ..\curlApiTasksCmd.php -f .\jg_patchConfig.tsk %1
+"%ExePath%php.exe" ..\curlApiTasksCmd.php -f .\jg_patchConfig.tsk %1
 
 GOTO :EOF
 

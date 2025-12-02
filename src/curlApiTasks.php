@@ -6,11 +6,10 @@ use Finnern\apiByCurlHtml\src\curl_tasks\deleteCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\patchCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\putCurlTask;
+use Finnern\apiByCurlHtml\src\fileNamesLib\fileNamesList;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
-
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 use Finnern\apiByCurlHtml\src\tasksLib\tasks;
-use Finnern\apiByCurlHtml\src\fileNamesLib\fileNamesList;
 
 $HELP_MSG = <<<EOT
     >>>
@@ -52,21 +51,25 @@ class curlApiTasks
     public function __construct($basePath = "", $tasksLine = "")
     {
         $hasError = 0;
-        try {
+        try
+        {
 //            print('*********************************************************' . PHP_EOL);
 //            print("basePath: " . $basePath . PHP_EOL);
 //            print("tasks: " . $tasksLine . PHP_EOL);
 //            print('---------------------------------------------------------' . PHP_EOL);
 
-            $this->basePath = $basePath;
-            $this->tasks = new tasks();
+            $this->basePath      = $basePath;
+            $this->tasks         = new tasks();
             $this->fileNamesList = new fileNamesList();
 
-            if (strlen($tasksLine) > 0) {
+            if (strlen($tasksLine) > 0)
+            {
                 $this->tasks = $this->tasks->extractTasksFromString($tasksLine);
             }
             // print ($this->tasksText ());
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e)
+        {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
@@ -94,13 +97,15 @@ class curlApiTasks
     {
         $hasError = 0;
 
-        try {
+        try
+        {
             print('*********************************************************' . PHP_EOL);
             print('applyTasks/create classes' . PHP_EOL);
             // print ("task: " . $textTask . PHP_EOL);
             print('---------------------------------------------------------' . PHP_EOL);
 
-            foreach ($this->tasks->tasks as $textTask) {
+            foreach ($this->tasks->tasks as $textTask)
+            {
                 // print ("--- apply task: " . $textTask->name . PHP_EOL);
                 print (">>>---------------------------------" . PHP_EOL);
 
@@ -108,7 +113,8 @@ class curlApiTasks
 
                 //--- let the task run -------------------------
 
-                switch (strtolower($textTask->name)) {
+                switch (strtolower($textTask->name))
+                {
 
                     //=== real task definitions =================================
 
@@ -178,8 +184,7 @@ class curlApiTasks
                     //=== supporting tasks content  ===============================
 
                     case strtolower('execute'):
-                        print ('>>> Call execute task: "'
-                            // . $this->actTask->name
+                        print ('>>> Call execute task: "' // . $this->actTask->name
                             . '"  >>>' . PHP_EOL);
 
                         // ToDo: dummy task
@@ -208,7 +213,7 @@ class curlApiTasks
                         // run task
                         $hasError = $this->actTask->execute();
 
-                        print ('createFilenamesList count: ' . count ($this->fileNamesList->fileNames) . PHP_EOL);
+                        print ('createFilenamesList count: ' . count($this->fileNamesList->fileNames) . PHP_EOL);
 
                         break;
 
@@ -220,11 +225,12 @@ class curlApiTasks
                         $filenamesList->assignTask($textTask);
                         $filenamesList->execute();
 
-                        if (empty($this->fileNamesList)) {
+                        if (empty($this->fileNamesList))
+                        {
                             $this->fileNamesList = new fileNamesList ();
                         }
 
-                        print ('add2FilenamesList count: ' . count ($filenamesList->fileNames) . PHP_EOL);
+                        print ('add2FilenamesList count: ' . count($filenamesList->fileNames) . PHP_EOL);
 
                         $this->fileNamesList->addFilenames($filenamesList->fileNames);
                         break;
@@ -247,7 +253,9 @@ class curlApiTasks
 
                 // $OutTxt .= $task->text() . PHP_EOL;
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e)
+        {
             echo '!!! applyTasks: Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
@@ -285,11 +293,15 @@ class curlApiTasks
         $OutTxt = "------------------------------------------" . PHP_EOL;
         $OutTxt .= "--- curlApiTask ==> " . $this->actTaskName . " ---" . PHP_EOL;
 
-        if ( !empty ($this->actTask)) {
+        if (!empty ($this->actTask))
+        {
             $OutTxt .= $this->actTask->text();
-        } else {
+        }
+        else
+        {
             $OutTxt .= ">>> text(): object actTask is not defined" . PHP_EOL;
         }
+
         /**
          * $OutTxt .= "fileName: " . $this->fileName . PHP_EOL;
          * $OutTxt .= "fileExtension: " . $this->fileExtension . PHP_EOL;
@@ -301,7 +313,7 @@ class curlApiTasks
         return $OutTxt;
     }
 
-    public function extractTasksFromFile(mixed $taskFile) : curlApiTask
+    public function extractTasksFromFile(mixed $taskFile): curlApiTasks
     {
         $tasks = new tasks();
         $this->assignTasks($tasks->extractTasksFromFile($taskFile));
