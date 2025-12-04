@@ -60,13 +60,22 @@ variables
 
 //// ToDo:
 //$tasksLine = ' task:http2tskFile'
-//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
+//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
 //    . ' /srcFile="./../../rsg2_getGallery2.http"'
-//    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
+//    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
 //    . ' /dstFile="./../../rsg2_getGallery2.tsk"';
 
-$tasksLine = ' task:tsk2httpFile' . ' /srcPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests' . ' /srcFile="jg_patchImage_title.tsk"' . ' /dstPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests\curl_http_files' . ' /dstFile="jg_patchImage_title.http"';
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests'
+//    . ' /srcFile="jg_patchImage_title.tsk"'
+//    . ' /dstPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests\curl_http_files'
+//    . ' /dstFile="jg_patchImage_title.http"';
 
+$tasksLine = ' task:tsk2httpFile'
+    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
+    . ' /srcFile="j!_getApiOverview.tsk"'
+    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
+    . ' /dstFile="j!_getApiOverview.http"';
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGallery.tsk';

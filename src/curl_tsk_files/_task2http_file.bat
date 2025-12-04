@@ -22,13 +22,19 @@ Call :AddNextArg -e "http"
 REM --- source file and folder ---------------------------------
 
 if "%1" NEQ "" (
-	SET srcFile=%1
+	REM ECHO path0: %~dpn0
+	REM ECHO path1: %~dpn1
+	REM ECHO path1: %~dpnx1
+	REM ECHO path1: %~dpx1
+	REM ECHO path1: %~dp0
+	SET srcFile=%~dp0%1
 ) else (
 	set srcFile=rsg2_getGallery.http
 )
 
 REM source path
 Call :AddNextArg -s %srcFile%
+
 
 REM --- destination file and folder ---------------------------------
 

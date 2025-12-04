@@ -23,6 +23,7 @@ if "%1" NEQ "" (
 REM Call transformation on each matching file
 REM for /f %%f in ('dir /b *.tsk	') do ( 
 
+REM for %%i in (%~dpnx1\*.tsk) do CALL :tsk2httpFile %%i
 for %%i in (*.tsk) do CALL :tsk2httpFile %%i
 
 @ECHO -----------------------------------------------

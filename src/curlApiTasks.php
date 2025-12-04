@@ -5,6 +5,7 @@ namespace Finnern\apiByCurlHtml\src;
 use Finnern\apiByCurlHtml\src\curl_tasks\deleteCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\getCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\patchCurlTask;
+use Finnern\apiByCurlHtml\src\curl_tasks\postCurlTask;
 use Finnern\apiByCurlHtml\src\curl_tasks\putCurlTask;
 use Finnern\apiByCurlHtml\src\fileNamesLib\fileNamesList;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
@@ -136,11 +137,11 @@ class curlApiTasks
 
                         break;
 
-//                    case strtolower('post'):
-//                        $this->curlTask = $this->createTask(new posCurlTask(), $textTask);
-//                        // run task
-//                        $hasError = $this->actTask->execute();
-//                        break;
+                    case strtolower('post'):
+                        $this->actTask = $this->createTask(new postCurlTask(), $textTask);
+                        // run task
+                        $hasError = $this->actTask->execute();
+                        break;
 
                     case strtolower('patch'):
                         $this->actTask = $this->createTask(new patchCurlTask(), $textTask);
