@@ -159,22 +159,29 @@ class options
             // multiple: /optionName or /optionName=value or /optionName="optionValue"
             while ($this->hasOptionChar($optionsString))
             {
-
                 // --- scan end of option -------------------------------
 
                 // first find '=' then check for '"' .
                 $idxEqual = strpos($optionsString, "=");
 
-                # value found ?
+                # '=' value found ?
                 if ($idxEqual)
                 {
-
-                    $quotation = $optionsString[$idxEqual + 1];
-
-                    // check for '"'
-                    if (in_array($quotation, array('"', '\'')))
+                    // string doesn't stop after '='
+                    if (strlen($optionsString) > $idxEqual + 1)
                     {
-                        $idxEnd = strpos($optionsString, $quotation, $idxEqual + 2);
+                        $quotation = $optionsString[$idxEqual + 1];
+
+
+                        // check for '"'
+                        if (in_array($quotation, array('"', '\'')))
+                        {
+                            $idxEnd = strpos($optionsString, $quotation, $idxEqual + 2);
+                        }
+                        else
+                        {
+                            $idxEnd = strpos($optionsString, " ");
+                        }
                     }
                     else
                     {
