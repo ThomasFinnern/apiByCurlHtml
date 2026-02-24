@@ -30,6 +30,11 @@ class baseCurlTask extends baseExecuteTasks
     public string $accept = "application/vnd.api+json";
     public string $contentType = "application/json";
     public string $responseFile = "";
+
+    //public \stdClass $params;
+    public $params = [];
+    public string $paramsFile = "";
+
     public string $dataFile = "";
     public eDataFileType $dataFileType = eDataFileType::json;
     protected string $httpFile = "";
@@ -60,10 +65,12 @@ class baseCurlTask extends baseExecuteTasks
 
             $this->oCurl = curl_init();
 
+            // $this->params = new \stdClass();
+
         }
         catch (Exception $e)
         {
-            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
     }
@@ -126,6 +133,26 @@ class baseCurlTask extends baseExecuteTasks
                 $this->responseFile = $option->value;;
                 $isBaseOption = true;
                 break;
+
+
+            case strtolower('param'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+
+//                $this->params[] = $option->value;
+                $paramJson = json_decode('{' . $option->value . '}');
+                foreach ($paramJson as $key => $value)
+                {
+                    $this->params[$key] = $value;
+                }
+                $isBaseOption = true;
+                break;
+
+            case strtolower('paramsFile'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->paramsFile = $option->value;
+                $isBaseOption     = true;
+                break;
+
 
             case strtolower('dataFile'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
@@ -294,38 +321,39 @@ class baseCurlTask extends baseExecuteTasks
         {
             //--- json output -----------------------------------------
 
-            if ($this->dataFileType == eDataFileType::json)
-            {
-                $isOk   = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
-                $OutTxt = "setDataString finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
-                // ToDo: show variables
-                // $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl . "'" . PHP_EOL;
-                $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;
+//            if ($this->dataFileType == eDataFileType::json)
+//            {
+            $isOk   = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
+            $OutTxt = "setDataString finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
+            // ToDo: show variables
+            // $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl . "'" . PHP_EOL;
+            $OutTxt .= "   DataString: '" . substr($dataString, 0, 240) . "'" . PHP_EOL;
 
-                //  ToDo: count lines in DataString ('\n'?) : On only one beautify and print ...
-                // $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;
-                print ($OutTxt);
-            }
-            else
-            {
-                //--- base64 output -----------------------------------------
-
-                if ($this->dataFileType == eDataFileType::base64)
-                {
-                    $isOk   = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
-
-                    $OutTxt = "setDataString finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
-                    $OutTxt .= "   DataString: '" . substr($dataString, 0, 40) . "'" . PHP_EOL;
-                    print ($OutTxt);
-                }
-                else {
-
-                    $OutTxt = "!!! Error: Wrong dataFiletype " . $this->dataFileType . PHP_EOL;
-                    print ($OutTxt);
-
-
-                }
-            }
+            //  ToDo: count lines in DataString ('\n'?) : On only one beautify and print ...
+            // $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;
+            print ($OutTxt);
+//            }
+//            else
+//            {
+//                //--- base64 output -----------------------------------------
+//
+//                if ($this->dataFileType == eDataFileType::base64)
+//                {
+//                    $isOk = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
+//
+//                    $OutTxt = "setDataString finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
+//                    $OutTxt .= "   DataString: '" . substr($dataString, 0, 40) . "'" . PHP_EOL;
+//                    print ($OutTxt);
+//                }
+//                else
+//                {
+//
+//                    $OutTxt = "!!! Error: Wrong dataFiletype " . $this->dataFileType->value . PHP_EOL;
+//                    print ($OutTxt);
+//
+//
+//                }
+//            }
         }
     }
 
@@ -530,7 +558,7 @@ class baseCurlTask extends baseExecuteTasks
                     // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
                     $mimeType = mime_content_type($this->dataFile);
-                    $OutTxt = "   mimeType: '" . $mimeType . "'" . PHP_EOL;
+                    $OutTxt   = "   mimeType: '" . $mimeType . "'" . PHP_EOL;
                     print ($OutTxt);
 
                     $fileDataIn = file_get_contents($this->dataFile);
@@ -544,5 +572,113 @@ class baseCurlTask extends baseExecuteTasks
 
         return $fileData;
     }
+
+    // data for gallery
+//        $data = [
+//            'parent_id' => '0',
+//            'access' => '1',
+//            'name' => 'By API',
+//            'note'=> "",
+//            'published' => '1',
+//        ];
+//
+//        $dataString = json_encode($data);
+
+    protected function collectParamAndContent()
+    {
+        $dataString = '';
+
+        try
+        {
+            if (!empty($this->paramsFile))
+            {
+                $this->assignParamsFromFile();
+            }
+
+            if (!empty($this->dataFile))
+            {
+                $this->assignContentFromFile();
+            }
+
+            $dataString = json_encode($this->params);
+
+            json_encode($this->params, JSON_PRETTY_PRINT);
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
+
+        return $dataString;
+    }
+
+    // {
+    //    "parent_id": 1,
+    //    "access": 1,
+    //    "name": "By API 03",
+    //    "note": "",
+    //    "published": 1
+    //}
+
+    /**
+     * @return void
+     */
+    public function assignParamsFromFile(): void
+    {
+        try
+        {
+            if (is_file($this->paramsFile))
+            {
+                $OutTxt = "   paramsFile: '" . $this->paramsFile . "'" . PHP_EOL;
+                print ($OutTxt);
+
+                $jsonStringIn = file_get_contents($this->paramsFile);
+
+                // replace PHP_EOL
+                $jsonData = json_decode($jsonStringIn, true);
+
+                foreach ($jsonData as $key => $value)
+                {
+                    $this->params[$key] = $value;
+                }
+            }
+            else
+            {
+                echo '!!! Error: assignParamsFromFile file does not exist: "' . $this->paramsFile . '"' . PHP_EOL;
+            }
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
+
+    }
+
+    /**
+     *
+     *
+     *
+     * @return void
+     */
+    public function assignContentFromFile(): void
+    {
+
+        try
+        {
+            if (is_file($this->dataFile))
+            {
+                $fileData   = file_get_contents($this->dataFile);
+                $base64Data = base64_encode($fileData);
+
+                $this->params['content'] = $base64Data;
+            }
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
+
+    }
+
 
 } // class

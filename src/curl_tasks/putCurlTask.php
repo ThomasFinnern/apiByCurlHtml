@@ -40,7 +40,7 @@ class putCurlTask extends baseCurlTask implements executeTasksInterface
         }
         catch (Exception $e)
         {
-            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
     }
@@ -123,6 +123,7 @@ class putCurlTask extends baseCurlTask implements executeTasksInterface
             // How is it done in manual.joomla.org ..
 
 
+//            $this->setRequest('PUT');   // not supported by joomla ? so use post
             $this->setRequest('POST');
 
             $this->setUrl();

@@ -40,7 +40,7 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
         }
         catch (Exception $e)
         {
-            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
     }
@@ -103,18 +103,8 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
 
         // ToDo: Error on missing token
 
-        // data for gallery
-//        $data = [
-//            'parent_id' => '0',
-//            'access' => '1',
-//            'name' => 'By API',
-//            'note'=> "",
-//            'published' => '1',
-//        ];
-//
-//        $dataString = json_encode($data);
 
-        $dataString = $this->readDataFile();
+        $dataString = $this->collectParamAndContent();
 
         if ($this->oCurl)
         {
