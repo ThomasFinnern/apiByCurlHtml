@@ -66,7 +66,7 @@ class http2tskFile extends baseExecuteTasks
         }
         catch (Exception $e)
         {
-            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
@@ -468,7 +468,7 @@ class http2tskFile extends baseExecuteTasks
 //            $this->manifestFile = $manifestFile;
 //
 //        } catch (Exception $e) {
-//            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+//            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
 //            $hasError = -101;
 //        }
 //
@@ -521,7 +521,7 @@ class http2tskFile extends baseExecuteTasks
 //            }
 //
 //        } catch (Exception $e) {
-//            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+//            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
 //            $hasError = -101;
 //        }
 //    }

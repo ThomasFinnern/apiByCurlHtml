@@ -66,7 +66,7 @@ class CurlApi_HttpCall extends baseExecuteTasks //
         }
         catch (Exception $e)
         {
-            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
         // print('exit __construct: ' . $hasError . PHP_EOL);
@@ -266,7 +266,7 @@ class CurlApi_HttpCall extends baseExecuteTasks //
         }
         catch (Exception $e)
         {
-            echo 'Message: ' . $e->getMessage() . PHP_EOL;
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
 
