@@ -134,11 +134,9 @@ class baseCurlTask extends baseExecuteTasks
                 $isBaseOption = true;
                 break;
 
-
             case strtolower('param'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
-//                $this->params[] = $option->value;
                 $paramJson = json_decode('{' . $option->value . '}');
                 foreach ($paramJson as $key => $value)
                 {
