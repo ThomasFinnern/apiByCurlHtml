@@ -9,6 +9,13 @@ use Finnern\apiByCurlHtml\src\tasksLib\option;
 
 //use Finnern\apiByCurlHtml\src\tasksLib\option;
 
+enum eDataFileType: string
+{
+    case json = 'json';
+    case base64 = 'base64';
+}
+
+
 /**
  * Base class prepares for filename list
  */
@@ -24,8 +31,9 @@ class baseCurlTask extends baseExecuteTasks
     public string $contentType = "application/json";
     public string $responseFile = "";
     public string $dataFile = "";
+    public eDataFileType $dataFileType = eDataFileType::json;
     protected string $httpFile = "";
-protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
+    protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
     protected string $page_limit = ""; // page[limit] => page%5Blimit%5D
 
 // ToDo:    protected array $urlParams = [];  // list of additional parameters multiple lines  of test01=1]
@@ -123,6 +131,13 @@ protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dataFile = $option->value;
                 $isBaseOption   = true;
+                break;
+
+            case strtolower('dataFileType'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+//                $this->dataFileType = $option->value;
+                $this->dataFileType = eDataFileType::tryFrom(strtolower($option->value)) ?? eDataFileType::json;
+                $isBaseOption       = true;
                 break;
 
             case strtolower('page_offset'):
@@ -277,18 +292,40 @@ protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
     {
         if ($this->oCurl)
         {
+            //--- json output -----------------------------------------
 
-            $isOk = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
+            if ($this->dataFileType == eDataFileType::json)
+            {
+                $isOk   = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
+                $OutTxt = "setDataString finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
+                // ToDo: show variables
+                // $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl . "'" . PHP_EOL;
+                $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;
+
+                //  ToDo: count lines in DataString ('\n'?) : On only one beautify and print ...
+                // $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;
+                print ($OutTxt);
+            }
+            else
+            {
+                //--- base64 output -----------------------------------------
+
+                if ($this->dataFileType == eDataFileType::base64)
+                {
+                    $isOk   = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
+
+                    $OutTxt = "setDataString finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
+                    $OutTxt .= "   DataString: '" . substr($dataString, 0, 40) . "'" . PHP_EOL;
+                    print ($OutTxt);
+                }
+                else {
+
+                    $OutTxt = "!!! Error: Wrong dataFiletype " . $this->dataFileType . PHP_EOL;
+                    print ($OutTxt);
 
 
-            $OutTxt = "setData finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
-            // ToDo: show variables
-            // $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl . "'" . PHP_EOL;
-            $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;
-
-            //  ToDo: count lines in DataString ('\n'?) : On only one beautify and print ...
-            $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;
-            print ($OutTxt);
+                }
+            }
         }
     }
 
@@ -458,22 +495,54 @@ protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
         return $responseFile;
     }
 
-    protected function readDataFile()
+    protected function readDataFile(): string
     {
-        $jsonString = false;
+        $fileData = "";
 
         if (is_file($this->dataFile))
         {
-            $jsonStringIn = file_get_contents($this->dataFile);
+            $OutTxt = "   dataFile: '" . $this->dataFile . "'" . PHP_EOL;
+            print ($OutTxt);
 
-            // replace PHP_EOL
-            $jsonData   = json_decode($jsonStringIn, true);
-            $jsonString = json_encode($jsonData);
 
-            $jsonStringPretty = json_encode($jsonData, JSON_PRETTY_PRINT);
+            if ($this->dataFileType == eDataFileType::json)
+            {
+                $jsonStringIn = file_get_contents($this->dataFile);
+
+                // replace PHP_EOL
+                $jsonData   = json_decode($jsonStringIn, true);
+                $jsonString = json_encode($jsonData);
+
+                $jsonStringPretty = json_encode($jsonData, JSON_PRETTY_PRINT);
+
+                $fileData = $jsonStringPretty;
+                // $fileData = $jsonString;
+            }
+            else
+            {
+
+                if ($this->dataFileType == eDataFileType::base64)
+                {
+                    // ToDo: use pathinfo ?
+                    // $path = 'myfolder/myimage.png';
+                    // $type = pathinfo($path, PATHINFO_EXTENSION);
+                    // $data = file_get_contents($path);
+                    // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+                    $mimeType = mime_content_type($this->dataFile);
+                    $OutTxt = "   mimeType: '" . $mimeType . "'" . PHP_EOL;
+                    print ($OutTxt);
+
+                    $fileDataIn = file_get_contents($this->dataFile);
+
+                    $base64Data = 'data:image/' . $mimeType . ';base64,' . base64_encode($fileDataIn);
+
+                    $fileData = $base64Data;
+                }
+            }
         }
 
-        return $jsonString;
+        return $fileData;
     }
 
 } // class

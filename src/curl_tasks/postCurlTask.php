@@ -100,7 +100,7 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
         $hasError = 0;
 
         print('*********************************************************' . PHP_EOL);
-        print("Execute putCurlTask: " . PHP_EOL);
+        print("Execute postCurlTask: " . PHP_EOL);
         print('---------------------------------------------------------' . PHP_EOL);
 
         // ToDo: Error on missing token
@@ -179,7 +179,7 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
         {
 
             print('---------------------------------------------------------' . PHP_EOL);
-            print("putCurlTask:execute: oCurl is not defined" . PHP_EOL);
+            print("postCurlTask:execute: oCurl is not defined" . PHP_EOL);
             print('---------------------------------------------------------' . PHP_EOL);
 
         }
@@ -198,7 +198,7 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
         $ident = "   ";
 
         $OutTxt = "------------------------------------------" . PHP_EOL;
-        $OutTxt .= "--- putCurlTask --------" . PHP_EOL;
+        $OutTxt .= "--- postCurlTask --------" . PHP_EOL;
 
 //        $OutTxt .= "Not defined yet " . PHP_EOL;
 
