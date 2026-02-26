@@ -13,7 +13,7 @@ if "%1" NEQ "" (
 	SET dstPath=%1
 ) else (
     REM set dstPath=""
-    set dstPath=d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_http_files
+    set dstPath=d:\Entwickl\2026\_gitHub\apiByCurlHtml\src\curl_http_files
 )
 
 

@@ -42,7 +42,7 @@ if "%2" NEQ "" (
 	SET dstFileOrPath=%2
 ) else (
     REM set dstFileOrPath=""
-    set dstFileOrPath=d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\curl_http_files
+    set dstFileOrPath=d:\Entwickl\2026\_gitHub\apiByCurlHtml\src\curl_http_files
 )
 
 REM source path
