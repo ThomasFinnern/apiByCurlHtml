@@ -5,6 +5,7 @@ namespace Finnern\apiByCurlHtml\src\curl_tasks;
 use Exception;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
+use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 /**
  * put curl class
@@ -37,8 +38,6 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
 
             parent::__construct();
 
-            $this->contentType = "multipart/form-data";
-
         }
         catch (Exception $e)
         {
@@ -48,7 +47,7 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
     }
 
 
-    public function assignTask(\Finnern\apiByCurlHtml\src\tasksLib\task $task): int
+    public function assignTask(task $task): int
     {
         $this->taskName = $task->name;
 
@@ -105,7 +104,8 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
 
         // ToDo: Error on missing token
 
-        $dataString = $this->collectParamAndContent();
+        $this->prepareDataFromFiles();
+        $jsonPara = $this->convertParams2Json();
 
         if ($this->oCurl)
         {
@@ -113,9 +113,9 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
             $this->setRequest('POST');
 
             $this->setUrl();
-            $this->setHeaders('Content-Length: ' . mb_strlen($dataString));
+            $this->setHeaders('Content-Length: ' . mb_strlen($jsonPara));
             $this->setStandardOptions();
-            $this->setDataString($dataString);
+            $this->setDataString($jsonPara);
 
             $response = curl_exec($this->oCurl);
 

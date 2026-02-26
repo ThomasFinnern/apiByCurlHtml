@@ -11,7 +11,7 @@ use Finnern\apiByCurlHtml\src\fileNamesLib\fileNamesList;
 /**
  * Not used originated from buildExtension project
  */
-class baseExecuteTasks
+class baseExecuteTasks extends task implements executeTasksInterface
 {
     // task name
     public string $taskName = '????';
@@ -27,8 +27,11 @@ class baseExecuteTasks
 
     public function __construct(string $srcRoot = "", bool $isNoRecursion = false)
     {
+        parent::__construct();
+
         try
         {
+
 //            print('*********************************************************' . PHP_EOL);
 //            print ("srcRoot: " . $srcRoot . PHP_EOL);
 //            print ("yearText: " . $yearText . PHP_EOL);
@@ -152,6 +155,19 @@ class baseExecuteTasks
         $this->execute();
 
         return 0;
+    }
+
+
+    public function execute(): int
+    {
+        // TODO: Implement execute() method.
+        return -1;
+    }
+
+    public function text(): string
+    {
+        // TODO: Implement text() method.
+        return "Not implemented yet";
     }
 
 

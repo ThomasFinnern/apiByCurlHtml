@@ -113,10 +113,10 @@ class CurlApi_HttpCall extends baseExecuteTasks //
                 $this->oCurlTask = new putCurlTask();
                 break;
 
-//            case strtolower('post'):
-//                $this->curlTask = new putCurlTask();
-//                //$this->buildPlugin();
-//                break;
+            case strtolower('post'):
+                $this->oCurlTask = new postCurlTask();
+                //$this->buildPlugin();
+                break;
 
             case strtolower('patch'):
                 $this->oCurlTask = new patchCurlTask();

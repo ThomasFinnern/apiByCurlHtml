@@ -103,8 +103,8 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
 
         // ToDo: Error on missing token
 
-
-        $dataString = $this->collectParamAndContent();
+        $this->prepareDataFromFiles();
+        $jsonPara = $this->convertParams2Json();
 
         if ($this->oCurl)
         {
@@ -112,9 +112,9 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
             $this->setRequest('PATCH');
 
             $this->setUrl();
-            $this->setHeaders('Content-Length: ' . mb_strlen($dataString));
+            $this->setHeaders('Content-Length: ' . mb_strlen($jsonPara));
             $this->setStandardOptions();
-            $this->setDataString($dataString);
+            $this->setDataString($jsonPara);
 
             $response = curl_exec($this->oCurl);
 

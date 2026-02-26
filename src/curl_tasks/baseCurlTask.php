@@ -52,6 +52,9 @@ class baseCurlTask extends baseExecuteTasks
 
     protected \curlHandle|false $oCurl;
 
+    //  file lines
+    protected array $lines = [];
+
     /*--------------------------------------------------------------------
     construction
     --------------------------------------------------------------------*/
@@ -433,7 +436,7 @@ class baseCurlTask extends baseExecuteTasks
 
     /**
      * use given token file or find file from given token
-     * @return string  '' if not fouind
+     * @return string  '' if not found
      */
     public function getTokenFile(): string
     {
@@ -582,12 +585,20 @@ class baseCurlTask extends baseExecuteTasks
 //
 //        $dataString = json_encode($data);
 
-    protected function collectParamAndContent()
+    protected function prepareDataFromFiles(): void
     {
-        $dataString = '';
-
         try
         {
+            //--- prepare data from files ------------------------------------
+
+            // X-token from file
+            if (!empty ($this->joomlaTokenFile) && empty($this->joomlaToken))
+            {
+                // $this->getTokenFile();
+                $this->joomlaToken     = $this->readTokenFromFile($this->joomlaTokenFile);
+            }
+
+            // params from file
             if (!empty($this->paramsFile))
             {
                 $this->assignParamsFromFile();
@@ -598,9 +609,24 @@ class baseCurlTask extends baseExecuteTasks
                 $this->assignContentFromFile();
             }
 
-            $dataString = json_encode($this->params);
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
 
-            json_encode($this->params, JSON_PRETTY_PRINT);
+    }
+
+    protected function convertParams2Json(): string
+    {
+        $dataString = '';
+
+        try
+        {
+            //--- prepare json data  ------------------------------------
+
+            $dataString = json_encode($this->params, JSON_PRETTY_PRINT);
+            //$dataString = json_encode($this->params);
         }
         catch (Exception $e)
         {
@@ -678,5 +704,50 @@ class baseCurlTask extends baseExecuteTasks
 
     }
 
+    public function assignBaseCurlData(baseCurlTask $srcData)
+    {
+        $this->taskName = $srcData->taskName;
+
+        $this->baseUrl = $srcData->baseUrl;
+
+        $this->apiPath         = $srcData->apiPath;
+        $this->joomlaToken     = $srcData->joomlaToken;
+        $this->joomlaTokenFile = $srcData->joomlaTokenFile;
+        $this->accept          = $srcData->accept;
+        $this->contentType     = $srcData->contentType;
+        $this->responseFile    = $srcData->responseFile;
+
+        $this->params     = $srcData->params;
+        $this->paramsFile = $srcData->paramsFile;
+
+        $this->dataFile     = $srcData->dataFile;
+        $this->dataFileType = $srcData->dataFileType;
+        $this->httpFile     = $srcData->httpFile;
+        $this->page_offset  = $srcData->page_offset;
+        $this->page_limit   = $srcData->page_limit;
+
+        $this->oCurl = $srcData->oCurl;
+
+    }
+
+    public function writeFile(string $fileName = '', $lines = []): int
+    {
+        if (empty($fileName))
+        {
+            $fileName = $this->filePathName;
+        }
+
+        if (empty($lines))
+        {
+            $lines = $this->lines;
+        }
+
+        $content = implode(PHP_EOL, $lines);
+
+        file_put_contents($fileName, $content);
+
+        // ToDo: try catch , return $hasError
+        return 0;
+    }
 
 } // class

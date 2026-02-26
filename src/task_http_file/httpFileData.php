@@ -2,8 +2,9 @@
 
 namespace Finnern\apiByCurlHtml\src\task_http_file;
 
+use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 
-class httpFileData extends baseHttpFileData
+class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
 {
     //--- http php debug file content --------------------
     // file: galleriesGet.http
@@ -15,10 +16,8 @@ class httpFileData extends baseHttpFileData
     // X-Joomla-Token: "c2hhMjU2OjI5MzphYTZhMTcwZTY2ODM1MTZhMmNiYzlkZDg0NjE5NzkxYTZkYThhNTJjODFhZTVkNWViYmZmMjljMmY2ZTQ4NGYz"
     //-----------------------------------------------------
 
-    public string $baseUrl = '';
-    public string $apiPath = "";
+    protected string $filePathName;
 
-    public string $command = '';
     public string $dataFile = '';
 
     public string $accept = "application/vnd.api+json";
@@ -27,10 +26,6 @@ class httpFileData extends baseHttpFileData
     public string $joomlaToken = "";
 
     // ToDo: joomla token file
-
-//    public string $command = '';
-//    public string $command = '';
-//    public string $command = '';
 
     public function __construct($fileName = "", $isTarget = false)
     {
@@ -69,21 +64,31 @@ class httpFileData extends baseHttpFileData
 
     public function createFileLines(): array
     {
+        //--- prepare json data  ------------------------------------
+
+        $this->prepareDataFromFiles();
+
+        //--- create lines ----------------------------------------------
+
         $lines = [];
 
         $lines[] = '###';
-        $lines[] = $this->command . ' ' . $this->apiPath();
+        $lines[] = strtoupper($this->taskName) . ' ' . $this->apiPath();
         $lines[] = 'Accept: ' . $this->accept;
         $lines[] = 'Content-Type: ' . $this->contentType;
         $lines[] = 'X-Joomla-Token: ' . $this->joomlaToken;
 
-        if (strtolower($this->command) == 'put' || strtolower($this->command) == 'patch')
+        if (!empty ($this->params))
         {
-            if ($this->dataFile != '')
-            {
-                $lines[] = "\n" . '> ' . $this->dataFile;
-            }
+            $jsonPara = $this->convertParams2Json();
+            $lines[]  = "\n" . $jsonPara;
         }
+
+        if (empty($this->responseFile))
+        {
+            $this->responseFile = substr($this->filePathName, 0,-5) . '.json';
+        }
+        $lines[] = "\n" . '> ' . $this->responseFile;
 
         $this->lines = $lines;
 
@@ -169,7 +174,7 @@ class httpFileData extends baseHttpFileData
             {
                 $isCommand = true;
 
-                $this->command = trim($parts[0]);
+                $this->taskName = trim($parts[0]);
 
                 // url
                 if (count($parts) > 1)
@@ -209,7 +214,7 @@ class httpFileData extends baseHttpFileData
             }
         }
 
-        print ('$cmd: "' . $this->command . '"' . PHP_EOL);
+        print ('$cmd: "' . $this->taskName . '"' . PHP_EOL);
         print ('$url: "' . $this->apiPath() . '"' . PHP_EOL);
         print ('$accept: "' . $this->accept . '"' . PHP_EOL);
         print ('$contentType: "' . $this->contentType . '"' . PHP_EOL);
@@ -221,7 +226,7 @@ class httpFileData extends baseHttpFileData
     private function assignBaseAndApiPath(string $url)
     {
         $this->baseUrl = '';
-        $this->apiPath = '';
+//        $this->apiPath = '';
 
         $search = 'api/index.php';
         $len    = strlen($search);
@@ -231,7 +236,7 @@ class httpFileData extends baseHttpFileData
         {
 
             $this->baseUrl = substr($url, 0, $idx + $len);
-            $this->apiPath = substr($url, $idx + $len + 1);
+//            $this->apiPath = substr($url, $idx + $len + 1);
         }
 
     }
@@ -242,6 +247,33 @@ class httpFileData extends baseHttpFileData
 
         return $apiPath;
     }
+
+    protected function readFile(string $fileName = ''): int
+    {
+        if (empty($fileName))
+        {
+            $fileName = $this->filePathName;
+        }
+
+        if (!is_file($fileName))
+        {
+
+            print ('File not found: ' . $fileName . "\n");
+            print ('File not found: ' . realpath($fileName) . "\n");
+
+            return -789;
+        }
+
+        $content = file_get_contents($fileName); //Get the file
+        $lines   = explode("\n", $content); //Split the file by each line
+
+        $this->extractFileData($lines);
+
+        // ToDo: try catch , return $hasError
+        return 0;
+    }
+
+
 }
 
 

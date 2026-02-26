@@ -6,7 +6,9 @@ use Exception;
 use Finnern\apiByCurlHtml\src\lib\AutoSrcDstPathFileNames;
 use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
+use Finnern\apiByCurlHtml\src\tasksLib\options;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
+use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 
 $HELP_MSG = <<<EOT
     >>>
@@ -25,18 +27,13 @@ Class apiByCurlHtml
 class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
 {
     // internal
-    public task $task;
+    //public task $task;
     public bool $hasError;
     private string $srcPath = '';
     private string $srcFile = '';
     private string $dstPath = '';
     private string $dstFile = '';
     private string $dstExtension = '';
-    private string $responseFile = '';
-    private string $joomlaTokenFile = '';
-
-//    private tskFileData $tskFileData;
-//    private tskFileData $httpFileData;
 
 
     /*--------------------------------------------------------------------
@@ -61,7 +58,7 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
 //            $this->srcFile = $srcFile;
 //            $this->dstFile = $dstFile;
 
-            $this->task     = new task();
+//            $this->task     = new task();
             $this->hasError = false;
 
 
@@ -74,25 +71,25 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
         // print('exit __construct: ' . $hasError . PHP_EOL);
     }
 
-    // Task name with options
-    public function assignTask(task $task): int
+    /**
+     * @param   options  $options
+     * @param   task     $task
+     *
+     * @return bool
+     */
+    public function assignOptions(options $options, $taskName): int
     {
-        $isBaseOption = false;
-
-        $options = $task->options;
+    // Task name with options
+//    public function assignTask(task $task): int
+ //   {
 
         foreach ($options->options as $option)
         {
-
-//            $isBaseOption = $this->assignBaseOption($option);
-//
-////            if (!$isBaseOption && !$isVersionOption) {
-//            if (!$isBaseOption && !$isManifestOption) {
-//            if (!$isBaseOption) {
-
-            $this->assignLocalOption($option);
-            // $OutTxt .= $task->text() . PHP_EOL;
-//            }
+            $isParentOption = parent::assignOption($option);
+            if (!$isParentOption)
+            {
+                $this->assignLocalOption($option);
+            }
         }
 
         return 0;
@@ -147,20 +144,6 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
                 $isLocalExtensionOption = true;
                 break;
 
-            // com_rsgallery2'
-            case strtolower('joomlaTokenFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->joomlaTokenFile  = $option->value;
-                $isLocalExtensionOption = true;
-                break;
-
-            // com_rsgallery2'
-            case strtolower('responseFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->responseFile     = $option->value;
-                $isLocalExtensionOption = true;
-                break;
-
             default:
                 print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . PHP_EOL);
         } // switch
@@ -177,7 +160,7 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
         print('---------------------------------------------------------' . PHP_EOL);
 
 
-        switch (strtolower($this->task->name))
+        switch (strtolower($this->taskName))
         {
             case strtolower('tsk2httpFile'):
                 $hasError = $this->tsk2httpFile();
@@ -190,7 +173,7 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
                 break;
 
             default:
-                print ('!!! Task name: "' . $this->task->name . '" not supported !!!' . PHP_EOL);
+                print ('!!! Task name: "' . $this->taskName . '" not supported !!!' . PHP_EOL);
                 $hasError = true;
         } // switch
 
@@ -209,7 +192,7 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
             //--- transform data ----------------------------------------
 
             print ("------------------------------------------" . PHP_EOL);
-            print ("--- transform data tsk 2 http-------------" . PHP_EOL);
+            print ("--- transform tsk data 2 http-------------" . PHP_EOL);
             print ("------------------------------------------" . PHP_EOL);
 
             //--- read files data -----------------------
@@ -219,41 +202,22 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
             $tskFileData  = new tskFileData($srcPath); // calls extract data
             $httpFileData = new httpFileData($dstPath, true);
 
-            //--- retrieve ---------------------------------
+            //--- transfer data ---------------------------------
 
-            print (">>get tskFileData: " . PHP_EOL);
+            print (">>transfer *.tsk data 2 http data: " . PHP_EOL);
 
-            $command     = strtoupper($tskFileData->taskName);
-            $accept      = $tskFileData->oBaseCurlTask->accept;
-            $contentType = $tskFileData->oBaseCurlTask->contentType;
-            $joomlaToken = $tskFileData->oBaseCurlTask->joomlaToken;
-            $dataFile    = $tskFileData->oBaseCurlTask->dataFile;
+            // $httpFileData->assignBaseCurlData((baseCurlTask) $tskFileData);
 
-            $baseUrl = $tskFileData->oBaseCurlTask->baseUrl;
-            $apiPath = $tskFileData->oBaseCurlTask->apiPath;
+            $httpFileData->assignBaseCurlData($tskFileData);
 
-            //--- store ---------------------------------
+            //--- local task data ---------------------------------
 
-            print (">>put httpFileData: " . PHP_EOL);
+            print (">>local task data 2 http data: " . PHP_EOL);
 
-            $httpFileData->command     = $command;
-            $httpFileData->accept      = $accept;
-            $httpFileData->contentType = $contentType;
-            $httpFileData->joomlaToken = $joomlaToken;
+//            $httpFileData->baseUrl = $baseUrl;
+//            $httpFileData->apiPath = $apiPath;
 
-            if (strtolower($command) == 'put' || strtolower($command) == 'patch')
-            {
-
-                if ($dataFile != '')
-                {
-                    $httpFileData->dataFile = $dataFile;
-                }
-            }
-
-            $httpFileData->baseUrl = $baseUrl;
-            $httpFileData->apiPath = $apiPath;
-
-            //--- save data -----------------------
+            //--- create and save data -----------------------
 
             print (">>save httpFileData: " . PHP_EOL);
 
@@ -320,7 +284,7 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
             //--- transform data ----------------------------------------
 
             print ("------------------------------------------" . PHP_EOL);
-            print ("--- transform data http 2 tsk ------------" . PHP_EOL);
+            print ("--- transform http data 2 tsk ------------" . PHP_EOL);
             print ("------------------------------------------" . PHP_EOL);
 
             //--- read files data -----------------------
@@ -330,33 +294,21 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
             $httpFileData = new httpFileData($srcPath);
             $tskFileData  = new tskFileData($dstPath, true);
 
-            //--- retrieve ---------------------------------
+            //--- transfer data ---------------------------------
 
-            print (">>get httpFileData: " . PHP_EOL);
+            print (">>transfer *.tsk data 2 http data: " . PHP_EOL);
 
-            $command     = $httpFileData->command;
-            $accept      = $httpFileData->accept;
-            $contentType = $httpFileData->contentType;
-            $joomlaToken = $httpFileData->joomlaToken;
+//            $tskFileData->assignBaseCurlData((baseCurlTask) $httpFileData);
+            $tskFileData->assignBaseCurlData($httpFileData);
 
-            $baseUrl = $httpFileData->baseUrl;
-            $apiPath = $httpFileData->apiPath;
+            //--- local task data ---------------------------------
 
-            //--- store ---------------------------------
+            print (">>local task data 2 http data: " . PHP_EOL);
 
-            print (">>put tskFileData: " . PHP_EOL);
+//            $httpFileData->baseUrl = $baseUrl;
+//            $httpFileData->apiPath = $apiPath;
 
-            $tskFileData->taskName                       = strtolower($command);
-            $tskFileData->oBaseCurlTask->accept          = $accept;
-            $tskFileData->oBaseCurlTask->contentType     = $contentType;
-            $tskFileData->oBaseCurlTask->joomlaToken     = $joomlaToken;
-            $tskFileData->oBaseCurlTask->joomlaTokenFile = $this->joomlaTokenFile;
-            $tskFileData->oBaseCurlTask->responseFile    = $this->responseFile;
-
-            $tskFileData->oBaseCurlTask->baseUrl = $baseUrl;
-            $tskFileData->oBaseCurlTask->apiPath = $apiPath;
-
-            //--- save data -----------------------
+            //--- create and save data -----------------------
 
             print (">>save tskFileData: " . PHP_EOL);
 

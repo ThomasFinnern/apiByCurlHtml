@@ -52,30 +52,48 @@ variables
 // $tasksLine = ' task:tsk2httpFile';
 
 //$tasksLine = ' task:tsk2httpFile'
-//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_tsk_files'
 //    . ' /srcFile="rsg2_getGallery.tsk"'
-//    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_http_files'
 //    . ' /dstFile="rsg2_getGallery.http"';
 
 
 //// ToDo:
 //$tasksLine = ' task:http2tskFile'
-//    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_tsk_files'
 //    . ' /srcFile="./../../rsg2_getGallery2.http"'
-//    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_http_files'
 //    . ' /dstFile="./../../rsg2_getGallery2.tsk"';
 
 //$tasksLine = ' task:tsk2httpFile'
-//    . ' /srcPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests'
+//    . ' /srcPath=d:\Entwickl\2026\_gitHub\JoomGallery_fith_dev\.apiTests'
 //    . ' /srcFile="jg_patchImage_title.tsk"'
-//    . ' /dstPath=d:\Entwickl\2025\_gitHub\JoomGallery_fith_dev\.apiTests\curl_http_files'
+//    . ' /dstPath=d:\Entwickl\2026\_gitHub\JoomGallery_fith_dev\.apiTests\curl_http_files'
 //    . ' /dstFile="jg_patchImage_title.http"';
 
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_tsk_files'
+//    . ' /srcFile="j!_getApiOverview.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_http_files'
+//    . ' /dstFile="j!_getApiOverview.http"';
+
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_tsk_files'
+//    . ' /srcFile="rsg2_putGallery.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/apiByCurlHtml/src/curl_http_files'
+//    . ' /dstFile="rsg2_putGallery.http"';
+
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="j!_post_file.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
+//    . ' /dstFile="j!_post_file.http"';
+
 $tasksLine = ' task:tsk2httpFile'
-    . ' /srcPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_tsk_files'
-    . ' /srcFile="j!_getApiOverview.tsk"'
-    . ' /dstPath=d:/Entwickl/2025/_gitHub/apiByCurlHtml/src/curl_http_files'
-    . ' /dstFile="j!_getApiOverview.http"';
+    . ' /srcPath=d:/Entwickl/2026/_gitHub/JoomGallery_fith_dev/.apiTests'
+    . ' /srcFile="jg_getCategory.tsk"'
+    . ' /dstPath=d:/Entwickl/2026/_gitHub/JoomGallery_fith_dev/.apiTests/curl_http_files'
+    . ' /dstFile="jg_getCategory.http"';
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGallery.tsk';
@@ -236,7 +254,7 @@ if (empty ($hasError))
 {
 
     $oTsk2HttpFile       = new tsk2httpFile();
-    $oTsk2HttpFile->task = $task;
+//    $oTsk2HttpFile->task = $task;
 
     //--- assign tasks ---------------------------------
 

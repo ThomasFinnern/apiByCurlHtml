@@ -103,18 +103,8 @@ class putCurlTask extends baseCurlTask implements executeTasksInterface
 
         // ToDo: Error on missing token
 
-        // data for gallery
-//        $data = [
-//            'parent_id' => '0',
-//            'access' => '1',
-//            'name' => 'By API',
-//            'note'=> "",
-//            'published' => '1',
-//        ];
-//
-//        $dataString = json_encode($data);
-
-        $dataString = $this->readDataFile();
+        $this->prepareDataFromFiles();
+        $jsonPara = $this->convertParams2Json();
 
         if ($this->oCurl)
         {
@@ -122,14 +112,13 @@ class putCurlTask extends baseCurlTask implements executeTasksInterface
             // ToDO: put should match get with single request
             // How is it done in manual.joomla.org ..
 
-
-//            $this->setRequest('PUT');   // not supported by joomla ? so use post
-            $this->setRequest('POST');
+            $this->setRequest('PUT');   // not supported by joomla ? so use post
+//            $this->setRequest('POST');
 
             $this->setUrl();
-            $this->setHeaders('Content-Length: ' . mb_strlen($dataString));
+            $this->setHeaders('Content-Length: ' . mb_strlen($jsonPara));
             $this->setStandardOptions();
-            $this->setDataString($dataString);
+            $this->setDataString($jsonPara);
 
             $response = curl_exec($this->oCurl);
 
