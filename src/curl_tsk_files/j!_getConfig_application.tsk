@@ -3,6 +3,6 @@ task:get
 	// /apiPath="v1/config/com_rsgallery2"
     // /apiPath="v1/config/application?public=true"
 /apiPath="v1/config/application?public=true"
-/joomlaTokenFile="d:\Entwickl\2025\_gitHub\xTokenFiles\token_joomla5x.txt"
-	// /responseFile="d:\Entwickl\2025\_gitHub\RSGallery2_J4_Dev\.apiTests\rsg2_getConfig.json"
+/joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
+	// /responseFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\rsg2_getConfig.json"
 /responseFile=""
