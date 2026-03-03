@@ -3,7 +3,7 @@
 namespace Finnern\apiByCurlHtml\src\task_http_file;
 
 use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
-use Finnern\apiByCurlHtml\src\curl_tasks\CurlApi_HttpCall;
+use Finnern\apiByCurlHtml\src\curl_tasks\curlApi_HttpCall;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 class tskFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask

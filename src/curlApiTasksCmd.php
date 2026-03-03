@@ -38,14 +38,14 @@ variables
 
 $collectedTasks = new tasks;
 
-$tasksLine = ' task:CurlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../../RSGallery2_J4"' //    . ' /isNoRecursion=true'
+$tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../../RSGallery2_J4"' //    . ' /isNoRecursion=true'
     . ' /buildDir="./../.packages"'//    . ' /adminPath='
 ;
 
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGallery.tsk';
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_putGallery.tsk';
-$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
+//$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getImages.tsk';
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getImage.tsk';
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_putImage.tsk';
@@ -74,10 +74,10 @@ $tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_postGallery.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_post_file.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_01_coffee.tsk';
-$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_02_lovelock.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_02_lovelock.tsk';
+$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig.tsk';
 
 $basePath = "..\\..\\RSGallery2_J4_Dev";
-
 
 foreach ($options as $idx => $option)
 {

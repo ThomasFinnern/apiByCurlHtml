@@ -1,7 +1,7 @@
 <?php
 
 /**
- * CurlApi_HttpCall
+ * curlApi_HttpCall
  * Uses options from a task (*.tsk) file and calls joomla api by given path
  *
  * It supports commands "get, post, put, delete, patch" as separate tasks
@@ -32,7 +32,7 @@ use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 $HELP_MSG = <<<EOT
     >>>
-    class CurlApi_HttpCall
+    class curlApi_HttpCall
 
     ToDo: option commands , example
 
@@ -41,10 +41,10 @@ $HELP_MSG = <<<EOT
 
 
 /*================================================================================
-Class CurlApi_HttpCall
+Class curlApi_HttpCall
 ================================================================================*/
 
-class CurlApi_HttpCall extends baseExecuteTasks //
+class curlApi_HttpCall extends baseExecuteTasks //
     implements executeTasksInterface
 {
     public baseCurlTask $oCurlTask;
@@ -57,7 +57,7 @@ class CurlApi_HttpCall extends baseExecuteTasks //
         try
         {
             print('*********************************************************' . PHP_EOL);
-            print ("Construct CurlApi_HttpCall: " . PHP_EOL);
+            print ("Construct curlApi_HttpCall: " . PHP_EOL);
             print('---------------------------------------------------------' . PHP_EOL);
 
             // fallback
@@ -185,7 +185,7 @@ class CurlApi_HttpCall extends baseExecuteTasks //
     public function text(): string
     {
         $OutTxt = "------------------------------------------" . PHP_EOL;
-        $OutTxt .= "--- CurlApi_HttpCall --------" . PHP_EOL;
+        $OutTxt .= "--- curlApi_HttpCall --------" . PHP_EOL;
 
 //        $OutTxt .= "Not defined yet " . PHP_EOL;
 
@@ -208,7 +208,7 @@ class CurlApi_HttpCall extends baseExecuteTasks //
     public function execute(): int
     {
         print('*********************************************************' . PHP_EOL);
-        print ("Execute CurlApi_HttpCall: " . PHP_EOL);
+        print ("Execute curlApi_HttpCall: " . PHP_EOL);
         print('---------------------------------------------------------' . PHP_EOL);
 
         $this->oCurlTask->execute();

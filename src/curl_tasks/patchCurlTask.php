@@ -109,6 +109,7 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
 
         if ($this->oCurl)
         {
+            //--- prepare curl params --------------------------------
 
             $this->setRequest('PATCH');
 
@@ -117,52 +118,15 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
             $this->setStandardOptions();
             $this->setDataString($jsonPara);
 
+            /*=============================================================
+            Curl call
+            =============================================================*/
+
             $response = curl_exec($this->oCurl);
 
-            // curl_errno — Return the last error number
-            $errorCode = curl_errno($this->oCurl);
+            //--- handle result -------------------------------------------
 
-            if ($errorCode == 0)
-            {
-                print('---------------------------------------------------------' . PHP_EOL);
-                print(">>> curl_exec with response: " . PHP_EOL);
-                // Attention response can be
-                // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
-                // "{"errors":[{"title":"Resource not found","code":404}]}
-
-                // ToDo: Format response
-                $oResponse = json_decode($response);
-                // $oResponse =  json_decode ($response->body);
-                // $oResponse =  json_decode ($response->data);
-
-                $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-                print($responseJsonBeautified . "\n");
-                print('---------------------------------------------------------' . PHP_EOL);
-                print(PHP_EOL);
-
-                if (!empty($this->responseFile))
-                {
-                    // ToDo: Response to file if requested
-                    //file_put_contents("results\\projects.json", $responseJsonBeautified);
-                    file_put_contents($this->responseFile, $responseJsonBeautified);
-                }
-            }
-            else
-            {
-                print('---------------------------------------------------------' . PHP_EOL);
-                // curl_error — Return a string containing the last error for the current session
-                $errorMessage = curl_error($this->oCurl);
-
-                print(PHP_EOL);
-                print("!!! curl_exec: has failed with error: '" . $errorCode . "' !!!" . PHP_EOL);
-                print("Message: '" . $errorMessage . "'" . PHP_EOL);
-                print('---------------------------------------------------------' . PHP_EOL);
-                print(PHP_EOL);
-            }
-
-            // PHP 8.5 deprecated, needs PHP 8.0
-            // curl_close($this->oCurl);
-
+            $this->handleJsonResult($response); // $this->oCurl
         }
         else
         {

@@ -108,6 +108,7 @@ class deleteCurlTask extends baseCurlTask implements executeTasksInterface
 
         if ($this->oCurl)
         {
+            //--- prepare curl params --------------------------------
 
             $this->setRequest('DELETE');
 
@@ -115,67 +116,76 @@ class deleteCurlTask extends baseCurlTask implements executeTasksInterface
             $this->setHeaders();
             $this->setStandardOptions();
 
-            $curl_call = new curl_call();
-
-            // prepare prints
-            $curl_task_texts = new curl_task_texts($curl_call);
-
-            // print start
-            print ($curl_task_texts->headerText());
+//            $curl_call = new curl_call();
+//
+//            // prepare prints
+//            $curl_task_texts = new curl_task_texts($curl_call);
+//
+//            // print start
+//            print ($curl_task_texts->headerText());
 
             //=============================================
             // call curl
             //============================================
 
-            $isHasErrors = $curl_call->curl_exec($this->oCurl);
+//            $isHasErrors = $curl_call->curl_exec($this->oCurl);
+            $response = curl_exec($this->oCurl);
 
-            // valid response
-            //if ($curl_call->errorCode == 0 && ! $curl_call->isJsonHasErrors) {
-            if (!$isHasErrors)
-            {
+            //--- handle result -------------------------------------------
 
-                if (!empty($this->responseFile))
-                {
-                    file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
-                }
+            $this->handleJsonResult($response); // $this->oCurl
 
-                print ($curl_task_texts->responseBeautifiedText());
 
-            }
-            else
-            {
+// >>> may be in following is something needed TDo: remove when delete has some tests
 
-                //--- invalid response --------------------------------
 
-                if (!empty($this->responseFile))
-                {
-                    if ($curl_call->isJsonHasErrors)
-                    {
-                        file_put_contents($this->responseFile, $curl_task_texts->responseCrLfText());
-                    }
-                    else
-                    {
-                        file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
-                    }
-                }
-
-                // print error stack in newlines
-                print ($curl_task_texts->responseCrLfText());
-
-                if ($curl_call->isJsonHasErrors)
-                {
-                    print ($curl_task_texts->jsonErrorsCrLfText());
-                }
-                else
-                {
-                    print ($curl_task_texts->jsonErrorsCrLfText());
-                }
-
-            }
-
-            // print end
-            print ($curl_task_texts->footerText());
-
+//            // valid response
+//            //if ($curl_call->errorCode == 0 && ! $curl_call->isJsonHasErrors) {
+//            if (!$isHasErrors)
+//            {
+//
+//                if (!empty($this->responseFile))
+//                {
+//                    file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
+//                }
+//
+//                print ($curl_task_texts->responseBeautifiedText());
+//
+//            }
+//            else
+//            {
+//
+//                //--- invalid response --------------------------------
+//
+//                if (!empty($this->responseFile))
+//                {
+//                    if ($curl_call->isJsonHasErrors)
+//                    {
+//                        file_put_contents($this->responseFile, $curl_task_texts->responseCrLfText());
+//                    }
+//                    else
+//                    {
+//                        file_put_contents($this->responseFile, $curl_call->responseJsonBeautified);
+//                    }
+//                }
+//
+//                // print error stack in newlines
+//                print ($curl_task_texts->responseCrLfText());
+//
+//                if ($curl_call->isJsonHasErrors)
+//                {
+//                    print ($curl_task_texts->jsonErrorsCrLfText());
+//                }
+//                else
+//                {
+//                    print ($curl_task_texts->jsonErrorsCrLfText());
+//                }
+//
+//            }
+//
+//            // print end
+//            print ($curl_task_texts->footerText());
+//
         }
         else
         {

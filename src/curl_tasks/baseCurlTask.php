@@ -595,7 +595,7 @@ class baseCurlTask extends baseExecuteTasks
             if (!empty ($this->joomlaTokenFile) && empty($this->joomlaToken))
             {
                 // $this->getTokenFile();
-                $this->joomlaToken     = $this->readTokenFromFile($this->joomlaTokenFile);
+                $this->joomlaToken = $this->readTokenFromFile($this->joomlaTokenFile);
             }
 
             // params from file
@@ -753,5 +753,117 @@ class baseCurlTask extends baseExecuteTasks
         // ToDo: try catch , return $hasError
         return 0;
     }
+
+
+    /**
+     * @param   string|null  $response
+     *
+     * @return array
+     */
+    public function extractResponse(string|null $response)
+    {
+        $response_json  = '{}';
+        $response_error = ""; // warning
+
+        if (!empty($response))
+        {
+            // Attention response can be
+            // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
+            // "{"errors":[{"title":"Resource not found","code":404}]}
+            // or
+            // <br />
+            // <b>Warning</b>:  array_flip(): Can only flip string and integer values, entry skipped in <b>E:\wamp64\www\joomla5x\libraries\src\Serializer\JoomlaSerializer.php</b> on line <b>85</b><br />
+
+            //--- find first { ----------------------------
+
+            // standard
+            if (str_starts_with($response, '{'))
+            {
+                $response_json = $response;
+            }
+            else
+            {
+                $parts = explode("\n{", $response, 2);
+
+                $response_error = $parts[0];
+                if (count($parts) > 1)
+                {
+                    $response_json = '{' . $parts[1];
+                }
+            }
+        }
+
+        return [$response_json, $response_error];
+    }
+
+    public function handleJsonResult(string|null $response)
+    {
+
+        // curl_errno — Return the last error number
+        $errorCode = curl_errno($this->oCurl);
+
+        if ($errorCode == 0)
+        {
+            print('---------------------------------------------------------' . PHP_EOL);
+            print(">>> curl_exec with response: " . PHP_EOL);
+
+            [$response_json, $response_error] = $this->extractResponse($response);
+
+            // response object
+            $oResponse = json_decode($response_json);
+
+            // Add J! warning/error peprepending the json part
+            if (!empty($response_error))
+            {
+                print('---------------------------------------------------------' . PHP_EOL);
+                print("!!! >>> Prepend text found (warning/error) !!!" . PHP_EOL);
+                print('"' . $response_error . '"' . PHP_EOL);
+
+                $oResponse->j_pre_comment = '!!! pre> "' . $response_error . '" <pre !!!';
+                print("!!! <<< Prepend text found (warning/error) !!!" . PHP_EOL);
+                print('---------------------------------------------------------' . PHP_EOL);
+                print(PHP_EOL);
+            }
+
+            // Format json pretty 
+            $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            print($responseJsonBeautified . PHP_EOL);
+            print('---------------------------------------------------------' . PHP_EOL);
+            print(PHP_EOL);
+
+            // create response file
+            if (!empty($this->responseFile))
+            {
+                file_put_contents($this->responseFile, $responseJsonBeautified);
+            }
+        }
+        else
+        {
+            print('---------------------------------------------------------' . PHP_EOL);
+            // curl_error — Return a string containing the last error for the current session
+            $errorMessage = curl_error($this->oCurl);
+
+            print(PHP_EOL);
+
+            $outTxt = "!!! curl_exec: has failed with error: '" . $errorCode . "' !!!" . PHP_EOL;
+            $outTxt .= "Message: '" . $errorMessage . "'" . PHP_EOL;
+
+            print ($outTxt);
+
+            print('---------------------------------------------------------' . PHP_EOL);
+            print(PHP_EOL);
+
+            // create response file
+            if (!empty($this->responseFile))
+            {
+                file_put_contents($this->responseFile, $outTxt);
+            }
+
+        }
+
+        // PHP 8.5 deprecated, needs PHP 8.0
+        // curl_close($this->oCurl);
+    }
+
 
 } // class

@@ -11,7 +11,7 @@ use Finnern\apiByCurlHtml\src\tasksLib\tasks;
 
 $HELP_MSG = <<<EOT
     >>>
-    class CurlApi_HttpCall
+    class curlApi_HttpCall
 
     ToDo: option commands , example
 
@@ -39,7 +39,7 @@ variables
 
 $collectedTasks = new tasks;
 
-$tasksLine = ' task:CurlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../../RSGallery2_J4"' //    . ' /isNoRecursion=true'
+$tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../../RSGallery2_J4"' //    . ' /isNoRecursion=true'
     . ' /buildDir="./../.packages"'//    . ' /adminPath='
 ;
 
@@ -214,7 +214,7 @@ print ($task->text());
 if (empty ($hasError))
 {
 
-    $oCurlApi_HttpCall = new CurlApi_HttpCall();
+    $oCurlApi_HttpCall = new curlApi_HttpCall();
 
     //--- assign tasks ---------------------------------
 
@@ -241,7 +241,7 @@ if (empty ($hasError))
 
 //	print ($oCurlApi_HttpCall->text() . PHP_EOL);
     print (PHP_EOL . '-----------------------------------' . PHP_EOL);
-    print ('... CurlApi_HttpCall finished .......' . PHP_EOL);
+    print ('... curlApi_HttpCall finished .......' . PHP_EOL);
 }
 
 commandLineLib::print_end($start);
