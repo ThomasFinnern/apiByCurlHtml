@@ -696,6 +696,10 @@ class baseCurlTask extends baseExecuteTasks
 
                 $this->params['content'] = $base64Data;
             }
+            else
+            {
+                echo '!!! Error: assignContentFromFile file does not exist: "' . $this->dataFile . '"' . PHP_EOL;
+            }
         }
         catch (Exception $e)
         {

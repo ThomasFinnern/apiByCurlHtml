@@ -5,6 +5,7 @@ namespace Finnern\apiByCurlHtml\src\curl_tasks;
 use Exception;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
+use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 /**
  * patch curl class
@@ -46,7 +47,7 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
     }
 
 
-    public function assignTask(\Finnern\apiByCurlHtml\src\tasksLib\task $task): int
+    public function assignTask(task $task): int
     {
         $this->taskName = $task->name;
 

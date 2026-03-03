@@ -72,7 +72,9 @@ $tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_putGallerySet_01.tsk';
 
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_postGallery.tsk';
-$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_post_file.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_post_file.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_01_coffee.tsk';
+$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_02_lovelock.tsk';
 
 $basePath = "..\\..\\RSGallery2_J4_Dev";
 

@@ -90,10 +90,16 @@ variables
 //    . ' /dstFile="j!_post_file.http"';
 
 $tasksLine = ' task:tsk2httpFile'
-    . ' /srcPath=d:/Entwickl/2026/_gitHub/JoomGallery_fith_dev/.apiTests'
-    . ' /srcFile="jg_getCategory.tsk"'
-    . ' /dstPath=d:/Entwickl/2026/_gitHub/JoomGallery_fith_dev/.apiTests/curl_http_files'
-    . ' /dstFile="jg_getCategory.http"';
+    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+    . ' /srcFile="j!_patch_file_01_coffee.tsk"'
+    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
+    . ' /dstFile="j!_patch_file_01_coffee.http"';
+
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/JoomGallery_fith_dev/.apiTests'
+//    . ' /srcFile="jg_getCategory.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/JoomGallery_fith_dev/.apiTests/curl_http_files'
+//    . ' /dstFile="jg_getCategory.http"';
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGallery.tsk';

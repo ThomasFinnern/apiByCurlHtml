@@ -8,7 +8,7 @@ use Finnern\apiByCurlHtml\src\tasksLib\option;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 /**
- * put curl class
+ * post curl class
  */
 class postCurlTask extends baseCurlTask implements executeTasksInterface
 {
