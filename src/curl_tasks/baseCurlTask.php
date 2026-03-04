@@ -326,9 +326,14 @@ class baseCurlTask extends baseExecuteTasks
 //            {
             $isOk   = curl_setopt($this->oCurl, CURLOPT_POSTFIELDS, $dataString);
             $OutTxt = "setDataString finished: '" . ($isOk ? 'true' : 'false') . "'" . PHP_EOL;
+
             // ToDo: show variables
             // $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl . "'" . PHP_EOL;
-            $OutTxt .= "   DataString: '" . substr($dataString, 0, 240) . "'" . PHP_EOL;
+            $OutTxt .= "   DataString: '" . substr($dataString, 0, 240) . "'";
+            if (strlen($OutTxt) > 240) {
+                $OutTxt .= " ... ";
+            }
+            $OutTxt .= PHP_EOL;
 
             //  ToDo: count lines in DataString ('\n'?) : On only one beautify and print ...
             // $OutTxt .= "   DataString: '" . $dataString . "'" . PHP_EOL;

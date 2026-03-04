@@ -85,15 +85,27 @@ variables
 
 //$tasksLine = ' task:tsk2httpFile'
 //    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
-//    . ' /srcFile="j!_post_file.tsk"'
+//    . ' /srcFile="j!_post_image.tsk"'
 //    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
-//    . ' /dstFile="j!_post_file.http"';
+//    . ' /dstFile="j!_post_image.http"';
 
-$tasksLine = ' task:tsk2httpFile'
-    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
-    . ' /srcFile="j!_patch_file_01_coffee.tsk"'
-    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
-    . ' /dstFile="j!_patch_file_01_coffee.http"';
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="j!_post_folder.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
+//    . ' /dstFile="j!_post_folder.http"';
+
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_postGallery.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
+//    . ' /dstFile="rsg2_postGallery.http"';
+
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="j!_patch_file_01_coffee.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
+//    . ' /dstFile="j!_patch_file_01_coffee.http"';
 
 //$tasksLine = ' task:tsk2httpFile'
 //    . ' /srcPath=d:/Entwickl/2026/_gitHub/JoomGallery_fith_dev/.apiTests'
