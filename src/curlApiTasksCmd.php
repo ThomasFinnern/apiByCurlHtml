@@ -208,6 +208,8 @@ if (empty ($hasError))
 
     $oCurlApiTask->assignTasks($tasks);
 
+    // print ($oCurlApiTask->text() . PHP_EOL);
+
     //--- execute tasks ---------------------------------
 
     // create task classes, when task execute is issued the task does execute
@@ -220,9 +222,8 @@ if (empty ($hasError))
 
     if (!$hasError)
     {
-        print ($oCurlApiTask->text() . PHP_EOL);
+//        print ($oCurlApiTask->text() . PHP_EOL);
     }
-
 }
 
 commandLineLib::print_end($start);
