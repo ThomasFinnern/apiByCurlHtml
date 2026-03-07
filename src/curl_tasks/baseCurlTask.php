@@ -133,7 +133,10 @@ class baseCurlTask extends baseExecuteTasks
             case strtolower('responseFile'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
-                $this->responseFile = $option->value;;
+                $this->responseFile = $option->value;
+//                if ($this->responseFile == '') {
+//                    $this->responseFile = $this->getResponseFile($this->filePathName);
+//                }
                 $isBaseOption = true;
                 break;
 

@@ -102,21 +102,21 @@ class curlApiTasks
         {
             print('*********************************************************' . PHP_EOL);
             print('applyTasks/create classes' . PHP_EOL);
-            // print ("task: " . $textTask . PHP_EOL);
+            // print ("task: " . $actTask . PHP_EOL);
             print('---------------------------------------------------------' . PHP_EOL);
 
-            foreach ($this->tasks->tasks as $textTask)
+            foreach ($this->tasks->tasks as $actTask)
             {
-                // print ("--- apply task: " . $textTask->name . PHP_EOL);
+                // print ("--- apply task: " . $actTask->name . PHP_EOL);
                 print (">>>---------------------------------" . PHP_EOL);
 
-                $this->actTaskName = $textTask->name;
+                $this->actTaskName = $actTask->name;
 
 
-                $taskName = strtolower($textTask->name);
+                $taskName = strtolower($actTask->name);
 
                 // Check and execute filetask or standard 'task' related calls
-                [$isHandled, $hasError] = $this->handlefileTasks($textTask);
+                [$isHandled, $hasError] = $this->handleFileTasks($actTask);
 
                 //--- let the task run -------------------------
 
@@ -128,44 +128,44 @@ class curlApiTasks
                     //--- curl standard tasks --------------------------------------------------
 
                     case strtolower('get'):
-                        $this->actTask = $this->createTask(new getCurlTask(), $textTask);
+                        $this->actTask = $this->createTask(new getCurlTask(), $actTask);
                         break;
 
                     case strtolower('put'):
-                        $this->actTask = $this->createTask(new putCurlTask(), $textTask);
+                        $this->actTask = $this->createTask(new putCurlTask(), $actTask);
                         break;
 
                     case strtolower('post'):
-                        $this->actTask = $this->createTask(new postCurlTask(), $textTask);
+                        $this->actTask = $this->createTask(new postCurlTask(), $actTask);
                         break;
 
                     case strtolower('patch'):
-                        $this->actTask = $this->createTask(new patchCurlTask(), $textTask);
+                        $this->actTask = $this->createTask(new patchCurlTask(), $actTask);
                         break;
 
                     case strtolower('delete'):
-                        $this->actTask = $this->createTask(new deleteCurlTask(), $textTask);
+                        $this->actTask = $this->createTask(new deleteCurlTask(), $actTask);
                         break;
 
 //                    case strtolower('abc'):
-//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        $this->actTask = $this->createTask(new  (), $actTask);
 //                        break;
 //
 //                    case strtolower('abc'):
-//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        $this->actTask = $this->createTask(new  (), $actTask);
 //                        break;
 //
 //                    case strtolower('abc'):
-//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        $this->actTask = $this->createTask(new  (), $actTask);
 //                        break;
 //
 //                    case strtolower('abc'):
-//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        $this->actTask = $this->createTask(new  (), $actTask);
 //                        break;
 
                     default:
-                        print ('!!! Execute unknown task: "' . $textTask->name . '" !!!' . PHP_EOL);
-                        throw new \Exception('!!! Execute unknown task: "' . $textTask->name . '" !!!');
+                        print ('!!! Execute unknown task: "' . $actTask->name . '" !!!' . PHP_EOL);
+                        throw new \Exception('!!! Execute unknown task: "' . $actTask->name . '" !!!');
                 } // switch
 
                 // run task
@@ -248,14 +248,14 @@ class curlApiTasks
      *
      * @return array
      */
-    private function handlefileTasks($textTask = [])
+    private function handleFileTasks($task = [])
     {
         $isHandled = false;
         $hasError = 0;
 
         //--- let the task run -------------------------
 
-        $taskName = strtolower($textTask->name);
+        $taskName = strtolower($task->name);
 
         switch ($taskName)
         {
@@ -285,9 +285,9 @@ class curlApiTasks
 
             case strtolower('fileNamesList'):
             case strtolower('createFileNamesList'):
-                print ('Execute task: ' . $textTask->name . PHP_EOL);
+                print ('Execute task: ' . $task->name . PHP_EOL);
 
-                $this->actTask = $this->createTask(new fileNamesList (), $textTask);
+                $this->actTask = $this->createTask(new fileNamesList (), $task);
                 // run task
                 $hasError = $this->actTask->execute();
 
@@ -298,9 +298,9 @@ class curlApiTasks
             //--- add more files to task -----------------------
 
             case strtolower('add2filenameslist'):
-                print ('Execute task: ' . $textTask->name . PHP_EOL);
+                print ('Execute task: ' . $task->name . PHP_EOL);
                 $filenamesList = new fileNamesList ();
-                $filenamesList->assignTask($textTask);
+                $filenamesList->assignTask($task);
                 $filenamesList->execute();
 
                 if (empty($this->fileNamesList))

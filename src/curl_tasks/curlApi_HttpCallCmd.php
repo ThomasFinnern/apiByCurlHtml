@@ -2,7 +2,8 @@
 
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
-require_once 'autoload/autoload.php';
+//require_once 'autoload/autoload.php';
+require_once '../autoload/autoload.php';
 
 use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\commandLineLib;
@@ -46,7 +47,7 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGalleries.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_putGallery.tsk';
-$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getImages.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getImage.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_putImage.tsk';
@@ -64,8 +65,8 @@ $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_deleteGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_getConfig.tsk';
 
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getConfigAll.tsk';
-$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
-$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
 $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
 
 
