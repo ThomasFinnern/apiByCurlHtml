@@ -112,9 +112,15 @@ class curlApiTasks
 
                 $this->actTaskName = $textTask->name;
 
+
+                $taskName = strtolower($textTask->name);
+
+                // Check and execute filetask or standard 'task' related calls
+                [$isHandled, $hasError] = $this->handlefileTasks($textTask);
+
                 //--- let the task run -------------------------
 
-                switch (strtolower($textTask->name))
+                switch ($taskName)
                 {
 
                     //=== real task definitions =================================
@@ -123,134 +129,47 @@ class curlApiTasks
 
                     case strtolower('get'):
                         $this->actTask = $this->createTask(new getCurlTask(), $textTask);
-
-                        // run task
-                        $hasError = $this->actTask->execute();
-
                         break;
 
                     case strtolower('put'):
                         $this->actTask = $this->createTask(new putCurlTask(), $textTask);
-
-                        // run task
-                        $hasError = $this->actTask->execute();
-
                         break;
 
                     case strtolower('post'):
                         $this->actTask = $this->createTask(new postCurlTask(), $textTask);
-                        // run task
-                        $hasError = $this->actTask->execute();
                         break;
 
                     case strtolower('patch'):
                         $this->actTask = $this->createTask(new patchCurlTask(), $textTask);
-
-                        // run task
-                        $hasError = $this->actTask->execute();
-
                         break;
 
                     case strtolower('delete'):
                         $this->actTask = $this->createTask(new deleteCurlTask(), $textTask);
-
-                        // run task
-                        $hasError = $this->actTask->execute();
-
                         break;
 
-                    case strtolower('???'):
-//                        ToDo: $this->actTask = $this->createTask (new clean4release (), $textTask);
-//                        $this->actTask = $this->createTask(new increaseVersionId (), $textTask);
-//                        // run task
-//                        $hasError = $this->actTask->execute();
-                        break;
-
-                    //--- xxx type tasks --------------------------------------------------
-
-                    case strtolower('???xxx'):
-//                        $this->actTask = $this->createTask(new exchangeAll_licenseLines (), $textTask);
-//                        // run task
-//                        $hasError = $this->actTask->execute();
-                        break;
-
-                    //--- yyyy type tasks --------------------------------------------------
-
-                    case strtolower('???yyy'):
-//                        $this->actTask = $this->createTask(new exchangeAll_licenseLines (), $textTask);
-//                        // run task
-//                        $hasError = $this->actTask->execute();
-                        break;
-
-                    //=== supporting tasks content  ===============================
-
-                    case strtolower('execute'):
-                        print ('>>> Call execute task: "' // . $this->actTask->name
-                            . '"  >>>' . PHP_EOL);
-
-                        // ToDo: dummy task
-//                        if (empty ($this->actTask)){
-//                            $this->actTask = new executeTasksInterface ();
-//                        }
-
-                        // prepared filenames list
-                        $this->actTask->assignFilesNames($this->fileNamesList);
-
-                        // run task
-                        $hasError = $this->actTask->execute();
-
-//                        // stop after first task
-//                        exit (99);
-
-                        break;
-
-                    //--- assign files to task -----------------------
-
-                    case strtolower('fileNamesList'):
-                    case strtolower('createFileNamesList'):
-                        print ('Execute task: ' . $textTask->name . PHP_EOL);
-
-                        $this->actTask = $this->createTask(new fileNamesList (), $textTask);
-                        // run task
-                        $hasError = $this->actTask->execute();
-
-                        print ('createFilenamesList count: ' . count($this->fileNamesList->fileNames) . PHP_EOL);
-
-                        break;
-
-                    //--- add more files to task -----------------------
-
-                    case strtolower('add2filenameslist'):
-                        print ('Execute task: ' . $textTask->name . PHP_EOL);
-                        $filenamesList = new fileNamesList ();
-                        $filenamesList->assignTask($textTask);
-                        $filenamesList->execute();
-
-                        if (empty($this->fileNamesList))
-                        {
-                            $this->fileNamesList = new fileNamesList ();
-                        }
-
-                        print ('add2FilenamesList count: ' . count($filenamesList->fileNames) . PHP_EOL);
-
-                        $this->fileNamesList->addFilenames($filenamesList->fileNames);
-                        break;
-
-                    case strtolower('clearfilenameslist'):
-                        $this->fileNamesList = new fileNamesList();
-                        break;
-
-                    case strtolower('printfilenameslist'):
-                        print ($this->fileNamesList->text_listFileNames());
-
-                        // stop after print files to check the files
-                        // exit (98);
-                        break;
+//                    case strtolower('abc'):
+//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        break;
+//
+//                    case strtolower('abc'):
+//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        break;
+//
+//                    case strtolower('abc'):
+//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        break;
+//
+//                    case strtolower('abc'):
+//                        $this->actTask = $this->createTask(new  (), $textTask);
+//                        break;
 
                     default:
                         print ('!!! Execute unknown task: "' . $textTask->name . '" !!!' . PHP_EOL);
                         throw new \Exception('!!! Execute unknown task: "' . $textTask->name . '" !!!');
                 } // switch
+
+                // run task
+                $hasError = $this->actTask->execute();
 
                 // $OutTxt .= $task->text() . PHP_EOL;
             }
@@ -320,6 +239,101 @@ class curlApiTasks
         $this->assignTasks($tasks->extractTasksFromFile($taskFile));
 
         return $this;
+    }
+
+    /**
+     * Collect filenames, execute on separate task
+     *
+     * @param   task[] $tasks
+     *
+     * @return array
+     */
+    private function handlefileTasks($textTask = [])
+    {
+        $isHandled = false;
+        $hasError = 0;
+
+        //--- let the task run -------------------------
+
+        $taskName = strtolower($textTask->name);
+
+        switch ($taskName)
+        {
+            //=== supporting tasks content  ===============================
+
+            case strtolower('execute'):
+                print ('>>> Call execute task: "' // . $this->actTask->name
+                    . '"  >>>' . PHP_EOL);
+
+                // ToDo: dummy task
+//                        if (empty ($this->actTask)){
+//                            $this->actTask = new executeTasksInterface ();
+//                        }
+
+                // prepared filenames list
+                $this->actTask->assignFilesNames($this->fileNamesList);
+
+                // run task
+                $hasError = $this->actTask->execute();
+
+//                        // stop after first task
+//                        exit (99);
+
+                break;
+
+            //--- assign files to task -----------------------
+
+            case strtolower('fileNamesList'):
+            case strtolower('createFileNamesList'):
+                print ('Execute task: ' . $textTask->name . PHP_EOL);
+
+                $this->actTask = $this->createTask(new fileNamesList (), $textTask);
+                // run task
+                $hasError = $this->actTask->execute();
+
+                print ('createFilenamesList count: ' . count($this->fileNamesList->fileNames) . PHP_EOL);
+
+                break;
+
+            //--- add more files to task -----------------------
+
+            case strtolower('add2filenameslist'):
+                print ('Execute task: ' . $textTask->name . PHP_EOL);
+                $filenamesList = new fileNamesList ();
+                $filenamesList->assignTask($textTask);
+                $filenamesList->execute();
+
+                if (empty($this->fileNamesList))
+                {
+                    $this->fileNamesList = new fileNamesList ();
+                }
+
+                print ('add2FilenamesList count: ' . count($filenamesList->fileNames) . PHP_EOL);
+
+                $this->fileNamesList->addFilenames($filenamesList->fileNames);
+                break;
+
+            case strtolower('clearfilenameslist'):
+                $this->fileNamesList = new fileNamesList();
+                break;
+
+            case strtolower('printfilenameslist'):
+                print ($this->fileNamesList->text_listFileNames());
+
+                // stop after print files to check the files
+                // exit (98);
+                break;
+
+            case strtolower('???xxx'):
+//                        $this->actTask = $this->createTask(new exchangeAll_licenseLines (), $textTask);
+                break;
+
+            default:
+                // handled outside
+                break;
+        } // switch
+
+        return[$isHandled, $hasError];
     }
 
 } // curlApiTask
