@@ -78,10 +78,10 @@ class options
         return ($value);
     }
 
-    public function getOption(string $name = '', bool $isIgnoreCase = false): string
+    public function getOption(string $name = '', bool $isIgnoreCase = false): option
     {
         $foundOption = null;
-        $isFound = false;
+        $isFound     = false;
 
         foreach ($this->options as $option)
         {
@@ -108,7 +108,7 @@ class options
     {
         $isFound = false;
 
-        foreach ($this->options as $option)
+        foreach ($this->options as $idx => $option)
         {
             if ($isIgnoreCase)
             {
@@ -119,9 +119,11 @@ class options
                 $isFound = $option->name === $name;
             }
 
+            // delete found
             if ($isFound)
             {
-                unset($option);
+                unset($this->options[$idx]);
+
                 break;
             }
         }

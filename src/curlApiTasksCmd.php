@@ -6,7 +6,6 @@ require_once 'autoload/autoload.php';
 
 use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\commandLineLib;
-use Finnern\apiByCurlHtml\src\tasksLib\task;
 use Finnern\apiByCurlHtml\src\tasksLib\tasks;
 
 $HELP_MSG = <<<EOT
@@ -172,48 +171,39 @@ else
 
 function patchResourceOption(tasks $tasks, string $taskFile)
 {
+    // check all tasks
     foreach ($tasks->tasks as $task)
     {
-
-//    print ("task(Resource): " . $task->text() . PHP_EOL);
-
+        // Check in options
         $options = $task->options;
 
-        print ("  \$taskFile: '" . $taskFile . "'" . PHP_EOL);
-
-        foreach ($options->options as $option)
+        // on request found
+        if ($options->hasOption('isCreateAutoResponseFile', true))
         {
+            //--- create and assign responseFile ------------------------------------------
 
-//        print ("  \$option->name: '" . $option->name . "'" . PHP_EOL);
-//        print ("  \$strtolower(): '" . strtolower('responseFile') . "'" . PHP_EOL);
-
-            if (strtolower($option->name) == strtolower('responseFile'))
+            // Value set for 'auto response file required'
+            $option = $options->getOption('isCreateAutoResponseFile');
+            if (!empty($option->value))
             {
+                // New name
+                $responseFile = substr($taskFile, 0, -4) . '.json';
+                // add option
+                $options->addOptionByValue('responseFile', $responseFile);
 
-//            print ("  \$option->value: '" . $option->value . "'" . PHP_EOL);
-                if (empty($option->value))
-                {
-
-//                print ("  \$option->value inside: '" . $option->value . "'". PHP_EOL);
-                    $srcFileInfo = pathinfo($taskFile);
-
-                    $option->value = dirs::joinDirPath($srcFileInfo['dirname'], $srcFileInfo['filename'] . '.json');
-
-//                print ("  \$option->value inside: '" . $option->value . "'". PHP_EOL);
-
-//                print ("task(Resource): " . $task->text() . PHP_EOL);
-                }
-
-                break;
+                // delete flag
+                $options->delOption('isCreateAutoResponseFile', true);
             }
         }
+
     }
 }
 
 if (!empty ($tasksFile))
 {
-    // patch resource file definition to be parallel to task file
+    // create resource file option on  requested
     patchResourceOption($tasks, $tasksFile);
+
 }
 
 print ($tasks->text());

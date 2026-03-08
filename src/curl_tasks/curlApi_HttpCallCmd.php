@@ -166,6 +166,10 @@ if (!empty($optionFiles))
 
 function patchResourceOption(task $task, mixed $taskFile)
 {
+    // ToDo: improve and use similar to function patchResourceOption(tasks $tasks, string $taskFile) in curlApiTasksCmd.php
+
+
+
 //    print ("task(Resource): " . $task->text() . PHP_EOL);
 
     $options = $task->options;
