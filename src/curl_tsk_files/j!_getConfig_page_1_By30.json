@@ -1,0 +1,252 @@
+{
+    "links": {
+        "self": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application?page%5Boffset%5D=0&page%5Blimit%5D=30",
+        "next": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application?page%5Boffset%5D=30&page%5Blimit%5D=30",
+        "last": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application?page%5Boffset%5D=90&page%5Blimit%5D=30"
+    },
+    "data": [
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "offline": false,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "offline_message": "This site is down for maintenance.<br />Please check back again soon.",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "display_offline_message": 1,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "offline_image": "",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "sitename": "joomla5x",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "editor": "tinymce",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "captcha": "0",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "list_limit": 50,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "access": 1,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "debug": true,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "debug_lang": false,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "debug_lang_const": true,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbtype": "mysqli",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "host": "localhost",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "user": "root",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "password": "",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "db": "joomla5x",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbprefix": "tc9ni_",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbencryption": 0,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbsslverifyservercert": false,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbsslkey": "",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbsslcert": "",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbsslca": "",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "dbsslcipher": "",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "force_ssl": 0,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "live_site": "",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "secret": "vO1DUFDAMN7fQNRP",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "gzip": false,
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "error_reporting": "maximum",
+                "id": 239
+            }
+        },
+        {
+            "type": "application",
+            "id": "239",
+            "attributes": {
+                "helpurl": "https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}",
+                "id": 239
+            }
+        }
+    ],
+    "meta": {
+        "total-pages": 4
+    }
+}

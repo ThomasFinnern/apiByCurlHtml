@@ -5,7 +5,7 @@ task:put
 /apiPath="v1/rsgallery2/galleries"
 /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
 // /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
-/responseFile=""
+/isCreateAutoResponseFile=true
 /dataFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\dataFiles\rsg2_putGallery_01_First.json"
 
 //--- 02 put gallery ------------------------------------------------
@@ -15,7 +15,7 @@ task:put
 /apiPath="v1/rsgallery2/galleries"
 /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
 // /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
-/responseFile=""
+/isCreateAutoResponseFile=true
 /dataFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\dataFiles\rsg2_putGallery_02.json"
 
 //--- 03 put gallery ------------------------------------------------
@@ -25,7 +25,7 @@ task:put
 /apiPath="v1/rsgallery2/galleries"
 /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
 // /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
-/responseFile=""
+/isCreateAutoResponseFile=true
 /dataFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\dataFiles\rsg2_putGallery_03.json"
 
 //--- 04 put gallery ------------------------------------------------
@@ -35,7 +35,7 @@ task:put
 /apiPath="v1/rsgallery2/galleries"
 /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
 // /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
-/responseFile=""
+/isCreateAutoResponseFile=true
 /dataFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\dataFiles\rsg2_putGallery_04.json"
 
 //--- 05 put gallery ------------------------------------------------
@@ -45,7 +45,7 @@ task:put
 /apiPath="v1/rsgallery2/galleries"
 /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
 // /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
-/responseFile=""
+/isCreateAutoResponseFile=true
 /dataFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\dataFiles\rsg2_putGallery_05.json"
 
 //--- xx put last gallery ------------------------------------------------
@@ -55,6 +55,6 @@ task:put
 /apiPath="v1/rsgallery2/galleries"
 /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
 // /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
-/responseFile=""
+/isCreateAutoResponseFile=true
 /dataFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\dataFiles\rsg2_putGallery_xx_Last.json"
 

@@ -1,24 +1,24 @@
 task:put
 /baseUrl="http://127.0.0.1/joomla5x/api/index.php"
-// /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
+    // /baseUrl="http://127.0.0.1/joomgallery5x_dev/api/index.php"
 /apiPath="v1/joomgallery/categories"
 /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
-// /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
-// /responseFile="d:\Entwickl\2026\_gitHub\apiByCurlHtml\src\results/jg_putGallery_result.json"
-/responseFile=""
+    // /joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt"
+    // /responseFile="d:\Entwickl\2026\_gitHub\apiByCurlHtml\src\results/jg_putGallery_result.json"
+/isCreateAutoResponseFile=true
 /paramsFile="d:\Entwickl\2026\_gitHub\apiByCurlHtml\src\curl_tsk_files\jg_putCategory_DataBare.json"
-//// Ideas
-///isSaveResponse
-///isDoGetAgain
-///isRandomID
+    //// Ideas
+    ///isSaveResponse
+    ///isDoGetAgain
+    ///isRandomID
 
-// changeAttribute: name
-// Change type:append/replace/
-// Change action increment/datetime
+    // changeAttribute: name
+    // Change type:append/replace/
+    // Change action increment/datetime
 
-// random type:append/replace/increment
-// randomRange: 100-2000 / random
-// isRandomDatetime
-// ? get last
+    // random type:append/replace/increment
+    // randomRange: 100-2000 / random
+    // isRandomDatetime
+    // ? get last
 
 
