@@ -118,7 +118,7 @@ class tskFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
 //        // $this->responseFile = substr($this->filePathName, 0,-4) . '.json';
 //
 //        // /responseFile="d:\Entwickl\2025\_gitHub\apiByCurlHtml\src\results/rsg2_getGallery_12.json"
-//        $lines[] = '/responseFile="' . $this->getResponseFile($this->filePathName) . '"';
+//        $lines[] = '/responseFile="' . $this->getResponseFileName($this->filePathName) . '"';
 //        $lines[] = PHP_EOL;
 
 

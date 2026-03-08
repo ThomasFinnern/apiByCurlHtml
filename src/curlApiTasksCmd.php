@@ -76,7 +76,9 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_post_file.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_01_coffee.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_02_lovelock.tsk';
-$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig.tsk';
+$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_image_id81.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_patch_image_id81_new_sizes.tsk';
 
 $basePath = "..\\..\\RSGallery2_J4_Dev";
 

@@ -135,7 +135,7 @@ class baseCurlTask extends baseExecuteTasks
 
                 $this->responseFile = $option->value;
 //                if ($this->responseFile == '') {
-//                    $this->responseFile = $this->getResponseFile($this->filePathName);
+//                    $this->responseFile = $this->getResponseFileName($this->filePathName);
 //                }
                 $isBaseOption = true;
                 break;
@@ -513,7 +513,7 @@ class baseCurlTask extends baseExecuteTasks
         return $joomlaTokenFile;
     }
 
-    public function getResponseFile(string $filePathName)
+    public function getResponseFileName(string $filePathName)
     {
         $responseFile = "";
 
@@ -827,7 +827,7 @@ class baseCurlTask extends baseExecuteTasks
             // response object
             $oResponse = json_decode($response_json);
 
-            // Add J! warning/error peprepending the json part
+            // Add J! warning/error prepending to the json part
             if (!empty($response_error))
             {
                 print('---------------------------------------------------------' . PHP_EOL);
@@ -838,6 +838,17 @@ class baseCurlTask extends baseExecuteTasks
                 print("!!! <<< Prepend text found (warning/error) !!!" . PHP_EOL);
                 print('---------------------------------------------------------' . PHP_EOL);
                 print(PHP_EOL);
+            }
+
+
+            $isError = false;
+            $isApply2Json = false;
+//            $isApply2Json = true;
+
+            if ( ! empty($oResponse->errors)) {
+                $isError = true;
+
+                $errDetailCorrected = $this->reformatJsonError ($oResponse, $isApply2Json);
             }
 
             // Format json pretty 
@@ -851,6 +862,25 @@ class baseCurlTask extends baseExecuteTasks
             {
                 file_put_contents($this->responseFile, $responseJsonBeautified);
             }
+
+            // show error as last information when correction is not applied to json itself
+
+            if ($isError && ! $isApply2Json) {
+
+                print ('!!! Error Found: corrected details:' . PHP_EOL);
+                print ("code: " . $oResponse->errors->code . PHP_EOL);
+                print ("title: " . $oResponse->errors->title . PHP_EOL);
+                print ("detail: " . $errDetailCorrected . PHP_EOL);
+//                print ($errDetailCorrected . PHP_EOL);
+
+                print('---------------------------------------------------------' . PHP_EOL);
+                print(PHP_EOL);
+            }
+
+
+
+
+
         }
         else
         {
@@ -878,6 +908,28 @@ class baseCurlTask extends baseExecuteTasks
 
         // PHP 8.5 deprecated, needs PHP 8.0
         // curl_close($this->oCurl);
+    }
+
+    private function reformatJsonError(mixed $oResponse, bool $isApply2Json = false)
+    {
+        $detailCorrected = '';
+
+        $detail = $oResponse->errors->detail;
+
+//        if (!empty($detail) && str_contains($detail, '\n')) {
+        if (!empty($detail)) {
+
+            // replace all string '\n' with newline character
+//            $detailCorrected = join(PHP_EOL, explode('\n', $detail));
+            $detailCorrected = str_replace('\n', "\n   ", $detail);
+
+            if ($isApply2Json) {
+                $oResponse->errors->detail = $detailCorrected;
+            }
+
+        }
+
+        return $detailCorrected;
     }
 
 

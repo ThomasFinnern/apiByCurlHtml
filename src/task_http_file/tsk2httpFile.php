@@ -144,6 +144,13 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
                 $isLocalExtensionOption = true;
                 break;
 
+            case strtolower('isCreateAutoResponseFile'):
+                // ignore but accept flag isCreateAutoResponseFile
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                // $this->dstExtension     = $option->value;
+                $isLocalExtensionOption = true;
+                break;
+
             default:
                 print ('!!! error: required option is not supported: ' . $option->name . ' !!!' . PHP_EOL);
         } // switch
