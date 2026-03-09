@@ -77,10 +77,14 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_01_coffee.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_02_lovelock.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig.tsk';
-$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_image_id81.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_image_id81.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_patch_image_id81_new_sizes.tsk';
 
-$basePath = "..\\..\\RSGallery2_J4_Dev";
+$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchConfig_jg_userspace_on.tsk';
+
+// basspath needed when ???
+//$basePath = "..\\..\\RSGallery2_J4_Dev";
+//$basePath = "..\\..\\JoomGallery_fith_dev";
 
 foreach ($options as $idx => $option)
 {
@@ -162,11 +166,12 @@ else
     }
     else
     {
-        print ("taskFile empty, TaskLine: " . $tasksLine . PHP_EOL);
-        $testTasks = $tasks->extractTasksFromString($tasksLine);
-        if (!empty ($hasError))
+        print ("tasksFile empty, TaskLine: " . $tasksLine . PHP_EOL);
+        $tasks = $tasks->extractTasksFromString($tasksLine);
+//        if (empty ($testTasks))
+        if (count($tasks->tasks) == 0)
         {
-            print ("!!! Error on function extractTasksFromString:" . $hasError . ' path: ' . $basePath . PHP_EOL);
+            print ("!!! Error no tasks created by taskline: " . $tasksLine . '"' . PHP_EOL);
         }
     }
 }

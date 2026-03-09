@@ -118,6 +118,8 @@ variables
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getConfigAll.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
 
+// $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
+
 $srcFile         = "";
 $dstFile         = "";
 $responseFile    = "";

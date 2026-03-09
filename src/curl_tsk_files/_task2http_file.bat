@@ -24,9 +24,12 @@ REM --- source file and folder ---------------------------------
 if "%1" NEQ "" (
 	REM ECHO path0: %~dpn0
 	REM ECHO path1: %~dpn1
-	REM ECHO path1: %~dpnx1
-	REM ECHO path1: %~dpx1
-	REM ECHO path1: %~dp0
+    REM ECHO path2: %~dpnx1
+	REM ECHO path3: %~dpx1
+	REM ECHO path4: %~dp0
+	REM ECHO path5: %~f1
+	REM ECHO path6: %~dp0%1
+
 	SET srcFile=%~dp0%1
 ) else (
 	set srcFile=rsg2_getGallery.http
@@ -35,14 +38,13 @@ if "%1" NEQ "" (
 REM source path
 Call :AddNextArg -s %srcFile%
 
-
 REM --- destination file and folder ---------------------------------
 
 if "%2" NEQ "" (
 	SET dstFileOrPath=%2
 ) else (
     REM set dstFileOrPath=""
-    set dstFileOrPath=d:\Entwickl\2026\_gitHub\apiByCurlHtml\src\curl_http_files
+    set dstFileOrPath=%~dp0curl_http_files
 )
 
 REM source path

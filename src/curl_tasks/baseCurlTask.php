@@ -184,6 +184,12 @@ class baseCurlTask extends baseExecuteTasks
                 $isBaseOption     = true;
                 break;
 
+            case strtolower('isCreateAutoResponseFile'):
+                // ignore but accept flag isCreateAutoResponseFile
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                // $this->dstExtension     = $option->value;
+                $isBaseOption = true;
+                break;
 
 //            case strtolower(''):
 //                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
@@ -257,14 +263,9 @@ class baseCurlTask extends baseExecuteTasks
         {
 
             $options = [// CURLOPT_URL => sprintf('%s/content/articles/%d', $url, $articleId),
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => 'utf-8',
-                CURLOPT_MAXREDIRS => 10,
-//                CURLOPT_TIMEOUT => 30,
-                CURLOPT_TIMEOUT => 360,  // 3 minutes
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2TLS,
-                // CURLOPT_CUSTOMREQUEST => 'DELETE',
+                CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => 'utf-8', CURLOPT_MAXREDIRS => 10, //                CURLOPT_TIMEOUT => 30,
+                CURLOPT_TIMEOUT        => 360,  // 3 minutes
+                CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2TLS, // CURLOPT_CUSTOMREQUEST => 'DELETE',
                 // CURLOPT_HTTPHEADER => $headers,
             ];
 
@@ -340,7 +341,8 @@ class baseCurlTask extends baseExecuteTasks
             // ToDo: show variables
             // $OutTxt .=  $ident . "baseUrl: '" . $this->baseUrl . "'" . PHP_EOL;
             $OutTxt .= "   DataString: '" . substr($dataString, 0, 240) . "'";
-            if (strlen($OutTxt) > 240) {
+            if (strlen($OutTxt) > 240)
+            {
                 $OutTxt .= " ... ";
             }
             $OutTxt .= PHP_EOL;
@@ -841,14 +843,15 @@ class baseCurlTask extends baseExecuteTasks
             }
 
 
-            $isError = false;
+            $isError      = false;
             $isApply2Json = false;
 //            $isApply2Json = true;
 
-            if ( ! empty($oResponse->errors)) {
+            if (!empty($oResponse->errors))
+            {
                 $isError = true;
 
-                $errDetailCorrected = $this->reformatJsonError ($oResponse, $isApply2Json);
+                $errDetailCorrected = $this->reformatJsonError($oResponse, $isApply2Json);
             }
 
             // Format json pretty 
@@ -865,20 +868,28 @@ class baseCurlTask extends baseExecuteTasks
 
             // show error as last information when correction is not applied to json itself
 
-            if ($isError && ! $isApply2Json) {
+            if ($isError && !$isApply2Json)
+            {
+                // There is more info (stck, etc) about the error
+                if (!empty ($oResponse->errors->detail))
+                {
 
-                print ('!!! Error Found: corrected details:' . PHP_EOL);
-                print ("code: " . $oResponse->errors->code . PHP_EOL);
-                print ("title: " . $oResponse->errors->title . PHP_EOL);
-                print ("detail: " . $errDetailCorrected . PHP_EOL);
+                    print ('!!! Error Found: corrected details:' . PHP_EOL);
+                    if (!empty ($oResponse->errors->code))
+                    {
+                        print ("code: " . $oResponse->errors->code . PHP_EOL);
+                    }
+                    if (!empty ($oResponse->errors->title))
+                    {
+                        print ("title: " . $oResponse->errors->title . PHP_EOL);
+                    }
+                    print ("detail: " . $errDetailCorrected . PHP_EOL);
 //                print ($errDetailCorrected . PHP_EOL);
+                }
 
                 print('---------------------------------------------------------' . PHP_EOL);
                 print(PHP_EOL);
             }
-
-
-
 
 
         }
@@ -914,16 +925,16 @@ class baseCurlTask extends baseExecuteTasks
     {
         $detailCorrected = '';
 
-        $detail = $oResponse->errors->detail;
-
 //        if (!empty($detail) && str_contains($detail, '\n')) {
-        if (!empty($detail)) {
-
+        if (!empty($oResponse->errors->detail))
+        {
             // replace all string '\n' with newline character
+            $detail = $oResponse->errors->detail;
 //            $detailCorrected = join(PHP_EOL, explode('\n', $detail));
             $detailCorrected = str_replace('\n', "\n   ", $detail);
 
-            if ($isApply2Json) {
+            if ($isApply2Json)
+            {
                 $oResponse->errors->detail = $detailCorrected;
             }
 
