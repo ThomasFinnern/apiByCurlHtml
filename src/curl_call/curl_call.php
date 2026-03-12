@@ -12,8 +12,8 @@ class curl_call
     public string $responseJson;
     public string $responseJsonBeautified;
     public int $errorCode;
-public bool $isJsonHasErrors;
-        public mixed $oResponse; // json
+    public bool $isJsonHasErrors;
+    public mixed $oResponse; // json
     public mixed $responseArray;
     protected \curlHandle|false $oCurl;
 

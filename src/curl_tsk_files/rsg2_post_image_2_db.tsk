@@ -1,0 +1,16 @@
+task:post
+/baseUrl="http://127.0.0.1/joomla5x/api/index.php"
+/apiPath="v1/rsgallery2/images"
+/joomlaTokenFile="d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla5x.txt"
+/isCreateAutoResponseFile=true
+	// /paramsFile="d:\Entwickl\2026\_gitHub\RSGallery2_J4_Dev\.apiTests\dataFiles\rsg2_postImage_01.json"
+    // /dataFileType="base64"
+    // /local-images:/rsgallery2/test.jpg
+	// /param='"override": 1'
+/param='"title": "API coffee macchiato 2014-12-29_00005"'
+/param='"gallery_id": 16'
+/param='"description": "Brown macchiato glas with nice figure in cream"'
+/param='"modified_time": "2025-09-16 08:03:44"'
+/param='"published": 1'
+/param='"name": "2014-12-29_00005.jpg"'
+

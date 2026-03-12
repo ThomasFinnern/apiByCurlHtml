@@ -8,7 +8,6 @@ use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\options;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
-use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 
 $HELP_MSG = <<<EOT
     >>>
@@ -79,9 +78,9 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
      */
     public function assignOptions(options $options, $taskName): int
     {
-    // Task name with options
+        // Task name with options
 //    public function assignTask(task $task): int
- //   {
+        //   {
 
         foreach ($options->options as $option)
         {

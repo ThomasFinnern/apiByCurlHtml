@@ -38,8 +38,16 @@ class baseCurlTask extends baseExecuteTasks
     public string $dataFile = "";
     public eDataFileType $dataFileType = eDataFileType::json;
     protected string $httpFile = "";
+
+    // ToDo: address as parameters instead (then update *.tsk afterwards)
     protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
     protected string $page_limit = ""; // page[limit] => page%5Blimit%5D
+
+    //protected bool $isExitOnErrorResult = false;
+    protected bool $isExitOnErrorResult = true;
+    protected bool $isLoadResponseFile = true;
+    protected bool $isKeepResponseJson = true;
+
 
 // ToDo:    protected array $urlParams = [];  // list of additional parameters multiple lines  of test01=1]
 
@@ -189,6 +197,30 @@ class baseCurlTask extends baseExecuteTasks
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 // $this->dstExtension     = $option->value;
                 $isBaseOption = true;
+                break;
+
+            case strtolower('isExitOnErrorResult'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->isExitOnErrorResult = boolval($option->value);
+                $isOptionConsumed          = true;
+                break;
+
+            case strtolower('isLoadResponseFile'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->isLoadResponseFile = boolval($option->value);
+                $isOptionConsumed         = true;
+                break;
+
+            case strtolower('isKeepResponseJson'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->isKeepReponseJson = boolval($option->value);
+                $isOptionConsumed        = true;
+                break;
+
+            case strtolower('is'):
+                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                $this->is         = boolval($option->value);
+                $isOptionConsumed = true;
                 break;
 
 //            case strtolower(''):
@@ -541,190 +573,6 @@ class baseCurlTask extends baseExecuteTasks
         return $responseFile;
     }
 
-    protected function readDataFile(): string
-    {
-        $fileData = "";
-
-        if (is_file($this->dataFile))
-        {
-            $OutTxt = "   dataFile: '" . $this->dataFile . "'" . PHP_EOL;
-            print ($OutTxt);
-
-
-            if ($this->dataFileType == eDataFileType::json)
-            {
-                $jsonStringIn = file_get_contents($this->dataFile);
-
-                // replace PHP_EOL
-                $jsonData   = json_decode($jsonStringIn, true);
-                $jsonString = json_encode($jsonData);
-
-                $jsonStringPretty = json_encode($jsonData, JSON_PRETTY_PRINT);
-
-                $fileData = $jsonStringPretty;
-                // $fileData = $jsonString;
-            }
-            else
-            {
-
-                if ($this->dataFileType == eDataFileType::base64)
-                {
-                    // ToDo: use pathinfo ?
-                    // $path = 'myfolder/myimage.png';
-                    // $type = pathinfo($path, PATHINFO_EXTENSION);
-                    // $data = file_get_contents($path);
-                    // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-
-                    $mimeType = mime_content_type($this->dataFile);
-                    $OutTxt   = "   mimeType: '" . $mimeType . "'" . PHP_EOL;
-                    print ($OutTxt);
-
-                    $fileDataIn = file_get_contents($this->dataFile);
-
-                    $base64Data = 'data:image/' . $mimeType . ';base64,' . base64_encode($fileDataIn);
-
-                    $fileData = $base64Data;
-                }
-            }
-        }
-
-        return $fileData;
-    }
-
-    // data for gallery
-//        $data = [
-//            'parent_id' => '0',
-//            'access' => '1',
-//            'name' => 'By API',
-//            'note'=> "",
-//            'published' => '1',
-//        ];
-//
-//        $dataString = json_encode($data);
-
-    protected function prepareDataFromFiles(): void
-    {
-        try
-        {
-            //--- prepare data from files ------------------------------------
-
-            // X-token from file
-            if (!empty ($this->joomlaTokenFile) && empty($this->joomlaToken))
-            {
-                // $this->getTokenFile();
-                $this->joomlaToken = $this->readTokenFromFile($this->joomlaTokenFile);
-            }
-
-            // params from file
-            if (!empty($this->paramsFile))
-            {
-                $this->assignParamsFromFile();
-            }
-
-            if (!empty($this->dataFile))
-            {
-                $this->assignContentFromFile();
-            }
-
-        }
-        catch (Exception $e)
-        {
-            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
-        }
-
-    }
-
-    protected function convertParams2Json(): string
-    {
-        $dataString = '';
-
-        try
-        {
-            //--- prepare json data  ------------------------------------
-
-            $dataString = json_encode($this->params, JSON_PRETTY_PRINT);
-            //$dataString = json_encode($this->params);
-        }
-        catch (Exception $e)
-        {
-            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
-        }
-
-        return $dataString;
-    }
-
-    // {
-    //    "parent_id": 1,
-    //    "access": 1,
-    //    "name": "By API 03",
-    //    "note": "",
-    //    "published": 1
-    //}
-
-    /**
-     * @return void
-     */
-    public function assignParamsFromFile(): void
-    {
-        try
-        {
-            if (is_file($this->paramsFile))
-            {
-                $OutTxt = "   paramsFile: '" . $this->paramsFile . "'" . PHP_EOL;
-                print ($OutTxt);
-
-                $jsonStringIn = file_get_contents($this->paramsFile);
-
-                // replace PHP_EOL
-                $jsonData = json_decode($jsonStringIn, true);
-
-                foreach ($jsonData as $key => $value)
-                {
-                    $this->params[$key] = $value;
-                }
-            }
-            else
-            {
-                echo '!!! Error: assignParamsFromFile file does not exist: "' . $this->paramsFile . '"' . PHP_EOL;
-            }
-        }
-        catch (Exception $e)
-        {
-            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
-        }
-
-    }
-
-    /**
-     *
-     *
-     *
-     * @return void
-     */
-    public function assignContentFromFile(): void
-    {
-
-        try
-        {
-            if (is_file($this->dataFile))
-            {
-                $fileData   = file_get_contents($this->dataFile);
-                $base64Data = base64_encode($fileData);
-
-                $this->params['content'] = $base64Data;
-            }
-            else
-            {
-                echo '!!! Error: assignContentFromFile file does not exist: "' . $this->dataFile . '"' . PHP_EOL;
-            }
-        }
-        catch (Exception $e)
-        {
-            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
-        }
-
-    }
-
     public function assignBaseCurlData(baseCurlTask $srcData)
     {
         $this->taskName = $srcData->taskName;
@@ -751,6 +599,17 @@ class baseCurlTask extends baseExecuteTasks
 
     }
 
+    // data for gallery
+//        $data = [
+//            'parent_id' => '0',
+//            'access' => '1',
+//            'name' => 'By API',
+//            'note'=> "",
+//            'published' => '1',
+//        ];
+//
+//        $dataString = json_encode($data);
+
     public function writeFile(string $fileName = '', $lines = []): int
     {
         if (empty($fileName))
@@ -769,48 +628,6 @@ class baseCurlTask extends baseExecuteTasks
 
         // ToDo: try catch , return $hasError
         return 0;
-    }
-
-
-    /**
-     * @param   string|null  $response
-     *
-     * @return array
-     */
-    public function extractResponse(string|null $response)
-    {
-        $response_json  = '{}';
-        $response_error = ""; // warning
-
-        if (!empty($response))
-        {
-            // Attention response can be
-            // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
-            // "{"errors":[{"title":"Resource not found","code":404}]}
-            // or
-            // <br />
-            // <b>Warning</b>:  array_flip(): Can only flip string and integer values, entry skipped in <b>E:\wamp64\www\joomla5x\libraries\src\Serializer\JoomlaSerializer.php</b> on line <b>85</b><br />
-
-            //--- find first { ----------------------------
-
-            // standard
-            if (str_starts_with($response, '{'))
-            {
-                $response_json = $response;
-            }
-            else
-            {
-                $parts = explode("\n{", $response, 2);
-
-                $response_error = $parts[0];
-                if (count($parts) > 1)
-                {
-                    $response_json = '{' . $parts[1];
-                }
-            }
-        }
-
-        return [$response_json, $response_error];
     }
 
     public function handleJsonResult(string|null $response)
@@ -854,7 +671,7 @@ class baseCurlTask extends baseExecuteTasks
                 $errDetailCorrected = $this->reformatJsonError($oResponse, $isApply2Json);
             }
 
-            // Format json pretty 
+            // Format json pretty
             $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             print($responseJsonBeautified . PHP_EOL);
             print('---------------------------------------------------------' . PHP_EOL);
@@ -921,6 +738,55 @@ class baseCurlTask extends baseExecuteTasks
         // curl_close($this->oCurl);
     }
 
+    // {
+    //    "parent_id": 1,
+    //    "access": 1,
+    //    "name": "By API 03",
+    //    "note": "",
+    //    "published": 1
+    //}
+
+    /**
+     * @param   string|null  $response
+     *
+     * @return array
+     */
+    public function extractResponse(string|null $response)
+    {
+        $response_json  = '{}';
+        $response_error = ""; // warning
+
+        if (!empty($response))
+        {
+            // Attention response can be
+            // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
+            // "{"errors":[{"title":"Resource not found","code":404}]}
+            // or
+            // <br />
+            // <b>Warning</b>:  array_flip(): Can only flip string and integer values, entry skipped in <b>E:\wamp64\www\joomla5x\libraries\src\Serializer\JoomlaSerializer.php</b> on line <b>85</b><br />
+
+            //--- find first { ----------------------------
+
+            // standard
+            if (str_starts_with($response, '{'))
+            {
+                $response_json = $response;
+            }
+            else
+            {
+                $parts = explode("\n{", $response, 2);
+
+                $response_error = $parts[0];
+                if (count($parts) > 1)
+                {
+                    $response_json = '{' . $parts[1];
+                }
+            }
+        }
+
+        return [$response_json, $response_error];
+    }
+
     private function reformatJsonError(mixed $oResponse, bool $isApply2Json = false)
     {
         $detailCorrected = '';
@@ -941,6 +807,171 @@ class baseCurlTask extends baseExecuteTasks
         }
 
         return $detailCorrected;
+    }
+
+    protected function readDataFile(): string
+    {
+        $fileData = "";
+
+        if (is_file($this->dataFile))
+        {
+            $OutTxt = "   dataFile: '" . $this->dataFile . "'" . PHP_EOL;
+            print ($OutTxt);
+
+
+            if ($this->dataFileType == eDataFileType::json)
+            {
+                $jsonStringIn = file_get_contents($this->dataFile);
+
+                // replace PHP_EOL
+                $jsonData   = json_decode($jsonStringIn, true);
+                $jsonString = json_encode($jsonData);
+
+                $jsonStringPretty = json_encode($jsonData, JSON_PRETTY_PRINT);
+
+                $fileData = $jsonStringPretty;
+                // $fileData = $jsonString;
+            }
+            else
+            {
+
+                if ($this->dataFileType == eDataFileType::base64)
+                {
+                    // ToDo: use pathinfo ?
+                    // $path = 'myfolder/myimage.png';
+                    // $type = pathinfo($path, PATHINFO_EXTENSION);
+                    // $data = file_get_contents($path);
+                    // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+                    $mimeType = mime_content_type($this->dataFile);
+                    $OutTxt   = "   mimeType: '" . $mimeType . "'" . PHP_EOL;
+                    print ($OutTxt);
+
+                    $fileDataIn = file_get_contents($this->dataFile);
+
+                    $base64Data = 'data:image/' . $mimeType . ';base64,' . base64_encode($fileDataIn);
+
+                    $fileData = $base64Data;
+                }
+            }
+        }
+
+        return $fileData;
+    }
+
+    protected function prepareDataFromFiles(): void
+    {
+        try
+        {
+            //--- prepare data from files ------------------------------------
+
+            // X-token from file
+            if (!empty ($this->joomlaTokenFile) && empty($this->joomlaToken))
+            {
+                // $this->getTokenFile();
+                $this->joomlaToken = $this->readTokenFromFile($this->joomlaTokenFile);
+            }
+
+            // params from file
+            if (!empty($this->paramsFile))
+            {
+                $this->assignParamsFromFile();
+            }
+
+            if (!empty($this->dataFile))
+            {
+                $this->assignContentFromFile();
+            }
+
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
+
+    }
+
+    /**
+     * @return void
+     */
+    public function assignParamsFromFile(): void
+    {
+        try
+        {
+            if (is_file($this->paramsFile))
+            {
+                $OutTxt = "   paramsFile: '" . $this->paramsFile . "'" . PHP_EOL;
+                print ($OutTxt);
+
+                $jsonStringIn = file_get_contents($this->paramsFile);
+
+                // replace PHP_EOL
+                $jsonData = json_decode($jsonStringIn, true);
+
+                foreach ($jsonData as $key => $value)
+                {
+                    $this->params[$key] = $value;
+                }
+            }
+            else
+            {
+                echo '!!! Error: assignParamsFromFile file does not exist: "' . $this->paramsFile . '"' . PHP_EOL;
+            }
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
+
+    }
+
+    /**
+     *
+     *
+     *
+     * @return void
+     */
+    public function assignContentFromFile(): void
+    {
+
+        try
+        {
+            if (is_file($this->dataFile))
+            {
+                $fileData   = file_get_contents($this->dataFile);
+                $base64Data = base64_encode($fileData);
+
+                $this->params['content'] = $base64Data;
+            }
+            else
+            {
+                echo '!!! Error: assignContentFromFile file does not exist: "' . $this->dataFile . '"' . PHP_EOL;
+            }
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
+
+    }
+
+    protected function convertParams2Json(): string
+    {
+        $dataString = '';
+
+        try
+        {
+            //--- prepare json data  ------------------------------------
+
+            $dataString = json_encode($this->params, JSON_PRETTY_PRINT);
+            //$dataString = json_encode($this->params);
+        }
+        catch (Exception $e)
+        {
+            echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
+        }
+
+        return $dataString;
     }
 
 

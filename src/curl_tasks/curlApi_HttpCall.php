@@ -203,8 +203,6 @@ class curlApi_HttpCall extends baseExecuteTasks //
     }
 
 
-
-
     public function execute(): int
     {
         print('*********************************************************' . PHP_EOL);

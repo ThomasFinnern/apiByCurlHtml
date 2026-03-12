@@ -3,8 +3,6 @@
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
 use Exception;
-use Finnern\apiByCurlHtml\src\curl_call\curl_call;
-use Finnern\apiByCurlHtml\src\curl_call\curl_task_texts;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 

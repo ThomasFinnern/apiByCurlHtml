@@ -4,7 +4,6 @@ namespace Finnern\apiByCurlHtml\src;
 
 require_once 'autoload/autoload.php';
 
-use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\commandLineLib;
 use Finnern\apiByCurlHtml\src\tasksLib\tasks;
 

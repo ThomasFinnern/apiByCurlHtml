@@ -16,14 +16,11 @@ class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
     // X-Joomla-Token: "c2hhMjU2OjI5MzphYTZhMTcwZTY2ODM1MTZhMmNiYzlkZDg0NjE5NzkxYTZkYThhNTJjODFhZTVkNWViYmZmMjljMmY2ZTQ4NGYz"
     //-----------------------------------------------------
 
-    protected string $filePathName;
-
     public string $dataFile = '';
-
     public string $accept = "application/vnd.api+json";
     public string $contentType = "application/json";
-
     public string $joomlaToken = "";
+    protected string $filePathName;
 
     // ToDo: joomla token file
 
@@ -62,37 +59,29 @@ class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
 
     }
 
-    public function createFileLines(): array
+    protected function readFile(string $fileName = ''): int
     {
-        //--- prepare json data  ------------------------------------
-
-        $this->prepareDataFromFiles();
-
-        //--- create lines ----------------------------------------------
-
-        $lines = [];
-
-        $lines[] = '###';
-        $lines[] = strtoupper($this->taskName) . ' ' . $this->apiPath();
-        $lines[] = 'Accept: ' . $this->accept;
-        $lines[] = 'Content-Type: ' . $this->contentType;
-        $lines[] = 'X-Joomla-Token: ' . $this->joomlaToken;
-
-        if (!empty ($this->params))
+        if (empty($fileName))
         {
-            $jsonPara = $this->convertParams2Json();
-            $lines[]  = "\n" . $jsonPara;
+            $fileName = $this->filePathName;
         }
 
-        if (empty($this->responseFile))
+        if (!is_file($fileName))
         {
-            $this->responseFile = substr($this->filePathName, 0,-5) . '.json';
+
+            print ('File not found: ' . $fileName . "\n");
+            print ('File not found: ' . realpath($fileName) . "\n");
+
+            return -789;
         }
-        $lines[] = "\n" . '> ' . $this->responseFile;
 
-        $this->lines = $lines;
+        $content = file_get_contents($fileName); //Get the file
+        $lines   = explode("\n", $content); //Split the file by each line
 
-        return $lines;
+        $this->extractFileData($lines);
+
+        // ToDo: try catch , return $hasError
+        return 0;
     }
 
     protected function extractFileData($lines = []): int
@@ -248,29 +237,37 @@ class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
         return $apiPath;
     }
 
-    protected function readFile(string $fileName = ''): int
+    public function createFileLines(): array
     {
-        if (empty($fileName))
+        //--- prepare json data  ------------------------------------
+
+        $this->prepareDataFromFiles();
+
+        //--- create lines ----------------------------------------------
+
+        $lines = [];
+
+        $lines[] = '###';
+        $lines[] = strtoupper($this->taskName) . ' ' . $this->apiPath();
+        $lines[] = 'Accept: ' . $this->accept;
+        $lines[] = 'Content-Type: ' . $this->contentType;
+        $lines[] = 'X-Joomla-Token: ' . $this->joomlaToken;
+
+        if (!empty ($this->params))
         {
-            $fileName = $this->filePathName;
+            $jsonPara = $this->convertParams2Json();
+            $lines[]  = "\n" . $jsonPara;
         }
 
-        if (!is_file($fileName))
+        if (empty($this->responseFile))
         {
-
-            print ('File not found: ' . $fileName . "\n");
-            print ('File not found: ' . realpath($fileName) . "\n");
-
-            return -789;
+            $this->responseFile = substr($this->filePathName, 0, -5) . '.json';
         }
+        $lines[] = "\n" . '> ' . $this->responseFile;
 
-        $content = file_get_contents($fileName); //Get the file
-        $lines   = explode("\n", $content); //Split the file by each line
+        $this->lines = $lines;
 
-        $this->extractFileData($lines);
-
-        // ToDo: try catch , return $hasError
-        return 0;
+        return $lines;
     }
 
 

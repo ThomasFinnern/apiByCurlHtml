@@ -273,7 +273,7 @@ print ($task->text());
 if (empty ($hasError))
 {
 
-    $oTsk2HttpFile       = new tsk2httpFile();
+    $oTsk2HttpFile = new tsk2httpFile();
 //    $oTsk2HttpFile->task = $task;
 
     //--- assign tasks ---------------------------------

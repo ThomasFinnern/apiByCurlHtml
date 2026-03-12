@@ -185,73 +185,17 @@ class curlApiTasks
         return $hasError;
     }
 
-    private function createTask(executeTasksInterface $execTask, task $textTask): executeTasksInterface
-    {
-        print ('Assign task: ' . $textTask->name . PHP_EOL);
-
-        $execTask->assignTask($textTask);
-
-        return $execTask;
-    }
-
-    public function tasksText(): string
-    {
-        // $OutTxt = "------------------------------------------" . PHP_EOL;
-        $OutTxt = "";
-
-        $OutTxt .= "--- curlApiTask: Tasks ---" . PHP_EOL;
-
-        // $OutTxt .= "Tasks count: " . $this->textTasks->count() . PHP_EOL;
-
-        $OutTxt .= $this->tasks->text() . PHP_EOL;
-
-        return $OutTxt;
-    }
-
-    public function text(): string
-    {
-        $OutTxt = "------------------------------------------" . PHP_EOL;
-        $OutTxt .= "--- curlApiTask ==> " . $this->actTaskName . " ---" . PHP_EOL;
-
-        if (!empty ($this->actTask))
-        {
-            $OutTxt .= $this->actTask->text();
-        }
-        else
-        {
-            $OutTxt .= ">>> text(): object actTask is not defined" . PHP_EOL;
-        }
-
-        /**
-         * $OutTxt .= "fileName: " . $this->fileName . PHP_EOL;
-         * $OutTxt .= "fileExtension: " . $this->fileExtension . PHP_EOL;
-         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . PHP_EOL;
-         * $OutTxt .= "filePath: " . $this->filePath . PHP_EOL;
-         * $OutTxt .= "srcPathFileName: " . $this->srcPathFileName . PHP_EOL;
-         * /**/
-
-        return $OutTxt;
-    }
-
-    public function extractTasksFromFile(mixed $taskFile): curlApiTasks
-    {
-        $tasks = new tasks();
-        $this->assignTasks($tasks->extractTasksFromFile($taskFile));
-
-        return $this;
-    }
-
     /**
      * Collect filenames, execute on separate task
      *
-     * @param   task[] $tasks
+     * @param   task[]  $tasks
      *
      * @return array
      */
     private function handleFileTasks($task = [])
     {
         $isHandled = false;
-        $hasError = 0;
+        $hasError  = 0;
 
         //--- let the task run -------------------------
 
@@ -333,7 +277,63 @@ class curlApiTasks
                 break;
         } // switch
 
-        return[$isHandled, $hasError];
+        return [$isHandled, $hasError];
+    }
+
+    private function createTask(executeTasksInterface $execTask, task $textTask): executeTasksInterface
+    {
+        print ('Assign task: ' . $textTask->name . PHP_EOL);
+
+        $execTask->assignTask($textTask);
+
+        return $execTask;
+    }
+
+    public function tasksText(): string
+    {
+        // $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt = "";
+
+        $OutTxt .= "--- curlApiTask: Tasks ---" . PHP_EOL;
+
+        // $OutTxt .= "Tasks count: " . $this->textTasks->count() . PHP_EOL;
+
+        $OutTxt .= $this->tasks->text() . PHP_EOL;
+
+        return $OutTxt;
+    }
+
+    public function text(): string
+    {
+        $OutTxt = "------------------------------------------" . PHP_EOL;
+        $OutTxt .= "--- curlApiTask ==> " . $this->actTaskName . " ---" . PHP_EOL;
+
+        if (!empty ($this->actTask))
+        {
+            $OutTxt .= $this->actTask->text();
+        }
+        else
+        {
+            $OutTxt .= ">>> text(): object actTask is not defined" . PHP_EOL;
+        }
+
+        /**
+         * $OutTxt .= "fileName: " . $this->fileName . PHP_EOL;
+         * $OutTxt .= "fileExtension: " . $this->fileExtension . PHP_EOL;
+         * $OutTxt .= "fileBaseName: " . $this->fileBaseName . PHP_EOL;
+         * $OutTxt .= "filePath: " . $this->filePath . PHP_EOL;
+         * $OutTxt .= "srcPathFileName: " . $this->srcPathFileName . PHP_EOL;
+         * /**/
+
+        return $OutTxt;
+    }
+
+    public function extractTasksFromFile(mixed $taskFile): curlApiTasks
+    {
+        $tasks = new tasks();
+        $this->assignTasks($tasks->extractTasksFromFile($taskFile));
+
+        return $this;
     }
 
 } // curlApiTask

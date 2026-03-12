@@ -24,8 +24,7 @@ $HELP_MSG = <<<EOT
 Class apiByCurlHtml
 ================================================================================*/
 
-class http2tskFile extends baseExecuteTasks
-    implements executeTasksInterface
+class http2tskFile extends baseExecuteTasks implements executeTasksInterface
 {
     private string $buildDir = '';
 

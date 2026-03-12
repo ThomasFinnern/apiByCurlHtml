@@ -1,0 +1,41 @@
+{
+  "links": {
+    "self": "http://127.0.0.1/joomla5x/api/index.php/v1/rsgallery2/images"
+  },
+  "data": {
+    "type": "images",
+    "id": "88",
+    "attributes": {
+      "access": 1,
+      "id": 88,
+      "name": "2014-12-29_00005.jpg",
+      "alias": "api-coffee-macchiato-2014-12-29-8",
+      "description": "Brown macchiato glas with nice figure in cream",
+      "original_path": "",
+      "gallery_id": 16,
+      "title": "API coffee macchiato 2014-12-29_00005",
+      "note": "",
+      "params": [],
+      "published": 1,
+      "hits": 0,
+      "rating": 0,
+      "votes": 0,
+      "comments": 0,
+      "publish_up": "2026-03-11 18:50:13",
+      "publish_down": null,
+      "checked_out": 0,
+      "checked_out_time": null,
+      "created": "2026-03-11 18:50:13",
+      "created_by": 779,
+      "created_by_alias": "",
+      "modified": "2026-03-11 18:50:13",
+      "modified_by": 779,
+      "ordering": 0,
+      "approved": 1,
+      "asset_id": 582,
+      "use_j3x_location": 0,
+      "sizes": "",
+      "version": 1
+    }
+  }
+}
