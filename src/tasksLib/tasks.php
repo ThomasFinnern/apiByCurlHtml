@@ -168,10 +168,10 @@ class tasks
             else
             {
 
-//                print ('!!! Task start Id found in lines !!!' . PHP_EOL);
+//                print ('!!! Task start id found in lines !!!' . PHP_EOL);
                 print ('!!! No Task lines detected !!!' . PHP_EOL);
                 // not working $realPath = realpath($taskFile);
-//                throw new Exception('!!!No  Task Id found in lines !!!');
+//                throw new Exception('!!!No  Task id found in lines !!!');
                 throw new Exception('!!! No Task lines detected !!!');
             }
 
@@ -186,7 +186,7 @@ class tasks
 
     }
 
-    private function isTaskStart(string $tasksLine)
+    private function isTaskStart(string $tasksLine):bool
     {
         $isTask = false;
 
@@ -268,7 +268,7 @@ class tasks
 
     // ToDo: A task may have more attributes like *.ext to
 
-    private function isTaskString(string $tasksLine)
+    private function isTaskString(string $tasksLine): bool
     {
         $isTaskString = false;
 
