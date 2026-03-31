@@ -79,7 +79,8 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_image_id81.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_patch_image_id81_new_sizes.tsk';
 
-$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchConfig_jg_userspace_on.tsk';
+//$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchConfig_jg_userspace_on.tsk';
+$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchCategory_created_by.tsk';
 
 // basspath needed when ???
 //$basePath = "..\\..\\RSGallery2_J4_Dev";
