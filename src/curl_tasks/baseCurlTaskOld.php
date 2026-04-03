@@ -2,7 +2,6 @@
 
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
-use AllowDynamicProperties;
 use Exception;
 use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
@@ -20,8 +19,7 @@ enum eDataFileType: string
 /**
  * Base class prepares for filename list
  */
-#[AllowDynamicProperties]
-class baseCurlTask extends baseExecuteTasks
+class baseCurlTaskOld extends baseExecuteTasks
 {
     // task name
     public string $baseUrl = '';
@@ -154,16 +152,14 @@ class baseCurlTask extends baseExecuteTasks
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
                 $json_value = '{' . $option->value . '}';
-                $paramJson  = json_decode($json_value);
-                if (!empty($paramJson))
+                $paramJson = json_decode($json_value);
+                if ( !empty($paramJson))
                 {
                     foreach ($paramJson as $key => $value)
                     {
                         $this->params[$key] = $value;
                     }
-                }
-                else
-                {
+                } else {
                     print('!!! error in baseCurlTast:assignBaseOption:param !!!' . PHP_EOL);
                     print('    json value could not be decoded "' . $json_value . '"' . PHP_EOL);
                     print('    ? Missing ".." around string ?' . PHP_EOL);
@@ -226,8 +222,8 @@ class baseCurlTask extends baseExecuteTasks
 
             case strtolower('isKeepResponseJson'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->isKeepResponseJson = boolval($option->value);
-                $isOptionConsumed         = true;
+                $this->isKeepReponseJson = boolval($option->value);
+                $isOptionConsumed        = true;
                 break;
 
             case strtolower('is'):
@@ -643,138 +639,184 @@ class baseCurlTask extends baseExecuteTasks
         return 0;
     }
 
-    /**
-     * Collect response in a class object ->
-     * Collect errors and keep in usefu format -> curlErrResponse
-     * Tell about results
-     *
-     * @param   string|null  $response
-     *
-     * @return void
-     */
     public function handleJsonResult(string|null $response)
     {
-        print('---------------------------------------------------------' . PHP_EOL);
-        print(">>> curl_exec handle response: " . PHP_EOL);
 
+        // curl_errno — Return the last error number
+        $errorCode = curl_errno($this->oCurl);
 
-        print("    create response object" . PHP_EOL);
-
-        // ToDo: ? global this class variable ?
-        $oCurlResponse = new curlResponse($this->oCurl, $response);
-
-        print('---------------------------------------------------------' . PHP_EOL);
-        print(">>> curl response results: " . PHP_EOL);
-
-
-        //'--- tell json response found ------------------------------------------------------'
-
-        print('---------------------------------------------------------' . PHP_EOL);
-        if (!$oCurlResponse->oCurlErrResponse->isHasError)
+        if ($errorCode == 0)
         {
-            print(">>> valid response data " . PHP_EOL);
+            print('---------------------------------------------------------' . PHP_EOL);
+            print(">>> curl_exec with response: " . PHP_EOL);
+
+            [$response_json, $response_error] = $this->extractResponse($response);
+
+            // response object
+            $oResponse = json_decode($response_json);
+
+            // Add J! warning/error prepending to the json part
+            if (!empty($response_error))
+            {
+                print('---------------------------------------------------------' . PHP_EOL);
+                print("!!! >>> Prepend text found (warning/error) !!!" . PHP_EOL);
+                print('"' . $response_error . '"' . PHP_EOL);
+
+                $oResponse->j_pre_comment = '!!! pre> "' . $response_error . '" <pre !!!';
+                print("!!! <<< Prepend text found (warning/error) !!!" . PHP_EOL);
+                print('---------------------------------------------------------' . PHP_EOL);
+                print(PHP_EOL);
+            }
+
+
+            $isError      = false;
+            $isApply2Json = false;
+//            $isApply2Json = true;
+
+            if (!empty($oResponse->errors))
+            {
+                $isError = true;
+
+                $errDetailCorrected = $this->reformatJsonError($oResponse, $isApply2Json);
+            }
+
+            // Format json pretty
+            $responseJsonBeautified = json_encode($oResponse, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            print($responseJsonBeautified . PHP_EOL);
+            print('---------------------------------------------------------' . PHP_EOL);
+            print(PHP_EOL);
+
+            // create response file
+            if (!empty($this->responseFile))
+            {
+                file_put_contents($this->responseFile, $responseJsonBeautified);
+            }
+
+            // show error as last information when correction is not applied to json itself
+
+            if ($isError && !$isApply2Json)
+            {
+                // There is more info (stck, etc) about the error
+                if (!empty ($oResponse->errors->detail))
+                {
+
+                    print ('!!! Error Found: corrected details:' . PHP_EOL);
+                    if (!empty ($oResponse->errors->code))
+                    {
+                        print ("code: " . $oResponse->errors->code . PHP_EOL);
+                    }
+                    if (!empty ($oResponse->errors->title))
+                    {
+                        print ("title: " . $oResponse->errors->title . PHP_EOL);
+                    }
+                    print ("detail: " . $errDetailCorrected . PHP_EOL);
+//                print ($errDetailCorrected . PHP_EOL);
+                }
+
+                print('---------------------------------------------------------' . PHP_EOL);
+                print(PHP_EOL);
+            }
+
+
         }
         else
         {
+            print('---------------------------------------------------------' . PHP_EOL);
+            // curl_error — Return a string containing the last error for the current session
+            $errorMessage = curl_error($this->oCurl);
 
-            print(">>> !!! in-valid response data !!! " . PHP_EOL);
-        }
+            print(PHP_EOL);
 
-        //--- create user response file ----------------------------------------------------
+            $outTxt = "!!! curl_exec: has failed with error: '" . $errorCode . "' !!!" . PHP_EOL;
+            $outTxt .= "Message: '" . $errorMessage . "'" . PHP_EOL;
 
-        // make pretty on no error
-        $responseJsonBeautified = true;
-//        if (!$oCurlResponse->isHasError)
-//        {
-//            $responseJsonBeautified = false;
-//        }
-
-        // write to file
-        $oCurlResponse->createResponseFile($this->responseFile, $responseJsonBeautified);
-
-        if (!$oCurlResponse->oCurlErrResponse->isHasError)
-        {
-            // pretty print to screen
-            print ($oCurlResponse->beautifiedResponseJsonText(true) . PHP_EOL);
-
-        }
-
-        //--- tell surprising pre text -------------------------------------------
-
-        if (!empty($oCurlResponse->response_pre_text))
-        {
+            print ($outTxt);
 
             print('---------------------------------------------------------' . PHP_EOL);
-            print("!!! >>> Prepend text found (warning/error) !!!" . PHP_EOL);
+            print(PHP_EOL);
 
-            // collect special cases in one file
-            $oCurlResponse->collectPretext2File();
-
-            // pretty print to screen
-            print(">>> curl_exec : " . $oCurlResponse->prependWarningText() . PHP_EOL);
-
-            // create file parallel to user response file
+            // create response file
             if (!empty($this->responseFile))
             {
-                $oCurlResponse->createTestPretextFile($this->responseFile);
+                file_put_contents($this->responseFile, $outTxt);
             }
 
-            //===================================================================================
-            // ToDo: After some time allowing for collection remove following
-            print("" . PHP_EOL);
-            print("°°°" . PHP_EOL);
-            print("°°°" . PHP_EOL);
-
-            print("°°° ToDo: Use Prepend text example for demo file                  °°°" . PHP_EOL);
-
-            print("°°°" . PHP_EOL);
-            print("°°°" . PHP_EOL);
-            print("" . PHP_EOL);
-
         }
-
-        //'--- tell error found ------------------------------------------------------'
-
-        if ($oCurlResponse->oCurlErrResponse->isHasError)
-        {
-            print('---------------------------------------------------------' . PHP_EOL);
-            print("!!! >>> Error text found (warning/error) !!!" . PHP_EOL);
-
-            // collect special cases in one file
-            $oCurlResponse->oCurlErrResponse->collectError2File();
-
-            // pretty print to screen
-            print ($oCurlResponse->oCurlErrResponse->allErrorsJsonText(true) . PHP_EOL);
-
-            // create user response file with error data
-            if (!empty($this->responseFile))
-            {
-                $oCurlResponse->oCurlErrResponse->createTestErrorFile($this->responseFile);
-            }
-
-            //===================================================================================
-            // ToDo: After some time allowing for collection remove following
-            print("" . PHP_EOL);
-            print("°°°" . PHP_EOL);
-            print("°°°" . PHP_EOL);
-
-            print("°°° ToDo: Use error text example for demo file                  °°°" . PHP_EOL);
-
-            print("°°°" . PHP_EOL);
-            print("°°°" . PHP_EOL);
-            print("" . PHP_EOL);
-
-        }
-
-        print('--- Done ------------------------------------------------------' . PHP_EOL);
-//        print('---  ------------------------------------------------------' . PHP_EOL);
 
         // PHP 8.5 deprecated, needs PHP 8.0
         // curl_close($this->oCurl);
     }
 
-    // ToDo:separate class
+    // {
+    //    "parent_id": 1,
+    //    "access": 1,
+    //    "name": "By API 03",
+    //    "note": "",
+    //    "published": 1
+    //}
 
+    /**
+     * @param   string|null  $response
+     *
+     * @return array
+     */
+    public function extractResponse(string|null $response)
+    {
+        $response_json  = '{}';
+        $response_error = ""; // warning
+
+        if (!empty($response))
+        {
+            // Attention response can be
+            // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
+            // "{"errors":[{"title":"Resource not found","code":404}]}
+            // or
+            // <br />
+            // <b>Warning</b>:  array_flip(): Can only flip string and integer values, entry skipped in <b>E:\wamp64\www\joomla5x\libraries\src\Serializer\JoomlaSerializer.php</b> on line <b>85</b><br />
+
+            //--- find first { ----------------------------
+
+            // standard
+            if (str_starts_with($response, '{'))
+            {
+                $response_json = $response;
+            }
+            else
+            {
+                $parts = explode("\n{", $response, 2);
+
+                $response_error = $parts[0];
+                if (count($parts) > 1)
+                {
+                    $response_json = '{' . $parts[1];
+                }
+            }
+        }
+
+        return [$response_json, $response_error];
+    }
+
+    private function reformatJsonError(mixed $oResponse, bool $isApply2Json = false)
+    {
+        $detailCorrected = '';
+
+//        if (!empty($detail) && str_contains($detail, '\n')) {
+        if (!empty($oResponse->errors->detail))
+        {
+            // replace all string '\n' with newline character
+            $detail = $oResponse->errors->detail;
+//            $detailCorrected = join(PHP_EOL, explode('\n', $detail));
+            $detailCorrected = str_replace('\n', "\n   ", $detail);
+
+            if ($isApply2Json)
+            {
+                $oResponse->errors->detail = $detailCorrected;
+            }
+
+        }
+
+        return $detailCorrected;
+    }
 
     protected function readDataFile(): string
     {

@@ -128,7 +128,6 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
 
             $this->handleJsonResult($response); // $this->oCurl
 
-
         }
         else
         {

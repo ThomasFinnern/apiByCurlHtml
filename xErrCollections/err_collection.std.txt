@@ -1,0 +1,298 @@
+--------------------------------------------------------
+curlErrResponse: 20260403_155802
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+--------------------------------------------------------
+curlErrResponse: 20260403_161044
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_161226
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_161355
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_161918
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_164436
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_164506
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_164513
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    InvalidArgumentException: Invalid controller class: uploadimgfile in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('uploadimgfile', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_165012
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_165532
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_170155
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    InvalidArgumentException: Invalid controller class: uploadimgfile in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('uploadimgfile', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_170328
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    InvalidArgumentException: Invalid controller class: uploadimgfile in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('uploadimgfile', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_170401
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
