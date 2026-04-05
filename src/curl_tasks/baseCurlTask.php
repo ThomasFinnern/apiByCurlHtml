@@ -670,14 +670,16 @@ class baseCurlTask extends baseExecuteTasks
         //'--- tell json response found ------------------------------------------------------'
 
         print('---------------------------------------------------------' . PHP_EOL);
-        if (!$oCurlResponse->oCurlErrResponse->isHasError)
+
+        $isHasError = $oCurlResponse->oCurlErrResponse->isHasError;
+
+        if (!$isHasError)
         {
             print(">>> valid response data " . PHP_EOL);
         }
         else
         {
-
-            print(">>> !!! in-valid response data !!! " . PHP_EOL);
+            print(">>> !!! has error response data !!! " . PHP_EOL);
         }
 
         //--- create user response file ----------------------------------------------------

@@ -296,3 +296,156 @@ Stack trace:
 #10 {main}
 
 
+--------------------------------------------------------
+curlErrResponse: 20260403_192011
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_194548
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 500
+title:     Internal server error
+detail:    RuntimeException: View not found [name, type, prefix]: uploadimgfile, jsonapi, api in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php:167
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(361): Joomla\CMS\MVC\Controller\ApiController->displayItem('local-images://...')
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(96): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_202519
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+errorCode: 400
+title:     WEBSERVICE_COM_MEDIA_FILE_EXISTS
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_203128
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_FILE_EXISTS
+code: 400
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260403_203853
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_MISSING_REQUIRED_PARAMETERS
+code: 
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260405_080337
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_MISSING_REQUIRED_PARAMETERS
+code: 
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260405_081341
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_MISSING_REQUIRED_PARAMETERS
+code: 
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260405_082731
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_MISSING_REQUIRED_PARAMETERS
+code: 
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260405_084807
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: View not found [name, type, prefix]: uploadimgfile, jsonapi, api in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php:167
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(361): Joomla\CMS\MVC\Controller\ApiController->displayItem('local-images://...')
+#1 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\UploadimgfileController.php(95): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomgallery\Component\Joomgallery\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+

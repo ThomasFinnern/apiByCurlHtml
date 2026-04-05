@@ -146,9 +146,10 @@ class curlErrResponse
             $this->isHasError         = true;
             $this->isHasResponseError = true;
 
+            // ToDo: detect if errors is direct or as array
 
             // Single Error
-            if (!empty($responseErrors['code']))
+            if (!empty($responseErrors['title']))
             {
                 $this->oErrors [] = new curlErrorObject ($responseErrors);
             }
