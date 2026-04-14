@@ -449,3 +449,765 @@ Stack trace:
 #10 {main}
 
 
+--------------------------------------------------------
+curlErrResponse: 20260405_085139
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Class "Joomgallery\Component\Joomgallery\Api\Model\Text" not found in E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Model\UploadimgfileModel.php:128
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\UploadimgfileController.php(126): Joomgallery\Component\Joomgallery\Api\Model\UploadimgfileModel->save()
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(359): Joomgallery\Component\Joomgallery\Api\Controller\UploadimgfileController->save()
+#2 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\UploadimgfileController.php(95): Joomla\CMS\MVC\Controller\ApiController->add()
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomgallery\Component\Joomgallery\Api\Controller\UploadimgfileController->upload_image_file()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260405_085308
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_FILE_EXISTS
+code: 400
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260406_135402
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260406_135811
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260406_135847
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260406_140314
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: View not found [name, type, prefix]: uploadimgfile, jsonapi, api in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php:167
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(361): Joomla\CMS\MVC\Controller\ApiController->displayItem('local-images://...')
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(99): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260406_140359
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_FILE_EXISTS
+code: 400
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260406_141110
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    LogicException: Error executing createThumbImageFile: No value given for "Thumb Size"  in configuration in E:\wamp64\www\api_6x\administrator\components\com_rsgallery2\src\Model\ImageFileModel.php:240
+Stack trace:
+#0 E:\wamp64\www\api_6x\administrator\components\com_rsgallery2\src\Model\ImageFileModel.php(811): Rsgallery2\Component\Rsgallery2\Administrator\Model\ImageFileModel->createThumbImageFile('E:\\wamp64\\www\\a...', Object(Joomla\CMS\Image\Image))
+#1 E:\wamp64\www\api_6x\administrator\components\com_rsgallery2\src\Model\ImageFileModel.php(614): Rsgallery2\Component\Rsgallery2\Administrator\Model\ImageFileModel->CreateRSG2Images(Object(Rsgallery2\Component\Rsgallery2\Administrator\Model\ImagePathsModel), 'E:\\wamp64\\www\\a...', '2014-12-29_0000...')
+#2 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\RecreateSizesController.php(113): Rsgallery2\Component\Rsgallery2\Administrator\Model\ImageFileModel->MoveImageAndCreateRSG2Images('E:\\wamp64\\www\\a...', '2014-12-29_0000...', 5, 'server', NULL)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\RecreateSizesController->recreate_sizes()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('recreate_sizes')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_142507
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_142601
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: Failed to create model. in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php:177
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\SavemetadataController.php(54): Joomla\CMS\MVC\Controller\ApiController->displayItem()
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomgallery\Component\Joomgallery\Api\Controller\SavemetadataController->save_metadata()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('save_metadata')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_145103
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_145400
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_145435
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_175412
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Missing required parameter(s): category_id
+code: 
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_175434
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: View not found [name, type, prefix]: uploadimgfile, jsonapi, api in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php:167
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(361): Joomla\CMS\MVC\Controller\ApiController->displayItem('local-images://...')
+#1 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\UploadimgfileController.php(94): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomgallery\Component\Joomgallery\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_175524
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_FILE_EXISTS
+code: 400
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260407_182402
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_FILE_EXISTS
+code: 400
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260411_155656
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_125433
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_125444
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_125604
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_125853
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_131113
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_135338
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_145019
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('version', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('version', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('version', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_150339
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_151436
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: upload in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('upload', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_151653
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: upload in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('upload', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_152220
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: upload in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('upload', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_153359
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: reserveimgid in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('reserveimgid', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_153524
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: reserveimgid in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('reserveimgid', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260413_153804
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: reserveimgid in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('reserveimgid', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260414_072322
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Exception: Call to undefined method via call(): setRaw in E:\wamp64\www\api_6x\libraries\vendor\joomla\input\src\Input.php:309
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\ReserveimgidController.php(57): Joomla\Input\Input->__call('setRaw', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomgallery\Component\Joomgallery\Api\Controller\ReserveimgidController->db_reserve_image_id()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('db_reserve_imag...')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260414_111724
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to a member function createFileManager() on null in E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\ReserveimgidController.php:73
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\ReserveimgidController.php(57): Joomgallery\Component\Joomgallery\Api\Controller\ReserveimgidController->genFilename('API coffee macc...', 'jpg', '3')
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomgallery\Component\Joomgallery\Api\Controller\ReserveimgidController->db_reserve_image_id()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('db_reserve_imag...')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260414_112816
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to a member function createFileManager() on null in E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\ReserveimgidController.php:101
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\Controller\ReserveimgidController.php(85): Joomgallery\Component\Joomgallery\Api\Controller\ReserveimgidController->genFilename('API coffee macc...', 'jpg', '3')
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomgallery\Component\Joomgallery\Api\Controller\ReserveimgidController->db_reserve_image_id()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('db_reserve_imag...')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+
+
+--------------------------------------------------------
+curlErrResponse: 20260414_131402
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260414_133427
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260414_134135
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+

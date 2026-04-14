@@ -203,14 +203,15 @@ class curlResponse
 
         $outText .= '---------------------------------------------------------' . PHP_EOL;
         $outText .= "!!! >>> Prepend text found (warning/error) !!!" . PHP_EOL;
-        $outText .= '"' . $this->response_pre_text . '"' . PHP_EOL;
         $outText .= '---------------------------------------------------------' . PHP_EOL;
+        $outText .= '"' . $this->response_pre_text . '"' . PHP_EOL;
+        $outText .= '<<< Prepend End <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<' . PHP_EOL;
         $outText .= PHP_EOL;
 
         return $outText;
     }
 
-    public function createTestPretextFile(string $responseFile)
+    public function createTestPretextFile(string $responseFileName)
     {
         //------------------------------------------------------
         // create test response file to keep several errors (to be removed later)
@@ -219,9 +220,14 @@ class curlResponse
             $header = "";
             $header .= "--------------------------------------------------------" . PHP_EOL;
             $header .= "curl_response_pre_text: " . fileDateTime::stdFileDateTimeFormatString() . PHP_EOL;
+            $header .= "--------------------------------------------------------" . PHP_EOL;
 
-            $outPreText = $this->response_pre_text . PHP_EOL;
-            $outText    = json_encode($header . $outPreText, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+//            $outPreText = $this->response_pre_text . PHP_EOL;
+//            $outText    = json_encode($header . $outPreText, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+//
+//            file_put_contents($responseFileName . '.pre.json', $outText);
+
+            $outText    = $header . $this->response_pre_text . PHP_EOL;
 
             file_put_contents($responseFileName . '.pre.json', $outText);
         }
@@ -242,7 +248,7 @@ class curlResponse
 
         //------------------------------------------------------
         // create test response file to keep several errors (to be removed later)
-        if ($this->isHasError)
+        // if ($this->isHasError)
         {
             $header = "";
             $header .= "--------------------------------------------------------" . PHP_EOL;

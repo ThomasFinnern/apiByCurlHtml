@@ -707,7 +707,7 @@ class baseCurlTask extends baseExecuteTasks
         {
 
             print('---------------------------------------------------------' . PHP_EOL);
-            print("!!! >>> Prepend text found (warning/error) !!!" . PHP_EOL);
+            // print("!!! >>> Prepend text found (warning/error) !!!" . PHP_EOL);
 
             // collect special cases in one file
             $oCurlResponse->collectPretext2File();
