@@ -660,12 +660,11 @@ class baseCurlTask extends baseExecuteTasks
 
         print("    create response object" . PHP_EOL);
 
-        // ToDo: ? global this class variable ?
+        // Extract data from response, sort to error, json data , pre/post data
         $oCurlResponse = new curlResponse($this->oCurl, $response);
 
         print('---------------------------------------------------------' . PHP_EOL);
         print(">>> curl response results: " . PHP_EOL);
-
 
         //'--- tell json response found ------------------------------------------------------'
 
@@ -675,11 +674,11 @@ class baseCurlTask extends baseExecuteTasks
 
         if (!$isHasError)
         {
-            print(">>> valid response data " . PHP_EOL);
+            print(">>> valid curl communication" . PHP_EOL);
         }
         else
         {
-            print(">>> !!! has error response data !!! " . PHP_EOL);
+            print(">>> !!! curl communication has error with response data !!! " . PHP_EOL);
         }
 
         //--- create user response file ----------------------------------------------------
@@ -694,26 +693,26 @@ class baseCurlTask extends baseExecuteTasks
         // write to file
         $oCurlResponse->createResponseFile($this->responseFile, $responseJsonBeautified);
 
+        // No error: pretty to screen
         if (!$oCurlResponse->oCurlErrResponse->isHasError)
         {
             // pretty print to screen
             print ($oCurlResponse->beautifiedResponseJsonText(true) . PHP_EOL);
-
         }
 
         //--- tell surprising pre text -------------------------------------------
 
-        if (!empty($oCurlResponse->response_pre_text))
+        if ($oCurlResponse->isHasOutsideData)
         {
 
             print('---------------------------------------------------------' . PHP_EOL);
             // print("!!! >>> Prepend text found (warning/error) !!!" . PHP_EOL);
 
             // collect special cases in one file
-            $oCurlResponse->collectPretext2File();
+            $oCurlResponse->collectOutsideData2File();
 
             // pretty print to screen
-            print(">>> curl_exec : " . $oCurlResponse->prependWarningText() . PHP_EOL);
+            print(">>> curl_exec : " . PHP_EOL . $oCurlResponse->outResponseText());
 
             // create file parallel to user response file
             if (!empty($this->responseFile))
@@ -725,11 +724,11 @@ class baseCurlTask extends baseExecuteTasks
             // ToDo: After some time allowing for collection remove following
             print("" . PHP_EOL);
             print("°°°" . PHP_EOL);
-            print("°°°" . PHP_EOL);
+            //print("°°°" . PHP_EOL);
 
-            print("°°° ToDo: Use Prepend text example for demo file                  °°°" . PHP_EOL);
+            print("°°° ToDo: Use outside text example for demo file                  °°°" . PHP_EOL);
 
-            print("°°°" . PHP_EOL);
+            //print("°°°" . PHP_EOL);
             print("°°°" . PHP_EOL);
             print("" . PHP_EOL);
 
@@ -758,11 +757,11 @@ class baseCurlTask extends baseExecuteTasks
             // ToDo: After some time allowing for collection remove following
             print("" . PHP_EOL);
             print("°°°" . PHP_EOL);
-            print("°°°" . PHP_EOL);
+            //print("°°°" . PHP_EOL);
 
             print("°°° ToDo: Use error text example for demo file                  °°°" . PHP_EOL);
 
-            print("°°°" . PHP_EOL);
+            //print("°°°" . PHP_EOL);
             print("°°°" . PHP_EOL);
             print("" . PHP_EOL);
 

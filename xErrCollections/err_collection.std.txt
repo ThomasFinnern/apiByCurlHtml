@@ -1211,3 +1211,43 @@ code: 404
 detail:    
 
 
+--------------------------------------------------------
+curlErrResponse: 20260414_141740
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260414_142650
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: Table 'api_6x.nsr3n_rsgallery2_galleries' doesn't exist in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\LatestGalleryModel.php:62
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(215): Rsgallery2\Component\Rsgallery2\Api\Model\LatestGalleryModel->getItem()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\View\Latestgallery\JsonapiView.php(162): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(192): Rsgallery2\Component\Rsgallery2\Api\View\LatestGallery\JsonapiView->displayItem()
+#3 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\LatestgalleryController.php(59): Joomla\CMS\MVC\Controller\ApiController->displayItem()
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\LatestgalleryController->displayItem()
+#5 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displayitem')
+#6 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#10 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#11 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#12 {main}
+
+

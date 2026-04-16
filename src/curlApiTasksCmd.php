@@ -78,8 +78,9 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_image_id81.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_patch_image_id81_new_sizes.tsk';
-$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_00_LatestGallery.tsk'; // single error (<br /> error: use following to create)
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_00_LatestGallery.tsk'; // single error (<br /> error: use following to create)
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_02_img_file.tsk'; // double error
+$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getVersion.tsk'; // double error
 
 //$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchConfig_jg_userspace_on.tsk';
 // $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchCategory_created_by.tsk';

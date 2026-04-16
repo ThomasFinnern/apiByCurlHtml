@@ -196,8 +196,8 @@ class curlErrResponse
         $outText = "";
 
         $outText .= 'curl communication error' . PHP_EOL;
-        $outText .= 'errCode' . $this->errCode . PHP_EOL;
-        $outText .= 'errMessage' . $this->errMessage . PHP_EOL;
+        $outText .= 'errCode: ' . $this->errCode . PHP_EOL;
+        $outText .= 'errMessage: "' . $this->errMessage . '"' . PHP_EOL;
 
         return $outText;
     }

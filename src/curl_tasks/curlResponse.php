@@ -28,12 +28,17 @@ class curlResponse
 
     public string $response_json_text;
     public string $response_pre_text;
+    public string $response_post_text;
+    public string $response_unknown_text;
 
     public curlErrResponse|null $oCurlErrResponse = null; // will be initialized with empty classo bject
 
     public bool $isHasError = false;
 //    public bool $isHasCurlError = false;
 //    public bool $isHasResponseError = false;
+
+    public $isValidJsonData = false;
+    public $isHasOutsideData = false;
 
 
     public function __construct(\curlHandle|false $oCurl = false, string|null $response = null)
@@ -77,7 +82,8 @@ class curlResponse
             //--- extract data from response json ------------------------------------
 
             // creates $response_json, $response_pre_text;
-            [$this->response_json_text, $this->response_pre_text] = $this->extractResponseString($response);
+            // [$this->response_json_text, $this->response_pre_text, $this->response_post_text] =
+            $this->extractResponseString($response);
 
             // json part of response as php object
             $this->oResponse = json_decode($this->response_json_text, true);
@@ -108,7 +114,7 @@ class curlResponse
      *
      * @return void
      */
-    public function extractResponseString(string|null $response)
+    public function extractResponseString(string|null $response): array
     {
         print("    * extractResponseString() " . PHP_EOL);
 
@@ -117,31 +123,86 @@ class curlResponse
 
         try
         {
+            $this->response_json_text = $this->response_pre_text = $this->response_post_text = $this->response_unknown_text = '';
 
             if (!empty($response))
             {
-                // Attention response can be
+                //============================================================================
+                // Attention response can be following types:
+                //============================================================================
+                // -----
                 // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
                 // "{"errors":[{"title":"Resource not found","code":404}]}
+                // -----
                 // or
+                // -----
                 // <br />
                 // <b>Warning</b>:  array_flip(): Can only flip string and integer values, entry skipped in <b>E:\wamp64\www\joomla5x\libraries\src\Serializer\JoomlaSerializer.php</b> on line <b>85</b><br />
+                // -----
+                // or
+                // -----
+                // {"links":{"self":"http:\/\/127.0.0.1\/api_6x\/api\/index.php\/v1\/rsgallery2\/version"},"data":{"type":"version","id":"0","attributes":{"version":"5.1.2.17","creationDate":"2026.04.13"}}}<!-- Could not find template &quot;system&quot;. (500 Whoops, looks like something went wrong.) -->
+                //<!DOCTYPE html>
+                //<html lang="en">
+                //    <head>
+                //        <meta charset="UTF-8" />
+                //        <meta name="robots" content="noindex,nofollow" />
+                //        <meta name="viewport" content="width=device-width,initial-scale=1" />
+                //        <title>Could not find template &quot;system&quot;. (500 Whoops, looks like something went wrong.)</title>
+                //        <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAgCAYAAAABtRhCAAADVUlEQVRIx82XX0jTURTHLYPyqZdefQx66CEo80+aYpoIkqzUikz6Z5klQoWUWYRIJYEUGpQ+lIr9U5dOTLdCtkmWZis3rbnC5fw/neYW002307mX/cZvP3/7o1PwwOdh95x7vnf39zvnd29AgBer2xO6DclAXiMqZAqxIiNIN/IYSUS2BPhjmGATchUxI+ADWiRhpWK7HKuHFVBFdmU5YvnI4grFGCaReF/EBH4KsZlGgj2JBTuCYBWRIYF8YoEOJ6wBt/gEs7mBbyOjQXruPLSdOgPCiEiPSUUHDoL8Ug5IUo9B/d5wrt+G7OAKNrODPuVdB6vRCIzN6SdBlpW9RIgk/1FeAXabzRlrUPVCS/JhbmwudztnGeeH9AyXBIwtmM3wLinZJZHifjHw2V+NBoRh+9ixQrbgbnaSIcl7cGea6hoXQbNe7za241oeO5Z0p42M4BV2EqP2D50wo+6HzvwC6C4sApNOR8cmOrtcnhtj2kYRyC9eBvXzKrBZrXSs72kFd1t3MoKVbMekQkEnSNKOO8fac3LpmK6l1TlGtsxmsdKFsecPYgwxst0cwROMYDXboSotg0WLBRqjY51jLYcENElXwW2XJKPydvoI2GN9T8rBtrAArYIUruBJXkFheCQYlCpQP6uk5dAQFQNaUROMSGVQFxLmkoQsxDJrhLbTZ+nvVsERME9MgPJRKV/58AsyomTSzE813WLFvWK++qI0xSfQl8k8Pg46sYRuv5t6dS+4RqxDwaa4BGjYH+NTQvKScIp9+YL/hoZh3jDtLRHtt2C3g6bmhX+CpsFBWg7ilDSPgj0lD2ncr5ev/BP8VvyAJhqVyZeUhPOrEhEFxgEtjft846Z/guQTNT89Q5P9flMLoth4F7808wKtWWKzAwNQHxrh/1vaid2F+XpYTSbQf1XA2McOmOpROnvpvMEA4tSjq1cW0sws2gCYxswY6TKkvzYnJq1NHZLnRU4BX+4U0uburvusu8Kv8iHY7qefkM4IFngJHEOUXmLEPgiGsI8YnlZILit3vSSLRTQe/MPIZva5pshNIEmyFQlCvruJKXPkCEfmePzkphXHdzZNQdoRI9KPlBAxlj/I8U97ERPS5bjGbWDFbEdqHVe5caTBeZZx2H/IMvzeN15yoQAAAABJRU5ErkJggg==" />
+                //        <style>/* This file is based on WebProfilerBundle/Resources/views/Profiler/profiler.css.twig.
+                //   If you make any change in this file, verify the same change is needed in the other file. */
+                //:root {
+                //    --font-sans-serif: Helvetica, Arial, sans-serif;
+                //    --page-background: #f9f9f9;
+                //    ...
+                // -----
+                // or
+                // -----
+                //
+
+                $this->isValidJsonData  = false;
+                $this->isHasOutsideData = false;
 
                 //--- find first { ----------------------------
 
                 // standard
                 if (str_starts_with($response, '{'))
                 {
-                    $response_json = $response;
+                    $test_json             = json_decode($response, true);
+                    $this->isValidJsonData = !empty ($test_json);
+
+                    if ($this->isValidJsonData)
+                    {
+                        $response_json = $response;
+                    }
+                    else
+                    {
+                        // has json on start but unknown data behind
+
+                        // try to extract first json part,
+                        [$this->response_json_text, $this->response_post_text, $this->response_unknown_text] = $this->tryExtractJson($response);
+
+                        $this->isHasOutsideData = true;
+
+                        $test_json             = json_decode($this->response_json_text, true);
+                        $this->isValidJsonData = !empty ($test_json);
+                    }
                 }
                 else
                 {
+                    // has json after unknown data
                     $parts = explode("\n{", $response, 2);
 
-                    $response_pre_text = $parts[0];
+                    $this->isHasOutsideData = true;
+
+                    $this->response_pre_text = $parts[0];
                     if (count($parts) > 1)
                     {
-                        $response_json = '{' . $parts[1];
+                        $this->response_json_text = '{' . $parts[1];
+
+                        $test_json             = json_decode($this->response_json_text, true);
+                        $this->isValidJsonData = !empty ($test_json);
                     }
                 }
             }
@@ -151,16 +212,13 @@ class curlResponse
             echo '!!! Error: Exception in extractResponseString: ' . $e->getMessage() . PHP_EOL;
         }
 
-        return [$response_json, $response_pre_text];
+        return [$this->response_json_text, $this->response_pre_text, $this->response_post_text, $this->response_unknown_text];
     }
 
     public function preResponseText(): string
     {
         $outText = "";
 
-        $outText .= 'curl communication error' . PHP_EOL;
-        $outText .= 'errCode' . $this->errCode . PHP_EOL;
-        $outText .= 'errMessage' . $this->errMessage . PHP_EOL;
 
         return $outText;
     }
@@ -217,19 +275,14 @@ class curlResponse
         // create test response file to keep several errors (to be removed later)
         if (!empty($responseFileName))
         {
-            $header = "";
-            $header .= "--------------------------------------------------------" . PHP_EOL;
-            $header .= "curl_response_pre_text: " . fileDateTime::stdFileDateTimeFormatString() . PHP_EOL;
-            $header .= "--------------------------------------------------------" . PHP_EOL;
+            $fileType = 'outside';
 
-//            $outPreText = $this->response_pre_text . PHP_EOL;
-//            $outText    = json_encode($header . $outPreText, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-//
-//            file_put_contents($responseFileName . '.pre.json', $outText);
+            $outResponseText = $this->outResponseText();
 
-            $outText    = $header . $this->response_pre_text . PHP_EOL;
+            // Write text to file
+            $fileName = __DIR__ . '/' . curlErrResponse::ERROR_COLLECTION_RELATIVE_PATH . curlErrResponse::ERROR_COLLECTION_NAME . '.' . $fileType . '.txt';
 
-            file_put_contents($responseFileName . '.pre.json', $outText);
+            file_put_contents($responseFileName . $fileType . '.txt', $outResponseText);
         }
     }
 
@@ -241,26 +294,108 @@ class curlResponse
      *
      * @return void
      */
-    public function collectPretext2File()
+    public function collectOutsideData2File()
     {
-        $fileType = 'pretext';
-
-
         //------------------------------------------------------
         // create test response file to keep several errors (to be removed later)
         // if ($this->isHasError)
+
+        $fileType = 'outside';
+
+        $outResponseText = $this->outResponseText();
+
+        // Write text to file
+        $fileName = __DIR__ . '/' . curlErrResponse::ERROR_COLLECTION_RELATIVE_PATH . curlErrResponse::ERROR_COLLECTION_NAME . '.' . $fileType . '.txt';
+
+        file_put_contents($fileName, $outResponseText, FILE_APPEND);
+    }
+
+    private function tryExtractJson(string $response): array
+    {
+
+        $depth                 = 0;
+        $response_json_text    = '';
+        $response_post_text    = '';
+        $response_unknown_text = '';
+
+        try
         {
-            $header = "";
-            $header .= "--------------------------------------------------------" . PHP_EOL;
-            $header .= "curl_response_pre_text: " . fileDateTime::stdFileDateTimeFormatString() . PHP_EOL;
+            print("    * tryExtractJson() " . PHP_EOL);
 
-            $outPreText = $this->response_pre_text . PHP_EOL;
+            $chars = preg_split("//u", $response, 0, PREG_SPLIT_NO_EMPTY);
 
-            $fileName = __DIR__ . '/' . curlErrResponse::ERROR_COLLECTION_RELATIVE_PATH . curlErrResponse::ERROR_COLLECTION_NAME . '.' . $fileType . '.txt';
-            $outText  = $header . $outPreText;
+            foreach ($chars as $idx => $char)
+            {
+                // next level
+                if ($char == '{')
+                {
+                    $depth++;
+                }
 
-            file_put_contents($fileName, $outText, FILE_APPEND);
+                // previous level
+                if ($char == '}')
+                {
+                    $depth--;
+
+                    // outside json ?
+                    if ($depth == 0)
+                    {
+                        $response_json_text = substr($response, 0, $idx+1);
+                        $response_post_text = substr($response, $idx+1);
+                        break;
+                    }
+                }
+            }
+
+            // json not found
+            if ($depth != 0)
+            {
+                $response_unknown_text = $response;
+            }
+
         }
+        catch (\Exception $e)
+        {
+            echo '!!! Error: Exception in tryExtractJson: ' . $e->getMessage() . PHP_EOL;
+        }
+
+        return [$response_json_text, $response_post_text, $response_unknown_text];
+    }
+
+    /**
+     * @return string
+     */
+    public function outResponseText(): string
+    {
+        $outResponseText = '';
+
+        $outResponseText .= "--------------------------------------------------------" . PHP_EOL;
+        $outResponseText .= "Outside data found: " . fileDateTime::stdFileDateTimeFormatString() . PHP_EOL;
+
+        if (!empty($this->response_pre_text))
+        {
+            $outResponseText .= "--------------------------------------------------------" . PHP_EOL;
+            $outResponseText .= "Pre text found:" . PHP_EOL;
+            $outResponseText .= $this->response_pre_text . PHP_EOL;
+        }
+
+        if (!empty($this->response_post_text))
+        {
+            $outResponseText .= "--------------------------------------------------------" . PHP_EOL;
+            $outResponseText .= "Post text found:" . PHP_EOL;
+            $outResponseText .= $this->response_post_text . PHP_EOL;
+        }
+
+        if (!empty($this->response_unknown_text))
+        {
+            $outResponseText .= "--------------------------------------------------------" . PHP_EOL;
+            $outResponseText .= "Response unknown text found:" . PHP_EOL;
+            $outResponseText .= $this->response_unknown_text . PHP_EOL;
+        }
+
+        $outResponseText .= "--------------------------------------------------------" . PHP_EOL;
+
+        return $outResponseText;
     }
 
 
