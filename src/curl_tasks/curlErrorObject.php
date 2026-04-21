@@ -8,12 +8,15 @@ namespace Finnern\apiByCurlHtml\src\curl_tasks;
  *    - code -> error code
  *    - title -> ?compressed? error message
  *    - detail -> Stack ...
+ * sometimes it has no 'title' or other indicator {"error":"You must install Joomla to use the API"}
  */
 class curlErrorObject
 {
     public string $errorCode = "";
     public string $title = "";
     public string $detail = "";
+    public string $error = "";
+    public string $message = "";
 
     public function __construct(array|\stdClass|null $errorObj = null)
     {
@@ -31,6 +34,10 @@ class curlErrorObject
             {
                 $this->detail = $errorObj['detail'];
             }
+            if (!empty ($errorObj['error']))
+            {
+                $this->error = $errorObj['error'];
+            }
 
             // Check for unexpected items in response
 
@@ -41,7 +48,7 @@ class curlErrorObject
                 {
 
                     case 'code':
-                    case 'message':
+                    case 'error':
                     case 'title':
                     case 'detail':
                         break;
@@ -54,11 +61,12 @@ class curlErrorObject
         }
     }
 
-    public function assignByStrings(string $errorCode = "", string $title = "", string $detail = "")
+    public function assignByStrings(string $errorCode = "", string $title = "", string $detail = "", string $error = "")
     {
         $this->errorCode = $errorCode;
         $this->title     = $title;
         $this->detail    = $detail;
+        $this->error   = $error;
 
     }
 
@@ -76,6 +84,10 @@ class curlErrorObject
         if (!empty($this->title))
         {
             $errorObj['title'] = $this->title;
+        }
+        if (!empty($this->error))
+        {
+            $errorObj['error'] = $this->error;
         }
 
         return $errorObj;
@@ -101,6 +113,15 @@ class curlErrorObject
         else
         {
             $outText .= "detail:    " . $this->detail . PHP_EOL;
+        }
+
+        if ($isConvert_slash_N)
+        {
+            $outText .= "error:    " . self::convert_slash_N($this->error) . PHP_EOL;
+        }
+        else
+        {
+            $outText .= "error:    " . $this->error . PHP_EOL;
         }
 
         return $outText;

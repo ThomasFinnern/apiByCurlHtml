@@ -1251,3 +1251,71 @@ Stack trace:
 #12 {main}
 
 
+--------------------------------------------------------
+curlErrResponse: 20260421_073128
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_113238
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_124151
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     
+code: 
+detail:    
+message:    You must install Joomla to use the API
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_124259
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     
+code: 
+detail:    
+message:    You must install Joomla to use the API
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_124520
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     
+code: 
+detail:    
+error:    You must install Joomla to use the API
+
+

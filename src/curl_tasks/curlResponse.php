@@ -123,6 +123,7 @@ class curlResponse
 
         try
         {
+            // Init local variables
             $this->response_json_text = $this->response_pre_text = $this->response_post_text = $this->response_unknown_text = '';
 
             if (!empty($response))
@@ -133,6 +134,10 @@ class curlResponse
                 // -----
                 // "Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte"
                 // "{"errors":[{"title":"Resource not found","code":404}]}
+                // -----
+                // or
+                // -----
+                // {"error":"You must install Joomla to use the API"}
                 // -----
                 // or
                 // -----
@@ -174,7 +179,7 @@ class curlResponse
 
                     if ($this->isValidJsonData)
                     {
-                        $response_json = $response;
+                        $this->response_json_text = $response;
                     }
                     else
                     {

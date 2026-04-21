@@ -17,6 +17,11 @@ namespace Finnern\apiByCurlHtml\src\curl_tasks;
 //    }
 // }
 //
+// Single error in ->error response object
+// {
+//    "error": "Error: You must install Joomla to use the API"
+// }
+//
 // Multiple errors in ->errors in response object
 // {
 //    "errors": [
@@ -27,10 +32,10 @@ namespace Finnern\apiByCurlHtml\src\curl_tasks;
 //        }
 //    ]
 //}
+
 //---------------------------------------------------------------------------
 use Finnern\apiByCurlHtml\src\fileNamesLib\fileDateTime;
 use stdClass;
-
 
 /**
  * Error number and message response direct from curl is a
@@ -121,7 +126,16 @@ class curlErrResponse
         // 02: $response->errors
 
 
-        // Reduce to errors
+        // Reduce to errors: single error
+        if (!empty($response['error']))
+        {
+            $this->response = $response;
+
+            //$this->assignResponseError($response['error']);
+            $this->assignResponseError($response);
+        }
+
+        // Reduce to errors: error object
         if (!empty($response['errors']))
         {
             $this->response = $response;
@@ -161,6 +175,42 @@ class curlErrResponse
                     $this->oErrors [] = new curlErrorObject ($oCurlError);
                 }
             }
+
+        }
+    }
+
+    /**
+     * Take the Error object of the response and assign objects to
+     * list
+     *
+     * @param   \stdClass|null  $responseError
+     *
+     * @return void
+     */
+    public function assignResponseError(array|\stdClass|null $responseError)
+    {
+        if (!empty($responseError))
+        {
+            $this->isHasError         = true;
+            $this->isHasResponseError = true;
+
+            // ToDo: detect if errors is direct or as array
+
+            // Single Error
+//            if (!empty($responseErrors['title']))
+            {
+                $curlErrorObject = new curlErrorObject ();
+                $curlErrorObject->assignByStrings('', '', '', $responseError['error']);
+                $this->oErrors [] = $curlErrorObject;
+            }
+//            else
+//            {
+//                // Multiple error form
+//                foreach ($responseErrors as $oCurlError)
+//                {
+//                    $this->oErrors [] = new curlErrorObject ($oCurlError);
+//                }
+//            }
 
         }
     }
@@ -227,7 +277,7 @@ class curlErrResponse
      *
      * @param   string  $responseFileName
      *
-     * @return void
+     * @return bool
      */
     public function collectError2File()
     {
@@ -335,7 +385,7 @@ class curlErrResponse
             // to text
             $outText .= $oJsonEol;
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: allErrorsJsonText Exception: ' . $e->getMessage() . PHP_EOL;
         }
