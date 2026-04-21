@@ -1319,3 +1319,277 @@ detail:
 error:    You must install Joomla to use the API
 
 
+--------------------------------------------------------
+curlErrResponse: 20260421_125554
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Forbidden
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_142120
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_142556
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_143947
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_144027
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_144036
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_144051
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_144515
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    BadMethodCallException: Argument 'fields' of event onApiGetFields must be be an array and not empty in E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php:114
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(239): Joomla\CMS\MVC\View\Event\OnGetApiFields->setFields(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(115): Joomla\CMS\Event\AbstractEvent->setArgument('fields', Array)
+#2 E:\wamp64\www\api_6x\libraries\src\Event\AbstractImmutableEvent.php(51): Joomla\CMS\Event\AbstractEvent->__construct('onApiGetFields', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php(81): Joomla\CMS\Event\AbstractImmutableEvent->__construct('onApiGetFields', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(237): Joomla\CMS\MVC\View\Event\OnGetApiFields->__construct('onApiGetFields', Array)
+#5 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(101): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#6 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#7 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#8 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#10 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#11 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#12 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#13 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#14 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_144536
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    BadMethodCallException: Argument 'fields' of event onApiGetFields must be be an array and not empty in E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php:114
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(239): Joomla\CMS\MVC\View\Event\OnGetApiFields->setFields(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(115): Joomla\CMS\Event\AbstractEvent->setArgument('fields', Array)
+#2 E:\wamp64\www\api_6x\libraries\src\Event\AbstractImmutableEvent.php(51): Joomla\CMS\Event\AbstractEvent->__construct('onApiGetFields', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php(81): Joomla\CMS\Event\AbstractImmutableEvent->__construct('onApiGetFields', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(237): Joomla\CMS\MVC\View\Event\OnGetApiFields->__construct('onApiGetFields', Array)
+#5 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(101): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#6 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#7 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#8 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#10 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#11 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#12 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#13 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#14 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_150653
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    BadMethodCallException: Argument 'fields' of event onApiGetFields must be be an array and not empty in E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php:114
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(239): Joomla\CMS\MVC\View\Event\OnGetApiFields->setFields(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(115): Joomla\CMS\Event\AbstractEvent->setArgument('fields', Array)
+#2 E:\wamp64\www\api_6x\libraries\src\Event\AbstractImmutableEvent.php(51): Joomla\CMS\Event\AbstractEvent->__construct('onApiGetFields', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php(81): Joomla\CMS\Event\AbstractImmutableEvent->__construct('onApiGetFields', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(237): Joomla\CMS\MVC\View\Event\OnGetApiFields->__construct('onApiGetFields', Array)
+#5 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(101): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#6 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#7 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#8 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#10 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#11 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#12 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#13 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#14 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_151408
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    BadMethodCallException: Argument 'fields' of event onApiGetFields must be be an array and not empty in E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php:114
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(239): Joomla\CMS\MVC\View\Event\OnGetApiFields->setFields(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(115): Joomla\CMS\Event\AbstractEvent->setArgument('fields', Array)
+#2 E:\wamp64\www\api_6x\libraries\src\Event\AbstractImmutableEvent.php(51): Joomla\CMS\Event\AbstractEvent->__construct('onApiGetFields', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php(81): Joomla\CMS\Event\AbstractImmutableEvent->__construct('onApiGetFields', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(237): Joomla\CMS\MVC\View\Event\OnGetApiFields->__construct('onApiGetFields', Array)
+#5 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(101): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#6 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#7 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#8 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#10 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#11 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#12 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#13 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#14 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_151523
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: Error: The RSG2 configuration may not be saved for the first time. Please check/save the config once in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\ConfigModel.php:77
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(215): Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel->getItem()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(101): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260421_160837
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    BadMethodCallException: Argument 'fields' of event onApiGetFields must be be an array and not empty in E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php:114
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(239): Joomla\CMS\MVC\View\Event\OnGetApiFields->setFields(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Event\AbstractEvent.php(115): Joomla\CMS\Event\AbstractEvent->setArgument('fields', Array)
+#2 E:\wamp64\www\api_6x\libraries\src\Event\AbstractImmutableEvent.php(51): Joomla\CMS\Event\AbstractEvent->__construct('onApiGetFields', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\View\Event\OnGetApiFields.php(81): Joomla\CMS\Event\AbstractImmutableEvent->__construct('onApiGetFields', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(237): Joomla\CMS\MVC\View\Event\OnGetApiFields->__construct('onApiGetFields', Array)
+#5 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(101): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#6 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#7 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#8 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#10 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#11 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#12 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#13 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#14 {main}
+error:    
+
+
