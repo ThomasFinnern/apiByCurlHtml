@@ -3,9 +3,9 @@
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
 use AllowDynamicProperties;
-use Exception;
 use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
+use Finnern\apiByCurlHtml\src\tasksLib\exchangeData;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 
 //use Finnern\apiByCurlHtml\src\tasksLib\option;
@@ -50,6 +50,7 @@ class baseCurlTask extends baseExecuteTasks
     protected bool $isLoadResponseFile = true;
     protected bool $isKeepResponseJson = true;
 
+    protected $oExchangeData = null;
 
 // ToDo:    protected array $urlParams = [];  // list of additional parameters multiple lines  of test01=1]
 
@@ -64,11 +65,11 @@ class baseCurlTask extends baseExecuteTasks
 
     //  file lines
     protected array $lines = [];
+    protected curlResponse $oCurlResponse;
 
     /*--------------------------------------------------------------------
     construction
     --------------------------------------------------------------------*/
-
     public function __construct()
     {
         parent::__construct();
@@ -78,10 +79,11 @@ class baseCurlTask extends baseExecuteTasks
 
             $this->oCurl = curl_init();
 
+            $this->oExchangeData = new exchangeData();
             // $this->params = new \stdClass();
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
@@ -91,159 +93,162 @@ class baseCurlTask extends baseExecuteTasks
     // Task name with options
     public function assignBaseOption(option $option): bool
     {
-        $isBaseOption = false;
+        // $isOptionConsumed = false;
+        $isOptionConsumed = $this->oExchangeData->assignOption($option);
 
-        switch (strtolower($option->name))
+        if (!$isOptionConsumed)
         {
-            case strtolower('baseUrl'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->baseUrl = $option->value;
-                $isBaseOption  = true;
-                break;
+            switch (strtolower($option->name))
+            {
+                case strtolower('baseUrl'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->baseUrl    = $option->value;
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('apiPath'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->apiPath = $option->value;
-                $isBaseOption  = true;
-                break;
+                case strtolower('apiPath'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->apiPath    = $option->value;
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('httpFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                case strtolower('httpFile'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
-                // accept it as it is handled before
-                $isBaseOption = true;
-                break;
+                    // accept it as it is handled before
+                    $isOptionConsumed = true;
+                    break;
 
-            // joomla token should not be in *.tsk file when using git published
-            case strtolower('joomlaToken'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->joomlaToken = $option->value;
-                $isBaseOption      = true;
-                break;
+                // joomla token should not be in *.tsk file when using git published
+                case strtolower('joomlaToken'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->joomlaToken = $option->value;
+                    $isOptionConsumed  = true;
+                    break;
 
-            case strtolower('joomlaTokenFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->joomlaTokenFile = $option->value;
-                $this->joomlaToken     = $this->readTokenFromFile($option->value);
-                $isBaseOption          = true;
-                break;
+                case strtolower('joomlaTokenFile'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->joomlaTokenFile = $option->value;
+                    $this->joomlaToken     = $this->readTokenFromFile($option->value);
+                    $isOptionConsumed      = true;
+                    break;
 
-            case strtolower('accept'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->accept = $option->value;
-                $isBaseOption = true;
-                break;
+                case strtolower('accept'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->accept     = $option->value;
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('contentType'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->contentType = $option->value;
-                $isBaseOption      = true;
-                break;
+                case strtolower('contentType'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->contentType = $option->value;
+                    $isOptionConsumed  = true;
+                    break;
 
-            case strtolower('responseFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                case strtolower('responseFile'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
-                $this->responseFile = $option->value;
+                    $this->responseFile = $option->value;
 //                if ($this->responseFile == '') {
 //                    $this->responseFile = $this->getResponseFileName($this->filePathName);
 //                }
-                $isBaseOption = true;
-                break;
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('param'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                case strtolower('param'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
-                $json_value = '{' . $option->value . '}';
-                $paramJson  = json_decode($json_value);
-                if (!empty($paramJson))
-                {
-                    foreach ($paramJson as $key => $value)
+                    $json_value = '{' . $option->value . '}';
+                    $paramJson  = json_decode($json_value);
+                    if (!empty($paramJson))
                     {
-                        $this->params[$key] = $value;
+                        foreach ($paramJson as $key => $value)
+                        {
+                            $this->params[$key] = $value;
+                        }
                     }
-                }
-                else
-                {
-                    print('!!! error in baseCurlTast:assignBaseOption:param !!!' . PHP_EOL);
-                    print('    json value could not be decoded "' . $json_value . '"' . PHP_EOL);
-                    print('    ? Missing ".." around string ?' . PHP_EOL);
-                    throw new \ErrorException("json value could not be decoded");
-                }
-                $isBaseOption = true;
-                break;
+                    else
+                    {
+                        print('!!! error in baseCurlTast:assignBaseOption:param !!!' . PHP_EOL);
+                        print('    json value could not be decoded "' . $json_value . '"' . PHP_EOL);
+                        print('    ? Missing ".." around string ?' . PHP_EOL);
+                        throw new \ErrorException("json value could not be decoded");
+                    }
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('paramsFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->paramsFile = $option->value;
-                $isBaseOption     = true;
-                break;
+                case strtolower('paramsFile'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->paramsFile = $option->value;
+                    $isOptionConsumed = true;
+                    break;
 
 
-            case strtolower('dataFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->dataFile = $option->value;
-                $isBaseOption   = true;
-                break;
+                case strtolower('dataFile'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->dataFile   = $option->value;
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('dataFileType'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                case strtolower('dataFileType'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 //                $this->dataFileType = $option->value;
-                $this->dataFileType = eDataFileType::tryFrom(strtolower($option->value)) ?? eDataFileType::json;
-                $isBaseOption       = true;
-                break;
+                    $this->dataFileType = eDataFileType::tryFrom(strtolower($option->value)) ?? eDataFileType::json;
+                    $isOptionConsumed   = true;
+                    break;
 
-            case strtolower('page_offset'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->page_offset = $option->value;
-                $isBaseOption      = true;
-                break;
+                case strtolower('page_offset'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->page_offset = $option->value;
+                    $isOptionConsumed  = true;
+                    break;
 
 
-            case strtolower('page_limit'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->page_limit = $option->value;
-                $isBaseOption     = true;
-                break;
+                case strtolower('page_limit'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->page_limit = $option->value;
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('isCreateAutoResponseFile'):
-                // ignore but accept flag isCreateAutoResponseFile
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                // $this->dstExtension     = $option->value;
-                $isBaseOption = true;
-                break;
+                case strtolower('isCreateAutoResponseFile'):
+                    // ignore but accept flag isCreateAutoResponseFile
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    // $this->dstExtension     = $option->value;
+                    $isOptionConsumed = true;
+                    break;
 
-            case strtolower('isExitOnErrorResult'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->isExitOnErrorResult = boolval($option->value);
-                $isOptionConsumed          = true;
-                break;
+                case strtolower('isExitOnErrorResult'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->isExitOnErrorResult = boolval($option->value);
+                    $isOptionConsumed          = true;
+                    break;
 
-            case strtolower('isLoadResponseFile'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->isLoadResponseFile = boolval($option->value);
-                $isOptionConsumed         = true;
-                break;
+                case strtolower('isLoadResponseFile'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->isLoadResponseFile = boolval($option->value);
+                    $isOptionConsumed         = true;
+                    break;
 
-            case strtolower('isKeepResponseJson'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->isKeepResponseJson = boolval($option->value);
-                $isOptionConsumed         = true;
-                break;
+                case strtolower('isKeepResponseJson'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->isKeepResponseJson = boolval($option->value);
+                    $isOptionConsumed         = true;
+                    break;
 
-            case strtolower('is'):
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                $this->is         = boolval($option->value);
-                $isOptionConsumed = true;
-                break;
+                case strtolower('is'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->is         = boolval($option->value);
+                    $isOptionConsumed = true;
+                    break;
 
 //            case strtolower(''):
 //                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 //                $this-> = $option->value;
-//                $isBaseOption  = true;
+//                $isOptionConsumed  = true;
 //                break;
 
 
-            //--- examples string int bool -----------------------------------------------------
+                //--- examples string int bool -----------------------------------------------------
 
 //            case strtolower('testval'):
 //                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
@@ -263,9 +268,10 @@ class baseCurlTask extends baseExecuteTasks
 //                $isOption = true;
 //                break;
 
-        } // switch
+            } // switch
+        }
 
-        return $isBaseOption;
+        return $isOptionConsumed;
     }
 
     private function readTokenFromFile(string $fileName): string
@@ -661,7 +667,8 @@ class baseCurlTask extends baseExecuteTasks
         print("    create response object" . PHP_EOL);
 
         // Extract data from response, sort to error, json data , pre/post data
-        $oCurlResponse = new curlResponse($this->oCurl, $response);
+        $oCurlResponse       = new curlResponse($this->oCurl, $response);
+        $this->oCurlResponse = $oCurlResponse;
 
         print('---------------------------------------------------------' . PHP_EOL);
         print(">>> curl response results: " . PHP_EOL);
@@ -776,6 +783,29 @@ class baseCurlTask extends baseExecuteTasks
 
     // ToDo:separate class
 
+    public function fetchExchangeData()
+    {
+        // fetch data exists ?
+
+        // assign them
+
+        // foreach ... []
+
+//        -> $this->params[] = ....
+//        $this->params[$key] = $value;
+    }
+
+    /**
+     * updateKeepData from Response
+     * fetch and write to exchange file
+     * @return void
+     */
+    public function updateKeepData(curlResponse $oCurlResponse)
+    {
+        //
+        //
+        //
+    }
 
     protected function readDataFile(): string
     {
@@ -852,7 +882,7 @@ class baseCurlTask extends baseExecuteTasks
             }
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
@@ -886,7 +916,7 @@ class baseCurlTask extends baseExecuteTasks
                 echo '!!! Error: assignParamsFromFile file does not exist: "' . $this->paramsFile . '"' . PHP_EOL;
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
@@ -916,7 +946,7 @@ class baseCurlTask extends baseExecuteTasks
                 echo '!!! Error: assignContentFromFile file does not exist: "' . $this->dataFile . '"' . PHP_EOL;
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
@@ -934,7 +964,7 @@ class baseCurlTask extends baseExecuteTasks
             $dataString = json_encode($this->params, JSON_PRETTY_PRINT);
             //$dataString = json_encode($this->params);
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }

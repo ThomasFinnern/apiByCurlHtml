@@ -2,7 +2,7 @@
 
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
-use Exception;
+
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
@@ -39,7 +39,7 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
             parent::__construct();
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
@@ -102,6 +102,8 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
         print("Execute postCurlTask: " . PHP_EOL);
         print('---------------------------------------------------------' . PHP_EOL);
 
+        parent::readExchangeData();
+
         // ToDo: Error on missing token
 
         $this->prepareDataFromFiles();
@@ -137,6 +139,8 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
             print('---------------------------------------------------------' . PHP_EOL);
 
         }
+
+        parent::fetchExchangeData($this->oCurlResponse);
 
         return $hasError;
     }

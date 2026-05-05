@@ -2,16 +2,15 @@
 
 namespace Finnern\apiByCurlHtml\src\task_http_file;
 
-use Exception;
+use Finnern\apiByCurlHtml\src\curl_tasks\baseCurlTask;
 use Finnern\apiByCurlHtml\src\lib\AutoSrcDstPathFileNames;
-use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\options;
 use Finnern\apiByCurlHtml\src\tasksLib\task;
 
 $HELP_MSG = <<<EOT
     >>>
-    class apiByCurlHtml
+    class tsk2httpFile
 
     ToDo: option commands , example
 
@@ -20,10 +19,10 @@ $HELP_MSG = <<<EOT
 
 
 /*================================================================================
-Class apiByCurlHtml
+Class tsk2httpFile
 ================================================================================*/
 
-class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
+class tsk2httpFile extends baseCurlTask implements executeTasksInterface
 {
     // internal
     //public task $task;
@@ -34,12 +33,9 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
     private string $dstFile = '';
     private string $dstExtension = '';
 
-
     /*--------------------------------------------------------------------
     construction
     --------------------------------------------------------------------*/
-
-    // ToDo: a lot of parameters ....
 
     public function __construct($srcRoot = "")
     {
@@ -54,20 +50,13 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
 
 //            parent::__construct($srcRoot, false);
 
-//            $this->srcFile = $srcFile;
-//            $this->dstFile = $dstFile;
-
-//            $this->task     = new task();
             $this->hasError = false;
-
-
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
         }
-        // print('exit __construct: ' . $hasError . PHP_EOL);
     }
 
     /**
@@ -78,14 +67,13 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
      */
     public function assignOptions(options $options, $taskName): int
     {
-        // Task name with options
-//    public function assignTask(task $task): int
-        //   {
 
         foreach ($options->options as $option)
         {
-            $isParentOption = parent::assignOption($option);
-            if (!$isParentOption)
+            $isOptionConsumed = false;
+            //$isOptionConsumed = parent::assignBaseOption($option);
+
+            if (!$isOptionConsumed)
             {
                 $this->assignLocalOption($option);
             }
@@ -140,13 +128,6 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
             case strtolower('dstExtension'):
                 print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                 $this->dstExtension     = $option->value;
-                $isLocalExtensionOption = true;
-                break;
-
-            case strtolower('isCreateAutoResponseFile'):
-                // ignore but accept flag isCreateAutoResponseFile
-                print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                // $this->dstExtension     = $option->value;
                 $isLocalExtensionOption = true;
                 break;
 
@@ -220,9 +201,6 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
 
             print (">>local task data 2 http data: " . PHP_EOL);
 
-//            $httpFileData->baseUrl = $baseUrl;
-//            $httpFileData->apiPath = $apiPath;
-
             //--- create and save data -----------------------
 
             print (">>save httpFileData: " . PHP_EOL);
@@ -233,7 +211,6 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
             print ("------------------------------------------" . PHP_EOL);
             print ("--- transform done -----------------------" . PHP_EOL);
             print ("------------------------------------------" . PHP_EOL);
-
         }
 
         return $this->hasError;
@@ -264,7 +241,7 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
     public function text(): string
     {
         $OutTxt = "------------------------------------------" . PHP_EOL;
-        $OutTxt .= "--- apiByCurlHtml --------" . PHP_EOL;
+        $OutTxt .= "--- tsk2httpFile --------" . PHP_EOL;
 
         $OutTxt .= "Not defined yet " . PHP_EOL;
 
@@ -337,18 +314,4 @@ class tsk2httpFile extends baseExecuteTasks implements executeTasksInterface
     }
 
 } // apiByCurlHtml
-
-
-//function join_paths()
-//{
-//    $paths = [];
-//
-//    foreach (func_get_args() as $arg) {
-//        if ($arg !== '') {
-//            $paths[] = $arg;
-//        }
-//    }
-//
-//    return preg_replace('#/+#', '/', join('/', $paths));
-//}
 

@@ -12,14 +12,6 @@ $HELP_MSG = <<<EOT
     >>>
     file: tsk2httpFileCmd.php
 
-    ToDo: option commands , example
-    ToDo: Test result -> "total-pages": 6 see next below
-        "links": {
-                "self": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application",
-                "next": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application?page%5Boffset%5D=20&page%5Blimit%5D=20",
-                "last": "http://127.0.0.1/joomla5x/api/index.php/v1/config/application?page%5Boffset%5D=100&page%5Blimit%5D=20"
-            },
-                  
 
     <<<
     EOT;
@@ -117,8 +109,9 @@ variables
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/rsg2_getGallery.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getConfigAll.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
+//$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
 
-// $taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
+$tasksLine = ' task:tsk2httpFile' . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests' . ' /srcFile="rsg2_getConfig_isDevelop.tsk"' . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files' . ' /dstFile="rsg2_getConfig_isDevelop.http"';
 
 $srcFile         = "";
 $dstFile         = "";
