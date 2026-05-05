@@ -18,28 +18,23 @@ use Finnern\apiByCurlHtml\src\fileNamesLib\fileDateTime;
 class curlResponse
 {
 
-    protected \curlHandle|false $oCurl;
-
-    // Complete response part
-    protected string|null $response = null;
-
-    // json part of response as php object
     public array|\stdClass|null $oResponse = null;
 
+    // Complete response part
     public string $response_json_text;
+
+    // json part of response as php object
     public string $response_pre_text;
     public string $response_post_text;
     public string $response_unknown_text;
-
-    public curlErrResponse|null $oCurlErrResponse = null; // will be initialized with empty classo bject
-
+public curlErrResponse|null $oCurlErrResponse = null;
     public bool $isHasError = false;
+    public $isValidJsonData = false; // will be initialized with empty classo bject
+    public $isHasOutsideData = false;
 //    public bool $isHasCurlError = false;
 //    public bool $isHasResponseError = false;
-
-    public $isValidJsonData = false;
-    public $isHasOutsideData = false;
-
+    protected \curlHandle|false $oCurl;
+    protected string|null $response = null;
 
     public function __construct(\curlHandle|false $oCurl = false, string|null $response = null)
     {
@@ -220,6 +215,58 @@ class curlResponse
         return [$this->response_json_text, $this->response_pre_text, $this->response_post_text, $this->response_unknown_text];
     }
 
+    private function tryExtractJson(string $response): array
+    {
+
+        $depth                 = 0;
+        $response_json_text    = '';
+        $response_post_text    = '';
+        $response_unknown_text = '';
+
+        try
+        {
+            print("    * tryExtractJson() " . PHP_EOL);
+
+            $chars = preg_split("//u", $response, 0, PREG_SPLIT_NO_EMPTY);
+
+            foreach ($chars as $idx => $char)
+            {
+                // next level
+                if ($char == '{')
+                {
+                    $depth++;
+                }
+
+                // previous level
+                if ($char == '}')
+                {
+                    $depth--;
+
+                    // outside json ?
+                    if ($depth == 0)
+                    {
+                        $response_json_text = substr($response, 0, $idx + 1);
+                        $response_post_text = substr($response, $idx + 1);
+                        break;
+                    }
+                }
+            }
+
+            // json not found
+            if ($depth != 0)
+            {
+                $response_unknown_text = $response;
+            }
+
+        }
+        catch (\Exception $e)
+        {
+            echo '!!! Error: Exception in tryExtractJson: ' . $e->getMessage() . PHP_EOL;
+        }
+
+        return [$response_json_text, $response_post_text, $response_unknown_text];
+    }
+
     public function preResponseText(): string
     {
         $outText = "";
@@ -292,82 +339,6 @@ class curlResponse
     }
 
     /**
-     * ToDo: Collect in separate file when filename not given
-     * ToDo: where is it/shall it be used
-     *
-     * @param   string  $responseFileName
-     *
-     * @return void
-     */
-    public function collectOutsideData2File()
-    {
-        //------------------------------------------------------
-        // create test response file to keep several errors (to be removed later)
-        // if ($this->isHasError)
-
-        $fileType = 'outside';
-
-        $outResponseText = $this->outResponseText();
-
-        // Write text to file
-        $fileName = __DIR__ . '/' . curlErrResponse::ERROR_COLLECTION_RELATIVE_PATH . curlErrResponse::ERROR_COLLECTION_NAME . '.' . $fileType . '.txt';
-
-        file_put_contents($fileName, $outResponseText, FILE_APPEND);
-    }
-
-    private function tryExtractJson(string $response): array
-    {
-
-        $depth                 = 0;
-        $response_json_text    = '';
-        $response_post_text    = '';
-        $response_unknown_text = '';
-
-        try
-        {
-            print("    * tryExtractJson() " . PHP_EOL);
-
-            $chars = preg_split("//u", $response, 0, PREG_SPLIT_NO_EMPTY);
-
-            foreach ($chars as $idx => $char)
-            {
-                // next level
-                if ($char == '{')
-                {
-                    $depth++;
-                }
-
-                // previous level
-                if ($char == '}')
-                {
-                    $depth--;
-
-                    // outside json ?
-                    if ($depth == 0)
-                    {
-                        $response_json_text = substr($response, 0, $idx+1);
-                        $response_post_text = substr($response, $idx+1);
-                        break;
-                    }
-                }
-            }
-
-            // json not found
-            if ($depth != 0)
-            {
-                $response_unknown_text = $response;
-            }
-
-        }
-        catch (\Exception $e)
-        {
-            echo '!!! Error: Exception in tryExtractJson: ' . $e->getMessage() . PHP_EOL;
-        }
-
-        return [$response_json_text, $response_post_text, $response_unknown_text];
-    }
-
-    /**
      * @return string
      */
     public function outResponseText(): string
@@ -401,6 +372,30 @@ class curlResponse
         $outResponseText .= "--------------------------------------------------------" . PHP_EOL;
 
         return $outResponseText;
+    }
+
+    /**
+     * ToDo: Collect in separate file when filename not given
+     * ToDo: where is it/shall it be used
+     *
+     * @param   string  $responseFileName
+     *
+     * @return void
+     */
+    public function collectOutsideData2File()
+    {
+        //------------------------------------------------------
+        // create test response file to keep several errors (to be removed later)
+        // if ($this->isHasError)
+
+        $fileType = 'outside';
+
+        $outResponseText = $this->outResponseText();
+
+        // Write text to file
+        $fileName = __DIR__ . '/' . curlErrResponse::ERROR_COLLECTION_RELATIVE_PATH . curlErrResponse::ERROR_COLLECTION_NAME . '.' . $fileType . '.txt';
+
+        file_put_contents($fileName, $outResponseText, FILE_APPEND);
     }
 
 

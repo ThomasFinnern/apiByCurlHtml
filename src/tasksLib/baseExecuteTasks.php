@@ -3,7 +3,7 @@
 namespace Finnern\apiByCurlHtml\src\tasksLib;
 
 // use CurlHandle;
-use Exception;
+
 use Finnern\apiByCurlHtml\src\fileNamesLib\fileNamesList;
 
 //use Finnern\apiByCurlHtml\src\tasksLib\option;
@@ -40,7 +40,7 @@ class baseExecuteTasks extends task implements executeTasksInterface
             $this->fileNamesList = new fileNamesList($srcRoot, '', '', $isNoRecursion);
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }

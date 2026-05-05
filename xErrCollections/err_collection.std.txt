@@ -1893,3 +1893,143 @@ detail:
 error:    
 
 
+--------------------------------------------------------
+curlErrResponse: 20260505_141048
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_141132
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_142028
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_142043
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_142304
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_142713
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_142738
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_142915
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_144539
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260505_153545
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+

@@ -3,7 +3,7 @@
 namespace Finnern\apiByCurlHtml\src\fileNamesLib;
 
 //use \DateTime;
-use Exception;
+
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 use Finnern\apiByCurlHtml\src\tasksLib\options;
@@ -70,7 +70,7 @@ class fileNamesList implements executeTasksInterface
             $this->assignParameters($srcPath, $includeExt, $excludeExt, $isNoRecursion, $writeListToFile);
 
         } /*--- exception ----------------------------------------------------*/
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -194,7 +194,7 @@ class fileNamesList implements executeTasksInterface
             $this->scanPath4Filenames($this->srcRoot);
 
         } /*--- exception ----------------------------------------------------*/
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -279,7 +279,7 @@ class fileNamesList implements executeTasksInterface
                 print ("NoRecursion: Exit after base folder requested: : " . count($folders) . PHP_EOL);
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -315,7 +315,7 @@ class fileNamesList implements executeTasksInterface
                 }
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -352,7 +352,7 @@ class fileNamesList implements executeTasksInterface
                 $isValid = false;
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -376,7 +376,7 @@ class fileNamesList implements executeTasksInterface
                 }
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -432,7 +432,7 @@ class fileNamesList implements executeTasksInterface
             }
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -546,7 +546,7 @@ class fileNamesList implements executeTasksInterface
         {
             [$files, $folders] = $this->filesAndFoldersInDir($inPath);
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -565,7 +565,7 @@ class fileNamesList implements executeTasksInterface
             // [$files, $folders] = $this->filesAndFoldersInDir($inPath);
             [, $folders] = $this->filesAndFoldersInDir($inPath);
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;

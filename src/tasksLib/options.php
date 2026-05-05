@@ -4,8 +4,6 @@ namespace Finnern\apiByCurlHtml\src\tasksLib;
 
 // use DateTime;
 
-use Exception;
-
 
 /*================================================================================
 Class options
@@ -34,7 +32,7 @@ class options
 
             $this->options = $options;
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -159,7 +157,7 @@ class options
             $this->extractOptionsFromLines($lines);
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -272,7 +270,7 @@ class options
                 $this->addOption($option);
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;

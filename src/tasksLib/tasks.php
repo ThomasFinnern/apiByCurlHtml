@@ -2,7 +2,6 @@
 
 namespace Finnern\apiByCurlHtml\src\tasksLib;
 
-use Exception;
 
 /*================================================================================
 Class task
@@ -89,7 +88,7 @@ class tasks
             $this->extractTasksFromLines($lines);
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -178,7 +177,7 @@ class tasks
             // print ($this->tasksText ());
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;
@@ -186,7 +185,7 @@ class tasks
 
     }
 
-    private function isTaskStart(string $tasksLine):bool
+    private function isTaskStart(string $tasksLine): bool
     {
         $isTask = false;
 
@@ -257,7 +256,7 @@ class tasks
                 }
             }
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
             $hasError = -101;

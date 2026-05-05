@@ -66,7 +66,7 @@ class curlErrorObject
         $this->errorCode = $errorCode;
         $this->title     = $title;
         $this->detail    = $detail;
-        $this->error   = $error;
+        $this->error     = $error;
 
     }
 
@@ -91,13 +91,6 @@ class curlErrorObject
         }
 
         return $errorObj;
-    }
-
-    public static function convert_slash_N(string $detail)
-    {
-        $detailCorrected = str_replace('\n', PHP_EOL . "   ", $detail);
-
-        return $detailCorrected;
     }
 
     public function errorText(bool $isConvert_slash_N = false)
@@ -125,6 +118,13 @@ class curlErrorObject
         }
 
         return $outText;
+    }
+
+    public static function convert_slash_N(string $detail)
+    {
+        $detailCorrected = str_replace('\n', PHP_EOL . "   ", $detail);
+
+        return $detailCorrected;
     }
 
 }

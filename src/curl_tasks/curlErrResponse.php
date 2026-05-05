@@ -57,21 +57,18 @@ class curlErrResponse
 // ToDo: Response file class
 
     // Curl direct error code (connection related)
-    public string $errCode = '0';
-    public string $errMessage = '';
+const ERROR_COLLECTION_RELATIVE_PATH = "../../xErrCollections/";
+    const ERROR_COLLECTION_NAME = "err_collection";
 
     // Complete response part
-    protected array|string|null $response = null;
-
+    public string $errCode = '0';
+    public string $errMessage = '';
     public bool $isHasError = false;
     public bool $isHasCurlError = false;
     public bool $isHasResponseError = false;
-
+    protected array|string|null $response = null;      // RIGHT - Works INSIDE of a class definition.
     /** @var $oErrors curlErrorObject [] */
     protected $oErrors = [];
-
-    const ERROR_COLLECTION_RELATIVE_PATH = "../../xErrCollections/";      // RIGHT - Works INSIDE of a class definition.
-    const ERROR_COLLECTION_NAME = "err_collection";
 
     public function __construct(string $errorCode = '0', $errMessage = '', string|null $response = null)
     {
@@ -83,30 +80,6 @@ class curlErrResponse
         {
             $this->assignResponseWithErrorObject($response);
         }
-    }
-
-    /**
-     * Handles connection related curl error
-     * Keeps only number and message from curl execution
-     *
-     * @param   string  $errorCode
-     * @param           $errMessage
-     *
-     * @return void
-     */
-    public function assignCurlError(string $errorCode = '0', $errMessage = '')
-    {
-        print("    * assignCurlError() " . PHP_EOL);
-
-        $this->errCode    = $errorCode;
-        $this->errMessage = $errMessage;
-
-        if ($this->errCode != '0')
-        {
-            $this->isHasError     = true;
-            $this->isHasCurlError = true;
-        }
-
     }
 
     /**
@@ -141,41 +114,6 @@ class curlErrResponse
             $this->response = $response;
 
             $this->assignResponseErrors($response['errors']);
-        }
-    }
-
-    /**
-     * Take the Errors object of the response and assign objects to
-     * list
-     *
-     * @param   \stdClass|null  $responseErrors
-     *
-     * @return void
-     */
-    public function assignResponseErrors(array|\stdClass|null $responseErrors)
-    {
-
-        if (!empty($responseErrors))
-        {
-            $this->isHasError         = true;
-            $this->isHasResponseError = true;
-
-            // ToDo: detect if errors is direct or as array
-
-            // Single Error
-            if (!empty($responseErrors['title']))
-            {
-                $this->oErrors [] = new curlErrorObject ($responseErrors);
-            }
-            else
-            {
-                // Multiple error form
-                foreach ($responseErrors as $oCurlError)
-                {
-                    $this->oErrors [] = new curlErrorObject ($oCurlError);
-                }
-            }
-
         }
     }
 
@@ -215,41 +153,63 @@ class curlErrResponse
         }
     }
 
-    public function allErrorsText(bool $isConvert_slash_N = false)
+    /**
+     * Take the Errors object of the response and assign objects to
+     * list
+     *
+     * @param   \stdClass|null  $responseErrors
+     *
+     * @return void
+     */
+    public function assignResponseErrors(array|\stdClass|null $responseErrors)
     {
-        $outText = '';
 
-        if (!empty($this->oErrors))
+        if (!empty($responseErrors))
         {
-            $outText .= PHP_EOL;
-            $outText .= '---------------------------------------------------------' . PHP_EOL;
-            $outText .= "!!! >>> Errors found (warning/error) !!!" . PHP_EOL;
-            $outText .= '---------------------------------------------------------' . PHP_EOL;
-            $outText .= PHP_EOL;
+            $this->isHasError         = true;
+            $this->isHasResponseError = true;
 
-            if ($this->isHasCurlError)
+            // ToDo: detect if errors is direct or as array
+
+            // Single Error
+            if (!empty($responseErrors['title']))
             {
-                $outText .= $this->errorCommunicationText() . PHP_EOL;
+                $this->oErrors [] = new curlErrorObject ($responseErrors);
+            }
+            else
+            {
+                // Multiple error form
+                foreach ($responseErrors as $oCurlError)
+                {
+                    $this->oErrors [] = new curlErrorObject ($oCurlError);
+                }
             }
 
-            if ($this->isHasResponseError)
-            {
-                $outText .= $this->errorResponseText($isConvert_slash_N) . PHP_EOL;
-            }
         }
-
-        return $outText;
     }
 
-    public function errorCommunicationText(): string
+    /**
+     * Handles connection related curl error
+     * Keeps only number and message from curl execution
+     *
+     * @param   string  $errorCode
+     * @param           $errMessage
+     *
+     * @return void
+     */
+    public function assignCurlError(string $errorCode = '0', $errMessage = '')
     {
-        $outText = "";
+        print("    * assignCurlError() " . PHP_EOL);
 
-        $outText .= 'curl communication error' . PHP_EOL;
-        $outText .= 'errCode: ' . $this->errCode . PHP_EOL;
-        $outText .= 'errMessage: "' . $this->errMessage . '"' . PHP_EOL;
+        $this->errCode    = $errorCode;
+        $this->errMessage = $errMessage;
 
-        return $outText;
+        if ($this->errCode != '0')
+        {
+            $this->isHasError     = true;
+            $this->isHasCurlError = true;
+        }
+
     }
 
     /**
@@ -269,69 +229,6 @@ class curlErrResponse
             $allErrorsJsonText = $this->allErrorsJsonText($isConvert_slash_N);
             file_put_contents($responseFileName . '.err.json', $allErrorsJsonText);
         }
-    }
-
-    /**
-     * ToDo: Collect in separate file when filename not given
-     * ToDo: where is it/shall it be used
-     *
-     * @param   string  $responseFileName
-     *
-     * @return bool
-     */
-    public function collectError2File()
-    {
-        // $fileType = 'all';
-        $isWritten = false;
-
-        if ($this->isHasCurlError)
-        {
-            $fileType = 'curl';
-        }
-        else
-        {
-            if ($this->isHasResponseError)
-            {
-                $fileType = 'std';
-            }
-        }
-
-        //------------------------------------------------------
-        // create test response file to keep several errors (to be removed later)
-        if ($this->isHasError)
-        {
-            $header = "";
-            $header .= "--------------------------------------------------------" . PHP_EOL;
-            $header .= "curlErrResponse: " . fileDateTime::stdFileDateTimeFormatString() . PHP_EOL;
-
-            $allErrorsText = $this->allErrorsText();
-
-            $fileName = __DIR__ . '/' . self::ERROR_COLLECTION_RELATIVE_PATH . self::ERROR_COLLECTION_NAME . '.' . $fileType . '.txt';
-            //
-            $outText = $header . $allErrorsText;
-
-            $isWritten = file_put_contents($fileName, $outText, FILE_APPEND);
-            // $isWritten = file_put_contents($fileName, $outText);
-        }
-
-        return $isWritten;
-    }
-
-    private function errorResponseText(bool $isConvert_slash_N = false)
-    {
-        $outText = "";
-
-// ToDO: how to and when to use
-
-        $outText .= 'curl response json errors' . PHP_EOL;
-
-        foreach ($this->oErrors as $oError)
-        {
-            $outText .= $oError->errorText($isConvert_slash_N) . PHP_EOL;
-        }
-
-        return $outText;
-
     }
 
     /**
@@ -392,6 +289,106 @@ class curlErrResponse
 
 
         return $outText;
+    }
+
+    /**
+     * ToDo: Collect in separate file when filename not given
+     * ToDo: where is it/shall it be used
+     *
+     * @param   string  $responseFileName
+     *
+     * @return bool
+     */
+    public function collectError2File()
+    {
+        // $fileType = 'all';
+        $isWritten = false;
+
+        if ($this->isHasCurlError)
+        {
+            $fileType = 'curl';
+        }
+        else
+        {
+            if ($this->isHasResponseError)
+            {
+                $fileType = 'std';
+            }
+        }
+
+        //------------------------------------------------------
+        // create test response file to keep several errors (to be removed later)
+        if ($this->isHasError)
+        {
+            $header = "";
+            $header .= "--------------------------------------------------------" . PHP_EOL;
+            $header .= "curlErrResponse: " . fileDateTime::stdFileDateTimeFormatString() . PHP_EOL;
+
+            $allErrorsText = $this->allErrorsText();
+
+            $fileName = __DIR__ . '/' . self::ERROR_COLLECTION_RELATIVE_PATH . self::ERROR_COLLECTION_NAME . '.' . $fileType . '.txt';
+            //
+            $outText = $header . $allErrorsText;
+
+            $isWritten = file_put_contents($fileName, $outText, FILE_APPEND);
+            // $isWritten = file_put_contents($fileName, $outText);
+        }
+
+        return $isWritten;
+    }
+
+    public function allErrorsText(bool $isConvert_slash_N = false)
+    {
+        $outText = '';
+
+        if (!empty($this->oErrors))
+        {
+            $outText .= PHP_EOL;
+            $outText .= '---------------------------------------------------------' . PHP_EOL;
+            $outText .= "!!! >>> Errors found (warning/error) !!!" . PHP_EOL;
+            $outText .= '---------------------------------------------------------' . PHP_EOL;
+            $outText .= PHP_EOL;
+
+            if ($this->isHasCurlError)
+            {
+                $outText .= $this->errorCommunicationText() . PHP_EOL;
+            }
+
+            if ($this->isHasResponseError)
+            {
+                $outText .= $this->errorResponseText($isConvert_slash_N) . PHP_EOL;
+            }
+        }
+
+        return $outText;
+    }
+
+    public function errorCommunicationText(): string
+    {
+        $outText = "";
+
+        $outText .= 'curl communication error' . PHP_EOL;
+        $outText .= 'errCode: ' . $this->errCode . PHP_EOL;
+        $outText .= 'errMessage: "' . $this->errMessage . '"' . PHP_EOL;
+
+        return $outText;
+    }
+
+    private function errorResponseText(bool $isConvert_slash_N = false)
+    {
+        $outText = "";
+
+// ToDO: how to and when to use
+
+        $outText .= 'curl response json errors' . PHP_EOL;
+
+        foreach ($this->oErrors as $oError)
+        {
+            $outText .= $oError->errorText($isConvert_slash_N) . PHP_EOL;
+        }
+
+        return $outText;
+
     }
 
 }

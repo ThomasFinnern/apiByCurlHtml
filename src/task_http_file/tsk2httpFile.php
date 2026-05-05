@@ -286,7 +286,7 @@ class tsk2httpFile extends baseCurlTask implements executeTasksInterface
 
             //--- local task data ---------------------------------
 
-            print (">>local task data 2 http data: " . PHP_EOL);
+            print (">>local http data 2 task data: " . PHP_EOL);
 
 //            $httpFileData->baseUrl = $baseUrl;
 //            $httpFileData->apiPath = $apiPath;

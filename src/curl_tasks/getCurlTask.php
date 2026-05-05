@@ -2,7 +2,7 @@
 
 namespace Finnern\apiByCurlHtml\src\curl_tasks;
 
-use Exception;
+
 use Finnern\apiByCurlHtml\src\tasksLib\executeTasksInterface;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
 
@@ -37,7 +37,7 @@ class getCurlTask extends baseCurlTask implements executeTasksInterface
             parent::__construct();
 
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             echo '!!! Error: Exception: ' . $e->getMessage() . PHP_EOL;
         }
