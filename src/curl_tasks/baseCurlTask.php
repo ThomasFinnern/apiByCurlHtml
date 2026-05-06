@@ -658,7 +658,7 @@ class baseCurlTask extends baseExecuteTasks
      *
      * @return void
      */
-    public function handleJsonResult(string|null $response)
+    public function handleJsonResult(string|null|bool $response)
     {
         print('---------------------------------------------------------' . PHP_EOL);
         print(">>> curl_exec handle response: " . PHP_EOL);
@@ -752,7 +752,7 @@ class baseCurlTask extends baseExecuteTasks
             $oCurlResponse->oCurlErrResponse->collectError2File();
 
             // pretty print to screen
-            print ($oCurlResponse->oCurlErrResponse->allErrorsJsonText(true) . PHP_EOL);
+            print ($oCurlResponse->oCurlErrResponse->allErrorsText(true) . PHP_EOL);
 
             // create user response file with error data
             if (!empty($this->responseFile))

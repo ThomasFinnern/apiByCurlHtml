@@ -17,33 +17,34 @@ use Finnern\apiByCurlHtml\src\fileNamesLib\fileDateTime;
 
 class curlResponse
 {
+    public array|null|\stdClass $oResponse = null;
 
-    public array|\stdClass|null $oResponse = null;
-
-    // Complete response part
-    public string $response_json_text;
+    //--- Complete response part ------------------------
+    public string $response_json_text = "";
 
     // json part of response as php object
-    public string $response_pre_text;
-    public string $response_post_text;
-    public string $response_unknown_text;
-public curlErrResponse|null $oCurlErrResponse = null;
+    public string $response_pre_text = '';
+    public string $response_post_text = '';
+    public string $response_unknown_text = '';
+
+    public curlErrResponse|null $oCurlErrResponse = null;
+
     public bool $isHasError = false;
     public $isValidJsonData = false; // will be initialized with empty classo bject
     public $isHasOutsideData = false;
 //    public bool $isHasCurlError = false;
 //    public bool $isHasResponseError = false;
     protected \curlHandle|false $oCurl;
-    protected string|null $response = null;
+    protected false|string|null $response = null;
 
-    public function __construct(\curlHandle|false $oCurl = false, string|null $response = null)
+    public function __construct(\curlHandle|false $oCurl = false, false|string|null $response = null)
     {
         $this->oCurl    = $oCurl;
         $this->response = $response;
 
         $this->oCurlErrResponse = new curlErrResponse();
 
-        if (!empty($oCurl) && !empty($response))
+        if (!empty($oCurl)) // && !empty($response))
         {
             $this->assign($oCurl, $response);
         }
@@ -62,12 +63,12 @@ public curlErrResponse|null $oCurlErrResponse = null;
         //--- check curl communication error -----------------------------
 
         // communication error
-        $curlError = \curl_errno($this->oCurl);
+        $curl_errno = \curl_errno($this->oCurl);
         if (!empty($curl_errno))
         {
             $curlMessage = \curl_error($this->oCurl);
 
-            $this->oCurlErrResponse->assignCurlError($curlError, $curlMessage);
+            $this->oCurlErrResponse->assignCurlError($curl_errno, $curlMessage);
             $this->isHasError = $this->oCurlErrResponse->isHasCurlError;
 
             print(">>> curl_exec : " . $this->oCurlErrResponse->errorCommunicationText() . PHP_EOL);
@@ -109,7 +110,7 @@ public curlErrResponse|null $oCurlErrResponse = null;
      *
      * @return void
      */
-    public function extractResponseString(string|null $response): array
+    public function extractResponseString(bool|string|null $response): array
     {
         print("    * extractResponseString() " . PHP_EOL);
 

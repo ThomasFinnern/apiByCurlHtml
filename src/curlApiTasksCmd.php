@@ -67,10 +67,14 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
 //$tasksFile = '../../apiByCurlHtml/src/curl_tsk_files/jg_patchCategory.tsk';
 
+//$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchConfig_jg_userspace_on.tsk';
+// $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchCategory_created_by.tsk';
+// $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_post_upload_02_img_file.tsk'; // single error
+
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_post_file.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_01_coffee.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_02_lovelock.tsk';
-$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_getConfig_page_1_By30.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_getConfig_page_1_By30.tsk';
 
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getGalleries.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_putGallery.tsk';
@@ -82,12 +86,9 @@ $tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_getConfig_page_1_By30.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_00_LatestGallery.tsk'; // single error (<br /> error: use following to create)
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_02_img_file.tsk'; // double error
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getVersion.tsk'; // double error
+$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig_isDevelop.tsk';
 
-//$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchConfig_jg_userspace_on.tsk';
-// $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchCategory_created_by.tsk';
-// $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_post_upload_02_img_file.tsk'; // single error
-
-// basspath needed when ???
+// basepath needed when ???
 //$basePath = "..\\..\\RSGallery2_J4_Dev";
 //$basePath = "..\\..\\JoomGallery_fith_dev";
 

@@ -226,14 +226,14 @@ const ERROR_COLLECTION_RELATIVE_PATH = "../../xErrCollections/";
         // create test response file to keep several errors (to be removed later)
         if (!empty($responseFileName))
         {
-            $allErrorsJsonText = $this->allErrorsJsonText($isConvert_slash_N);
+            $allErrorsJsonText = $this->allErrorsText($isConvert_slash_N);
             file_put_contents($responseFileName . '.err.json', $allErrorsJsonText);
         }
     }
 
     /**
      * Create beautified Json string from response errors
-     * On request convert '\n' to PHP_EOL for beter visibility
+     * On request convert '\n' to PHP_EOL for better visibility
      *
      * @param   bool  $isConvert_slash_N
      *
@@ -341,7 +341,7 @@ const ERROR_COLLECTION_RELATIVE_PATH = "../../xErrCollections/";
     {
         $outText = '';
 
-        if (!empty($this->oErrors))
+        if ($this->isHasError)
         {
             $outText .= PHP_EOL;
             $outText .= '---------------------------------------------------------' . PHP_EOL;
