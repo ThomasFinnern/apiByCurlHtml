@@ -102,6 +102,9 @@ class getCurlTask extends baseCurlTask implements executeTasksInterface
 
         // ToDo: Error on missing token
 
+        $this->prepareDataFromFiles();
+        $jsonPara = $this->convertParams2Json();
+
         if ($this->oCurl)
         {
             //--- prepare curl params --------------------------------
@@ -111,6 +114,7 @@ class getCurlTask extends baseCurlTask implements executeTasksInterface
             $this->setUrl();
             $this->setHeaders();
             $this->setStandardOptions();
+            $this->setDataString($jsonPara);
 
             /*=============================================================
             Curl call

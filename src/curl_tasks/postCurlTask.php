@@ -102,7 +102,7 @@ class postCurlTask extends baseCurlTask implements executeTasksInterface
         print("Execute postCurlTask: " . PHP_EOL);
         print('---------------------------------------------------------' . PHP_EOL);
 
-        parent::readExchangeData();
+// ToDO:        parent::readExchangeData();
 
         // ToDo: Error on missing token
 

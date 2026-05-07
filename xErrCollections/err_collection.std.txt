@@ -2033,3 +2033,536 @@ detail:
 error:    
 
 
+--------------------------------------------------------
+curlErrResponse: 20260506_121227
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to undefined method Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel::getTable() in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php:399
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->edit()
+#1 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#2 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#6 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#7 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#8 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260506_123817
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Exception: edit ... in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php:141
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->edit()
+#1 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#2 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#6 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#7 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#8 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260506_185249
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Class "Rsgallery2\Component\Rsgallery2\Api\Model\Text" not found in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\ConfigModel.php:127
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(166): Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel->save(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->edit()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260506_185639
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260506_190041
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_063201
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to undefined method Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel::getItems() in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php:126
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(109): Joomla\CMS\MVC\View\JsonApiView->displayList()
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_063755
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Attempt to assign property "id" on string in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\View\Config\JsonapiView.php:111
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(127): Rsgallery2\Component\Rsgallery2\Api\View\Config\JsonapiView->prepareItem('0')
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(109): Joomla\CMS\MVC\View\JsonApiView->displayList()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_063836
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to undefined method Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel::getPagination() in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php:131
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(109): Joomla\CMS\MVC\View\JsonApiView->displayList()
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_063914
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Attempt to assign property "id" on string in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\View\Config\JsonapiView.php:111
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(127): Rsgallery2\Component\Rsgallery2\Api\View\Config\JsonapiView->prepareItem('0')
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(109): Joomla\CMS\MVC\View\JsonApiView->displayList()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_084116
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to undefined method Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel::getPagination() in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php:131
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(109): Joomla\CMS\MVC\View\JsonApiView->displayList()
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_084607
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Attempt to assign property "id" on array in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\View\Config\JsonapiView.php:111
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(215): Rsgallery2\Component\Rsgallery2\Api\View\Config\JsonapiView->prepareItem(Array)
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(108): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_090338
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Class "Rsgallery2\Component\Rsgallery2\Api\Model\stdClass" not found in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\ConfigModel.php:67
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\ConfigModel.php(92): Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel->getItems()
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(215): Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel->getItem()
+#2 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(108): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_090408
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Attempt to assign property "id" on array in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\View\Config\JsonapiView.php:111
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(215): Rsgallery2\Component\Rsgallery2\Api\View\Config\JsonapiView->prepareItem(Array)
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(108): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_123412
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to undefined function isset() in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\ConfigModel.php:138
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(158): Rsgallery2\Component\Rsgallery2\Api\Model\ConfigModel->save(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->edit()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_123502
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    ParseError: syntax error, unexpected token "->" in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\ConfigModel.php:138
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('E:\\wamp64\\www\\a...')
+#1 E:\wamp64\www\api_6x\libraries\src\Autoload\ClassLoader.php(59): Composer\Autoload\ClassLoader->loadClass('Rsgallery2\\Comp...')
+#2 [internal function]: Joomla\CMS\Autoload\ClassLoader->loadClass('Rsgallery2\\Comp...')
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(299): class_exists('Rsgallery2\\Comp...')
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(156): Joomla\CMS\MVC\Factory\MVCFactory->getClassName('Model\\ConfigMod...', 'api')
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\ApiMVCFactory.php(38): Joomla\CMS\MVC\Factory\MVCFactory->createModel('Config', 'api', Array)
+#6 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(574): Joomla\CMS\MVC\Factory\ApiMVCFactory->createModel('Config', 'api', Array)
+#7 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(761): Joomla\CMS\MVC\Controller\BaseController->createModel('Config', 'api', Array)
+#8 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(156): Joomla\CMS\MVC\Controller\BaseController->getModel('Config', 'api', Array)
+#9 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->edit()
+#10 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#11 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#12 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#13 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#14 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#15 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#16 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#17 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_123557
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Parameter does not exist in component configuration. 
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_124203
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Parameter invalid does not exist in component configuration. 
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_124225
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Parameter "invalid" does not exist in component configuration. 
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_134953
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_135856
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_140005
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_140814
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config: ""
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_140932
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config -> json:: ""
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_141107
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config ==> json: ""
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_141259
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config ==> json: ""
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_141413
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config ==> json: ""
+code: 403
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260507_143522
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     No parameter given for delete config ==> json: ""
+code: 403
+detail:    
+error:    
+
+
