@@ -7,6 +7,7 @@ use Finnern\apiByCurlHtml\src\lib\dirs;
 use Finnern\apiByCurlHtml\src\tasksLib\baseExecuteTasks;
 use Finnern\apiByCurlHtml\src\tasksLib\exchangeData;
 use Finnern\apiByCurlHtml\src\tasksLib\option;
+use Finnern\apiByCurlHtml\src\uri\uriHelper;
 
 //use Finnern\apiByCurlHtml\src\tasksLib\option;
 
@@ -33,26 +34,25 @@ class baseCurlTask extends baseExecuteTasks
     public string $contentType = "application/json";
     public string $responseFile = "";
 
-    //public \stdClass $params;
-    public $params = [];
+
+    public array $params = [];
     public string $paramsFile = "";
+
+// ToDo:    protected array $urlParams = [];  // list of additional parameters multiple lines  of test01=1]
+    public array $urlParams = [];
 
     public string $dataFile = "";
     public eDataFileType $dataFileType = eDataFileType::json;
-    protected string $httpFile = "";
 
-    // ToDo: address as parameters instead (then update *.tsk afterwards)
-    protected string $page_offset = ""; // page[offset] => page%5Boffset%5D
-    protected string $page_limit = ""; // page[limit] => page%5Blimit%5D
+    protected string $httpFile = "";
 
     //protected bool $isExitOnErrorResult = false;
     protected bool $isExitOnErrorResult = true;
     protected bool $isLoadResponseFile = true;
+
     protected bool $isKeepResponseJson = true;
 
     protected $oExchangeData = null;
-
-// ToDo:    protected array $urlParams = [];  // list of additional parameters multiple lines  of test01=1]
 
 //    protected string $yyy = "";
 //    protected string $yyy = "";
@@ -80,8 +80,6 @@ class baseCurlTask extends baseExecuteTasks
             $this->oCurl = curl_init();
 
             $this->oExchangeData = new exchangeData();
-            // $this->params = new \stdClass();
-
         }
         catch (\Exception $e)
         {
@@ -155,26 +153,13 @@ class baseCurlTask extends baseExecuteTasks
                     $isOptionConsumed = true;
                     break;
 
-                case strtolower('param'):
+                case strtolower('urlParam'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-
-                    $json_value = '{' . $option->value . '}';
-                    $paramJson  = json_decode($json_value);
-                    if (!empty($paramJson))
-                    {
-                        foreach ($paramJson as $key => $value)
-                        {
-                            $this->params[$key] = $value;
-                        }
-                    }
-                    else
-                    {
-                        print('!!! error in baseCurlTast:assignBaseOption:param !!!' . PHP_EOL);
-                        print('    json value could not be decoded "' . $json_value . '"' . PHP_EOL);
-                        print('    ? Missing ".." around string ?' . PHP_EOL);
-                        throw new \ErrorException("json value could not be decoded");
-                    }
-                    $isOptionConsumed = true;
+                    // $this->urlParams[] = urlencode($option->value);
+                    // $this->urlParams[] = rawurlencode($option->value);
+                    // $this->urlParams[] = http_build_query($option->value);
+                    $this->urlParams[] = $option->value;
+                    $isOptionConsumed  = true;
                     break;
 
                 case strtolower('paramsFile'):
@@ -195,19 +180,6 @@ class baseCurlTask extends baseExecuteTasks
 //                $this->dataFileType = $option->value;
                     $this->dataFileType = eDataFileType::tryFrom(strtolower($option->value)) ?? eDataFileType::json;
                     $isOptionConsumed   = true;
-                    break;
-
-                case strtolower('page_offset'):
-                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                    $this->page_offset = $option->value;
-                    $isOptionConsumed  = true;
-                    break;
-
-
-                case strtolower('page_limit'):
-                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                    $this->page_limit = $option->value;
-                    $isOptionConsumed = true;
                     break;
 
                 case strtolower('isCreateAutoResponseFile'):
@@ -438,25 +410,19 @@ class baseCurlTask extends baseExecuteTasks
 
             //--- additional parameters ----------------------------------------
 
-            $urlParams = '';
-
-            // page offset
-            if (strlen($this->page_offset) > 0)
+            // page offset or other parameter
+            if (!empty($this->urlParams))
             {
-                $urlParams .= '&page%5Boffset%5D=' . $this->page_offset;
-            }
+                // from given parameters tp parameter object
+                // create query : ?page[offset]=90&page[limit]=30
+                $urlRawQuery = '?' . implode("&", $this->urlParams);
 
-            // page limit
-            if (strlen($this->page_limit) > 0)
-            {
-                $urlParams .= '&page%5Blimit%5D=' . $this->page_limit;
-            }
+                // Encode Square brackets. example ?page%5Boffset%5D=90&page%5Blimit%5D=30
+                $urlQuery = uriHelper::queryEncode($urlRawQuery);
 
-            if (strlen($urlParams))
-            {
-
-                // append but remove leading &
-                $urlPath .= '?' . substr($urlParams, 1);
+                // plain: $urlPath .= $urlRawQuery;
+                // better:
+                $urlPath .= $urlQuery;
             }
 
             //=== Assign URL ===============================================
@@ -611,9 +577,9 @@ class baseCurlTask extends baseExecuteTasks
         $this->dataFile     = $srcData->dataFile;
         $this->dataFileType = $srcData->dataFileType;
         $this->httpFile     = $srcData->httpFile;
-        $this->page_offset  = $srcData->page_offset;
-        $this->page_limit   = $srcData->page_limit;
-
+//        $this->page_offset  = $srcData->page_offset;
+//        $this->page_limit   = $srcData->page_limit;
+// ToDo: Update and check all vars in class
         $this->oCurl = $srcData->oCurl;
 
     }

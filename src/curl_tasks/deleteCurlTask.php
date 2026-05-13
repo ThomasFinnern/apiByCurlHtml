@@ -117,9 +117,9 @@ class deleteCurlTask extends baseCurlTask implements executeTasksInterface
             $this->setStandardOptions();
             $this->setDataString($jsonPara);
 
-            //=============================================
-            // call curl
-            //============================================
+            /*=============================================================
+            Curl call
+            =============================================================*/
 
 //            $isHasErrors = $curl_call->curl_exec($this->oCurl);
             $response = curl_exec($this->oCurl);

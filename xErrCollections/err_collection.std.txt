@@ -2566,3 +2566,30 @@ detail:
 error:    
 
 
+--------------------------------------------------------
+curlErrResponse: 20260508_092238
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Attempt to assign property "id" on string in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\View\Config\JsonapiView.php:111
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(127): Rsgallery2\Component\Rsgallery2\Api\View\Config\JsonapiView->prepareItem('0')
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(286): Joomla\CMS\MVC\View\JsonApiView->displayList()
+#2 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\ConfigController.php(116): Joomla\CMS\MVC\Controller\ApiController->displayList(0)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\ConfigController->displayList()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+error:    
+
+
