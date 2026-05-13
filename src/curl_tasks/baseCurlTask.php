@@ -38,8 +38,8 @@ class baseCurlTask extends baseExecuteTasks
     public array $params = [];
     public string $paramsFile = "";
 
-// ToDo:    protected array $urlParams = [];  // list of additional parameters multiple lines  of test01=1]
-    public array $urlParams = [];
+// ToDo:    protected array $urlQueryParams = [];  // list of additional parameters multiple lines  of test01=1]
+    public array $urlQueryParams = [];
 
     public string $dataFile = "";
     public eDataFileType $dataFileType = eDataFileType::json;
@@ -147,18 +147,12 @@ class baseCurlTask extends baseExecuteTasks
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
                     $this->responseFile = $option->value;
-//                if ($this->responseFile == '') {
-//                    $this->responseFile = $this->getResponseFileName($this->filePathName);
-//                }
                     $isOptionConsumed = true;
                     break;
 
-                case strtolower('urlParam'):
+                case strtolower('urlQueryParam'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                    // $this->urlParams[] = urlencode($option->value);
-                    // $this->urlParams[] = rawurlencode($option->value);
-                    // $this->urlParams[] = http_build_query($option->value);
-                    $this->urlParams[] = $option->value;
+                    $this->urlQueryParams[] = $option->value;
                     $isOptionConsumed  = true;
                     break;
 
@@ -411,11 +405,11 @@ class baseCurlTask extends baseExecuteTasks
             //--- additional parameters ----------------------------------------
 
             // page offset or other parameter
-            if (!empty($this->urlParams))
+            if (!empty($this->urlQueryParams))
             {
                 // from given parameters tp parameter object
                 // create query : ?page[offset]=90&page[limit]=30
-                $urlRawQuery = '?' . implode("&", $this->urlParams);
+                $urlRawQuery = '?' . implode("&", $this->urlQueryParams);
 
                 // Encode Square brackets. example ?page%5Boffset%5D=90&page%5Blimit%5D=30
                 $urlQuery = uriHelper::queryEncode($urlRawQuery);
