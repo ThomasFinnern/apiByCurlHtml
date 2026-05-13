@@ -156,6 +156,28 @@ class baseCurlTask extends baseExecuteTasks
                     $isOptionConsumed  = true;
                     break;
 
+                case strtolower('param'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+
+                    $json_value = '{' . $option->value . '}';
+                    $paramJson  = json_decode($json_value);
+                    if (!empty($paramJson))
+                    {
+                        foreach ($paramJson as $key => $value)
+                        {
+                            $this->params[$key] = $value;
+                        }
+                    }
+                    else
+                    {
+                        print('!!! error in baseCurlTast:assignBaseOption:param !!!' . PHP_EOL);
+                        print('    json value could not be decoded "' . $json_value . '"' . PHP_EOL);
+                        print('    ? Missing ".." around string ?' . PHP_EOL);
+                        throw new \ErrorException("json value could not be decoded");
+                    }
+                    $isOptionConsumed = true;
+                    break;
+
                 case strtolower('paramsFile'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                     $this->paramsFile = $option->value;
