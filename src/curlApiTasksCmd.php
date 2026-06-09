@@ -21,7 +21,7 @@ $HELP_MSG = <<<EOT
 main (used from command line)
 ================================================================================*/
 
-$optDefinition    = "t:c:f:o:h12345";
+$optDefinition    = "t:c:f:o:a:h12345";
 $isPrintArguments = false;
 
 [$inArgs, $options] = commandLineLib::argsAndOptions($argv, $optDefinition, $isPrintArguments);
@@ -70,6 +70,8 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchConfig_jg_userspace_on.tsk';
 // $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_patchCategory_created_by.tsk';
 // $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_post_upload_02_img_file.tsk'; // single error
+// $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_post_upload_02_img_file.tsk';
+// $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_getImages_id.tsk';
 
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_post_file.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_01_coffee.tsk';
@@ -87,11 +89,15 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_post_upload_02_img_file.tsk'; // double error
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getVersion.tsk'; // double error
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig_isDevelop.tsk';
-$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_getConfig_page_3_By30.tsk';
+//$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_getConfig_page_3_By30.tsk';
 
 // basepath needed when ???
 //$basePath = "..\\..\\RSGallery2_J4_Dev";
 //$basePath = "..\\..\\JoomGallery_fith_dev";
+
+$optionFiles = [];
+$additionalParams = [];
+// $additionalParams[] = "/urlRouterParam=5";
 
 foreach ($options as $idx => $option)
 {
@@ -115,6 +121,10 @@ foreach ($options as $idx => $option)
 
         case 'o':
             $optionFiles[] = $option;
+            break;
+
+        case 'a':
+            $additionalParams[] = $option;
             break;
 
         case "h":
@@ -182,6 +192,44 @@ else
         }
     }
 }
+
+//--- The first tasks may get additional options ------------------------------
+
+if ($tasks->count() > 0)
+{
+    $task = $tasks->tasks[0];
+}
+else
+{
+    $task = new task();
+}
+
+//--- extract options from file(s) ------------------
+
+if (!empty($optionFiles))
+{
+    print ("Loading option files: (" . count($optionFiles) . ')' . PHP_EOL);
+
+    foreach ($optionFiles as $optionFile)
+    {
+        $task->extractOptionsFromFile($optionFile);
+    }
+}
+
+//--- extract options from command line ------------------
+
+if (!empty($additionalParams))
+{
+    print ("Loading additional parameter (*.bat command line): (" . count($additionalParams) . ')' . PHP_EOL);
+
+    foreach ($additionalParams as $additionalParam)
+    {
+        print ("(ToDo: Remove ) Additional parameter: '" . $additionalParam . "'" . PHP_EOL);
+
+        $task->extractOptionsFromLines([$additionalParam]);
+    }
+}
+
 
 function patchResourceOption(tasks $tasks, string $taskFile)
 {

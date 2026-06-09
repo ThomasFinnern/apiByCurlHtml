@@ -2593,3 +2593,1297 @@ Stack trace:
 error:    
 
 
+--------------------------------------------------------
+curlErrResponse: 20260515_141757
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Rsgallery2\Component\Rsgallery2\Api\Helper\ManifestHelper::getDbManifestJson(): Return value must be of type ?string, array returned in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Helper\ManifestHelper.php:63
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Helper\ManifestHelper.php(80): Rsgallery2\Component\Rsgallery2\Api\Helper\ManifestHelper::getDbManifestJson('com_rsgallery2')
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\VersionModel.php(59): Rsgallery2\Component\Rsgallery2\Api\Helper\ManifestHelper::getDbManifest('com_rsgallery2')
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(216): Rsgallery2\Component\Rsgallery2\Api\Model\VersionModel->getItem()
+#3 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\VersionController.php(92): Joomla\CMS\MVC\View\JsonApiView->displayItem()
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\VersionController->display()
+#5 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('display')
+#6 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#10 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#11 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#12 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260515_193724
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Class "Rsgallery2\Component\Rsgallery2\Administrator\Helpers\ManifestHelper" not found in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\VersionModel.php:96
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\VersionController.php(125): Rsgallery2\Component\Rsgallery2\Api\Model\VersionModel->save(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\VersionController->edit()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260515_193957
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Class "Rsgallery2\Component\Rsgallery2\Administrator\Helpers\ManifestHelper" not found in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Model\VersionModel.php:96
+Stack trace:
+#0 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\VersionController.php(125): Rsgallery2\Component\Rsgallery2\Api\Model\VersionModel->save(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\VersionController->edit()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260519_161011
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Invalid parameter value "0" or "1" for gallery_id. Id "1" is reserved for the internal empty root item, "0" is not a valid id
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260519_161328
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Missing required parameter(s): gallery_id
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260524_175106
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_073618
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: books in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('books', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_100829
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: View not found [name, type, prefix]: books, jsonapi, api in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php:234
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->displayList()
+#1 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#2 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#6 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#7 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#8 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_114012
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Class "Secondhand\Component\Secondhand\Api\Serializer\SecondhandSerializer" not found in E:\wamp64\www\api_6x\api\components\com_secondhand\src\View\Books\JsonapiView.php:101
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Bluebox\Component\Secondhand\Api\View\Books\JsonapiView->__construct(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('books', 'api', 'jsonapi', Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('books', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(227): Joomla\CMS\MVC\Controller\BaseController->getView('books', 'jsonapi', 'api', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->displayList()
+#5 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('displaylist')
+#6 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#10 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#11 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#12 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_120756
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    UnexpectedValueException: Joomla\CMS\Form\Field\EditorField::filter field `description` calls a deprecated filter class JComponentHelper, the class needs to be namespaced use Joomla\CMS\Component\ComponentHelper instead or activate the backward compatible plugin. in E:\wamp64\www\api_6x\libraries\src\Form\FormField.php:1126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1058): Joomla\CMS\Form\FormField->filter('The next book i...', NULL, Object(Joomla\Registry\Registry))
+#1 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1002): Joomla\CMS\Form\Form->filter(Array, NULL)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormModel.php(219): Joomla\CMS\Form\Form->process(Array, NULL)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(489): Joomla\CMS\MVC\Model\FormModel->validate(Object(Joomla\CMS\Form\Form), Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_140646
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: Form::loadForm could not load file in E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormBehaviorTrait.php:102
+Stack trace:
+#0 E:\wamp64\www\api_6x\administrator\components\com_secondhand\src\Model\BookModel.php(113): Joomla\CMS\MVC\Model\FormModel->loadForm('com_secondhand.', NULL, Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(482): Bluebox\Component\Secondhand\Administrator\Model\BookModel->getForm(Array, false)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_140655
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: Form::loadForm could not load file in E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormBehaviorTrait.php:102
+Stack trace:
+#0 E:\wamp64\www\api_6x\administrator\components\com_secondhand\src\Model\BookModel.php(113): Joomla\CMS\MVC\Model\FormModel->loadForm('com_secondhand.', NULL, Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(482): Bluebox\Component\Secondhand\Administrator\Model\BookModel->getForm(Array, false)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_141120
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: Form::loadForm could not load file in E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormBehaviorTrait.php:102
+Stack trace:
+#0 E:\wamp64\www\api_6x\administrator\components\com_secondhand\src\Model\BookModel.php(113): Joomla\CMS\MVC\Model\FormModel->loadForm('com_secondhand.', NULL, Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(482): Bluebox\Component\Secondhand\Administrator\Model\BookModel->getForm(Array, false)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(423): Joomla\CMS\MVC\Controller\ApiController->save(2)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->edit()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_141512
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_142237
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_142914
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_142936
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    UnexpectedValueException: Joomla\CMS\Form\Field\EditorField::filter field `description` calls a deprecated filter class JComponentHelper, the class needs to be namespaced use Joomla\CMS\Component\ComponentHelper instead or activate the backward compatible plugin. in E:\wamp64\www\api_6x\libraries\src\Form\FormField.php:1126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1058): Joomla\CMS\Form\FormField->filter('The next book i...', NULL, Object(Joomla\Registry\Registry))
+#1 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1002): Joomla\CMS\Form\Form->filter(Array, NULL)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormModel.php(219): Joomla\CMS\Form\Form->process(Array, NULL)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(489): Joomla\CMS\MVC\Model\FormModel->validate(Object(Joomla\CMS\Form\Form), Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_143129
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_143223
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    UnexpectedValueException: Joomla\CMS\Form\Field\EditorField::filter field `description` calls a deprecated filter class JComponentHelper, the class needs to be namespaced use Joomla\CMS\Component\ComponentHelper instead or activate the backward compatible plugin. in E:\wamp64\www\api_6x\libraries\src\Form\FormField.php:1126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1058): Joomla\CMS\Form\FormField->filter('The next book i...', NULL, Object(Joomla\Registry\Registry))
+#1 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1002): Joomla\CMS\Form\Form->filter(Array, NULL)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormModel.php(219): Joomla\CMS\Form\Form->process(Array, NULL)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(489): Joomla\CMS\MVC\Model\FormModel->validate(Object(Joomla\CMS\Form\Form), Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_143456
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    UnexpectedValueException: Joomla\CMS\Form\Field\EditorField::filter field `description` calls a deprecated filter class JComponentHelper, the class needs to be namespaced use Joomla\CMS\Component\ComponentHelper instead or activate the backward compatible plugin. in E:\wamp64\www\api_6x\libraries\src\Form\FormField.php:1126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1058): Joomla\CMS\Form\FormField->filter('The next book i...', NULL, Object(Joomla\Registry\Registry))
+#1 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1002): Joomla\CMS\Form\Form->filter(Array, NULL)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormModel.php(219): Joomla\CMS\Form\Form->process(Array, NULL)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(489): Joomla\CMS\MVC\Model\FormModel->validate(Object(Joomla\CMS\Form\Form), Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_143521
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_143615
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    UnexpectedValueException: Joomla\CMS\Form\Field\EditorField::filter field `description` calls a deprecated filter class JComponentHelper, the class needs to be namespaced use Joomla\CMS\Component\ComponentHelper instead or activate the backward compatible plugin. in E:\wamp64\www\api_6x\libraries\src\Form\FormField.php:1126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1058): Joomla\CMS\Form\FormField->filter('The next book i...', NULL, Object(Joomla\Registry\Registry))
+#1 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1002): Joomla\CMS\Form\Form->filter(Array, NULL)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormModel.php(219): Joomla\CMS\Form\Form->process(Array, NULL)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(489): Joomla\CMS\MVC\Model\FormModel->validate(Object(Joomla\CMS\Form\Form), Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(423): Joomla\CMS\MVC\Controller\ApiController->save(2)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->edit()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_144118
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    UnexpectedValueException: Joomla\CMS\Form\Field\EditorField::filter field `description` calls a deprecated filter class JComponentHelper, the class needs to be namespaced use Joomla\CMS\Component\ComponentHelper instead or activate the backward compatible plugin. in E:\wamp64\www\api_6x\libraries\src\Form\FormField.php:1126
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1058): Joomla\CMS\Form\FormField->filter('The next book i...', NULL, Object(Joomla\Registry\Registry))
+#1 E:\wamp64\www\api_6x\libraries\src\Form\Form.php(1002): Joomla\CMS\Form\Form->filter(Array, NULL)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Model\FormModel.php(219): Joomla\CMS\Form\Form->process(Array, NULL)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(489): Joomla\CMS\MVC\Model\FormModel->validate(Object(Joomla\CMS\Form\Form), Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(423): Joomla\CMS\MVC\Controller\ApiController->save(2)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->edit()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('edit')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_150058
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Save failed with the following error: Another Book has the same alias (remember it may be a trashed item).
+code: 400
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_150101
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Save failed with the following error: Another Book has the same alias (remember it may be a trashed item).
+code: 400
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_150121
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Save failed with the following error: Another Book has the same alias (remember it may be a trashed item).
+code: 400
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_150216
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Save failed with the following error: Another Book has the same alias (remember it may be a trashed item).
+code: 400
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_150236
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Save failed with the following error: Another Book has the same alias (remember it may be a trashed item).
+code: 400
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_161554
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    UnexpectedValueException: Missing field in database: Bluebox\Component\Secondhand\Administrator\Table\BookTable &#160; catid. in E:\wamp64\www\api_6x\libraries\src\Table\Table.php:824
+Stack trace:
+#0 E:\wamp64\www\api_6x\administrator\components\com_secondhand\src\Model\BookModel.php(196): Joomla\CMS\Table\Table->load(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(513): Bluebox\Component\Secondhand\Administrator\Model\BookModel->save(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#4 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#5 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#7 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#9 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#10 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#11 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_161822
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Save failed with the following error: Another Book has the same alias (remember it may be a trashed item).
+code: 400
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_162124
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to a member function get() on null in E:\wamp64\www\api_6x\administrator\components\com_secondhand\src\Model\BookModel.php:196
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(513): Bluebox\Component\Secondhand\Administrator\Model\BookModel->save(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260526_162226
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to a member function enqueueMessage() on null in E:\wamp64\www\api_6x\administrator\components\com_secondhand\src\Model\BookModel.php:215
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(513): Bluebox\Component\Secondhand\Administrator\Model\BookModel->save(Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Joomla\CMS\MVC\Controller\ApiController->save()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\ApiController->add()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('add')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_secondhand')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_154513
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Forbidden
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_174732
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_175844
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_180831
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_181441
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_181857
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_183203
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_184416
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_200131
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Error sending message
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260529_210734
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Error sending message
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260601_145005
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Field required: Category
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260601_145452
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260603_092211
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: uploadimagefile in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('uploadimagefile', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260603_092825
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    InvalidArgumentException: Invalid controller class: uploadimagefile in E:\wamp64\www\api_6x\libraries\src\Dispatcher\ComponentDispatcher.php:174
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(59): Joomla\CMS\Dispatcher\ComponentDispatcher->getController('uploadimagefile', 'Api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#2 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#3 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#5 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#6 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#7 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260603_094423
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Error: Call to a member function save() on false in E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php:138
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\ApiController.php(376): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->save()
+#1 E:\wamp64\www\api_6x\api\components\com_rsgallery2\src\Controller\UploadimgfileController.php(104): Joomla\CMS\MVC\Controller\ApiController->add()
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Rsgallery2\Component\Rsgallery2\Api\Controller\UploadimgfileController->upload_image_file()
+#3 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#4 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_rsgallery2')
+#6 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#7 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#8 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#9 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#10 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_131413
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('uploadimgfile', 'api', 'jsonapi', Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('uploadimgfile', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('uploadimgfile', 'jsonapi', 'api', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#6 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#7 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#8 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#10 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#11 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#12 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#13 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_131828
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Exception: View not found [name, type, prefix]: image, jsonapi, api in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php:876
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('image', 'jsonapi', 'api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_132102
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    Exception: View not found [name, type, prefix]: image, jsonapi, api in E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php:876
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('image', 'jsonapi', 'api', Array)
+#1 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#2 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#3 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#4 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#5 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#6 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#7 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#8 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#9 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_133151
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    TypeError: Joomla\CMS\Serializer\JoomlaSerializer::__construct(): Argument #1 ($type) must be of type string, null given, called in E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php on line 98 and defined in E:\wamp64\www\api_6x\libraries\src\Serializer\JoomlaSerializer.php:37
+Stack trace:
+#0 E:\wamp64\www\api_6x\libraries\src\MVC\View\JsonApiView.php(98): Joomla\CMS\Serializer\JoomlaSerializer->__construct(NULL)
+#1 E:\wamp64\www\api_6x\api\components\com_joomgallery\src\View\Images\JsonapiView.php(158): Joomla\CMS\MVC\View\JsonApiView->__construct(Array)
+#2 E:\wamp64\www\api_6x\libraries\src\MVC\Factory\MVCFactory.php(220): Joomgallery\Component\Joomgallery\Api\View\Images\JsonapiView->__construct(Array)
+#3 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(609): Joomla\CMS\MVC\Factory\MVCFactory->createView('images', 'api', 'jsonapi', Array)
+#4 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(873): Joomla\CMS\MVC\Controller\BaseController->createView('images', 'api', 'jsonapi', Array)
+#5 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(655): Joomla\CMS\MVC\Controller\BaseController->getView('images', 'jsonapi', 'api', Array)
+#6 E:\wamp64\www\api_6x\libraries\src\MVC\Controller\BaseController.php(730): Joomla\CMS\MVC\Controller\BaseController->display()
+#7 E:\wamp64\www\api_6x\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('upload_image_fi...')
+#8 E:\wamp64\www\api_6x\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#9 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(408): Joomla\CMS\Component\ComponentHelper::renderComponent('com_joomgallery')
+#10 E:\wamp64\www\api_6x\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#11 E:\wamp64\www\api_6x\libraries\src\Application\CMSApplication.php(320): Joomla\CMS\Application\ApiApplication->doExecute()
+#12 E:\wamp64\www\api_6x\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#13 E:\wamp64\www\api_6x\api\index.php(31): require_once('E:\\wamp64\\www\\a...')
+#14 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_134113
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_134158
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_MISSING_REQUIRED_PARAMETERS
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_135035
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Field required: Category
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_135208
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Field required: Category
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_140718
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Field required: Category
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_140727
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Field required: Category
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260604_141027
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Field required: Category
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260605_145532
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Internal server error
+code: 500
+detail:    RuntimeException: Display email form disabled. in E:\wamp64\www\jpatch_5_04\api\components\com_contact\src\Controller\ContactController.php:123
+Stack trace:
+#0 E:\wamp64\www\jpatch_5_04\libraries\src\MVC\Controller\BaseController.php(730): Joomla\Component\Contact\Api\Controller\ContactController->submitForm()
+#1 E:\wamp64\www\jpatch_5_04\libraries\src\Dispatcher\ApiDispatcher.php(61): Joomla\CMS\MVC\Controller\BaseController->execute('submitform')
+#2 E:\wamp64\www\jpatch_5_04\libraries\src\Component\ComponentHelper.php(361): Joomla\CMS\Dispatcher\ApiDispatcher->dispatch()
+#3 E:\wamp64\www\jpatch_5_04\libraries\src\Application\ApiApplication.php(433): Joomla\CMS\Component\ComponentHelper::renderComponent('com_contact')
+#4 E:\wamp64\www\jpatch_5_04\libraries\src\Application\ApiApplication.php(116): Joomla\CMS\Application\ApiApplication->dispatch()
+#5 E:\wamp64\www\jpatch_5_04\libraries\src\Application\CMSApplication.php(304): Joomla\CMS\Application\ApiApplication->doExecute()
+#6 E:\wamp64\www\jpatch_5_04\api\includes\app.php(50): Joomla\CMS\Application\CMSApplication->execute()
+#7 E:\wamp64\www\jpatch_5_04\api\index.php(31): require_once('E:\\wamp64\\www\\j...')
+#8 {main}
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260605_150453
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260605_150558
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260605_150614
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260608_064451
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260608_065724
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260608_070143
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260608_131234
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260608_163035
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260608_163339
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260609_191601
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+

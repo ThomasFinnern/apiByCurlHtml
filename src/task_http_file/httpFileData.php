@@ -204,7 +204,7 @@ class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
         }
 
         print ('$cmd: "' . $this->taskName . '"' . PHP_EOL);
-        print ('$url: "' . $this->apiPath() . '"' . PHP_EOL);
+        print ('$url: "' . $this->urlPath() . '"' . PHP_EOL);
         print ('$accept: "' . $this->accept . '"' . PHP_EOL);
         print ('$contentType: "' . $this->contentType . '"' . PHP_EOL);
         print ('$token: "' . $this->joomlaToken . '"' . PHP_EOL . PHP_EOL);
@@ -230,13 +230,6 @@ class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
 
     }
 
-    private function apiPath()
-    {
-        $apiPath = $this->baseUrl . '/' . $this->apiPath;
-
-        return $apiPath;
-    }
-
     public function createFileLines(): array
     {
         //--- prepare json data  ------------------------------------
@@ -248,7 +241,7 @@ class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
         $lines = [];
 
         $lines[] = '###';
-        $lines[] = strtoupper($this->taskName) . ' ' . $this->apiPath();
+        $lines[] = strtoupper($this->taskName) . ' ' . $this->urlPath();
         $lines[] = 'Accept: ' . $this->accept;
         $lines[] = 'Content-Type: ' . $this->contentType;
         $lines[] = 'X-Joomla-Token: ' . $this->joomlaToken;

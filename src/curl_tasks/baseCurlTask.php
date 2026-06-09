@@ -28,6 +28,7 @@ class baseCurlTask extends baseExecuteTasks
     public string $baseUrl = '';
 
     public string $apiPath = "";
+    public string $apiPathId = "";
     public string $joomlaToken = "";
     public string $joomlaTokenFile = "";
     public string $accept = "application/vnd.api+json";
@@ -39,6 +40,7 @@ class baseCurlTask extends baseExecuteTasks
     public string $paramsFile = "";
 
 // ToDo:    protected array $urlQueryParams = [];  // list of additional parameters multiple lines  of test01=1]
+    public array $urlRouterParams = [];
     public array $urlQueryParams = [];
 
     public string $dataFile = "";
@@ -110,6 +112,12 @@ class baseCurlTask extends baseExecuteTasks
                     $isOptionConsumed = true;
                     break;
 
+                case strtolower('apiPathId'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->apiPathId    = $option->value;
+                    $isOptionConsumed = true;
+                    break;
+
                 case strtolower('httpFile'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
@@ -153,6 +161,12 @@ class baseCurlTask extends baseExecuteTasks
                 case strtolower('urlQueryParam'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                     $this->urlQueryParams[] = $option->value;
+                    $isOptionConsumed  = true;
+                    break;
+
+                case strtolower('urlRouterParam'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->urlRouterParams[] = $option->value;
                     $isOptionConsumed  = true;
                     break;
 
@@ -414,32 +428,54 @@ class baseCurlTask extends baseExecuteTasks
         }
     }
 
+    public function urlPath(string $urlPath = '')
+    {
+        if (empty($urlPath))
+        {
+            $urlPath = sprintf('%s/%s', trim($this->baseUrl), trim($this->apiPath));
+        }
+
+        //--- additional parameters ----------------------------------------
+
+        // page offset or other parameter
+        if (!empty($this->urlRouterParams))
+        {
+            // from given parameters tp parameter object
+            // create query : ?page[offset]=90&page[limit]=30
+            $urlAdd2Router = '/' . implode("/", $this->urlRouterParams);
+            $urlPath .= $urlAdd2Router;
+        }
+
+        //--- additional parameters ----------------------------------------
+
+        // page offset or other parameter
+        if (!empty($this->urlQueryParams))
+        {
+            // from given parameters tp parameter object
+            // create query : ?page[offset]=90&page[limit]=30
+            $urlRawQuery = '?' . implode("&", $this->urlQueryParams);
+
+            // Encode Square brackets. example ?page%5Boffset%5D=90&page%5Blimit%5D=30
+            $urlQuery = uriHelper::queryEncode($urlRawQuery);
+
+            // plain: $urlPath .= $urlRawQuery;
+            // better:
+            $urlPath .= $urlQuery;
+        }
+
+
+        return $urlPath;
+    }
+
+
+
     public function setUrl(string $urlPath = '')
     {
         if ($this->oCurl)
         {
+            //--- create url ------------------------------------------------------
 
-            if (empty($urlPath))
-            {
-                $urlPath = sprintf('%s/%s', trim($this->baseUrl), trim($this->apiPath));
-            }
-
-            //--- additional parameters ----------------------------------------
-
-            // page offset or other parameter
-            if (!empty($this->urlQueryParams))
-            {
-                // from given parameters tp parameter object
-                // create query : ?page[offset]=90&page[limit]=30
-                $urlRawQuery = '?' . implode("&", $this->urlQueryParams);
-
-                // Encode Square brackets. example ?page%5Boffset%5D=90&page%5Blimit%5D=30
-                $urlQuery = uriHelper::queryEncode($urlRawQuery);
-
-                // plain: $urlPath .= $urlRawQuery;
-                // better:
-                $urlPath .= $urlQuery;
-            }
+            $urlPath = $this->urlPath($urlPath);
 
             //=== Assign URL ===============================================
 

@@ -1,0 +1,33 @@
+--------------------------------------------------------
+curlErrResponse: 20260527_085044
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl communication error
+errCode: 7
+errMessage: "Failed to connect to 127.0.0.1 port 80 after 2046 ms: Could not connect to server"
+
+--------------------------------------------------------
+curlErrResponse: 20260607_160724
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl communication error
+errCode: 56
+errMessage: "Recv failure: Connection was reset"
+
+--------------------------------------------------------
+curlErrResponse: 20260609_092606
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl communication error
+errCode: 7
+errMessage: "Failed to connect to 127.0.0.1 port 80 after 2046 ms: Could not connect to server"
+
