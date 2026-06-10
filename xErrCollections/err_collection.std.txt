@@ -3887,3 +3887,31 @@ detail:
 error:    
 
 
+--------------------------------------------------------
+curlErrResponse: 20260610_065443
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     WEBSERVICE_COM_MEDIA_MISSING_REQUIRED_PARAMETERS
+code: 
+detail:    
+error:    
+
+
+--------------------------------------------------------
+curlErrResponse: 20260610_065536
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl response json errors
+title:     Resource not found
+code: 404
+detail:    
+error:    
+
+

@@ -106,6 +106,14 @@ class baseCurlTask extends baseExecuteTasks
                     $isOptionConsumed = true;
                     break;
 
+                case strtolower('baseUrlFile'):
+                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $baseUrl          = $this->extractFile2BaseUrl($option->value);
+                    $this->baseUrl    = $baseUrl;
+                    print ('     option baseUrl: "' . $baseUrl . '"' . PHP_EOL);
+                    $isOptionConsumed = true;
+                    break;
+
                 case strtolower('apiPath'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                     $this->apiPath    = $option->value;
@@ -114,7 +122,7 @@ class baseCurlTask extends baseExecuteTasks
 
                 case strtolower('apiPathId'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                    $this->apiPathId    = $option->value;
+                    $this->apiPathId  = $option->value;
                     $isOptionConsumed = true;
                     break;
 
@@ -155,19 +163,19 @@ class baseCurlTask extends baseExecuteTasks
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
 
                     $this->responseFile = $option->value;
-                    $isOptionConsumed = true;
+                    $isOptionConsumed   = true;
                     break;
 
                 case strtolower('urlQueryParam'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                     $this->urlQueryParams[] = $option->value;
-                    $isOptionConsumed  = true;
+                    $isOptionConsumed       = true;
                     break;
 
                 case strtolower('urlRouterParam'):
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                     $this->urlRouterParams[] = $option->value;
-                    $isOptionConsumed  = true;
+                    $isOptionConsumed        = true;
                     break;
 
                 case strtolower('param'):
@@ -443,7 +451,7 @@ class baseCurlTask extends baseExecuteTasks
             // from given parameters tp parameter object
             // create query : ?page[offset]=90&page[limit]=30
             $urlAdd2Router = '/' . implode("/", $this->urlRouterParams);
-            $urlPath .= $urlAdd2Router;
+            $urlPath       .= $urlAdd2Router;
         }
 
         //--- additional parameters ----------------------------------------
@@ -466,7 +474,6 @@ class baseCurlTask extends baseExecuteTasks
 
         return $urlPath;
     }
-
 
 
     public function setUrl(string $urlPath = '')
@@ -988,6 +995,44 @@ class baseCurlTask extends baseExecuteTasks
         }
 
         return $dataString;
+    }
+
+    /**
+     * Extract first valid line with reference to basePath
+     *
+     * @param   string  $filePath
+     *
+     * @return string
+     */
+    private function extractFile2BaseUrl(string $filePath): string
+    {
+        $baseUrl = '';
+
+        if (is_file($filePath))
+        {
+            $lines = file($filePath, FILE_SKIP_EMPTY_LINES);
+
+            foreach ($lines as $line)
+            {
+                $trimmed = trim($line);
+                if (str_starts_with($trimmed, '//'))
+                {
+                    continue;
+                }
+
+                $baseUrl = $trimmed;
+                // print ("baseUrl: " . $baseUrl . " by file: '" . $filePath . "'" . PHP_EOL);
+
+                break;
+            }
+
+        }
+        else
+        {
+            throw new \Exception("extractFile2BaseUrl: File not found: '" . $filePath . "'");
+        }
+
+        return $baseUrl;
     }
 
 

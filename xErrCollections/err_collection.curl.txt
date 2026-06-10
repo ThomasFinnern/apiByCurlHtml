@@ -31,3 +31,36 @@ curl communication error
 errCode: 7
 errMessage: "Failed to connect to 127.0.0.1 port 80 after 2046 ms: Could not connect to server"
 
+--------------------------------------------------------
+curlErrResponse: 20260610_085838
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl communication error
+errCode: 3
+errMessage: "URL rejected: Port number was not a decimal number between 0 and 65535"
+
+--------------------------------------------------------
+curlErrResponse: 20260610_090133
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl communication error
+errCode: 3
+errMessage: "URL rejected: Port number was not a decimal number between 0 and 65535"
+
+--------------------------------------------------------
+curlErrResponse: 20260610_090734
+
+---------------------------------------------------------
+!!! >>> Errors found (warning/error) !!!
+---------------------------------------------------------
+
+curl communication error
+errCode: 3
+errMessage: "URL rejected: Port number was not a decimal number between 0 and 65535"
+
