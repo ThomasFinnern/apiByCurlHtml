@@ -148,8 +148,10 @@ class baseCurlTask extends baseExecuteTasks
                     break;
 
                 case strtolower('joomlaTokenAuto'):
-                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                    $this->joomlaToken = $this->autoTokenFromFile();
+                    // print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
+                    $this->joomlaTokenFile = $this->autoTokenFile();
+                    $this->joomlaToken     = $this->readTokenFromFile($this->joomlaTokenFile);
+                    print ('     option ' . 'joomlaTokenFile' . ': "' . $this->joomlaTokenFile . '"' . PHP_EOL);
                     $isOptionConsumed  = true;
                     break;
 
@@ -1041,9 +1043,41 @@ class baseCurlTask extends baseExecuteTasks
         return $baseUrl;
     }
 
-    private function autoTokenFromFile()
+//    private function autoTokenFromFile()
+//    {
+//        $token = "";
+//
+//        if (empty($this->apiPath)) {
+//            throw new \Exception("apiPath must be set before joomlaTokenAuto in *.tsk file");
+//        }
+//
+//        $baseUrl = $this->baseUrl;
+//        // http://127.0.0.1/joomgallery5x_dev/api/index.php
+//        $strip = "http://127.0.0.1/";
+//        $webIdFront =substr ($this->baseUrl, strlen($strip));
+//
+//        $webId = strstr($webIdFront, '/', true);
+//
+//        // ToDo: use actual path and remove below 2026 and add year ...
+//
+//        // d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla4x.txt
+//        $tokenFile = "d:\\Entwickl\\2026\\_gitHub\\xTokenFiles\\token_" . $webId . ".txt";
+//
+//        // d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt
+//        // d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt
+//
+//        if ( ! is_file($tokenFile)) {
+//            throw new \Exception("autoTokenFromFile: tokenFilename: '" . $tokenFile . "' not found: " . $tokenFile);
+//        }
+//
+//        $token = $this->readTokenFromFile($tokenFile);
+//
+//        return $token;
+//    }
+//
+    private function autoTokenFile()
     {
-        $token = "";
+        $tokenFile = "";
 
         if (empty($this->apiPath)) {
             throw new \Exception("apiPath must be set before joomlaTokenAuto in *.tsk file");
@@ -1061,16 +1095,11 @@ class baseCurlTask extends baseExecuteTasks
         // d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla4x.txt
         $tokenFile = "d:\\Entwickl\\2026\\_gitHub\\xTokenFiles\\token_" . $webId . ".txt";
 
-        // d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt
-        // d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomgallery5x_dev.txt
-
         if ( ! is_file($tokenFile)) {
             throw new \Exception("autoTokenFromFile: tokenFilename: '" . $tokenFile . "' not found: " . $tokenFile);
         }
 
-        $token = $this->readTokenFromFile($tokenFile);
-
-        return $token;
+        return $tokenFile;
     }
 
 

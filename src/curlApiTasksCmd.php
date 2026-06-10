@@ -73,6 +73,7 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 // $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_post_upload_02_img_file.tsk';
 // $tasksFile = '../../JoomGallery_fith_dev/.apiTests/jg_getImages_id.tsk';
 // $tasksFile = '../../JoomGallery_fith_dev/.apiTests/j!_getConfigJG.tsk';
+// $tasksFile = '../../JoomGallery_fith_dev/.apiTests/j!_getConfig_page_1_By30.tsk';
 
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_post_file.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_patch_file_01_coffee.tsk';
