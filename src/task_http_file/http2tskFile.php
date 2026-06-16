@@ -146,7 +146,7 @@ class http2tskFile extends baseCurlTask implements executeTasksInterface
 
     public function execute(): int // $hasError
     {
-        throw new Exception("Excuting not defined ");
+        throw new \Exception("Excuting not defined ");
 
         return 0;
     }

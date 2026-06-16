@@ -84,7 +84,7 @@ class task // extends options
             if (!is_file($taskFile))
             {
                 // not working $realPath = realpath($taskFile);
-                throw new Exception('Task file not found: "' . $taskFile . '"');
+                throw new \Exception('Task file not found: "' . $taskFile . '"');
             }
 
             $content = file_get_contents($taskFile); //Get the file

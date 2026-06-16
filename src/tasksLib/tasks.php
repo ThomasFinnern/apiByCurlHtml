@@ -79,7 +79,7 @@ class tasks
             if (!is_file($taskFile))
             {
                 // not working $realPath = realpath($taskFile);
-                throw new Exception('Task file not found: "' . $taskFile . '"');
+                throw new \Exception('Task file not found: "' . $taskFile . '"');
             }
 
             $content = file_get_contents($taskFile); //Get the file
@@ -116,7 +116,7 @@ class tasks
             {
                 print ('!!! Task file empty and contains no lines' . PHP_EOL);
                 // not working $realPath = realpath($taskFile);
-                throw new Exception('Task file empty and contains no lines: "');
+                throw new \Exception('Task file empty and contains no lines: "');
             }
 
             foreach ($lines as $line)
@@ -170,8 +170,8 @@ class tasks
 //                print ('!!! Task start id found in lines !!!' . PHP_EOL);
                 print ('!!! No Task lines detected !!!' . PHP_EOL);
                 // not working $realPath = realpath($taskFile);
-//                throw new Exception('!!!No  Task id found in lines !!!');
-                throw new Exception('!!! No Task lines detected !!!');
+//                throw new \Exception('!!!No  Task id found in lines !!!');
+                throw new \Exception('!!! No Task lines detected !!!');
             }
 
             // print ($this->tasksText ());

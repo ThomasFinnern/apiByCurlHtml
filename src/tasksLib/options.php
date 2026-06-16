@@ -148,7 +148,7 @@ class options
             if (!is_file($optionsFile))
             {
                 // not working $realPath = realpath($taskFile);
-                throw new Exception('Options file not found: "' . $optionsFile . '"');
+                throw new \Exception('Options file not found: "' . $optionsFile . '"');
             }
 
             $content = file_get_contents($optionsFile); //Get the file
