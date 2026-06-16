@@ -154,6 +154,11 @@ class tsk2httpFile extends baseCurlTask implements executeTasksInterface
 
                 break;
 
+            case strtolower('tsk2httpCmdLine'):
+                $hasError = $this->tsk2httpCmdLine();
+
+                break;
+
             case strtolower('http2tskFile'):
                 $hasError = $this->http2tskFile();
 
@@ -215,6 +220,55 @@ class tsk2httpFile extends baseCurlTask implements executeTasksInterface
 
         return $this->hasError;
     }
+
+    public function tsk2httpCmdLine(): bool  // ToDo: string $tskFilePathName='', string $httpFilePathName=''
+    {
+        // file, path
+        [$srcPath, $dstPath] = $this->createFilePaths();
+
+        if ($this->hasError == false)
+        {
+
+            //--- transform data ----------------------------------------
+
+            print ("---------------------------------------------------" . PHP_EOL);
+            print ("--- transform tsk data 2 curl cmd line ------------" . PHP_EOL);
+            print ("---------------------------------------------------" . PHP_EOL);
+
+            //--- read files data -----------------------
+
+            print (">>read file data: " . PHP_EOL);
+
+            $tskFileData  = new tskFileData($srcPath); // calls extract data
+            $httpFileData = new curlCmdLineData($dstPath, true);
+
+            //--- transfer data ---------------------------------
+
+            print (">>transfer *.tsk data 2 http data: " . PHP_EOL);
+
+            // $httpFileData->assignBaseCurlData((baseCurlTask) $tskFileData);
+
+            $httpFileData->assignBaseCurlData($tskFileData);
+
+            //--- local task data ---------------------------------
+
+            print (">>local task data 2 http data: " . PHP_EOL);
+
+            //--- create and save data -----------------------
+
+            print (">>save httpFileData: " . PHP_EOL);
+
+            $httpFileData->createFileLines();
+            $httpFileData->writeFile();
+
+            print ("------------------------------------------" . PHP_EOL);
+            print ("--- transform done -----------------------" . PHP_EOL);
+            print ("------------------------------------------" . PHP_EOL);
+        }
+
+        return $this->hasError;
+    }
+
 
     public function createFilePaths(): array
     {

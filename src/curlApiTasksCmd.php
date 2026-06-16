@@ -92,6 +92,7 @@ $tasksLine = ' task:curlApi_HttpCall' . ' /type=component' . ' /srcRoot="./../..
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getVersion.tsk'; // double error
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getConfig_isDevelop.tsk';
 //$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/j!_getConfig_page_3_By30.tsk';
+$tasksFile = '../../RSGallery2_J4_Dev/.apiTests/rsg2_getVersion.tsk';
 
 // basepath needed when ???
 //$basePath = "..\\..\\RSGallery2_J4_Dev";

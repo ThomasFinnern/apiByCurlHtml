@@ -111,7 +111,66 @@ variables
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
 //$taskFile = '../../apiByCurlHtml/src/curl_tsk_files/j!_getTest.tsk';
 
-$tasksLine = ' task:tsk2httpFile' . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests' . ' /srcFile="rsg2_getConfig_isDevelop.tsk"' . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files' . ' /dstFile="rsg2_getConfig_isDevelop.http"';
+//$tasksLine = ' task:tsk2httpFile'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_getConfig_isDevelop.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_http_files'
+//    . ' /dstFile="rsg2_getConfig_isDevelop.http"';
+
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_getConfig_isDevelop.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_getConfig_isDevelop_curl.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_postGallery.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_postGallery.tsk.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_post_upload_image.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_post_upload_image.tsk.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_patchConfig_isDevelop_on.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_patchConfig_isDevelop_on.tsk.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_patchConfig_isDevelop_off.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_patchConfig_isDevelop_off.tsk.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_postConfig_add01.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_postConfig_add01.tsk.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_deleteConfig_01.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_deleteConfig_01.tsk.bat"';
+//
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_deleteGallery.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_deleteGallery.tsk.bat"';
+
+$tasksLine = ' task:tsk2httpCmdLine'
+    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+    . ' /srcFile="rsg2_post_upload_02_img_file.tsk"'
+    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+    . ' /dstFile="rsg2_post_upload_02_img_file.tsk.bat"';
 
 $srcFile         = "";
 $dstFile         = "";

@@ -3,5 +3,10 @@
 **/*.tmp
 
 tmp/
-src/results/
+
+src/curl_cmdLine/
 src/curl_http_files/
+src/results/
+src/curl_tsk_files/*.json
+src/curl_tsk_files/*.jsonoutside.txt
+
