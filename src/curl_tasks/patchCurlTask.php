@@ -104,7 +104,8 @@ class patchCurlTask extends baseCurlTask implements executeTasksInterface
 
         // ToDo: Error on missing token
 
-        $this->prepareDataFromFiles();
+        // Extract token from file and other *.tsk data
+        $this->extactDataFromTaskFile();
         $jsonPara = $this->convertParams2Json();
 
         if ($this->oCurl)

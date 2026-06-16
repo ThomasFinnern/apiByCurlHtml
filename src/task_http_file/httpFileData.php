@@ -234,7 +234,7 @@ class httpFileData extends baseCurlTask // baseHttpFileData // see baseCurlTask
     {
         //--- prepare json data  ------------------------------------
 
-        $this->prepareDataFromFiles();
+        $this->extactDataFromTaskFile();
 
         //--- create lines ----------------------------------------------
 

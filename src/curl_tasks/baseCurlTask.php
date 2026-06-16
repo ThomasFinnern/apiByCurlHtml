@@ -152,7 +152,7 @@ class baseCurlTask extends baseExecuteTasks
                     $this->joomlaTokenFile = $this->autoTokenFile();
                     $this->joomlaToken     = $this->readTokenFromFile($this->joomlaTokenFile);
                     print ('     option ' . 'joomlaTokenFile' . ': "' . $this->joomlaTokenFile . '"' . PHP_EOL);
-                    $isOptionConsumed  = true;
+                    $isOptionConsumed = true;
                     break;
 
                 case strtolower('accept'):
@@ -890,7 +890,12 @@ class baseCurlTask extends baseExecuteTasks
         return $fileData;
     }
 
-    protected function prepareDataFromFiles(): void
+    /**
+     * Extract token from file and other *.tsk data
+     * 
+     * @return void
+     */
+    protected function extactDataFromTaskFile(): void
     {
         try
         {
@@ -1029,7 +1034,6 @@ class baseCurlTask extends baseExecuteTasks
                 }
 
                 $baseUrl = $trimmed;
-                // print ("baseUrl: " . $baseUrl . " by file: '" . $filePath . "'" . PHP_EOL);
 
                 break;
             }
@@ -1038,6 +1042,21 @@ class baseCurlTask extends baseExecuteTasks
         else
         {
             throw new \Exception("extractFile2BaseUrl: File not found: '" . $filePath . "'");
+        }
+
+        if (!str_starts_with($baseUrl, 'http://'))
+        {
+            // No uncommented item line ?
+            if ($baseUrl == '')
+            {
+                throw new \Exception("extractFile2BaseUrl: baseUrl not found in file: '" . $filePath . "'" . PHP_EOL
+                    . "    ->Is there an uncommented line, or are there no lines at all ?");
+            }
+            else
+            {
+                // bad name
+                throw new \Exception("extractFile2BaseUrl: baseUrl is bad: '" . $baseUrl . "'");
+            }
         }
 
         return $baseUrl;
@@ -1079,14 +1098,15 @@ class baseCurlTask extends baseExecuteTasks
     {
         $tokenFile = "";
 
-        if (empty($this->apiPath)) {
+        if (empty($this->apiPath))
+        {
             throw new \Exception("apiPath must be set before joomlaTokenAuto in *.tsk file");
         }
 
         $baseUrl = $this->baseUrl;
         // http://127.0.0.1/joomgallery5x_dev/api/index.php
-        $strip = "http://127.0.0.1/";
-        $webIdFront =substr ($this->baseUrl, strlen($strip));
+        $strip      = "http://127.0.0.1/";
+        $webIdFront = substr($this->baseUrl, strlen($strip));
 
         $webId = strstr($webIdFront, '/', true);
 
@@ -1095,8 +1115,9 @@ class baseCurlTask extends baseExecuteTasks
         // d:\Entwickl\2026\_gitHub\xTokenFiles\token_joomla4x.txt
         $tokenFile = "d:\\Entwickl\\2026\\_gitHub\\xTokenFiles\\token_" . $webId . ".txt";
 
-        if ( ! is_file($tokenFile)) {
-            throw new \Exception("autoTokenFromFile: tokenFilename: '" . $tokenFile . "' not found: " . $tokenFile);
+        if (!is_file($tokenFile))
+        {
+            throw new \Exception("autoTokenFromFile: tokenFilename not found: " . $tokenFile);
         }
 
         return $tokenFile;
