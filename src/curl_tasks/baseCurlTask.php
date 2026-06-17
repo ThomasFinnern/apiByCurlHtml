@@ -39,8 +39,10 @@ class baseCurlTask extends baseExecuteTasks
     public array $params = [];
     public string $paramsFile = "";
 
-// ToDo:    protected array $urlQueryParams = [];  // list of additional parameters multiple lines  of test01=1]
+    // Appendixes before ? in route example .../galleries/<1>
     public array $urlRouterParams = [];
+
+    // parameter after ? examples: page[offset]=30 page[limit]=30'
     public array $urlQueryParams = [];
 
     public string $dataFile = "";
@@ -48,8 +50,6 @@ class baseCurlTask extends baseExecuteTasks
 
     protected string $httpFile = "";
 
-    //protected bool $isExitOnErrorResult = false;
-    protected bool $isExitOnErrorResult = true;
     protected bool $isLoadResponseFile = true;
 
     protected bool $isKeepResponseJson = true;
@@ -233,12 +233,6 @@ class baseCurlTask extends baseExecuteTasks
                     print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
                     // $this->dstExtension     = $option->value;
                     $isOptionConsumed = true;
-                    break;
-
-                case strtolower('isExitOnErrorResult'):
-                    print ('     option ' . $option->name . ': "' . $option->value . '"' . PHP_EOL);
-                    $this->isExitOnErrorResult = boolval($option->value);
-                    $isOptionConsumed          = true;
                     break;
 
                 case strtolower('isLoadResponseFile'):
@@ -456,7 +450,7 @@ class baseCurlTask extends baseExecuteTasks
         // page offset or other parameter
         if (!empty($this->urlRouterParams))
         {
-            // from given parameters tp parameter object
+            // from given parameters to parameter object
             // create query : ?page[offset]=90&page[limit]=30
             $urlAdd2Router = '/' . implode("/", $this->urlRouterParams);
             $urlPath       .= $urlAdd2Router;
@@ -467,7 +461,7 @@ class baseCurlTask extends baseExecuteTasks
         // page offset or other parameter
         if (!empty($this->urlQueryParams))
         {
-            // from given parameters tp parameter object
+            // from given parameters to parameter object
             // create query : ?page[offset]=90&page[limit]=30
             $urlRawQuery = '?' . implode("&", $this->urlQueryParams);
 
@@ -632,6 +626,7 @@ class baseCurlTask extends baseExecuteTasks
         $this->baseUrl = $srcData->baseUrl;
 
         $this->apiPath         = $srcData->apiPath;
+        $this->apiPathId         = $srcData->apiPathId;
         $this->joomlaToken     = $srcData->joomlaToken;
         $this->joomlaTokenFile = $srcData->joomlaTokenFile;
         $this->accept          = $srcData->accept;
@@ -640,10 +635,16 @@ class baseCurlTask extends baseExecuteTasks
 
         $this->params     = $srcData->params;
         $this->paramsFile = $srcData->paramsFile;
+        $this->urlRouterParams = $srcData->urlRouterParams;
+        $this->urlQueryParams = $srcData->urlQueryParams;
 
         $this->dataFile     = $srcData->dataFile;
         $this->dataFileType = $srcData->dataFileType;
         $this->httpFile     = $srcData->httpFile;
+
+        $this->isLoadResponseFile     = $srcData->isLoadResponseFile;
+        $this->isKeepResponseJson     = $srcData->isKeepResponseJson;
+
 //        $this->page_offset  = $srcData->page_offset;
 //        $this->page_limit   = $srcData->page_limit;
 // ToDo: Update and check all vars in class
