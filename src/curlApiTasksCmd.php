@@ -219,7 +219,7 @@ if (!empty($optionFiles))
     }
 }
 
-//--- extract options from command line ------------------
+//--- extract task options from command line ------------------
 
 if (!empty($additionalParams))
 {

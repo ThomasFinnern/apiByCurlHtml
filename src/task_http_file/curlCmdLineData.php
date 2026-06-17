@@ -388,31 +388,39 @@ class curlCmdLineData extends baseCurlTask
 //   "password": "123456" \
 // }' 'http://example.com/login'
 
-
         $line = "curl command ???";
 
-        switch ($this->taskName)
-        {
-            case 'get':
-                $line = 'curl -s --show-error --get "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
+//        switch (strtolower($this->taskName))
+//        {
+//            case 'get':
+//                $line = 'curl -s --show-error --get "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
+//                break;
+//
+//            case 'post':
+//                $line = 'curl -s --show-error -X POST "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
+//
+//                break;
+//
+//            case 'patch':
+//                $line = 'curl -s --show-error -X PATCH "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
+//
+//                break;
+//
+//            case 'delete':
+//                $line = 'curl -s --show-error -X DELETE "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
+//
+//                break;
+//        }
+//
+//        $oldLine = $line;
 
-                break;
+        $pre = 'curl -s --show-error ';
+        $task = ' -X ' . strtoupper($this->taskName);
+        $url = $this->urlPath();
+        $post = ' ^';
 
-            case 'post':
-                $line = 'curl -s --show-error -X POST "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
-
-                break;
-
-            case 'patch':
-                $line = 'curl -s --show-error -X PATCH "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
-
-                break;
-
-            case 'delete':
-                $line = 'curl -s --show-error -X DELETE "' . $this->baseUrl . '/' . $this->apiPath . '" ^';
-
-                break;
-        }
+        // $line = $pre . $task . ' ' . $url . $post;
+        $line = $pre . $task . ' "' . $url . '"' . $post;
 
         return $line;
     }
@@ -433,7 +441,7 @@ class curlCmdLineData extends baseCurlTask
         {
             //--- collect params in one json line ----------------------
 
-            // from given parameters tp parameter object
+            // from given parameters to parameter object
             $params = $this->params;
 
             // remove base64 file content
@@ -481,7 +489,7 @@ class curlCmdLineData extends baseCurlTask
 //        // page offset or other parameter
 //        if (!empty($this->urlRouterParams))
 //        {
-//            // from given parameters tp parameter object
+//            // from given parameters to parameter object
 //            // create query : ?page[offset]=90&page[limit]=30
 //            $test = '-d' . implode(" -d", $this->urlRouterParams);
 //            $lines[] = $tab . '-d' . implode(" -d", $this->urlRouterParams) . ' ^';
