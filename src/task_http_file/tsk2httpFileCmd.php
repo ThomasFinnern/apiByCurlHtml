@@ -25,7 +25,7 @@ functions
 main (used from command line)
 ================================================================================*/
 
-$optDefinition    = "t:f:o:s:d:j:r:e:y:h12345";
+$optDefinition    = "t:f:o:s:d:j:r:e:y:a:h12345";
 $isPrintArguments = false;
 //$isPrintArguments = true;
 
@@ -36,6 +36,8 @@ $LeaveOut_02 = true;
 $LeaveOut_03 = true;
 $LeaveOut_04 = true;
 $LeaveOut_05 = true;
+
+// $additionalParams = [];
 
 /*--------------------------------------------
 variables
@@ -165,18 +167,33 @@ variables
 //    . ' /srcFile="rsg2_deleteGallery.tsk"'
 //    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
 //    . ' /dstFile="rsg2_deleteGallery.tsk.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="rsg2_post_upload_02_img_file.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="rsg2_post_upload_02_img_file.tsk.bat"';
+//
+//$tasksLine = ' task:tsk2httpCmdLine'
+//    . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
+//    . ' /srcFile="j!_getConfig_page_2_By30.tsk"'
+//    . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
+//    . ' /dstFile="j!_getConfig_page_2_By30.tsk.bat"';
 
 $tasksLine = ' task:tsk2httpCmdLine'
     . ' /srcPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests'
-    . ' /srcFile="rsg2_post_upload_02_img_file.tsk"'
+    . ' /srcFile="rsg2_getImage_id.tsk"'
     . ' /dstPath=d:/Entwickl/2026/_gitHub/RSGallery2_J4_Dev/.apiTests/curl_cmdLine'
-    . ' /dstFile="rsg2_post_upload_02_img_file.tsk.bat"';
+    . ' /dstFile="rsg2_getImage_id.bat"';
+// Test now inside *.tsk: $additionalParams[] = "/urlRouterParam=5";
 
 $srcFile         = "";
 $dstFile         = "";
 $responseFile    = "";
 $joomlaTokenFile = "";
 $dstExtension    = '';
+
+$additionalParams = [];
 
 foreach ($options as $idx => $option)
 {
@@ -245,6 +262,10 @@ foreach ($options as $idx => $option)
             print("LeaveOut__05");
             break;
 
+        case 'a':
+            $additionalParams[] = $option;
+            break;
+
         default:
             print("Option not supported '" . $option . "'");
             break;
@@ -283,7 +304,21 @@ if (!empty($optionFiles))
     }
 }
 
-// add options from command line
+//--- extract task options from command line ------------------
+
+if (!empty($additionalParams))
+{
+    print ("Loading additional parameter (*.bat command line): (" . count($additionalParams) . ')' . PHP_EOL);
+
+    foreach ($additionalParams as $additionalParam)
+    {
+        print ("(ToDo: Remove ) Additional parameter: '" . $additionalParam . "'" . PHP_EOL);
+
+        $task->extractOptionsFromLines([$additionalParam]);
+    }
+}
+
+//--- add options from command line --------------------------------------
 
 if (!empty($srcFile))
 {
